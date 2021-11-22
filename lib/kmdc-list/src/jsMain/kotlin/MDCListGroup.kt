@@ -20,7 +20,10 @@ public class MDCListGroupScope(scope: ElementScope<HTMLDivElement>) : ElementSco
  */
 @MDCDsl
 @Composable
-@Deprecated("Based on already deprecated MDC List. New implementation is still in the works.", level = DeprecationLevel.WARNING)
+@Deprecated(
+  "Based on already deprecated MDC List. New implementation is still in the works.",
+  level = DeprecationLevel.WARNING
+)
 public fun MDCListGroup(
   attrs: Builder<AttrsBuilder<HTMLDivElement>>? = null,
   content: ComposableBuilder<MDCListGroupScope>? = null,
