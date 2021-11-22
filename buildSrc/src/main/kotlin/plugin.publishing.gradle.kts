@@ -16,7 +16,7 @@ tasks {
   withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach { dependsOn(jsMainClasses) }
   
   register<Jar>("javadocJar") {
-    // TODO uncomment once dokka fixes this shit
+//     TODO uncomment once dokka fixes this shit
 //    dependsOn(dokkaHtml)
 //    from(dokkaHtml.get().outputDirectory)
     archiveClassifier.set("javadoc")
