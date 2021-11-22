@@ -23,12 +23,12 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - runner: macos-latest
-            shell: bash
+#          - runner: macos-latest
+#            shell: bash
           - runner: ubuntu-latest
             shell: bash
-          - runner: windows-latest
-            shell: msys2 {0}
+#          - runner: windows-latest
+#            shell: msys2 {0}
     steps:
       - uses: msys2/setup-msys2@v2
         if: ${{ runner.os == 'Windows' }}
