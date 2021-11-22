@@ -1,0 +1,120 @@
+name: Sandbox
+defaults:
+  run:
+    shell: bash
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: Command to run
+        required: true
+      runner:
+        description: Runner to use [ubuntu, macos, windows]
+        required: true
+        default: "windows-latest"
+      runAtEnd:
+        description: |
+          Should the command be run after restoring caches and setting up the environment?
+          Any value other than 'yes' will run the command without any caches or environment setups.
+        required: false
+        default: "true"
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os.runner }}
+    runs-on: ${{ matrix.os.runner }}
+    defaults:
+      run:
+        shell: ${{ matrix.os.shell }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - runner: macos-latest
+            shell: bash
+          - runner: windows-latest
+            shell: msys2 {0}
+          - runner: ubuntu-latest
+            shell: bash
+    steps:
+      - uses: msys2/setup-msys2@v2
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) && runner.os == 'Windows' }}
+        with:
+          msystem: MINGW64
+          update: true
+          path-type: inherit
+          install: >-
+            tar
+            make
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-extra-cmake-modules
+            mingw64/mingw-w64-x86_64-cyrus-sasl
+
+      - uses: actions/checkout@v2
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
+
+      - name: Restore libmongoc cache
+        if: ${{ github.event.inputs.runAtEnd == 'true' && startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        id: cache-libmongoc
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            scripts/build
+          key: ${{ runner.os }}-libmongoc-${{ hashFiles('./scripts/*') }}
+
+      - name: Setup libmongoc
+        if: ${{ github.event.inputs.runAtEnd == 'true' && startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        run: ./scripts/setup.sh
+
+      - uses: actions/setup-java@v2
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        with:
+          distribution: 'adopt'
+          java-version: 11
+
+      - name: Restore Gradle cache
+        if: ${{ github.event.inputs.runAtEnd == 'true' && startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        id: cache-gradle
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: "[DEBUG] Environment"
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        run: printenv
+
+      - name: "[DEBUG] Path"
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        run: echo $PATH
+
+      - name: Run Command
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
+        env:
+          GH_USERNAME: ${{ github.actor }}
+          GH_PASSWORD: ${{ github.token }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+        run: ${{ github.event.inputs.command }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) && always() }}
+        with:
+          name: publications-${{ runner.os }}
+          path: |
+            **/build/publications
+            **/build/libs
+            **/build/reports

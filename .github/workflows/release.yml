@@ -1,0 +1,244 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: Package version to publish under
+      skipPages:
+        description: Should we skip releasing GitHub pages
+        required: false
+        default: "y"
+      skipMavenCentral:
+        description: Should we skip publishing artefacts to Maven Central
+        required: false
+        default: "y"
+      skipGitHub:
+        description: Should we skip publishing artefacts to GitHub Packages
+        required: false
+        default: "y"
+  release:
+    types: [ created ]
+
+env:
+  VERSION: ${{ github.event.release.tag_name }}
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os.runner }}
+    runs-on: ${{ matrix.os.runner }}
+    defaults:
+      run:
+        shell: ${{ matrix.os.shell }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - runner: macos-latest
+            shell: bash
+          - runner: windows-latest
+            shell: msys2 {0}
+          - runner: ubuntu-latest
+            shell: bash
+    steps:
+      - uses: msys2/setup-msys2@v2
+        if: ${{ runner.os == 'Windows' }}
+        with:
+          msystem: MINGW64
+          update: true
+          path-type: inherit
+          install: >-
+            tar
+            make
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-extra-cmake-modules
+            mingw64/mingw-w64-x86_64-cyrus-sasl
+
+      - uses: actions/checkout@v2
+
+      - name: Restore native cache
+        id: cache-native
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            scripts/build
+          key: ${{ runner.os }}-native-${{ hashFiles('./scripts/*') }}
+
+      - name: Setup native libraries
+        run: ./scripts/setup.sh
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 11
+
+      - name: Restore Gradle cache
+        id: cache-gradle
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Resolve Version
+        run: |
+          VERSION=${VERSION:=${{ github.event.inputs.version }}}
+          echo "VERSION=${VERSION/v}" >> $GITHUB_ENV
+
+      - name: Gradle Assemble Publications
+        run: ./gradlew publishToMavenLocal --scan
+
+      - name: Gradle Check
+        run: ./gradlew check --scan
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: publications-${{ runner.os }}
+          path: |
+            **/build/publications
+            **/build/libs
+            **/build/reports
+
+      - name: Gradle Assemble Dokka
+        if: ${{ runner.os == 'Linux' }}
+        run: ./gradlew dokkaHtmlMultiModule -Pversion=${VERSION//v} --scan
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ runner.os == 'Linux' }}
+        with:
+          name: dokka
+          path: |
+            **/build/dokka
+
+  release-Artefacts:
+    name: Release to ${{ matrix.repository.name }} on ${{ matrix.os.runner }}
+    runs-on: ${{ matrix.os.runner }}
+    needs: [ build ]
+    defaults:
+      run:
+        shell: ${{ matrix.os.shell }}
+    env:
+      GH_USERNAME: ${{ github.actor }}
+      GH_PASSWORD: ${{ github.token }}
+      ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+      ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.SIGNING_KEY_ID }}
+      ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+      ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+      ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+    strategy:
+      matrix:
+        repository:
+          - name: Github Packages
+            tasks: publishAllPublicationsToGitHubRepository
+            enabled: ${{ github.event.inputs.skipGitHub != 'y' }}
+          - name: Maven Central
+            # Requires to manually release a new version on https://s01.oss.sonatype.org/#stagingRepositories
+            # If you're brave, you could change it to `publishToSonatype closeAndReleaseSonatypeStagingRepository` to fully automate the release
+            tasks: publishToSonatype closeSonatypeStagingRepository
+            enabled: ${{ github.event.inputs.skipMavenCentral != 'y' }}
+        os:
+          - runner: macos-latest
+            shell: bash
+          - runner: windows-latest
+            shell: msys2 {0}
+          - runner: ubuntu-latest
+            shell: bash
+    steps:
+      - uses: msys2/setup-msys2@v2
+        if: ${{ matrix.repository.enabled == true && runner.os == 'Windows' }}
+        with:
+          msystem: MINGW64
+          update: true
+          path-type: inherit
+          install: >-
+            tar
+
+      - name: Restore native cache
+        if: ${{ matrix.repository.enabled == true }}
+        id: cache-native
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            scripts/build
+          key: ${{ runner.os }}-native-${{ hashFiles('./scripts/*') }}
+
+      - uses: actions/checkout@v2
+        if: ${{ matrix.repository.enabled == true }}
+
+      - name: Setup native libraries
+        if: ${{ matrix.repository.enabled == true }}
+        run: ./scripts/setup.sh
+
+      - uses: actions/setup-java@v2
+        if: ${{ matrix.repository.enabled == true }}
+        with:
+          distribution: 'adopt'
+          java-version: 11
+
+      - name: Restore Gradle cache
+        if: ${{ matrix.repository.enabled == true }}
+        id: cache-gradle
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - uses: actions/download-artifact@v2
+        if: ${{ matrix.repository.enabled == true }}
+        with:
+          name: publications-${{ runner.os }}
+
+      - name: Resolve Version
+        if: ${{ matrix.repository.enabled == true }}
+        run: |
+          VERSION=${VERSION:=${{ github.event.inputs.version }}}
+          echo "VERSION=${VERSION/v}" >> $GITHUB_ENV
+
+      - name: Gradle Publish to ${{ matrix.repository.name }}
+        if: ${{ matrix.repository.enabled == true }}
+        run: ./gradlew ${{ matrix.repository.tasks }} -Pversion=${VERSION//v} --scan
+
+  release-Dokka:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    if: ${{ github.event.inputs.skipPages != 'y' }}
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: dokka
+
+      - name: Resolve Version
+        run: |
+          VERSION=${VERSION:=${{ github.event.inputs.version }}}
+          echo "VERSION=${VERSION/v}" >> $GITHUB_ENV
+
+      - name: Build Dokka Pages
+        run: |
+          REPO_NAME=${{ github.repository }}
+          REPO_NAME=${REPO_NAME#${{ github.repository_owner }}/}
+          cp -avr build/dokka/htmlMultiModule/ public;
+          find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
+          echo "/${REPO_NAME} /${REPO_NAME}/${REPO_NAME}/index.html 301" > public/_redirects;
+          echo "/${REPO_NAME}/index.html /${REPO_NAME}/${REPO_NAME}/index.html 301" >> public/_redirects;
+
+      - uses: crazy-max/ghaction-github-pages@v2.5.0
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
