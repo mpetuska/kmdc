@@ -1,78 +1,67 @@
-[![Dokka docs](https://img.shields.io/badge/docs-dokka-orange?style=flat-square)](http://mpetuska.github.io/template-kmp-library)
-[![Version maven-central](https://img.shields.io/maven-central/v/dev.petuska/template-kmp-library?logo=apache-maven&style=flat-square)](https://mvnrepository.com/artifact/dev.petuska/template-kmp-library/latest)
+[![Dokka docs](https://img.shields.io/badge/docs-dokka-orange?style=flat-square)](http://mpetuska.github.io/kmdc)
+[![Version maven-central](https://img.shields.io/maven-central/v/dev.petuska/kmdc?logo=apache-maven&style=flat-square)](https://mvnrepository.com/artifact/dev.petuska/kmdc/latest)
 
-# template-kmp-library
+# Kompose Material Design Components (KMDC)
 
-Kotlin multiplatform library template.
+A set of kotlin wrappers
+over [material-components-web@13.0.0](https://github.com/material-components/material-components-web/tree/v13.0.0)
+library providing Jetbrains Compose DSL for building beautiful WEB UIs. The API surface is identical to JS version,
+except for few places where slight adjustments are made to make it more fluid for compose.
 
-Has a baseline setup for a multiplatform library supporting all
-kotlin [targets](https://kotlinlang.org/docs/mpp-supported-platforms.html)
-except deprecated wasm32.
+## Progress
 
-## Features
+Here's a tracker list of currently completed *material-components-web* modules (13/43):
+- [ ] mdc-animation
+- [ ] mdc-auto-init
+- [ ] mdc-banner
+- [ ] mdc-base
+- [x] mdc-button
+- [x] mdc-card
+- [x] mdc-checkbox
+- [ ] mdc-chips
+- [ ] mdc-circular-progress
+- [ ] mdc-data-table
+- [ ] mdc-density
+- [ ] mdc-dialog
+- [ ] mdc-dom
+- [x] mdc-drawer
+- [ ] mdc-elevation
+- [ ] mdc-fab
+- [ ] mdc-feature-targeting
+- [ ] mdc-floating-label
+- [x] mdc-form-field
+- [x] mdc-icon-button
+- [ ] mdc-image-list
+- [x] mdc-layout-grid
+- [ ] mdc-line-ripple
+- [x] mdc-linear-progress
+- [x] mdc-list
+- [ ] mdc-menu-surface
+- [ ] mdc-menu
+- [ ] mdc-notched-outline
+- [ ] mdc-progress-indicator
+- [ ] mdc-radio
+- [x] mdc-ripple
+- [ ] mdc-rtl
+- [ ] mdc-segmented-button
+- [ ] mdc-select
+- [ ] mdc-shape
+- [ ] mdc-slider
+- [ ] mdc-snackbar
+- [ ] mdc-switch
+- [ ] mdc-tab-bar
+- [ ] mdc-tab-indicator
+- [ ] mdc-tab-scroller
+- [ ] mdc-tab
+- [x] mdc-textfield
+- [ ] mdc-tooltip
+- [x] mdc-top-app-bar
+- [ ] mdc-touch-target
+- [x] mdc-typography
 
-* Native target grouping and shared sourceSets
-* Wrapper library module that declares dependencies on all lib modules
-* Uniform configuration via conventional plugins `convention.common`, `convention.library` & `convention.publishing`
-* Local `test` module for shared test utilities (a helper function to run coroutine tests in common sourceSet included)
-* Local `sandbox` module for easy library consumer side checks
-* Publication control to avoid multiple publications for targets that can be built on multiple hosts
-* `ktlint` plugin with automatic `git-hooks`
-* `refreshVersions` plugin for better library version control
-* Main host for publications can be changed via `gradle.properties#project.mainOS` property
-* Gradle Build Scan setup
-* GH dependabot setup
-* GH release action for platform dependant publications
-* GH check action for platform dependant tests on PRs
-* Maven Central publishing setup
-* GH Packages publishing setup
-
-## Setup
-
-Here are some pointers to help you get up and running with this template
-
-### Badges
-
-This README contains some useful badges for your project. To tailor them to your artefacts the following changes needs
-to be made:
-
-* `Dokka docs` - change the link as `(http://$GH_USERNAME.github.io/$GH_PROJECT_NAME)`
-* `Version maven-central - change all occurrences of `dev.petuska` to your own group and `template-kmp-library` to your
-  root library name
-
-### gradle.properties
-
-Have a look at `gradle.properties` file and change these properties as needed
-
-* `gh.owner.id` - main library developer's username
-* `gh.owner.name` - main library developer's name
-* `gh.owner.email` - main library developer's email
-* `project.mainOS` - main host to publish cross-platform artefacts from (to avoid duplicate publications)
-* `group` - artefacts' group
-* `description` - library description
-* `version` - library version (overridden in CI, so doesn't really matter here)
-
-### Modules
-
-All the library modules should go to `/lib/` directory and be included in `/settings.gradle.kts`. There are already two
-sample modules to illustrate how simple the setup is (`/lib/template-kmp-library-core` & `template-kmp-library-dsl`).
-They both contain some sample code and tests that make use of local `/test` module with testing utilities.
-
-### Kotlin Targets
-
-The template comes packed with all kotlin targets preconfigured, however if you want to remove some of them or tweak the
-config, you only need to make changes as needed in `/buildSrc/src/main/kotlin/convention.library.gradle.kts`. Removing
-targets from this file will not break any publications as they're configured on top of pre-registered targets.
-
-### GitHub Actions
-
-The template also comes with GH actions to check builds on PRs and publish artefacts when creating a GH release. By
-default, it'll publish to GH packages and Maven Central. However to fully unlock Maven Central publishing, you'll need
-to add these secrets to your GH repository. If you want to quickly disable Maven Central publishing, you can toggle it
-at `.github/workflows/release.yml#L80`
-
-* `SIGNING_KEY` - GPG signing key
-* `SIGNING_KEY_ID` - GPG signing key ID
-* `SIGNING_PASSWORD` - GPG signing key password (if set)
-* `SONATYPE_PASSWORD` - Sonatype PAT username
-* `SONATYPE_USERNAME` - Sonatype PAT password
+# Developer Setup
+* Install JDK 11+
+* Run `./gradlew assemble` to build js binaries
+* Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
+  * `./gradlew jsBrowserRun -t` to start development server
+  * Visit [http://localhost:3000](http://localhost:3000) to see your content

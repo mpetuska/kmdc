@@ -4,6 +4,5 @@ org.kodein.di:kodein-di(-*)
               ^^^^^^
 org.litote.kmongo:kmongo(-*)
                   ^^^^^^
-
 dev.petuska:klip(-*)
             ^^^^

@@ -9,11 +9,8 @@ kotlin {
   sourceSets {
     named("jsMain") {
       dependencies {
-        api(project(":lib:kmdc-core"))
+        api(project(":lib:kmdc-ripple"))
         api(npm("@material/textfield", mdcVersion))
-        api(npm("@material/checkbox", mdcVersion))
-        api(npm("@material/form-field", mdcVersion))
-        api(npm("@material/list", mdcVersion))
       }
     }
   }

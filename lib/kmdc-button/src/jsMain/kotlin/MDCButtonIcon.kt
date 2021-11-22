@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.MDCDsl
+import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.I

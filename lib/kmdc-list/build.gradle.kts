@@ -10,7 +10,7 @@ kotlin {
     named("jsMain") {
       dependencies {
         api(project(":lib:kmdc-core"))
-        api(npm("@material/form-field", mdcVersion))
+        api(project(":lib:kmdc-ripple"))
         api(npm("@material/list", mdcVersion))
       }
     }

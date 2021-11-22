@@ -3,12 +3,13 @@ plugins { `kotlin-dsl` }
 repositories {
   gradlePluginPortal()
   mavenCentral()
+  maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   google()
 }
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
-  implementation("com.android.library:com.android.library.gradle.plugin:_")
+  implementation("org.jetbrains.compose:compose-gradle-plugin:_")
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:_")
   implementation("org.jetbrains.kotlin:kotlin-serialization:_")
   implementation("com.github.jakemarsden:git-hooks-gradle-plugin:_")

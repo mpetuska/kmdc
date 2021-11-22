@@ -10,7 +10,7 @@ kotlin {
     named("jsMain") {
       dependencies {
         api(project(":lib:kmdc-core"))
-        api(npm("@material/button", mdcVersion))
+        api(npm("@material/ripple", mdcVersion))
       }
     }
   }

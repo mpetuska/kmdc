@@ -10,9 +10,8 @@ kotlin {
     named("jsMain") {
       dependencies {
         api(project(":lib:kmdc-core"))
+        api(project(":lib:kmdc-form-field"))
         api(npm("@material/checkbox", mdcVersion))
-        api(npm("@material/form-field", mdcVersion))
-        api(npm("@material/list", mdcVersion))
       }
     }
   }

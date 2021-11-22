@@ -1,1 +1,1 @@
-package dev.petuska.template.kmp.library
+package dev.petuska.kmdc
