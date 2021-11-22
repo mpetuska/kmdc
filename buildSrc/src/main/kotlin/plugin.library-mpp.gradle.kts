@@ -10,7 +10,6 @@ plugins {
   kotlin("plugin.serialization")
   id("plugin.common")
   id("dev.petuska.klip")
-  id("org.jetbrains.compose")
 }
 
 kotlin {

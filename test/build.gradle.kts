@@ -12,6 +12,11 @@ kotlin {
         api("dev.petuska:klip:_")
       }
     }
-    named("jsMain") { dependencies { api(kotlin("test-js")) } }
+    named("jsMain") {
+      dependencies {
+        api("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+        api(kotlin("test-js"))
+      }
+    }
   }
 }
