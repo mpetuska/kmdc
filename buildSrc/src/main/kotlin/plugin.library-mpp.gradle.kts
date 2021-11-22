@@ -1,4 +1,3 @@
-import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinNativeCompile
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -23,6 +22,7 @@ kotlin {
 tasks {
   project.properties["org.gradle.project.targetCompatibility"]?.toString()?.let {
     withType<KotlinCompile> { kotlinOptions { jvmTarget = it } }
+    withType<JavaCompile> { targetCompatibility = it }
   }
   withType<CInteropProcess> { onlyIf { konanTarget.buildHost == HostManager.host.family } }
   withType<AbstractKotlinNativeCompile<*, *>> {

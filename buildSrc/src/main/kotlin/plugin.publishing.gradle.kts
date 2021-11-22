@@ -11,10 +11,15 @@ plugins {
 }
 
 tasks {
+  val jsMainClasses by getting
+  withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach { dependsOn(jsMainClasses) }
+  withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach { dependsOn(jsMainClasses) }
+  
   register<Jar>("javadocJar") {
-    dependsOn(dokkaHtml)
+    // TODO uncomment once dokka fixes this shit
+//    dependsOn(dokkaHtml)
+//    from(dokkaHtml.get().outputDirectory)
     archiveClassifier.set("javadoc")
-    from(dokkaHtml.get().outputDirectory)
   }
   withType<Jar> {
     manifest {

@@ -216,7 +216,7 @@ jobs:
   release-Dokka:
     runs-on: ubuntu-latest
     needs: [ build ]
-    if: ${{ github.event.inputs.skipPages != 'y' }}
+    if: ${{ github.event.inputs.skipPages != 'y' && false }}
     steps:
       - uses: actions/download-artifact@v2
         with:

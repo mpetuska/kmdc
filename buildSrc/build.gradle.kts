@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins { `kotlin-dsl` }
 
 repositories {
@@ -16,4 +19,11 @@ dependencies {
   implementation("com.diffplug.spotless:spotless-plugin-gradle:_")
   implementation("io.github.gradle-nexus:publish-plugin:_")
   implementation("dev.petuska:klip-gradle-plugin:_")
+}
+
+tasks {
+  project.properties["org.gradle.project.targetCompatibility"]?.toString()?.let {
+    withType<KotlinCompile> { kotlinOptions { jvmTarget = it } }
+    withType<JavaCompile> { targetCompatibility = it }
+  }
 }
