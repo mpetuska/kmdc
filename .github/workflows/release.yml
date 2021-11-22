@@ -109,7 +109,8 @@ jobs:
             **/build/reports
 
       - name: Gradle Assemble Dokka
-        if: ${{ runner.os == 'Linux' }}
+#        TODO enable once dokka is fixed
+        if: ${{ runner.os == 'Linux' && false }}
         run: ./gradlew dokkaHtmlMultiModule -Pversion=${VERSION//v} --scan
 
       - uses: actions/upload-artifact@v2
