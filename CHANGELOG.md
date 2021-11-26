@@ -1,4 +1,17 @@
 # v0.0.1
+## Versions
+* JDK: 11+
+* Kotlin: 1.5.31
+* Compose: 1.0.0-rc4
+## Changes
+### New modules wrapped
+- [ ] mdc-xxx
+
+# v0.0.1
+## Versions
+* JDK: 11+
+* Kotlin: 1.5.31
+* Compose: 1.0.0-rc1
 ## Changes
 ### New modules wrapped
 - [x] mdc-button

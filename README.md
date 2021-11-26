@@ -1,3 +1,4 @@
+[![Slack chat](https://img.shields.io/badge/kotlinlang-chat-green?logo=slack&style=flat-square)](https://kotlinlang.slack.com/team/UL1A5BA2X)
 [![Dokka docs](https://img.shields.io/badge/docs-dokka-orange?style=flat-square)](http://mpetuska.github.io/kmdc)
 [![Version maven-central](https://img.shields.io/maven-central/v/dev.petuska/kmdc?logo=apache-maven&style=flat-square)](https://mvnrepository.com/artifact/dev.petuska/kmdc/latest)
 
@@ -65,3 +66,9 @@ Here's a tracker list of currently completed *material-components-web* modules (
 * Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
   * `./gradlew jsBrowserRun -t` to start development server
   * Visit [http://localhost:3000](http://localhost:3000) to see your content
+
+# Contributing
+All contributions are welcome. Have a look for
+a [good first issue](https://github.com/mpetuska/kmdc/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+in the issue tracker, or open your own issue if you have some ideas. 
+If you want to chat, ping me on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
