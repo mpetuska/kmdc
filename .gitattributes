@@ -1,0 +1,7 @@
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# These are explicitly windows files and should use crlf
+*.kt            text eol=lf
+*.kts           text eol=lf
+*.bat           text eol=crlf
