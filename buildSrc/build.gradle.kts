@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+  implementation("io.kotest:kotest-framework-multiplatform-plugin-gradle:_")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
   implementation("org.jetbrains.compose:compose-gradle-plugin:_")
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:_")
@@ -22,8 +23,8 @@ dependencies {
 }
 
 tasks {
-  project.properties["org.gradle.project.targetCompatibility"]?.toString()?.let {
+  project.properties["org.gradle.targetCompatibility"]?.toString()?.let {
     withType<KotlinCompile> { kotlinOptions { jvmTarget = it } }
-    withType<JavaCompile> { targetCompatibility = it }
+    withType<AbstractCompile> { targetCompatibility = it }
   }
 }

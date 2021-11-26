@@ -8,6 +8,7 @@ plugins {
   kotlin("multiplatform")
   kotlin("plugin.serialization")
   id("plugin.common")
+  id("io.kotest.multiplatform")
   id("dev.petuska.klip")
 }
 
@@ -17,12 +18,19 @@ kotlin {
     useCommonJs()
     browser()
   }
+  sourceSets {
+    commonTest {
+      dependencies {
+        implementation(project(":test"))
+      }
+    }
+  }
 }
 
 tasks {
-  project.properties["org.gradle.project.targetCompatibility"]?.toString()?.let {
+  project.properties["org.gradletargetCompatibility"]?.toString()?.let {
     withType<KotlinCompile> { kotlinOptions { jvmTarget = it } }
-    withType<JavaCompile> { targetCompatibility = it }
+    withType<AbstractCompile> { targetCompatibility = it }
   }
   withType<CInteropProcess> { onlyIf { konanTarget.buildHost == HostManager.host.family } }
   withType<AbstractKotlinNativeCompile<*, *>> {

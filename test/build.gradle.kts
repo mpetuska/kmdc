@@ -10,6 +10,7 @@ kotlin {
         api(kotlin("test"))
         api(kotlin("test-annotations-common"))
         api("dev.petuska:klip:_")
+        api("io.kotest:kotest-framework-engine:_")
       }
     }
     named("jsMain") {
