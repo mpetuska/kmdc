@@ -45,11 +45,14 @@ public fun MDCTextArea(
       classes("mdc-text-field", "mdc-text-field--textarea", *options.type.classes)
       if (options.label == null) classes("mdc-text-field--no-label")
       if (options.disabled) classes("mdc-text-field--disabled")
+      ref {
+        it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
+        onDispose {
+          it.mdc<MDCTextFieldModule.MDCTextField> { destroy() }
+        }
+      }
     }
   ) {
-    DomSideEffect {
-      it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
-    }
     options.maxLength?.let {
       Div(attrs = {
         classes("mdc-text-field-character-counter")

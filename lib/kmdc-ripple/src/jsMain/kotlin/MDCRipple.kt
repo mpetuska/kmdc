@@ -15,7 +15,7 @@ public external object MDCRippleModule {
 
   public class MDCRipple(element: Element, opts: MDCRippleAttachOpts = definedExternally) {
     public companion object {
-      public fun attachTo(element: Element, opts: MDCRippleAttachOpts = definedExternally)
+      public fun attachTo(element: Element, opts: MDCRippleAttachOpts = definedExternally): MDCRipple
     }
   }
 }
@@ -31,12 +31,13 @@ public fun ElementScope<*>.MDCRipple(
   opts: Builder<MDCRippleOpts>? = null
 ) {
   val options = MDCRippleOpts().apply { opts?.invoke(this) }
-  DomSideEffect {
+  DisposableRefEffect {
     MDCRippleModule.MDCRipple.attachTo(
       element = it,
       opts = jsObject {
         isUnbounded = options.isUnbounded
       }
     )
+    onDispose {}
   }
 }

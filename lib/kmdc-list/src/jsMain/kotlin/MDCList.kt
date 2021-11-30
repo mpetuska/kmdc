@@ -31,6 +31,7 @@ public external object MDCListModule {
     public companion object {
       public fun attachTo(element: Element): MDCList
     }
+    public fun destroy()
 
     public var vertical: Boolean
     public val listElements: Array<Element>
@@ -90,13 +91,16 @@ public fun MDCList(
   Ul(attrs = {
     classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    attrs?.invoke(this)
-  }) {
-    DomSideEffect {
+    ref {
       val mdc = MDCListModule.MDCList.attachTo(it)
       mdc.singleSelection = options.singleSelection
       it.mdc = mdc
+      onDispose {
+        it.mdc<MDCListModule.MDCList> { destroy() }
+      }
     }
+    attrs?.invoke(this)
+  }) {
     DomSideEffect(options.singleSelection) {
       it.mdc<MDCListModule.MDCList> { singleSelection = options.singleSelection }
     }
@@ -120,13 +124,16 @@ public fun MDCNavList(
   Nav(attrs = {
     classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    attrs?.invoke(this)
-  }) {
-    DomSideEffect {
+    ref {
       val mdc = MDCListModule.MDCList.attachTo(it)
       mdc.singleSelection = options.singleSelection
       it.mdc = mdc
+      onDispose {
+        it.mdc<MDCListModule.MDCList> { destroy() }
+      }
     }
+    attrs?.invoke(this)
+  }) {
     DomSideEffect(options.singleSelection) {
       it.mdc<MDCListModule.MDCList> { singleSelection = options.singleSelection }
     }

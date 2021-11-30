@@ -1,6 +1,7 @@
 package dev.petuska.kmdc.form.field
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffectScope
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
@@ -8,7 +9,6 @@ import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.DomEffectScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
@@ -21,7 +21,7 @@ public external val MDCFormFieldStyle: dynamic
 public external object MDCFormFieldModule {
   public class MDCFormField(element: Element) {
     public companion object {
-      public fun attachTo(element: Element)
+      public fun attachTo(element: Element): MDCFormField
     }
 
     public var input: MDCFormFieldInput
@@ -42,7 +42,7 @@ public data class MDCFormFieldOpts(
 }
 
 public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope {
-  public fun DomEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldModule.MDCFormFieldInput) {
+  public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldModule.MDCFormFieldInput) {
     htmlInput.parentElement?.let {
       if (it.classList.contains("mdc-form-field")) {
         it.mdc<MDCFormFieldModule.MDCFormField> { input = mdcInput }
@@ -69,11 +69,12 @@ public fun MDCFormField(
   Div(attrs = {
     classes("mdc-form-field", *options.align.classes)
     if (options.nowrap) classes("mdc-form-field--nowrap")
+    ref {
+      it.mdc = MDCFormFieldModule.MDCFormField.attachTo(it)
+      onDispose {}
+    }
     attrs?.invoke(this)
   }) {
-    DomSideEffect {
-      it.mdc = MDCFormFieldModule.MDCFormField.attachTo(it)
-    }
     content?.let { MDCFormFieldScope(this).it() }
   }
 }

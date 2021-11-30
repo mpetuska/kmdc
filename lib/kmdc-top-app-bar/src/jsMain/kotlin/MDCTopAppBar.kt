@@ -25,6 +25,7 @@ private external object MDCTopAppBarModule {
     companion object {
       fun attachTo(element: Element): MDCTopAppBar
     }
+    fun destroy()
   }
 }
 
@@ -80,12 +81,15 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
   Header(
     attrs = {
       classes("mdc-top-app-bar", *type.classes)
+      ref {
+        it.mdc = MDCTopAppBarModule.MDCTopAppBar.attachTo(it)
+        onDispose {
+          it.mdc<MDCTopAppBarModule.MDCTopAppBar> { destroy() }
+        }
+      }
       attrs?.invoke(this)
     },
   ) {
-    DomSideEffect {
-      it.mdc = MDCTopAppBarModule.MDCTopAppBar.attachTo(it)
-    }
     content?.let { MDCTopAppBarScope(this).it() }
   }
 }
