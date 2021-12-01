@@ -5,6 +5,7 @@ plugins {
   id("plugin.library-compose")
   id("plugin.publishing-nexus")
   id("plugin.publishing-mpp")
+  id("plugin.yarn-lock-validation")
 }
 
 gradleEnterprise {
