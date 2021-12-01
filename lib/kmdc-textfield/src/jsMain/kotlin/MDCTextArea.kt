@@ -9,7 +9,11 @@ import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsBuilder
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.attributes.rows
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Label
+import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.TextArea
 import kotlin.random.Random
 
 public class MDCTextAreaOpts(
