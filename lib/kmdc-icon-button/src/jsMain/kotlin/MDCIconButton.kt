@@ -22,8 +22,9 @@ private external val MDCIconButtonStyle: dynamic
 private external object MDCIconButtonModule {
   class MDCIconButtonToggle(element: Element) {
     companion object {
-      fun attachTo(element: Element)
+      fun attachTo(element: Element): MDCIconButtonToggle
     }
+    fun destroy()
   }
 }
 
@@ -48,12 +49,15 @@ public fun MDCIconButton(
   Button(
     attrs = {
       classes(*listOfNotNull("mdc-icon-button", if (options.on) "mdc-icon-button--on" else null).toTypedArray())
+      ref {
+        it.mdc = MDCIconButtonModule.MDCIconButtonToggle.attachTo(it)
+        onDispose {
+          it.mdc<MDCIconButtonModule.MDCIconButtonToggle> { destroy() }
+        }
+      }
       attrs?.invoke(this)
     },
   ) {
-    DomSideEffect {
-      it.mdc = MDCIconButtonModule.MDCIconButtonToggle.attachTo(it)
-    }
     MDCRipple()
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconButtonScope(this).it() }
@@ -75,12 +79,15 @@ public fun MDCIconLink(
   A(
     attrs = {
       classes(*listOfNotNull("mdc-icon-button", if (options.on) "mdc-icon-button--on" else null).toTypedArray())
+      ref {
+        it.mdc = MDCIconButtonModule.MDCIconButtonToggle.attachTo(it)
+        onDispose {
+          it.mdc<MDCIconButtonModule.MDCIconButtonToggle> { destroy() }
+        }
+      }
       attrs?.invoke(this)
     },
   ) {
-    DomSideEffect {
-      it.mdc = MDCIconButtonModule.MDCIconButtonToggle.attachTo(it)
-    }
     MDCRipple()
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconLinkScope(this).it() }

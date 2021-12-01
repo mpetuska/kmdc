@@ -25,6 +25,7 @@ private external object MDCDrawerModule {
     companion object {
       fun attachTo(element: Element): MDCDrawer
     }
+    fun destroy()
 
     var open: Boolean
   }
@@ -65,12 +66,15 @@ public fun MDCDrawer(
   Aside(
     attrs = {
       classes("mdc-drawer", *options.type.classes, *options.state.classes)
+      ref {
+        it.mdc = MDCDrawerModule.MDCDrawer.attachTo(it)
+        onDispose {
+          it.mdc<MDCDrawerModule.MDCDrawer> { destroy() }
+        }
+      }
       attrs?.invoke(this)
     },
   ) {
-    DomSideEffect(null) {
-      it.mdc = MDCDrawerModule.MDCDrawer.attachTo(element = it)
-    }
     DomSideEffect(options.isOpen) {
       it.mdc<MDCDrawerModule.MDCDrawer> { open = options.isOpen }
     }

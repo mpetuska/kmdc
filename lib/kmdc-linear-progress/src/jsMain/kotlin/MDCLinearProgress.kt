@@ -61,11 +61,12 @@ public fun MDCLinearProgress(
     attr("aria-valuemax", "1")
     attr("aria-valuenow", "0")
     options.label?.let { attr("aria-label", it) }
+    ref {
+      it.mdc = MDCLinearProgressModule.MDCLinearProgress.attachTo(it)
+      onDispose {}
+    }
     attrs?.invoke(this)
   }) {
-    DomSideEffect {
-      it.mdc = MDCLinearProgressModule.MDCLinearProgress.attachTo(it)
-    }
     DomSideEffect(options.indeterminate) {
       it.mdc<MDCLinearProgressModule.MDCLinearProgress> { determinate = !options.indeterminate }
     }

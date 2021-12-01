@@ -27,8 +27,9 @@ public external val MDCTextFieldStyle: dynamic
 public external object MDCTextFieldModule {
   public class MDCTextField(element: Element) {
     public companion object {
-      public fun attachTo(element: Element)
+      public fun attachTo(element: Element): MDCTextField
     }
+    public fun destroy()
 
     public var value: String
     public var disabled: Boolean
@@ -100,11 +101,14 @@ public fun MDCTextField(
       classes("mdc-text-field", *options.type.classes)
       if (options.label == null) classes("mdc-text-field--no-label")
       if (options.disabled) classes("mdc-text-field--disabled")
+      ref {
+        it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
+        onDispose {
+          it.mdc<MDCTextFieldModule.MDCTextField> { destroy() }
+        }
+      }
     }
   ) {
-    DomSideEffect {
-      it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
-    }
     when (options.type) {
       MDCTextFieldCommonOpts.Type.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })
