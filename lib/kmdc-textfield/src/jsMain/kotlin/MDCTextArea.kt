@@ -9,11 +9,7 @@ import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsBuilder
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.attributes.rows
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.TextArea
+import org.jetbrains.compose.web.dom.*
 import kotlin.random.Random
 
 public class MDCTextAreaOpts(
@@ -32,6 +28,7 @@ public class MDCTextAreaOpts(
 @MDCDsl
 @Composable
 public fun MDCTextArea(
+  value: String,
   opts: Builder<MDCTextAreaOpts>? = null,
   attrs: (TextAreaAttrsBuilder.() -> Unit)? = null,
 ) {
@@ -62,20 +59,22 @@ public fun MDCTextArea(
       MDCTextFieldCommonOpts.Type.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })
         Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(options, attrs, labelId, helperId)
+          MDCTextAreaInput(value, options, attrs, labelId, helperId)
         }
         options.label?.let {
           Span(attrs = {
             classes("mdc-floating-label")
+            if (value.isNotEmpty())
+              classes("mdc-floating-label--float-above")
             id("mdc-floating-label__$labelId")
           }) { Text(it) }
         }
         Span(attrs = { classes("mdc-line-ripple") })
       }
       MDCTextFieldCommonOpts.Type.Outlined -> {
-        MDCTextFieldNotch(options, labelId)
+        MDCTextFieldNotch(options, labelId, value.isNotEmpty())
         Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(options, attrs, labelId, helperId)
+          MDCTextAreaInput(value, options, attrs, labelId, helperId)
         }
       }
     }
@@ -85,12 +84,13 @@ public fun MDCTextArea(
 
 @Composable
 private fun MDCTextAreaInput(
+  value: String,
   options: MDCTextAreaOpts,
   attrs: (TextAreaAttrsBuilder.() -> Unit)?,
   labelId: String,
   helperId: String,
 ) {
-  TextArea(attrs = {
+  TextArea(value, attrs = {
     classes("mdc-text-field__input")
     rows(options.rows.toInt())
     cols(options.columns.toInt())

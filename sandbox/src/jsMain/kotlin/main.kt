@@ -13,6 +13,7 @@ fun main() {
       MDCLayoutGridCells {
         Samples.forEach { it() }
       }
+      MultipleFieldsSample()
     }
   }
 }

@@ -12,9 +12,9 @@ val TextFieldSamples = Samples {
   Sample {
     var text by remember { mutableStateOf("") }
     MDCTextField(
+      text,
       opts = { label = "Sample TextField" },
       attrs = {
-        value(text)
         onInput { text = it.value }
       }
     )

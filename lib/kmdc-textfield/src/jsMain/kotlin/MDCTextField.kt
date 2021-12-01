@@ -1,21 +1,14 @@
 package dev.petuska.kmdc.textfield
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.ripple.MDCRippleModule
-import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
-import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 import kotlin.random.Random
@@ -29,6 +22,7 @@ public external object MDCTextFieldModule {
     public companion object {
       public fun attachTo(element: Element): MDCTextField
     }
+
     public fun destroy()
 
     public var value: String
@@ -88,6 +82,7 @@ public class MDCTextFieldOpts(
 @MDCDsl
 @Composable
 public fun MDCTextField(
+  value: String,
   opts: Builder<MDCTextFieldOpts>? = null,
   attrs: (InputAttrsBuilder<String>.() -> Unit)? = null,
 ) {
@@ -115,6 +110,8 @@ public fun MDCTextField(
         options.label?.let {
           Span(attrs = {
             classes("mdc-floating-label")
+            if (value.isNotEmpty())
+              classes("mdc-floating-label--float-above")
             id("mdc-floating-label__$labelId")
           }) { Text(it) }
         }
@@ -132,12 +129,12 @@ public fun MDCTextField(
             Text(it)
           }
         }
-        MDCTextFieldInput(options, attrs, labelId, helperId)
+        MDCTextFieldInput(value, options, attrs, labelId, helperId)
         Span(attrs = { classes("mdc-line-ripple") })
       }
       MDCTextFieldCommonOpts.Type.Outlined -> {
-        MDCTextFieldNotch(options, labelId)
-        MDCTextFieldInput(options, attrs, labelId, helperId)
+        MDCTextFieldNotch(options, labelId, value.isNotEmpty())
+        MDCTextFieldInput(value, options, attrs, labelId, helperId)
       }
     }
   }
@@ -152,13 +149,21 @@ public fun MDCTextField(
 
 @MDCDsl
 @Composable
-internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String) {
-  Span(attrs = { classes("mdc-notched-outline") }) {
+internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String, inputIsNotEmpty: Boolean) {
+  Span(
+    attrs = {
+      classes("mdc-notched-outline")
+      if (inputIsNotEmpty)
+        classes("mdc-notched-outline--notched")
+    }
+  ) {
     Span(attrs = { classes("mdc-notched-outline__leading") })
     Span(attrs = { classes("mdc-notched-outline__notch") }) {
       options.label?.let {
         Span(attrs = {
           classes("mdc-floating-label")
+          if (inputIsNotEmpty)
+            classes("mdc-floating-label--float-above")
           id("mdc-floating-label__$labelId")
         }) { Text(it) }
       }
@@ -193,12 +198,13 @@ internal fun MDCTextFieldHelperLine(
 @MDCDsl
 @Composable
 private fun MDCTextFieldInput(
+  value: String,
   options: MDCTextFieldOpts,
   attrs: (InputAttrsBuilder<String>.() -> Unit)?,
   labelId: String,
   helperId: String,
 ) {
-  Input(InputType.Text, attrs = {
+  TextInput(value, attrs = {
     classes("mdc-text-field__input")
     attr("aria-labelledby", labelId)
     options.helperText?.let {
