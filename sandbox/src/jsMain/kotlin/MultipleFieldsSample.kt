@@ -1,8 +1,13 @@
 package local.sandbox
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
+import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridScope
 import dev.petuska.kmdc.textfield.MDCTextArea
@@ -11,7 +16,6 @@ import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import org.jetbrains.compose.web.css.paddingBottom
 import org.jetbrains.compose.web.css.paddingTop
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.dom.Div
 
 /**
  * Sample containing a user-selectable number of fields, placed inside an MDC grid.
@@ -24,20 +28,22 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
       style { paddingBottom(24.px) }
     }
   ) {
-    MDCTextField(
-      fieldCountText,
-      opts = { label = "Field count" },
-      attrs = {
-        onInput { fieldCountText = it.value }
-      }
-    )
+    MDCLayoutGridCell {
+      MDCTextField(
+        fieldCountText,
+        opts = { label = "Field count" },
+        attrs = {
+          onInput { fieldCountText = it.value }
+        }
+      )
+    }
   }
 
   MDCLayoutGridCells {
     val fieldCount = fieldCountText.toIntOrNull() ?: 0
     var fieldContent by remember { mutableStateOf("") }
     for (fieldNumber in 1..fieldCount) {
-      Div(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
+      MDCLayoutGridCell(opts = { span = 2u } ) {
         MDCTextField(
           fieldContent,
           opts = {
@@ -57,9 +63,9 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
     val fieldCount = fieldCountText.toIntOrNull() ?: 0
     var fieldContent by remember { mutableStateOf("") }
     for (fieldNumber in 1..fieldCount) {
-      Div(
+      MDCLayoutGridCell(
+        opts = { span = 2u },
         attrs = {
-          classes("mdc-layout-grid__cell--span-2")
           style {
             paddingTop(12.px)
             paddingBottom(12.px)
@@ -83,14 +89,16 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
 
   var indeterminateEnabled by remember { mutableStateOf(false) }
   MDCLayoutGridCells {
-    MDCFormField(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
-      MDCCheckbox(
-        opts = { label = "Make indeterminate" },
-        attrs = {
-          checked(indeterminateEnabled)
-          onInput { indeterminateEnabled = it.value }
-        }
-      )
+    MDCLayoutGridCell {
+      MDCFormField(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
+        MDCCheckbox(
+          opts = { label = "Make indeterminate" },
+          attrs = {
+            checked(indeterminateEnabled)
+            onInput { indeterminateEnabled = it.value }
+          }
+        )
+      }
     }
   }
 
@@ -98,17 +106,19 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
     val fieldCount = fieldCountText.toIntOrNull() ?: 0
     var fieldContent by remember { mutableStateOf(false) }
     for (fieldNumber in 1..fieldCount) {
-      MDCFormField(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
-        MDCCheckbox(
-          opts = {
-            label = "Checkbox #$fieldNumber"
-            indeterminate = indeterminateEnabled
-          },
-          attrs = {
-            checked(fieldContent)
-            onInput { fieldContent = it.value }
-          }
-        )
+      MDCLayoutGridCell(opts = { span = 2u }) {
+        MDCFormField {
+          MDCCheckbox(
+            opts = {
+              label = "Checkbox #$fieldNumber"
+              indeterminate = indeterminateEnabled
+            },
+            attrs = {
+              checked(fieldContent)
+              onInput { fieldContent = it.value }
+            }
+          )
+        }
       }
     }
   }
