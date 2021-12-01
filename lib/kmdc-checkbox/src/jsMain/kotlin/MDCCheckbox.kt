@@ -3,7 +3,11 @@ package dev.petuska.kmdc.checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
 import androidx.compose.runtime.remember
-import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.Path
+import dev.petuska.kmdc.core.Svg
+import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import dev.petuska.kmdc.ripple.MDCRippleModule
@@ -27,6 +31,7 @@ public external object MDCCheckboxModule {
     public companion object {
       public fun attachTo(element: Element): MDCCheckbox
     }
+
     public fun destroy()
 
     public var checked: Boolean
@@ -49,10 +54,11 @@ public data class MDCCheckboxOpts(
 @MDCDsl
 @Composable
 public fun MDCCheckbox(
+  checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
 ) {
-  MDCCheckboxBody(opts, attrs)
+  MDCCheckboxBody(checked, opts, attrs)
 }
 
 /**
@@ -61,10 +67,11 @@ public fun MDCCheckbox(
 @MDCDsl
 @Composable
 public fun MDCFormFieldScope.MDCCheckbox(
+  checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
 ) {
-  MDCCheckboxBody(opts, attrs) { parent, mdcCheckbox ->
+  MDCCheckboxBody(checked, opts, attrs) { parent, mdcCheckbox ->
     setInput(parent, mdcCheckbox)
   }
 }
@@ -72,6 +79,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
 @MDCDsl
 @Composable
 private fun MDCCheckboxBody(
+  checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
   initialize: (DisposableEffectScope.(parent: HTMLDivElement, mdcCheckbox: MDCCheckboxModule.MDCCheckbox) -> Unit)? = null,
@@ -96,8 +104,11 @@ private fun MDCCheckboxBody(
     DomSideEffect(options.indeterminate) {
       it.mdc<MDCCheckboxModule.MDCCheckbox> { indeterminate = options.indeterminate }
     }
+    // WORKAROUND https://github.com/JetBrains/compose-jb/issues/1528
+    //     We cannot use the controlled CheckboxInput directly, but the workaround is functionally equivalent.
     Input(type = InputType.Checkbox, attrs = {
-      classes("mdc-checkbox__native-control")
+      classes("mdc-checkbox__native-control")  // This must precede `checked()`
+      checked(checked)  // This must follow `classes(...)`
       id(checkboxId)
       if (options.disabled) disabled()
       if (options.indeterminate) attr("data-indeterminate", "true")
