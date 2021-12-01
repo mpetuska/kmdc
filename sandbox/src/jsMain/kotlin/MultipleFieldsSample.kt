@@ -92,9 +92,9 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
     MDCLayoutGridCell {
       MDCFormField(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
         MDCCheckbox(
+          checked = indeterminateEnabled,
           opts = { label = "Make indeterminate" },
           attrs = {
-            checked(indeterminateEnabled)
             onInput { indeterminateEnabled = it.value }
           }
         )
@@ -109,12 +109,12 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
       MDCLayoutGridCell(opts = { span = 2u }) {
         MDCFormField {
           MDCCheckbox(
+            checked = fieldContent,
             opts = {
               label = "Checkbox #$fieldNumber"
               indeterminate = indeterminateEnabled
             },
             attrs = {
-              checked(fieldContent)
               onInput { fieldContent = it.value }
             }
           )
