@@ -60,6 +60,9 @@ Here's a tracker list of currently completed *material-components-web* modules (
 - [ ] mdc-touch-target
 - [x] mdc-typography
 
+Other libraries:
+- [x] material-icons
+
 # Developer Setup
 * Install JDK 11+
 * Run `./gradlew assemble` to build js binaries
