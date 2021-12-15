@@ -26,3 +26,10 @@ public var Element.mdc: dynamic
   }
 
 public fun <T> Element.mdc(action: Builder<T>? = null): T? = mdc.unsafeCast<T?>()?.also { action?.invoke(it) }
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun <T : Any> jsObject(): T =
+  js("({})")
+
+public inline fun <T : Any> jsObject(builder: T.() -> Unit): T =
+  jsObject<T>().apply(builder)

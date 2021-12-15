@@ -3,7 +3,7 @@ package dev.petuska.kmdc.ripple
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.css.jsObject
+import dev.petuska.kmdc.core.jsObject
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 
