@@ -10,7 +10,7 @@ import org.jetbrains.compose.web.dom.Text
 private external val MDCIconStyle: dynamic
 
 /**
- * [JS API](https://github.com/marella/material-icons)
+ * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
 @MDCDsl
 @Composable
