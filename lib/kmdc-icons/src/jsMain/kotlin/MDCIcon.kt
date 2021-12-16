@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLSpanElement
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
@@ -16,21 +16,34 @@ private external val MDCIconStyle: dynamic
  */
 @MDCDsl
 @Composable
-public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<HTMLSpanElement>? = null) {
+public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<*>? = null) {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
-  Span(attrs = {
-    classes(*options.type.classes)
-    attrs?.invoke(this)
-  }) {
-    Text(options.icon.iconType)
+
+  when (options.base) {
+    MDCIconOpts.MDCIconBase.Span -> {
+      Span(attrs = {
+        classes(*options.type.classes)
+        attrs?.invoke(this)
+      }) {
+        Text(options.icon.iconType)
+      }
+    }
+    MDCIconOpts.MDCIconBase.I -> {
+      I(attrs = {
+        classes(*options.type.classes)
+        attrs?.invoke(this)
+      }) {
+        Text(options.icon.iconType)
+      }
+    }
   }
 }
 
-
 public data class MDCIconOpts(
   var type: Type = Type.Filled,
-  var icon: MDCIconType = MDCIconType.None
+  var icon: MDCIconType = MDCIconType.None,
+  var base: MDCIconBase = MDCIconBase.Span
 ) {
   public enum class Type(public vararg val classes: String) {
     Filled("material-icons"),
@@ -39,6 +52,8 @@ public data class MDCIconOpts(
     Sharp("material-icons-sharp"),
     TwoTone("material-icons-two-tone")
   }
+
+  public enum class MDCIconBase{Span, I}
 
   public enum class MDCIconType(public val iconType: String) {
     None("None"),
