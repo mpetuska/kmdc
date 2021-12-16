@@ -3,8 +3,10 @@ package dev.petuska.kmdc.icons
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.HTMLSpanElement
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
@@ -14,10 +16,13 @@ private external val MDCIconStyle: dynamic
  */
 @MDCDsl
 @Composable
-public fun MDCIcon(opts: Builder<MDCIconOpts>? = null) {
+public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<HTMLSpanElement>? = null) {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
-  Span(attrs = { classes(*options.type.classes) }) {
+  Span(attrs = {
+    classes(*options.type.classes)
+    attrs?.invoke(this)
+  }) {
     Text(options.icon.iconType)
   }
 }
