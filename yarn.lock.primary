@@ -1506,7 +1506,7 @@ log4js@^6.2.1:
     rfdc "^1.1.4"
     streamroller "^2.2.4"
 
-material-icons@^1.0.0:
+material-icons@^1.10.4:
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-1.10.4.tgz#1916cb50d4eba221cf67d6ca912790ecdcd1f42b"
   integrity sha512-WaDhx+10PRmNcVrhXRaoTkqPeOROpUDeQPPsn68+bEmv9SkCcvEt2kPg5UTV7T3oOZG/teMcJNKRLrkdWSWz+Q==
