@@ -7,36 +7,55 @@ import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.HTMLElement
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
+
+@MDCDsl
+@Composable
+public fun MDCIconSpan(
+  opts: Builder<MDCIconOpts>? = null,
+  attrs: AttrBuilderContext<out HTMLElement>? = null)
+{
+  MDCIconStyle
+  val options = MDCIconOpts().apply { opts?.invoke(this) }
+
+  Span(attrs = {
+    classes(*options.type.classes)
+    attrs?.invoke(this)
+  }) {
+    Text(options.icon.iconType)
+  }
+}
+
+@MDCDsl
+@Composable
+public fun MDCIconI(
+  opts: Builder<MDCIconOpts>? = null,
+  attrs: AttrBuilderContext<out HTMLElement>? = null)
+{
+  MDCIconStyle
+  val options = MDCIconOpts().apply { opts?.invoke(this) }
+
+  I(attrs = {
+    classes(*options.type.classes)
+    attrs?.invoke(this)
+  }) {
+    Text(options.icon.iconType)
+  }
+}
 
 /**
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
 @MDCDsl
 @Composable
-public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<*>? = null) {
-  MDCIconStyle
+public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<out HTMLElement>? = null) {
   val options = MDCIconOpts().apply { opts?.invoke(this) }
-
   when (options.base) {
-    MDCIconOpts.MDCIconBase.Span -> {
-      Span(attrs = {
-        classes(*options.type.classes)
-        attrs?.invoke(this)
-      }) {
-        Text(options.icon.iconType)
-      }
-    }
-    MDCIconOpts.MDCIconBase.I -> {
-      I(attrs = {
-        classes(*options.type.classes)
-        attrs?.invoke(this)
-      }) {
-        Text(options.icon.iconType)
-      }
-    }
+    MDCIconOpts.MDCIconBase.Span -> MDCIconSpan(opts, attrs)
+    MDCIconOpts.MDCIconBase.I -> MDCIconI(opts, attrs)
   }
 }
 
