@@ -80,7 +80,7 @@ public data class MDCIconOpts(
     ElevenMp("11mp"),
     TwelveMp("12mp"),
     ThirteenMp("13mp"),
-    FourtheenMp("14mp"),
+    FourteenMp("14mp"),
     FifteenMp("15mp"),
     SixteenMp("16mp"),
     SeventeenMp("17mp"),
