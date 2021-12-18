@@ -8,6 +8,7 @@ import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLSpanElement
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
@@ -16,7 +17,7 @@ private external val MDCIconStyle: dynamic
 @Composable
 public fun MDCIconSpan(
   opts: Builder<MDCIconOpts>? = null,
-  attrs: AttrBuilderContext<out HTMLElement>? = null)
+  attrs: AttrBuilderContext<HTMLSpanElement>? = null)
 {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
@@ -33,7 +34,7 @@ public fun MDCIconSpan(
 @Composable
 public fun MDCIconI(
   opts: Builder<MDCIconOpts>? = null,
-  attrs: AttrBuilderContext<out HTMLElement>? = null)
+  attrs: AttrBuilderContext<HTMLElement>? = null)
 {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
