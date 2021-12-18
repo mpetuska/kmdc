@@ -4,21 +4,24 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLSpanElement
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
 
-/**
- * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
- */
 @MDCDsl
 @Composable
-public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<HTMLSpanElement>? = null) {
+public fun MDCIconSpan(
+  opts: Builder<MDCIconOpts>? = null,
+  attrs: AttrBuilderContext<HTMLSpanElement>? = null)
+{
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
+
   Span(attrs = {
     classes(*options.type.classes)
     attrs?.invoke(this)
@@ -27,10 +30,40 @@ public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext
   }
 }
 
+@MDCDsl
+@Composable
+public fun MDCIconI(
+  opts: Builder<MDCIconOpts>? = null,
+  attrs: AttrBuilderContext<HTMLElement>? = null)
+{
+  MDCIconStyle
+  val options = MDCIconOpts().apply { opts?.invoke(this) }
+
+  I(attrs = {
+    classes(*options.type.classes)
+    attrs?.invoke(this)
+  }) {
+    Text(options.icon.iconType)
+  }
+}
+
+/**
+ * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
+ */
+@MDCDsl
+@Composable
+public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<out HTMLElement>? = null) {
+  val options = MDCIconOpts().apply { opts?.invoke(this) }
+  when (options.base) {
+    MDCIconOpts.MDCIconBase.Span -> MDCIconSpan(opts, attrs)
+    MDCIconOpts.MDCIconBase.I -> MDCIconI(opts, attrs)
+  }
+}
 
 public data class MDCIconOpts(
   var type: Type = Type.Filled,
-  var icon: MDCIconType = MDCIconType.None
+  var icon: MDCIconType = MDCIconType.None,
+  var base: MDCIconBase = MDCIconBase.Span
 ) {
   public enum class Type(public vararg val classes: String) {
     Filled("material-icons"),
@@ -40,13 +73,15 @@ public data class MDCIconOpts(
     TwoTone("material-icons-two-tone")
   }
 
+  public enum class MDCIconBase{Span, I}
+
   public enum class MDCIconType(public val iconType: String) {
     None("None"),
     TenMp("10mp"),
     ElevenMp("11mp"),
     TwelveMp("12mp"),
     ThirteenMp("13mp"),
-    FourtheenMp("14mp"),
+    FourteenMp("14mp"),
     FifteenMp("15mp"),
     SixteenMp("16mp"),
     SeventeenMp("17mp"),
