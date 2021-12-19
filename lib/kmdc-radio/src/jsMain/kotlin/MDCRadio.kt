@@ -80,7 +80,6 @@ private fun MDCRadioBody(
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
   initialize: (DisposableEffectScope.(parent: HTMLDivElement, mdcRadio: MDCRadioModule.MDCRadio) -> Unit)? = null,
 ) {
-  console.log("checked $checked")
   MDCRadioStyle
   val options = MDCRadioOpts().apply { opts?.invoke(this) }
   val localId = remember { Random.nextInt(9999) }
