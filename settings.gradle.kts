@@ -22,6 +22,7 @@ include(
     ":lib:kmdc-layout-grid",
     ":lib:kmdc-linear-progress",
     ":lib:kmdc-list",
+    ":lib:kmdc-radio",
     ":lib:kmdc-ripple",
     ":lib:kmdc-textfield",
     ":lib:kmdc-top-app-bar",
