@@ -10,6 +10,7 @@ import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridScope
+import dev.petuska.kmdc.radio.MDCRadio
 import dev.petuska.kmdc.textfield.MDCTextArea
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
@@ -98,6 +99,26 @@ fun MDCLayoutGridScope.MultipleFieldsSample() {
             onInput { indeterminateEnabled = it.value }
           }
         )
+      }
+    }
+  }
+
+  val radioOptions = listOf("A", "B", "C")
+  val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+
+  MDCLayoutGridCells {
+    MDCLayoutGridCell {
+      MDCFormField(attrs = { classes("mdc-layout-grid__cell--span-2") }) {
+        radioOptions.forEach { text ->
+          MDCRadio(
+            checked = (text == selectedOption),
+            opts = { label = text },
+            attrs = {
+              onInput { onOptionSelected(text) }
+            }
+          )
+        }
+
       }
     }
   }
