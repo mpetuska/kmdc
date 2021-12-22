@@ -100,8 +100,8 @@ Here's a tracker list of currently completed [material-components-web] modules (
 - [ ] mdc-line-ripple
 - [x] mdc-linear-progress
 - [x] mdc-list
-- [ ] mdc-menu-surface
-- [ ] mdc-menu
+- [x] mdc-menu-surface
+- [x] mdc-menu
 - [ ] mdc-notched-outline
 - [x] mdc-progress-indicator (won't wrap)
 - [x] mdc-radio

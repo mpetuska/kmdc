@@ -56,7 +56,7 @@ public data class MDCListOpts(
   public var size: Size = Size.SingleLine,
   public var type: Type = Type.Generic,
   public var dense: Boolean = false,
-  public var singleSelection: Boolean = false,
+  public var singleSelection: Boolean = false
 ) {
   public enum class Size(public vararg val classes: String) {
     SingleLine, TwoLine("mdc-deprecated-list--two-line")
@@ -73,7 +73,7 @@ public data class MDCListOpts(
   }
 }
 
-public class MDCListScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
+public open class MDCListScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
