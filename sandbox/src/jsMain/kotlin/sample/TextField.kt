@@ -8,7 +8,8 @@ import dev.petuska.kmdc.textfield.MDCTextField
 import local.sandbox.Samples
 import local.sandbox.Samples.Sample
 
-val TextFieldSamples = Samples {
+@Suppress("unused")
+val TextFieldSamples = Samples("TextField") {
   Sample {
     var text by remember { mutableStateOf("") }
     MDCTextField(

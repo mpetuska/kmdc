@@ -14,11 +14,10 @@ tasks {
   val jsMainClasses by getting
   withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach { dependsOn(jsMainClasses) }
   withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach { dependsOn(jsMainClasses) }
-  
+
   register<Jar>("javadocJar") {
-//     TODO uncomment once dokka fixes this shit
-//    dependsOn(dokkaHtml)
-//    from(dokkaHtml.get().outputDirectory)
+    dependsOn(dokkaHtml)
+    from(dokkaHtml)
     archiveClassifier.set("javadoc")
   }
   withType<Jar> {
@@ -83,14 +82,14 @@ publishing {
         name by project.name
         url by "https://github.com/$ghOwnerId/${rootProject.name}"
         description by project.description
-        
+
         licenses {
           license {
             name by "The Apache License, Version 2.0"
             url by "https://www.apache.org/licenses/LICENSE-2.0.txt"
           }
         }
-        
+
         developers {
           developer {
             id by ghOwnerId
@@ -98,7 +97,7 @@ publishing {
             email by ghOwnerEmail
           }
         }
-        
+
         scm {
           connection by "scm:git:git@github.com:$ghOwnerId/${rootProject.name}.git"
           url by "https://github.com/$ghOwnerId/${rootProject.name}"

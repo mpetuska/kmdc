@@ -107,8 +107,8 @@ private fun MDCCheckboxBody(
     // WORKAROUND https://github.com/JetBrains/compose-jb/issues/1528
     //     We cannot use the controlled CheckboxInput directly, but the workaround is functionally equivalent.
     Input(type = InputType.Checkbox, attrs = {
-      classes("mdc-checkbox__native-control")  // This must precede `checked()`
-      checked(checked)  // This must follow `classes(...)`
+      classes("mdc-checkbox__native-control") // This must precede `checked()`
+      checked(checked) // This must follow `classes(...)`
       id(checkboxId)
       if (options.disabled) disabled()
       if (options.indeterminate) attr("data-indeterminate", "true")

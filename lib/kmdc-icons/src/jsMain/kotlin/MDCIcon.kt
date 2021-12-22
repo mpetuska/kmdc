@@ -13,12 +13,15 @@ import org.w3c.dom.HTMLSpanElement
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic
 
+/**
+ * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
+ */
 @MDCDsl
 @Composable
 public fun MDCIconSpan(
   opts: Builder<MDCIconOpts>? = null,
-  attrs: AttrBuilderContext<HTMLSpanElement>? = null)
-{
+  attrs: AttrBuilderContext<HTMLSpanElement>? = null
+) {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
 
@@ -30,12 +33,15 @@ public fun MDCIconSpan(
   }
 }
 
+/**
+ * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
+ */
 @MDCDsl
 @Composable
 public fun MDCIconI(
   opts: Builder<MDCIconOpts>? = null,
-  attrs: AttrBuilderContext<HTMLElement>? = null)
-{
+  attrs: AttrBuilderContext<HTMLElement>? = null
+) {
   MDCIconStyle
   val options = MDCIconOpts().apply { opts?.invoke(this) }
 
@@ -73,7 +79,7 @@ public data class MDCIconOpts(
     TwoTone("material-icons-two-tone")
   }
 
-  public enum class MDCIconBase{Span, I}
+  public enum class MDCIconBase { Span, I }
 
   public enum class MDCIconType(public val iconType: String) {
     None("None"),

@@ -9,8 +9,9 @@ import dev.petuska.kmdc.button.MDCButtonOpts
 import local.sandbox.Samples
 import local.sandbox.Samples.Sample
 
-val ButtonSamples = Samples {
-  Sample {
+@Suppress("unused")
+val ButtonSamples = Samples("Button") {
+  Sample("Raised") {
     var count by remember { mutableStateOf(0) }
     MDCButton(
       text = "Clicked $count times",
