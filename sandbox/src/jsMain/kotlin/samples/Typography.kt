@@ -41,27 +41,37 @@ val TypographySamples = Samples("Typography") {
     }
   }
 
-  var span = 6u
+  var span = 12u
   Sample(span) {
     Render { MDCH1("MDCH1") }
   }
+  span = 6u
   Sample(span) {
     Render { MDCH2("MDCH2") }
   }
-  span = 4u
   Sample(span) {
     Render { MDCH3("MDCH3") }
   }
+  span = 4u
   Sample(span) {
     Render { MDCH4("MDCH4") }
   }
   Sample(span) {
     Render { MDCH5("MDCH5") }
   }
-  span = 3u
   Sample(span) {
     Render { MDCH6("MDCH6") }
   }
+  Sample(span) {
+    Render { MDCButtonText("MDCButtonText") }
+  }
+  Sample(span) {
+    Render { MDCOverline("MDCOverline") }
+  }
+  Sample(span) {
+    Render { MDCCaption("MDCCaption") }
+  }
+  span = 3u
   Sample(span) {
     Render { MDCSubtitle1("MDCSubtitle1") }
   }
@@ -73,14 +83,5 @@ val TypographySamples = Samples("Typography") {
   }
   Sample(span) {
     Render { MDCBody2("MDCBody2") }
-  }
-  Sample(span) {
-    Render { MDCCaption("MDCCaption") }
-  }
-  Sample(span) {
-    Render { MDCButtonText("MDCButtonText") }
-  }
-  Sample(span) {
-    Render { MDCOverline("MDCOverline") }
   }
 }

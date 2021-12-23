@@ -42,6 +42,7 @@ kotlin {
     named("jsMain") {
       dependencies {
         implementation("dev.petuska:kmdc")
+        implementation("app.softwork:routing-compose:_")
       }
     }
   }
