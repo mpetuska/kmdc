@@ -1,7 +1,9 @@
 plugins {
-  kotlin("multiplatform") version "1.6.10"
-  id("org.jetbrains.compose") version "1.0.1-rc2"
+  kotlin("multiplatform")
+  id("org.jetbrains.compose")
 }
+
+description = "Local consumer sandbox"
 
 repositories {
   mavenCentral()
@@ -9,7 +11,12 @@ repositories {
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
-description = "Local consumer sandbox"
+gradleEnterprise {
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
+}
 
 kotlin {
   js {
