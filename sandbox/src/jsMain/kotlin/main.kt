@@ -186,7 +186,9 @@ typealias SampleRender = @Composable MDCLayoutGridCellsScope.() -> Unit
 annotation class SampleDsl
 
 @SampleDsl
-data class Samples(val name: String, private val content: SampleRender) {
+data class Samples(private val _name: String, private val content: SampleRender) {
+  val name = "MDC" + _name.removePrefix("MDC")
+
   init {
     samples.add(this)
   }
