@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
-import local.sandbox.Sample
-import local.sandbox.Samples
+import local.sandbox.engine.Sample
+import local.sandbox.engine.Samples
 
 @Suppress("unused")
 val TextFieldSamples = Samples("TextField") {

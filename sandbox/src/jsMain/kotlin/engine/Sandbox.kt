@@ -1,0 +1,136 @@
+package local.sandbox.engine
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import app.softwork.routingcompose.HashRouter
+import dev.petuska.kmdc.checkbox.MDCCheckbox
+import dev.petuska.kmdc.form.field.MDCFormField
+import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
+import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
+import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
+import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
+import dev.petuska.kmdc.typography.MDCH1
+import org.jetbrains.compose.web.css.AlignItems
+import org.jetbrains.compose.web.css.Color
+import org.jetbrains.compose.web.css.DisplayStyle
+import org.jetbrains.compose.web.css.FlexDirection
+import org.jetbrains.compose.web.css.FlexWrap
+import org.jetbrains.compose.web.css.JustifyContent
+import org.jetbrains.compose.web.css.LineStyle
+import org.jetbrains.compose.web.css.alignItems
+import org.jetbrains.compose.web.css.border
+import org.jetbrains.compose.web.css.borderRadius
+import org.jetbrains.compose.web.css.cursor
+import org.jetbrains.compose.web.css.display
+import org.jetbrains.compose.web.css.em
+import org.jetbrains.compose.web.css.flexDirection
+import org.jetbrains.compose.web.css.flexWrap
+import org.jetbrains.compose.web.css.justifyContent
+import org.jetbrains.compose.web.css.margin
+import org.jetbrains.compose.web.css.paddingRight
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.textAlign
+import org.jetbrains.compose.web.dom.Div
+
+@Composable
+fun Sandbox() {
+  Header()
+  var enabledSamples by remember { mutableStateOf(setOf<Samples>()) }
+  HashRouter(initRoute = "") {
+    (parameters?.map?.get("sample") ?: listOf())
+      .mapNotNull { name -> Samples.all.firstOrNull { it.name == name } }
+      .toSet()
+      .let { enabledSamples = it }
+    noMatch {
+      MDCLayoutGrid {
+        MDCLayoutGridCells {
+          SamplesList(parameters?.map, enabledSamples)
+          SamplesView(enabledSamples)
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun Header() {
+  MDCH1("KMDC Sandbox") {
+    style {
+      textAlign("center")
+      cursor("pointer")
+    }
+    onClick {
+      HashRouter.navigate("")
+    }
+  }
+}
+
+@Composable
+private fun MDCLayoutGridCellsScope.SamplesList(
+  parameters: Map<String, List<String>>?,
+  enabledSamples: Collection<Samples>
+) {
+  MDCLayoutGridCell({ span = 12u }) {
+    Div({
+      style {
+        display(DisplayStyle.Flex)
+        flexDirection(FlexDirection.Row)
+        justifyContent(JustifyContent.SpaceAround)
+        alignItems(AlignItems.Center)
+        flexWrap(FlexWrap.Wrap)
+      }
+    }) {
+      Samples.all.forEach { sample ->
+        MDCFormField(attrs = {
+          style {
+            paddingRight(1.em)
+            border(1.px, LineStyle.Dotted, Color.gray)
+            borderRadius(1.em)
+            margin(0.25.em)
+          }
+        }) {
+          val checked = sample in enabledSamples
+          MDCCheckbox(
+            checked = checked,
+            opts = {
+              label = sample.name
+            },
+            attrs = {
+              onInput {
+                val currentSamples = parameters?.get("sample")?.toMutableSet() ?: mutableListOf()
+                if (checked) {
+                  currentSamples -= sample.name
+                } else {
+                  currentSamples += sample.name
+                }
+                val params = (parameters ?: mapOf()).let {
+                  it + ("sample" to currentSamples)
+                }.flatMap { (key, values) ->
+                  values.map { "$key=$it" }
+                }.takeIf(List<String>::isNotEmpty)?.joinToString(
+                  prefix = "?",
+                  separator = "&"
+                ) ?: ""
+                HashRouter.navigate("/$params")
+              }
+            }
+          )
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun MDCLayoutGridCellsScope.SamplesView(enabledSamples: Collection<Samples>) {
+  MDCLayoutGridCell({ span = 12u }) {
+    MDCLayoutGrid {
+      MDCLayoutGridCells {
+        enabledSamples.forEach { sample -> with(sample) { invoke() } }
+      }
+    }
+  }
+}

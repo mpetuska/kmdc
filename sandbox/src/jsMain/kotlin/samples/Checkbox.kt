@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
-import local.sandbox.Sample
-import local.sandbox.Samples
+import local.sandbox.engine.Sample
+import local.sandbox.engine.Samples
 
 @Suppress("unused")
 val CheckboxSamples = Samples("Checkbox") {

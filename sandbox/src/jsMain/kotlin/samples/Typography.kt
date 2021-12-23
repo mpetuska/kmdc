@@ -14,8 +14,8 @@ import dev.petuska.kmdc.typography.MDCH6
 import dev.petuska.kmdc.typography.MDCOverline
 import dev.petuska.kmdc.typography.MDCSubtitle1
 import dev.petuska.kmdc.typography.MDCSubtitle2
-import local.sandbox.Sample
-import local.sandbox.Samples
+import local.sandbox.engine.Sample
+import local.sandbox.engine.Samples
 import org.jetbrains.compose.web.css.CSSKeywordValue
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.LineStyle
