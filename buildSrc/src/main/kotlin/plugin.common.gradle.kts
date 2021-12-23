@@ -31,7 +31,7 @@ spotless {
     ktlint(versionFor("version.ktlint")).userData(ktlintSettings)
   }
   kotlinGradle {
-    target("**/*.kts")
+    target("*.kts")
     ktlint(versionFor("version.ktlint")).userData(ktlintSettings)
   }
 }
