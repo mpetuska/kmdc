@@ -5,12 +5,11 @@ import androidx.compose.runtime.DisposableEffectScope
 import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.Path
-import dev.petuska.kmdc.core.Svg
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import dev.petuska.kmdc.ripple.MDCRippleModule
+import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
 import org.jetbrains.compose.web.attributes.disabled
@@ -18,6 +17,8 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Input
 import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.svg.Path
+import org.jetbrains.compose.web.svg.Svg
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 import kotlin.random.Random
@@ -76,13 +77,19 @@ public fun MDCFormFieldScope.MDCCheckbox(
   }
 }
 
+@OptIn(ExperimentalComposeWebSvgApi::class)
 @MDCDsl
 @Composable
 private fun MDCCheckboxBody(
   checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
-  initialize: (DisposableEffectScope.(parent: HTMLDivElement, mdcCheckbox: MDCCheckboxModule.MDCCheckbox) -> Unit)? = null,
+  initialize: (
+    DisposableEffectScope.(
+      parent: HTMLDivElement,
+      mdcCheckbox: MDCCheckboxModule.MDCCheckbox
+    ) -> Unit
+  )? = null,
 ) {
   MDCCheckboxStyle
   val options = MDCCheckboxOpts().apply { opts?.invoke(this) }
@@ -121,11 +128,13 @@ private fun MDCCheckboxBody(
         classes("mdc-checkbox__checkmark")
         attr("viewBox", "0 0 24 24")
       }) {
-        Path(attrs = {
-          classes("mdc-checkbox__checkmark-path")
-          attr("fill", "none")
-          attr("d", "M1.73,12.91 8.1,19.28 22.79,4.59")
-        })
+        Path(
+          d = "M1.73,12.91 8.1,19.28 22.79,4.59",
+          attrs = {
+            classes("mdc-checkbox__checkmark-path")
+            attr("fill", "none")
+          }
+        )
       }
       Div(attrs = { classes("mdc-checkbox__mixedmark") })
     }
