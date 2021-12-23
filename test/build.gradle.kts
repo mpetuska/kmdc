@@ -1,4 +1,6 @@
-plugins { id("plugin.library-mpp") }
+plugins {
+  id("plugin.library-mpp")
+}
 
 description = "Local test utilities"
 
@@ -9,12 +11,13 @@ kotlin {
       dependencies {
         api(kotlin("test"))
         api(kotlin("test-annotations-common"))
-        api("dev.petuska:klip:_")
+        api("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+        api("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
       }
     }
     named("jsMain") {
       dependencies {
-        api("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+        api("dev.petuska:klip:_")
         api(kotlin("test-js"))
       }
     }

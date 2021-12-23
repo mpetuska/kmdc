@@ -73,5 +73,6 @@ Other libraries:
 # Contributing
 All contributions are welcome. Have a look for
 a [good first issue](https://github.com/mpetuska/kmdc/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-in the issue tracker, or open your own issue if you have some ideas. 
-If you want to chat, ping me on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
+in the issue tracker, or open your own issue if you have some ideas. If you want to chat, either start
+a [discussion](https://github.com/mpetuska/kmdc/discussions) or ping me
+on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).

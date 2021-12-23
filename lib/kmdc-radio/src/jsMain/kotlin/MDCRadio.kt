@@ -98,8 +98,8 @@ private fun MDCRadioBody(
     }
   }) {
     Input(type = InputType.Radio, attrs = {
-      classes("mdc-radio__native-control")  // This must precede `checked()`
-      checked(checked)  // This must follow `classes(...)`
+      classes("mdc-radio__native-control") // This must precede `checked()`
+      checked(checked) // This must follow `classes(...)`
       id(radioId)
       if (options.disabled) disabled()
       attrs?.invoke(this)
@@ -109,7 +109,6 @@ private fun MDCRadioBody(
     }) {
       Div(attrs = { classes("mdc-radio__outer-circle") })
       Div(attrs = { classes("mdc-radio__inner-circle") })
-
     }
     Div(attrs = { classes("mdc-radio__ripple") })
   }

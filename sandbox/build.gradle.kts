@@ -1,9 +1,9 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
 plugins {
-  kotlin("multiplatform") version "1.5.31"
-  id("org.jetbrains.compose") version "1.0.0-rc1"
+  kotlin("multiplatform")
+  id("org.jetbrains.compose")
 }
+
+description = "Local consumer sandbox"
 
 repositories {
   mavenCentral()
@@ -11,7 +11,12 @@ repositories {
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
-description = "Local consumer sandbox"
+gradleEnterprise {
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
+}
 
 kotlin {
   js {
@@ -37,14 +42,8 @@ kotlin {
     named("jsMain") {
       dependencies {
         implementation("dev.petuska:kmdc")
+        implementation("app.softwork:routing-compose:_")
       }
     }
-  }
-}
-
-// Workaround for https://kotlinlang.slack.com/archives/C0B8L3U69/p1633590092096600
-rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
-  rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-    resolution("@webpack-cli/serve", "1.5.2")
   }
 }
