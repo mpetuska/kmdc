@@ -39,6 +39,37 @@ kotlin {
 }
 ```
 
+### Usage
+
+Most of the API maps closely to MDC JS API, making all examples there semi-valid. KMDC components follow a specific
+naming convention to make its components more discoverable as well. The convention
+is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`). Most of the components also follow the same argument
+order schema:
+
+1. `opts: (MDCComponentOpth.() -> Unit)? = null` - MDC-specific option overrides
+2. `attrs: (ArrtsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
+   element
+3. `content: (ElementBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying
+   HTML element
+
+Here's a quick peek how these things come together (more samples can be found in
+the [sandbox](./sandbox/src/jsMain/kotlin/samples))
+
+```kotlin
+@Composable
+fun Sample() {
+  var checked by remember { mutableStateOf(false) } // Declaring controlled state
+  
+  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField component as recommended by MDC docs
+    MDCCheckbox(
+      checked = checked, // MDCCheckbox breaks regular args schema in favour of more convenient usage
+      opts = { label = it }, // Overriding MDCCheckbox-specific options
+      attrs = { onClick { checked = !checked } } // Overriding underlying HTMLInput element attributes
+    ) // MDCCheckbox doesn't allow for additional inner content
+  }
+}
+```
+
 ## Progress
 
 Here's a tracker list of currently completed *material-components-web* modules (13/43):
@@ -115,4 +146,5 @@ on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
       property for it
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.
+
 > Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md#what-should-i-know-before-i-get-started)
