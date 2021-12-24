@@ -10,7 +10,7 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
-val TextFieldSamples = Samples("TextField") {
+private val TextFieldSamples = Samples("MDCTextField") {
   MDCTextFieldCommonOpts.Type.values().forEach { t ->
     Sample("$t") { name ->
       var text by remember { mutableStateOf("") }

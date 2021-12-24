@@ -42,6 +42,9 @@ to [martynas@petuska.dev](mailto:martynas@petuska.dev).
 
 ## What should I know before I get started?
 
+Here are some basic guidelines how to get you up and running with KMDC development quickly. For more detailed tips and
+tricks learned from past development refer to a [dedicated page](./TIPS_N_TRICKS.md).
+
 ### Environment Setup
 
 KMDC is built with Gradle. However, thanks to gradle wrapper, gradle itself is not required to get going, leaving JDK as
@@ -168,7 +171,7 @@ enhancement suggestion is related to, create an issue and provide the following 
   use [Markdown code blocks][md-code-blocks]
   or [file attachments][gh-file-attachments].
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of Atom which the
+* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of KMDC which the
   suggestion is related to. You can use [licecap] to record GIFs on macOS and Windows, and [silentcast] or [byzanz] on
   Linux.
 * **Explain why this enhancement would be useful** to most KMDC users and isn't something that can or should be
@@ -180,9 +183,10 @@ enhancement suggestion is related to, create an issue and provide the following 
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to Atom? You can start by looking through these `beginner` and `help-wanted` issues:
+Unsure where to begin contributing to KMDC? You can start by looking through these `good first issue` and `help-wanted`
+issues:
 
-* [Good First Issue issues][beginner] - issues which should only require a few lines of code, and a test or two.
+* [Good First Issue issues][good-first-issue] - issues which should only require a few lines of code, and a test or two.
 * [Help wanted issues][help-wanted] - issues which should be a bit more involved than `good first issue` issues.
 
 Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for
@@ -262,7 +266,43 @@ easier, [Ktlint IDEA Plugin][ktlint-idea] is highly recommended.
 
 ### Sandbox Styleguide
 
-* TODO
+Since sandbox is used as a main way to "test" changes in development as well as to showcase the implemented components,
+some structure is imposed on its usage to keep everything tidy and easy to navigate.
+
+* Each use-case or component should have its own dedicated samples file
+  in [sandbox/src/jsMain/kotlin/samples](../sandbox/src/jsMain/kotlin/samples)
+* No changes should be made in the sandbox outside of `samples` package as the ad-hock samples framework is configured
+  to register and render all samples in a proper layout automagically.
+* All top-level entities in samples file should be private to avoid polluting public namespace.
+* While `Samples("name")` container must be named, inner `Sample()` blocks can be anonymous (although it's preferred to
+  have them named as well).
+* Both `Samples()` and `Sample()` builders also accept optional description argument. Use it to provide some
+  instructions or extended usage description of your sample (
+  e.g. [checkbox](../sandbox/src/jsMain/kotlin/samples/Checkbox.kt#L35) sample).
+* Neither samples file nor top level value names do not need to match the name passed in `Samples("name") { ... }`
+  builder, so name them whatever you deem sufficiently descriptive.
+* The hierarchy is similar to jest test hierarchy, where a single feature is encapsulated in `describe`
+  block (`Samples` block in KMDC) and fine-grained variations are provided by inner `it` blocks (`Sample` block in KMDC)
+* State can live at the root of `Samples` block, but target composables should always be encapsulated in `Sample`
+  block(s).
+
+Here's an example of the `Samples` adhering to the above conventions:
+
+```kotlin
+@Suppress("unused")
+private val ButtonSamples = Samples("MDCButton") { // `Samples()` is named to indicate which composable is being used
+  MDCButtonOpts.Type.values().forEach {
+    Sample("$it") { _ -> // Easily generates definitive list of `Sample()` for all possible values of MDCButton type, using it as a sample name
+      var count by remember { mutableStateOf(0) } // State lives within the sample as it needs to be unique for each sample in this case
+      MDCButton( // Composable is rendered withing `Sample()` scope as opposed to root `Samples()`
+        text = "Clicked $count times",
+        opts = { type = it },
+        attrs = { onClick { count++ } } // Sample provides some interactivity to showcase usage
+      )
+    }
+  }
+}
+```
 
 [sdkman]: https://sdkman.io/install/
 

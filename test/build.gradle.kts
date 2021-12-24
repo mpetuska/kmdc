@@ -1,5 +1,6 @@
 plugins {
   id("plugin.library-mpp")
+  id("plugin.library-compose")
 }
 
 description = "Local test utilities"

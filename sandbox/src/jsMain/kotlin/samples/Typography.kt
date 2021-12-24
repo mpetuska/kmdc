@@ -28,7 +28,7 @@ import org.jetbrains.compose.web.dom.Div
 import org.w3c.dom.HTMLDivElement
 
 @Suppress("unused")
-val TypographySamples = Samples("Typography") {
+private val TypographySamples = Samples("Typography") {
   @Composable
   fun Render(content: ContentBuilder<HTMLDivElement>) {
     Div(attrs = {

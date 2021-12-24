@@ -10,7 +10,7 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
-val RadioSamples = Samples("Radio") {
+private val RadioSamples = Samples("MDCRadio") {
   val radioOptions = listOf("A", "B", "C")
   var selectedOption by remember { mutableStateOf(radioOptions[0]) }
   Sample("Default") {

@@ -4,15 +4,20 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridScope
+import dev.petuska.kmdc.typography.MDCH5
 
 @SampleDsl
-data class Samples(private val _name: String, private val content: SampleRender) {
+data class Samples(
+  val name: String,
+  val description: String?,
+  private val content: SampleRender
+) {
+  constructor(name: String, content: SampleRender) : this(name, null, content)
+
   companion object {
     private val samples = mutableSetOf<Samples>()
     val all: Set<Samples> get() = samples
   }
-
-  val name = "MDC" + _name.removePrefix("MDC")
 
   init {
     samples.add(this)
@@ -21,7 +26,7 @@ data class Samples(private val _name: String, private val content: SampleRender)
   @SampleDsl
   @Composable
   operator fun MDCLayoutGridCellsScope.invoke() {
-    NamedCell(name) {
+    NamedCell(name, description, titleRender = { t, a -> MDCH5(t, a) }) {
       content()
     }
   }
@@ -36,9 +41,10 @@ annotation class SampleDsl
 @Composable
 fun MDCLayoutGridCellsScope.Sample(
   name: String,
+  description: String? = null,
   content: @Composable MDCLayoutGridScope.(name: String) -> Unit
 ) {
-  NamedCell(name) {
+  NamedCell(name, description) {
     MDCLayoutGridCell({ span = 12u }) {
       content(name)
     }
@@ -51,7 +57,7 @@ fun MDCLayoutGridCellsScope.Sample(
   span: UInt = 6u,
   content: @Composable MDCLayoutGridScope.() -> Unit
 ) {
-  NamedCell(null, span) {
+  NamedCell(null, null, span) {
     MDCLayoutGridCell({ this.span = 12u }) {
       content()
     }
