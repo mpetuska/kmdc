@@ -199,11 +199,12 @@ The process described here has several goals:
 
 Please follow these steps to have your contribution considered by the maintainers:
 
-1. Use concise and descriptive PR titles
-2. Provide a short description of your changes in PR description
-3. Avoid multiple unrelated changes in a single PR. Each PR should have a clear change purpose.
-4. Follow the [styleguides](#styleguides)
-5. After you submit your pull request, verify that all [status checks][gh-status-checks] are passing
+1. Use concise and descriptive PR titles.
+2. Provide a short summary of your changes in PR description.
+3. Make sure to note any related issues that your PR solves (e.g. `Closes #69`) in the description.
+4. Avoid multiple unrelated changes in a single PR. Each PR should have a clear change purpose.
+5. Follow the [styleguides](#styleguides)
+6. After you submit your pull request, verify that all [status checks][gh-status-checks] are passing
    <details>
      <summary>What if the status checks are failing?</summary>
      If a status check is failing, and you believe that the failure is unrelated to
