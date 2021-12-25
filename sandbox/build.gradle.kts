@@ -43,6 +43,8 @@ kotlin {
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("app.softwork:routing-compose:_")
+        implementation(devNpm("sass", "^1.42.1"))
+        implementation(devNpm("sass-loader", "^12.3.0"))
       }
     }
   }

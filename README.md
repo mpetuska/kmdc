@@ -18,7 +18,6 @@ is also available, which bring in all KMDC mopdules as transitive dependencies u
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
 
 ```kotlin
-// MPP
 plugins {
   kotlin("multiplatform")
   id("org.jetbrains.compose")
