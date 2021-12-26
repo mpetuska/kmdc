@@ -21,7 +21,7 @@ fun KotlinMultiplatformExtension.nativeTargetGroup(
       }
       main to test
     } else (null to null)
-    
+
     targets.forEach { target ->
       main?.let {
         target.compilations["main"].defaultSourceSet {
