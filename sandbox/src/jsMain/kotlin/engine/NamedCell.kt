@@ -6,14 +6,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icons.MDCIcon
-import dev.petuska.kmdc.icons.MDCIconOpts
 import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.typography.MDCCaption
 import dev.petuska.kmdc.typography.MDCH6
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.MDCIconOpts
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
