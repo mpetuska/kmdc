@@ -5,27 +5,14 @@ plugins {
 
 refreshVersions { extraArtifactVersionKeyRules(file("versions.rules")) }
 
-rootProject.name = "kmdc"
+rootProject.name = "KMDC"
 
 include(":test")
 
-include(
-  ":lib:kmdc-core",
-  ":lib:kmdc-button",
-  ":lib:kmdc-card",
-  ":lib:kmdc-checkbox",
-  ":lib:kmdc-chips",
-  ":lib:kmdc-drawer",
-  ":lib:kmdc-form-field",
-  ":lib:kmdc-icon-button",
-  ":lib:kmdc-icons",
-  ":lib:kmdc-layout-grid",
-  ":lib:kmdc-linear-progress",
-  ":lib:kmdc-list",
-  ":lib:kmdc-radio",
-  ":lib:kmdc-ripple",
-  ":lib:kmdc-textfield",
-  ":lib:kmdc-tooltip",
-  ":lib:kmdc-top-app-bar",
-  ":lib:kmdc-typography",
-)
+fun includeModuleGroup(path: String) {
+  rootDir.resolve(path).listFiles { file: File -> file.isDirectory && file.name.startsWith(path) }
+    ?.map { ":$path:${it.name}" }?.forEach(::include)?.also { include(":$path") }
+}
+
+includeModuleGroup("kmdc")
+includeModuleGroup("kmdcx")

@@ -73,6 +73,9 @@ jobs:
       - name: Gradle Check
         run: ./gradlew check --scan
 
+      - name: Gradle Assemble
+        run: ./gradlew assemble --scan
+
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
