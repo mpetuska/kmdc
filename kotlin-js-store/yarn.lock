@@ -331,6 +331,22 @@
   dependencies:
     "@material/elevation" "^13.0.0"
 
+"@material/tooltip@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/tooltip/-/tooltip-13.0.0.tgz#2a4360b1d9b07b7573d69e2a85d5522dec00b97d"
+  integrity sha512-/QinwEM0sYtRUthgOy7R+V4iwLMZ8SCd8A3PyGyTr27BUGWykwAUFdXyzT4rxLhDNcnDOYH14N+Z3Bom+UwO9Q==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/shape" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/top-app-bar@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-13.0.0.tgz#c4f8af665ed25b5db35083bf5253bb6bd161cae5"
