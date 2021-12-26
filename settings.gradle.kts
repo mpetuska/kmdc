@@ -25,6 +25,7 @@ include(
   ":lib:kmdc-radio",
   ":lib:kmdc-ripple",
   ":lib:kmdc-textfield",
+  ":lib:kmdc-tooltip",
   ":lib:kmdc-top-app-bar",
   ":lib:kmdc-typography",
 )

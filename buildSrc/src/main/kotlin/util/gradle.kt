@@ -1,11 +1,11 @@
 package util
 
+import de.fayard.refreshVersions.core.versionFor
 import groovy.lang.Closure
+import java.nio.charset.Charset
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.konan.target.HostManager
-import java.nio.charset.Charset
-import de.fayard.refreshVersions.core.versionFor
 
 typealias Lambda<R, V> = R.() -> V
 
@@ -14,15 +14,15 @@ val SANDBOX by lazy { !"false".equals(System.getenv("SANDBOX") ?: "false", true)
 val mdcVersion = versionFor("version.npm.material-components-web")
 
 fun <R, V> Lambda<R, V>.toClosure(owner: Any? = null, thisObj: Any? = null) =
-    object : Closure<V>(owner, thisObj) {
-      @Suppress("UNCHECKED_CAST")
-      fun doCall() {
-        with(delegate as R) { this@toClosure() }
-      }
+  object : Closure<V>(owner, thisObj) {
+    @Suppress("UNCHECKED_CAST")
+    fun doCall() {
+      with(delegate as R) { this@toClosure() }
     }
+  }
 
 fun <R, V> closureOf(owner: Any? = null, thisObj: Any? = null, func: R.() -> V) =
-    func.toClosure(owner, thisObj)
+  func.toClosure(owner, thisObj)
 
 infix fun <T> Property<T>.by(value: T) {
   set(value)

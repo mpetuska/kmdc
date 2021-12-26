@@ -9,8 +9,10 @@
 * Revisited old components to make all of them controlled for consistency
 * Reworked sandbox
 * MDCTypography extended to support custom attributes
+* Contributing guidelines and code of conduct
 ### New modules wrapped
 - [x] mdc-radio
+- [x] mdc-tooltip
 - [x] material-icons
 
 # v0.0.1
