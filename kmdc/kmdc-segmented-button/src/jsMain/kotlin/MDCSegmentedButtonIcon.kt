@@ -1,4 +1,4 @@
-package dev.petuska.kmdc.button
+package dev.petuska.kmdc.segmented.button
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCAttrsDsl
@@ -13,25 +13,24 @@ import org.w3c.dom.HTMLElement
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<HTMLElement>.mdcButtonIcon() {
-  classes("mdc-button__icon")
-  attr("aria-hidden", "true")
+public fun AttrsBuilder<HTMLElement>.mdcSegmentedButtonIcon() {
+  classes("mdc-segmented-button__icon")
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-button#icon)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
  */
 @MDCDsl
 @Composable
-public fun MDCButtonScope.MDCButtonIcon(
+public fun MDCSegmentedButtonSegmentScope.MDCSegmentedButtonIcon(
   attrs: AttrBuilderContext<HTMLElement>? = null,
   content: ContentBuilder<HTMLElement>? = null,
 ) {
   I(
     attrs = {
-      mdcButtonIcon()
+      mdcSegmentedButtonIcon()
       attrs?.invoke(this)
     },
-    content,
+    content = content
   )
 }

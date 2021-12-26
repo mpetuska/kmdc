@@ -14,6 +14,7 @@
 ### New modules wrapped
 - [x] mdc-radio
 - [x] mdc-tooltip
+- [x] mdc-segmented-button
 - [x] material-icons
 
 # v0.0.1
