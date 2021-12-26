@@ -69,27 +69,27 @@ fun Sample() {
 }
 ```
 
-## Progress
+### Progress
 
-Here's a tracker list of currently completed *material-components-web* modules (15/43):
+Here's a tracker list of currently completed *material-components-web* modules (22/49):
 
-- [ ] mdc-animation
-- [ ] mdc-auto-init
+- [ ] mdc-animation (SASS)
+- [x] mdc-auto-init (won't wrap)
 - [ ] mdc-banner
-- [ ] mdc-base
+- [x] mdc-base (won't wrap)
 - [x] mdc-button
 - [x] mdc-card
 - [x] mdc-checkbox
 - [ ] mdc-chips
 - [ ] mdc-circular-progress
 - [ ] mdc-data-table
-- [ ] mdc-density
+- [x] mdc-density (won't wrap)
 - [ ] mdc-dialog
-- [ ] mdc-dom
+- [x] mdc-dom (won't wrap)
 - [x] mdc-drawer
 - [ ] mdc-elevation
 - [ ] mdc-fab
-- [ ] mdc-feature-targeting
+- [x] mdc-feature-targeting (won't wrap)
 - [ ] mdc-floating-label
 - [x] mdc-form-field
 - [x] mdc-icon-button
@@ -101,13 +101,13 @@ Here's a tracker list of currently completed *material-components-web* modules (
 - [ ] mdc-menu-surface
 - [ ] mdc-menu
 - [ ] mdc-notched-outline
-- [ ] mdc-progress-indicator
+- [x] mdc-progress-indicator (won't wrap)
 - [x] mdc-radio
 - [x] mdc-ripple
-- [ ] mdc-rtl
+- [ ] mdc-rtl (SASS)
 - [ ] mdc-segmented-button
 - [ ] mdc-select
-- [ ] mdc-shape
+- [ ] mdc-shape (SASS)
 - [ ] mdc-slider
 - [ ] mdc-snackbar
 - [ ] mdc-switch
@@ -116,12 +116,14 @@ Here's a tracker list of currently completed *material-components-web* modules (
 - [ ] mdc-tab-scroller
 - [ ] mdc-tab
 - [x] mdc-textfield
+- [ ] mdc-theme (SASS)
+- [x] mdc-tokens (won't wrap)
 - [x] mdc-tooltip
 - [x] mdc-top-app-bar
 - [ ] mdc-touch-target
 - [x] mdc-typography
 
-Other libraries:
+Other libraries and extensions:
 
 - [x] material-icons
 
@@ -134,7 +136,15 @@ a [discussion](https://github.com/mpetuska/kmdc/discussions) or ping me
 on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
 > Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md)
 
-## Developer Setup
+### Module Structure
+
+KMDC project modules can be categorised into three groups:
+
+* Core MDC wrappers - grouped under [./kmdc](./kmdc) meta-module
+* Extensions of core wrappers or relevant non-kmdc wrappers - grouped under [./kmdcx](./kmdcx) meta-module
+* Local testing utilities - grouped under [./test](./test) meta-module
+
+### Developer Setup
 
 * Install JDK 11+
 * Run `./gradlew assemble` to build js binaries

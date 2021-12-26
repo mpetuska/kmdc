@@ -42,6 +42,7 @@ kotlin {
     named("jsMain") {
       dependencies {
         implementation("dev.petuska:kmdc")
+        implementation("dev.petuska:kmdcx")
         implementation("app.softwork:routing-compose:_")
         implementation(devNpm("sass", "^1.42.1"))
         implementation(devNpm("sass-loader", "^12.3.0"))

@@ -10,6 +10,7 @@
 * Reworked sandbox
 * MDCTypography extended to support custom attributes
 * Contributing guidelines and code of conduct
+* New `dev.petuska:kmdcx` shortcut artefact for KMDC extension and companion modules
 ### New modules wrapped
 - [x] mdc-radio
 - [x] mdc-tooltip
