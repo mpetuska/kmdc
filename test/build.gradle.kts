@@ -17,8 +17,9 @@ kotlin {
     }
     named("jsMain") {
       dependencies {
-        api("dev.petuska:klip:_")
         api(kotlin("test-js"))
+        implementation(devNpm("sass", "^1.42.1"))
+        implementation(devNpm("sass-loader", "^12.3.0"))
       }
     }
   }

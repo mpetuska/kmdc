@@ -12,7 +12,8 @@ import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
-import dev.petuska.kmdc.typography.MDCH5
+import dev.petuska.kmdc.typography.MDCCaption
+import dev.petuska.kmdc.typography.MDCH6
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
@@ -28,11 +29,24 @@ import org.jetbrains.compose.web.css.flexDirection
 import org.jetbrains.compose.web.css.justifyContent
 import org.jetbrains.compose.web.css.margin
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Hr
-
+import org.w3c.dom.HTMLHeadingElement
 
 @Composable
-fun MDCLayoutGridCellsScope.NamedCell(name: String?, span: UInt = 6u, content: SampleRender) {
+fun MDCLayoutGridCellsScope.NamedCell(
+  name: String?,
+  description: String? = null,
+  span: UInt = 6u,
+  titleRender: @Composable (text: String, attrs: AttrBuilderContext<HTMLHeadingElement>?) -> Unit = { text, attrs ->
+    MDCH6(
+      text,
+      attrs
+    )
+  },
+  content: SampleRender
+) {
   var collapsed by remember { mutableStateOf(false) }
   MDCLayoutGridCell({ this.span = span }, attrs = {
     style {
@@ -52,11 +66,21 @@ fun MDCLayoutGridCellsScope.NamedCell(name: String?, span: UInt = 6u, content: S
               alignItems(AlignItems.Center)
             }
           }) {
-            MDCH5(name, attrs = {
+            Div(attrs = {
               style {
-                margin(0.px)
+                display(DisplayStyle.Flex)
+                flexDirection(FlexDirection.Column)
               }
-            })
+            }) {
+              titleRender(name) {
+                style {
+                  margin(0.px)
+                }
+              }
+              description?.let {
+                MDCCaption(description)
+              }
+            }
             MDCIconButton(attrs = { onClick { collapsed = !collapsed } }) {
               MDCIcon({
                 icon = if (collapsed) MDCIconOpts.MDCIconType.ArrowDropDown else MDCIconOpts.MDCIconType.ArrowDropUp

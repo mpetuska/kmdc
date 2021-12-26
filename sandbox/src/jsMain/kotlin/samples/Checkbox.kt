@@ -10,7 +10,7 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
-val CheckboxSamples = Samples("Checkbox") {
+private val CheckboxSamples = Samples("MDCCheckbox") {
   var checked by remember { mutableStateOf(false) }
   Sample("Default") {
     MDCFormField {
@@ -32,7 +32,7 @@ val CheckboxSamples = Samples("Checkbox") {
       )
     }
   }
-  Sample("Indeterminate") {
+  Sample("Indeterminate", "Toggle `Default` checkbox to see changes") {
     MDCFormField {
       MDCCheckbox(
         checked = checked,

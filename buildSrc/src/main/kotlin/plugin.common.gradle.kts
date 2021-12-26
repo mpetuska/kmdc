@@ -1,10 +1,19 @@
 import de.fayard.refreshVersions.core.versionFor
+import java.util.Properties
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinTest
 
 plugins {
   id("com.diffplug.spotless")
   idea
+}
+
+rootDir.resolve("local.properties").takeIf(File::exists)?.let {
+  Properties().apply {
+    it.inputStream().use(::load)
+  }.mapKeys { (k, _) -> k.toString() }
+}?.toList()?.forEach { (k, v) ->
+  project.extra[k] = v
 }
 
 repositories {
@@ -38,7 +47,7 @@ spotless {
 
 tasks {
   withType<Test> { useJUnitPlatform() }
-
+  
   afterEvaluate {
     if (tasks.findByName("compile") == null) {
       register("compile") {
