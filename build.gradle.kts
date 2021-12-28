@@ -3,6 +3,7 @@ plugins {
     id("plugin.git-hooks")
   }
   id("plugin.publishing-nexus")
+  id("org.jetbrains.dokka")
 }
 
 gradleEnterprise {

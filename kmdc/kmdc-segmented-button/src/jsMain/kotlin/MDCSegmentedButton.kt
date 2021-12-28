@@ -27,7 +27,13 @@ public external object MDCSegmentedButtonModule {
     }
 
     public val segments: Array<MDCSegmentedButtonSegment>
-    public fun initialize(segmentFactory: (el: Element, foundation: dynamic) -> MDCSegmentedButtonSegment = definedExternally)
+    public fun initialize(
+      segmentFactory: (
+        el: Element,
+        foundation: dynamic
+      ) -> MDCSegmentedButtonSegment = definedExternally
+    )
+
     public fun initialSyncWithDOM()
     public fun destroy()
     public fun getDefaultFoundation(): dynamic
