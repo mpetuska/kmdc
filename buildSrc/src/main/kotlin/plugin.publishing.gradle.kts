@@ -16,9 +16,8 @@ tasks {
   withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach { dependsOn(jsMainClasses) }
 
   register<Jar>("javadocJar") {
-//    TODO uncomment once https://github.com/Kotlin/dokka/pull/2258 is released
-//    dependsOn(dokkaHtml)
-//    from(dokkaHtml)
+    dependsOn(dokkaHtml)
+    from(dokkaHtml)
     archiveClassifier.set("javadoc")
   }
   withType<Jar> {
