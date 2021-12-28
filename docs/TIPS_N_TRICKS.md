@@ -11,7 +11,7 @@ Bellow are the key concepts required to work with KMDC efficiently:
 
 ## How to create a KMDC wrapper
 
-> _MDC component_ refers to the [material.io Web](https://material.io/develop/web) framework component.
+> _MDC component_ refers to the [material-components-web] framework component.
 > A _KMDC component_ is a Kotlin wrapper for an MDC component.
 
 Before starting, here are some general pointers about MDC & KMDC architecture:
@@ -139,6 +139,8 @@ public fun MDCCheckbox() {
 [compose-web]: https://github.com/JetBrains/compose-jb/tree/master/tutorials/Web
 
 [kjs-interop]: https://kotlinlang.org/docs/js-interop.html
+
+[material-components-web]: https://github.com/material-components/material-components-web/tree/v13.0.0
 
 [mdc-architecture]: https://github.com/material-components/material-components-web/blob/v13.0.0/docs/code/architecture.md
 
