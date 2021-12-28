@@ -1,4 +1,14 @@
-# v0.0.2
+# WIP
+## Versions
+* JDK: 11+
+* Kotlin: 1.6.10
+* Compose: 1.0.1
+## Changes
+* N/A
+### New modules wrapped
+- [x] N/A
+
+# 0.0.2
 ## Versions
 * JDK: 11+
 * Kotlin: 1.6.10
@@ -18,7 +28,7 @@
 - [x] mdc-snackbar
 - [x] material-icons
 
-# v0.0.1
+# 0.0.1
 ## Versions
 * JDK: 11+
 * Kotlin: 1.5.31
