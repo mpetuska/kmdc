@@ -6,7 +6,7 @@
 ## Changes
 * N/A
 ### New modules wrapped
-- [x] N/A
+- [x] mdc-switch
 
 # 0.0.2
 ## Versions

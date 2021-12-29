@@ -34,7 +34,7 @@ public class MDCTextAreaOpts(
 public fun MDCTextArea(
   value: String,
   opts: Builder<MDCTextAreaOpts>? = null,
-  attrs: (TextAreaAttrsBuilder.() -> Unit)? = null,
+  attrs: Builder<TextAreaAttrsBuilder>? = null,
 ) {
   MDCTextFieldStyle
   val options = MDCTextAreaOpts().apply { opts?.invoke(this) }
@@ -90,7 +90,7 @@ public fun MDCTextArea(
 private fun MDCTextAreaInput(
   value: String,
   options: MDCTextAreaOpts,
-  attrs: (TextAreaAttrsBuilder.() -> Unit)?,
+  attrs: Builder<TextAreaAttrsBuilder>?,
   labelId: String,
   helperId: String,
 ) {

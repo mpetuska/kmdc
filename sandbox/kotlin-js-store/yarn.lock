@@ -329,6 +329,24 @@
     "@material/typography" "^13.0.0"
     tslib "^2.1.0"
 
+"@material/switch@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/switch/-/switch-13.0.0.tgz#9f25a6fc2a45344ecdc86f6545e95359f5f0c770"
+  integrity sha512-zbdo6nKEOAx24ILCBobZlQqU2WZ+KuPgdAc1VTI1q1BCKN3rDIfm9RnsCuYiZa9iaq4UUgdYuhH8KVEYGP7Lrw==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/density" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/shape" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/tokens" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/textfield@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/textfield/-/textfield-13.0.0.tgz#64cd2677ed954a0287b6e5b7b07dbdbf07328ef0"
