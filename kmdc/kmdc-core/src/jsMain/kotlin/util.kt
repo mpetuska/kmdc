@@ -6,9 +6,6 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 
-@JsName("require")
-public external fun requireJsModule(module: String): dynamic
-
 @DslMarker
 public annotation class MDCDsl
 
@@ -25,10 +22,6 @@ public external interface Destroyable {
 public abstract external class MDCEvent<T> : Event {
   public var detail: T
 }
-
-public data class Wrapper<T>(val value: T)
-
-public fun <T> T.wrap(): Wrapper<T> = Wrapper(this)
 
 public var Element.mdc: dynamic
   get() = asDynamic().mdc

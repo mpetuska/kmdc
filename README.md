@@ -71,7 +71,7 @@ fun Sample() {
 
 ### Progress
 
-Here's a tracker list of currently completed *material-components-web* modules (24/49):
+Here's a tracker list of currently completed *material-components-web* modules (25/49):
 
 - [ ] mdc-animation (SASS)
 - [x] mdc-auto-init (won't wrap)
@@ -110,7 +110,7 @@ Here's a tracker list of currently completed *material-components-web* modules (
 - [ ] mdc-shape (SASS)
 - [ ] mdc-slider
 - [x] mdc-snackbar
-- [ ] mdc-switch
+- [x] mdc-switch
 - [ ] mdc-tab-bar
 - [ ] mdc-tab-indicator
 - [ ] mdc-tab-scroller
