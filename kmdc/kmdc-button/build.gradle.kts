@@ -5,9 +5,12 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/button"
+
 kotlin {
   sourceSets {
-    named("jsMain") {
+    commonMain
+    jsMain {
       dependencies {
         api(project(":kmdc:kmdc-core"))
         api(project(":kmdc:kmdc-ripple"))

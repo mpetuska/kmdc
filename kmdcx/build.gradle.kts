@@ -3,9 +3,11 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "All KMDC extensions"
+
 kotlin {
   sourceSets {
-    named("jsMain") {
+    jsMain {
       dependencies {
         subprojects.forEach(::api)
       }

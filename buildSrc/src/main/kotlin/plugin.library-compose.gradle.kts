@@ -5,7 +5,13 @@ plugins {
 
 kotlin {
   sourceSets {
-    named("jsTest") {
+    all {
+      languageSettings {
+        optIn("dev.petuska.kmdc.core.MDCInternalDsl")
+        optIn("kotlin.RequiresOptIn")
+      }
+    }
+    jsTest {
       dependencies {
         implementation(compose.web.testUtils)
       }

@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
   sourceSets {
-    named("jsMain") {
+    jsMain {
       dependencies {
         val mdcIconsVersion = versionFor("version.npm.material-icons")
         api(project(":kmdc:kmdc-core"))

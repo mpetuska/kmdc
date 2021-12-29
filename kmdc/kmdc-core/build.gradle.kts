@@ -5,7 +5,7 @@ plugins {
 
 kotlin {
   sourceSets {
-    named("jsMain") {
+    jsMain {
       dependencies {
         api(compose.runtime)
         api(compose.web.core)

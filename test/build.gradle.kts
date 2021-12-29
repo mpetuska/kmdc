@@ -15,7 +15,7 @@ kotlin {
         api("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
       }
     }
-    named("jsMain") {
+    jsMain {
       dependencies {
         api(kotlin("test-js"))
         implementation(devNpm("sass", "^1.42.1"))

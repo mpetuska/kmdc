@@ -3,9 +3,11 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/material-components-web"
+
 kotlin {
   sourceSets {
-    named("jsMain") {
+    jsMain {
       dependencies {
         subprojects.forEach(::api)
       }

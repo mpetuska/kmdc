@@ -5,9 +5,11 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/linear-progress"
+
 kotlin {
   sourceSets {
-    named("jsMain") {
+    jsMain {
       dependencies {
         api(project(":kmdc:kmdc-core"))
         api(npm("@material/linear-progress", mdcVersion))
