@@ -5,7 +5,7 @@
 # Kompose Material Design Components (KMDC)
 
 A set of kotlin wrappers
-over [material-components-web@13.0.0](https://github.com/material-components/material-components-web/tree/v13.0.0)
+over [material-components-web@13.0.0][material-components-web]
 library providing Jetbrains Compose DSL for building beautiful WEB UIs. The API surface is identical to JS version,
 except for few places where slight adjustments are made to make it more fluid for compose.
 
@@ -13,7 +13,7 @@ except for few places where slight adjustments are made to make it more fluid fo
 
 KMDC wraps each MDC module 1:1 and as such allows you to pick and choose which exact components you'd like to use. This
 is recommended approach as it helps in reducing bundle size. However, for the lazy ones out there, a "shortcut" module
-is also available, which bring in all KMDC mopdules as transitive dependencies under a single dependency.
+is also available, which brings in all KMDC modules as transitive dependencies under a single dependency.
 
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
 
@@ -28,10 +28,12 @@ kotlin {
       dependencies {
         // Be lazy and use the shortcut
         implementation("dev.petuska:kmdc:_")
+        implementation("dev.petuska:kmdcx:_")
         
         // Do some work and see dem gains
         implementation("dev.petuska:kmdc-button:_")
         implementation("dev.petuska:kmdc-radio:_")
+        implementation("dev.petuska:kmdcx-icons:_")
       }
     }
   }
@@ -45,7 +47,7 @@ naming convention to make its components more discoverable as well. The conventi
 is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`). Most of the components also follow the same argument
 order schema:
 
-1. `opts: (MDCComponentOpth.() -> Unit)? = null` - MDC-specific option overrides
+1. `opts: (MDCComponentOpts.() -> Unit)? = null` - MDC-specific options overrides
 2. `attrs: (ArrtsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
    element
 3. `content: (ElementBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying
@@ -71,7 +73,7 @@ fun Sample() {
 
 ### Progress
 
-Here's a tracker list of currently completed *material-components-web* modules (25/49):
+Here's a tracker list of currently completed [material-components-web] modules (25/49):
 
 - [ ] mdc-animation (SASS)
 - [x] mdc-auto-init (won't wrap)
@@ -157,3 +159,5 @@ KMDC project modules can be categorised into three groups:
       browser. It takes a few seconds after you save your changes, so be patient.
 
 > Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md#what-should-i-know-before-i-get-started)
+
+[material-components-web]: https://github.com/material-components/material-components-web/tree/v13.0.0
