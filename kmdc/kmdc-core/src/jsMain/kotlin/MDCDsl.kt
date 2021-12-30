@@ -1,9 +1,11 @@
 package dev.petuska.kmdc.core
 
 @DslMarker
+@MDCInternalDsl
 public annotation class MDCDsl
 
 @DslMarker
+@MDCInternalDsl
 public annotation class MDCAttrsDsl
 
 @DslMarker

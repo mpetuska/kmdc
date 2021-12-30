@@ -1,10 +1,14 @@
 package local.sandbox.samples
 
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButton
+import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonAttrsScope
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonIcon
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonLabel
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegment
+import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegmentAttrsScope
 import dev.petuska.kmdc.segmented.button.onSegmentChange
+import dev.petuska.kmdc.segmented.button.onSegmentClick
+import dev.petuska.kmdc.segmented.button.onSegmentSelected
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 import org.jetbrains.compose.web.dom.Text
@@ -18,14 +22,24 @@ private val SegmentedButtonSamples = Samples(
   SingleSelect()
 }
 
-private val MultiSelect by Sample {
+private fun MDCSegmentedButtonAttrsScope.registerEvents(name: String) {
+  onSegmentChange { console.log("$name#onSegmentChange", it.detail) }
+  onSegmentSelected { console.log("$name#onSegmentSelected", it.detail) }
+}
+
+private fun MDCSegmentedButtonSegmentAttrsScope.registerEvents(name: String) {
+  onSegmentSelected { console.log("$name#onSegmentSelected", it.detail) }
+  onSegmentClick { console.log("$name#onSegmentClick", it.detail) }
+}
+
+private val MultiSelect by Sample { name ->
   MDCSegmentedButton(attrs = {
-    onSegmentChange { console.log("onSegmentChange", it.detail) }
+    registerEvents(name)
   }) {
     MDCSegmentedButtonSegment(
       attrs = {
         id("mdc-segmented-button-ms-segment-0")
-        onSegmentSelected { console.log("onSegmentSelected", it.detail) }
+        registerEvents(name)
       }
     ) {
       MDCSegmentedButtonIcon(attrs = {
@@ -36,13 +50,13 @@ private val MultiSelect by Sample {
       text = "One",
       attrs = {
         id("mdc-segmented-button-ms-segment-1")
-        onSegmentSelected { console.log("onSegmentSelected", it.detail) }
+        registerEvents(name)
       }
     )
     MDCSegmentedButtonSegment(
       attrs = {
         id("mdc-segmented-button-ms-segment-2")
-        onSegmentSelected { console.log("onSegmentSelected", it.detail) }
+        registerEvents(name)
       }
     ) {
       MDCSegmentedButtonIcon(attrs = {
@@ -53,16 +67,18 @@ private val MultiSelect by Sample {
   }
 }
 
-private val SingleSelect by Sample {
+private val SingleSelect by Sample { name ->
   MDCSegmentedButton(
     opts = { singleSelect = true },
     attrs = {
-      onSegmentChange { console.log("onSegmentChange", it.detail) }
+      registerEvents(name)
     }
   ) {
     MDCSegmentedButtonSegment(
       opts = { selected = true },
-      attrs = { onSegmentSelected { console.log("onSegmentSelected", it.detail) } }
+      attrs = {
+        registerEvents(name)
+      }
     ) {
       MDCSegmentedButtonIcon(attrs = {
         classes("material-icons")
@@ -70,10 +86,14 @@ private val SingleSelect by Sample {
     }
     MDCSegmentedButtonSegment(
       text = "A",
-      attrs = { onSegmentSelected { console.log("onSegmentSelected", it.detail) } }
+      attrs = {
+        registerEvents(name)
+      }
     )
     MDCSegmentedButtonSegment(
-      attrs = { onSegmentSelected { console.log("onSegmentSelected", it.detail) } }
+      attrs = {
+        registerEvents(name)
+      }
     ) {
       MDCSegmentedButtonIcon(attrs = {
         classes("material-icons")

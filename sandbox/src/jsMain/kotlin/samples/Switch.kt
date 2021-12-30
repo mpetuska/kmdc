@@ -11,6 +11,7 @@ import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButton
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegment
+import dev.petuska.kmdc.segmented.button.onSegmentSelected
 import dev.petuska.kmdc.switch.MDCSwitch
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples

@@ -310,6 +310,22 @@
     "@material/theme" "^13.0.0"
     tslib "^2.1.0"
 
+"@material/slider@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/slider/-/slider-13.0.0.tgz#21575e99bc9700b56d44bb5ee1b63b4a0545e412"
+  integrity sha512-PW+3X9MiOoWmXhirYo/Mk2UYW00Tnsihrx5YJQ4+IxwbrUI75/8yUsO8kVr7YC+Eqhldz8oXzhIXglQFtbpolQ==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/snackbar@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/snackbar/-/snackbar-13.0.0.tgz#63798b832c6931ecb99350c9ef99ac23a7e47f18"
