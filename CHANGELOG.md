@@ -7,6 +7,7 @@
 * N/A
 ### New modules wrapped
 - [x] mdc-switch
+- [x] mdc-slider
 
 # 0.0.2
 ## Versions

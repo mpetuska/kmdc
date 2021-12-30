@@ -28,7 +28,7 @@ data class Samples(
   @SampleDsl
   @Composable
   operator fun MDCLayoutGridCellsScope.invoke() {
-    NamedCell(name, description, titleRender = { t, a -> MDCH5(t, a) }) {
+    NamedCell(name, description, span = 12u, titleRender = { t, a -> MDCH5(t, a) }) {
       content()
     }
   }
@@ -42,6 +42,7 @@ annotation class SampleDsl
 class Sample @SampleDsl constructor(
   private val description: String? = null,
   private val span: UInt = 6u,
+  private val name: String? = null,
   private val content: @Composable MDCLayoutGridScope.(name: String) -> Unit
 ) : ReadOnlyProperty<Nothing?, @Composable MDCLayoutGridCellsScope.() -> Unit> {
 
@@ -49,7 +50,8 @@ class Sample @SampleDsl constructor(
 
   override fun getValue(thisRef: Nothing?, property: KProperty<*>): @Composable MDCLayoutGridCellsScope.() -> Unit {
     return sample ?: run {
-      val s: @Composable MDCLayoutGridCellsScope.() -> Unit = { Sample(property.name, description, span, content) }
+      val s: @Composable MDCLayoutGridCellsScope.() -> Unit =
+        { Sample(name ?: property.name, description, span, content) }
       s.also { sample = it }
     }
   }

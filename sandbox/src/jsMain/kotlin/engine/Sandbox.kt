@@ -12,7 +12,11 @@ import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
+import dev.petuska.kmdc.slider.MDCSlider
+import dev.petuska.kmdc.slider.onSliderInput
+import dev.petuska.kmdc.typography.MDCBody1
 import dev.petuska.kmdc.typography.MDCH1
+import dev.petuska.kmdc.typography.mdcTypography
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
@@ -45,7 +49,7 @@ fun Sandbox() {
       .toSet()
       .let { enabledSamples = it }
     noMatch {
-      MDCLayoutGrid {
+      MDCLayoutGrid(attrs = { mdcTypography() }) {
         MDCLayoutGridCells {
           SamplesList(parameters?.map, enabledSamples)
           SamplesView(enabledSamples)

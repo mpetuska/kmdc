@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -15,6 +15,7 @@ public data class MDCSegmentedButtonSegmentOpts(
   var touch: Boolean = false
 )
 
+public class MDCSegmentedButtonSegmentAttrsScope private constructor() : AttrsBuilder<HTMLButtonElement>()
 public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElement>) :
   ElementScope<HTMLButtonElement> by scope
 
@@ -25,7 +26,7 @@ public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElemen
 @Composable
 public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
   opts: Builder<MDCSegmentedButtonSegmentOpts>? = null,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
   content: ComposableBuilder<MDCSegmentedButtonSegmentScope>? = null,
 ) {
   val options = MDCSegmentedButtonSegmentOpts().apply { opts?.invoke(this) }
@@ -38,13 +39,13 @@ public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
       if (options.selected) {
         classes("mdc-segmented-button__segment--selected")
       }
-      if (this@MDCSegmentedButtonSegment.opts.singleSelect) {
+      if (this@MDCSegmentedButtonSegment.options.singleSelect) {
         attr("aria-checked", "${options.selected}")
         attr("role", "radio")
       } else {
         attr("aria-pressed", "${options.selected}")
       }
-      attrs?.invoke(this)
+      attrs?.invoke(this.unsafeCast<MDCSegmentedButtonSegmentAttrsScope>())
     }
   ) {
     if (options.touch) {
@@ -65,7 +66,7 @@ public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
 public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
   text: String,
   opts: Builder<MDCSegmentedButtonSegmentOpts>? = null,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
 ) {
   MDCSegmentedButtonSegment(opts, attrs) {
     MDCSegmentedButtonLabel(text)

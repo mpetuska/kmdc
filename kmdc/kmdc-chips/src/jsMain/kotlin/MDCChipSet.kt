@@ -9,10 +9,10 @@ import org.w3c.dom.Element
 private external val MDCChipsCSS: dynamic
 
 @JsModule("@material/chips")
-private external object MDCChipsModule {
-  class MDCChipSet(element: Element) {
-    companion object {
-      fun attachTo(element: Element)
+public external object MDCChipsModule {
+  public class MDCChipSet(element: Element) {
+    public companion object {
+      public fun attachTo(element: Element): MDCChipSet
     }
   }
 }
