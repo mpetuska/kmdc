@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.uniqueDomElementId
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
 import org.jetbrains.compose.web.attributes.disabled
@@ -17,7 +18,6 @@ import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextInput
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
-import kotlin.random.Random
 
 @JsModule("@material/textfield/dist/mdc.textfield.css")
 public external val MDCTextFieldStyle: dynamic
@@ -94,9 +94,8 @@ public fun MDCTextField(
 ) {
   MDCTextFieldStyle
   val options = MDCTextFieldOpts().apply { opts?.invoke(this) }
-  val localId = remember { Random.nextInt(9999) }
-  val labelId = remember { "mdc-floating-label__$localId" }
-  val helperId = remember { "mdc-text-field-helper-text__$localId" }
+  val labelId = remember { uniqueDomElementId() }
+  val helperId = remember { uniqueDomElementId() }
   Label(
     attrs = {
       classes("mdc-text-field", *options.type.classes)
@@ -118,7 +117,7 @@ public fun MDCTextField(
             classes("mdc-floating-label")
             if (value.isNotEmpty())
               classes("mdc-floating-label--float-above")
-            id("mdc-floating-label__$labelId")
+            id(labelId)
           }) { Text(it) }
         }
         options.prefix?.let {
@@ -170,7 +169,7 @@ internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String,
           classes("mdc-floating-label")
           if (inputIsNotEmpty)
             classes("mdc-floating-label--float-above")
-          id("mdc-floating-label__$labelId")
+          id(labelId)
         }) { Text(it) }
       }
     }

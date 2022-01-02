@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.uniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import dev.petuska.kmdc.ripple.MDCRippleModule
@@ -18,7 +19,6 @@ import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
-import kotlin.random.Random
 
 @JsModule("@material/radio/dist/mdc.radio.css")
 public external val MDCRadioStyle: dynamic
@@ -82,8 +82,7 @@ private fun MDCRadioBody(
 ) {
   MDCRadioStyle
   val options = MDCRadioOpts().apply { opts?.invoke(this) }
-  val localId = remember { Random.nextInt(9999) }
-  val radioId = remember { "mdc-radio__native-control__$localId" }
+  val radioId = remember { uniqueDomElementId() }
 
   Div(attrs = {
     classes("mdc-radio")

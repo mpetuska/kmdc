@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.uniqueDomElementId
 import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsBuilder
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
@@ -14,7 +15,6 @@ import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextArea
-import kotlin.random.Random
 
 public class MDCTextAreaOpts(
   type: Type = Type.Filled,
@@ -38,9 +38,8 @@ public fun MDCTextArea(
 ) {
   MDCTextFieldStyle
   val options = MDCTextAreaOpts().apply { opts?.invoke(this) }
-  val localId = remember { Random.nextInt(9999) }
-  val labelId = remember { "mdc-floating-label__$localId" }
-  val helperId = remember { "mdc-text-field-helper-text__$localId" }
+  val labelId = remember { uniqueDomElementId() }
+  val helperId = remember { uniqueDomElementId() }
   Label(
     attrs = {
       classes("mdc-text-field", "mdc-text-field--textarea", *options.type.classes)
@@ -70,7 +69,7 @@ public fun MDCTextArea(
             classes("mdc-floating-label")
             if (value.isNotEmpty())
               classes("mdc-floating-label--float-above")
-            id("mdc-floating-label__$labelId")
+            id(labelId)
           }) { Text(it) }
         }
         Span(attrs = { classes("mdc-line-ripple") })

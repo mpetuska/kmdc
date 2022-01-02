@@ -54,3 +54,13 @@ public fun <E : Element, T : Destroyable> AttrsBuilder<E>.initialiseMDC(
 ) {
   initialiseMDC(mdcInit, Destroyable::destroy, postInit)
 }
+
+private var nextDomElementId = 0
+
+/**
+ * Returns a new unique DOM element ID.
+ *
+ * Guarantees 2^53-1 sequential IDs, good for 28 million IDs per second over a period of ten years.
+ */
+@MDCInternalDsl
+public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"

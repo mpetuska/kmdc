@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.uniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import dev.petuska.kmdc.ripple.MDCRippleModule
@@ -21,7 +22,6 @@ import org.jetbrains.compose.web.svg.Path
 import org.jetbrains.compose.web.svg.Svg
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
-import kotlin.random.Random
 
 @JsModule("@material/checkbox/dist/mdc.checkbox.css")
 public external val MDCCheckboxStyle: dynamic
@@ -93,8 +93,7 @@ private fun MDCCheckboxBody(
 ) {
   MDCCheckboxStyle
   val options = MDCCheckboxOpts().apply { opts?.invoke(this) }
-  val localId = remember { Random.nextInt(9999) }
-  val checkboxId = remember { "mdc-checkbox__native-control__$localId" }
+  val checkboxId = remember { uniqueDomElementId() }
 
   Div(attrs = {
     classes("mdc-checkbox")
