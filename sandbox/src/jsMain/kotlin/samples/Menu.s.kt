@@ -4,40 +4,64 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.menu.MDCMenu
-import dev.petuska.kmdc.menu.MDCMenuListItem
-import dev.petuska.kmdc.menu.MDCMenuModule
-import dev.petuska.kmdc.menu.MDCMenuSurface
-import dev.petuska.kmdc.menu.MDCMenuSurfaceOpts
+import dev.petuska.kmdc.menu.MDCMenuItem
+import dev.petuska.kmdc.menu.MDCMenuOpts
+import dev.petuska.kmdc.menu.surface.Corner
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAnchor
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
+import onSelected
 
 private val SAMPLE_MENU = listOf("Menu Item 1", "Menu Item 2", "Menu Item 3")
 
-@Suppress("unused")
-private val MenuSamples = Samples("MDCMenu") {
-  Sample("Anchored") {
-    var menuElement by remember { mutableStateOf<MDCMenuModule.MDCMenu?>(null) }
-    var selectedValue by remember { mutableStateOf("") }
+val MenuSamples = Samples("MDCMenu") {
+  Sample("Absolutely Positioned Menu") {
+    var menuOpen by remember { mutableStateOf(false) }
 
-    MDCMenuSurface({
-      style = MDCMenuSurfaceOpts.Style.Anchored
+    MDCButton(
+      text = "${if (menuOpen) "Close" else "Open"} Fixed Menu",
+      attrs = { onClick { menuOpen = !menuOpen } }
+    )
+    MDCMenu(opts = {
+      open = menuOpen
+      absolutePosition = MDCMenuOpts.Point(100.0, 200.0)
+    }, attrs = {
+      onSelected { menuOpen = false }
     }) {
+      SAMPLE_MENU.map {
+        MDCMenuItem({ text = it })
+      }
+    }
+  }
+  Sample("Anchored Dropdown") {
+    var selectedValue by remember { mutableStateOf("") }
+    var menuOpen by mutableStateOf(false)
+
+    MDCMenuSurfaceAnchor {
       MDCTextField(selectedValue, {
-        label = "Dropdown"
+        label = "Menu Selection"
         type = MDCTextFieldCommonOpts.Type.Outlined
       }) {
-        onClick { menuElement?.let { it.open = true } }
+        onClick {
+          console.log("Menu clicked")
+          menuOpen = true
+        }
       }
       MDCMenu(opts = {
-        onSelected = { selectedValue = SAMPLE_MENU[it] }
-      }, initialize = { _, mdcMenu: MDCMenuModule.MDCMenu ->
-        menuElement = mdcMenu
-      }) {
+          open = menuOpen
+        }, attrs = {
+          onSelected {
+            selectedValue = SAMPLE_MENU[it.detail.index]
+            menuOpen = false
+          }
+        }
+      ) {
         SAMPLE_MENU.map {
-          MDCMenuListItem({text = it})
+          MDCMenuItem({text = it})
         }
       }
     }

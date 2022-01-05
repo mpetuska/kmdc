@@ -13,23 +13,23 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLLIElement
 import org.w3c.dom.HTMLUListElement
 
-public data class MDCMenuListItemOpts(
+public data class MDCMenuItemOpts(
   public var text: String? = null,
   public var disabled: Boolean = false,
   public var selected: Boolean = false,
   public var activated: Boolean = false
 )
 
-public class MDCMenuListItemScope<T : HTMLElement>(scope: MDCListItemScope<T>) : MDCListItemScope<T>(scope)
+public class MDCMenuItemScope<T : HTMLElement>(scope: MDCListItemScope<T>) : MDCListItemScope<T>(scope)
 
 @MDCDsl
 @Composable
-public fun MDCMenuListScope<HTMLUListElement>.MDCMenuListItem(
-  opts: Builder<MDCMenuListItemOpts>? = null,
+public fun MDCMenuScope<HTMLUListElement>.MDCMenuItem(
+  opts: Builder<MDCMenuItemOpts>? = null,
   attrs: Builder<AttrsBuilder<HTMLLIElement>>? = null,
-  content: ComposableBuilder<MDCMenuListItemScope<HTMLLIElement>>? = null,
+  content: ComposableBuilder<MDCMenuItemScope<HTMLLIElement>>? = null,
 ) {
-  val options = MDCMenuListItemOpts().apply { opts?.invoke(this) }
+  val options = MDCMenuItemOpts().apply { opts?.invoke(this) }
   listScope.MDCListItem(attrs = {
     attr("role", "menuitem")
     attrs?.invoke(this)
@@ -38,7 +38,7 @@ public fun MDCMenuListScope<HTMLUListElement>.MDCMenuListItem(
     disabled = options.disabled
     selected = options.selected
   }) {
-    content?.let { MDCMenuListItemScope(this).it() }
+    content?.let { MDCMenuItemScope(this).it() }
     options.text?.let { Span({ classes("mdc-deprecated-list-item__text") }) { Text(it) } }
   }
 }

@@ -1,27 +1,26 @@
-package dev.petuska.kmdc.menu
+package dev.petuska.kmdc.menu.surface
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/menu-surface/dist/mdc.menu-surface.css")
-public external val MDCMenuSurfaceStyle: dynamic
+private external val MDCMenuSurfaceStyle: dynamic
 
 public data class MDCMenuSurfaceOpts(
-  public var style: Style = Style.Default,
-) {
-  public enum class Style(public vararg val classes: String) {
-    Default("mdc-menu-surface"),
-    Anchored("mdc-menu-surface--anchor")
-  }
-}
+  public var fixed: Boolean = false,
+)
 
-public class MDCMenuSurfaceScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
+public class MDCMenuSurfaceScopeAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+
+public class MDCMenuSurfaceScope(scope: ElementScope<HTMLDivElement>) :
+  ElementScope<HTMLDivElement> by scope
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
@@ -30,14 +29,16 @@ public class MDCMenuSurfaceScope(scope: ElementScope<HTMLDivElement>) : ElementS
 @Composable
 public fun MDCMenuSurface(
   opts: Builder<MDCMenuSurfaceOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLDivElement>>? = null,
+  attrs: Builder<MDCMenuSurfaceScopeAttrsScope>? = null,
   content: ComposableBuilder<MDCMenuSurfaceScope>? = null,
 ) {
   MDCMenuSurfaceStyle
   val options = MDCMenuSurfaceOpts().apply { opts?.invoke(this) }
   Div(attrs = {
-    classes(*options.style.classes)
-    attrs?.invoke(this)
+    classes("mdc-menu-surface")
+    if (options.fixed) classes("mdc-menu-surface--fixed")
+    initialiseMDC(MDCMenuSurfaceModule.MDCMenuSurface::attachTo)
+    attrs?.invoke(this.unsafeCast<MDCMenuSurfaceScopeAttrsScope>())
   }) {
     content?.let { MDCMenuSurfaceScope(this).it() }
   }
