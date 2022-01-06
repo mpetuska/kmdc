@@ -45,14 +45,20 @@ public fun MDCMenu(
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
     attrs?.invoke(this.unsafeCast<MDCMenuAttrsScope>())
   }) {
-    DomSideEffect(options) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> {
-        open = options.open
-        if (options.fixed) setFixedPosition(options.fixed)
-        options.selectedIndex?.let { setSelectedIndex(it) }
-        options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
-        options.anchorCorner?.let { setAnchorCorner(it) }
-      }
+    DomSideEffect(options.open) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { open = options.open }
+    }
+    DomSideEffect(options.fixed) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { setFixedPosition(options.fixed) }
+    }
+    DomSideEffect(options.selectedIndex) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { options.selectedIndex?.let { setSelectedIndex(it) } }
+    }
+    DomSideEffect(options.absolutePosition) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) } }
+    }
+    DomSideEffect(options.anchorCorner) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it) } }
     }
     MDCList(
       attrs = {
@@ -60,9 +66,8 @@ public fun MDCMenu(
         attr("aria-hidden", "true")
         attr("aria-orientation", "vertical")
         tabIndex(-1)
-      }
-    ) {
-      content?.let { MDCMenuScope(this).it() }
-    }
+      },
+      content = content?.let { { MDCMenuScope(this).it() } }
+    )
   }
 }

@@ -16,10 +16,11 @@ public fun MDCMenuSurfaceAnchor(
   attrs: Builder<MDCMenuSurfaceAnchorAttrsScope>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
-  Div(attrs = {
-    classes("mdc-menu-surface--anchor")
-    attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAnchorAttrsScope>())
-  }) {
-    content?.invoke(this)
-  }
+  Div(
+    attrs = {
+      classes("mdc-menu-surface--anchor")
+      attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAnchorAttrsScope>())
+    },
+    content = content
+  )
 }
