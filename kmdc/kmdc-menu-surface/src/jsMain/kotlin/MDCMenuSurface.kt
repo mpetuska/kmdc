@@ -9,6 +9,7 @@ import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/menu-surface/dist/mdc.menu-surface.css")
 private external val MDCMenuSurfaceStyle: dynamic
@@ -17,10 +18,7 @@ public data class MDCMenuSurfaceOpts(
   public var fixed: Boolean = false,
 )
 
-public class MDCMenuSurfaceScopeAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
-
-public class MDCMenuSurfaceScope(scope: ElementScope<HTMLDivElement>) :
-  ElementScope<HTMLDivElement> by scope
+public class MDCMenuSurfaceAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
@@ -29,8 +27,8 @@ public class MDCMenuSurfaceScope(scope: ElementScope<HTMLDivElement>) :
 @Composable
 public fun MDCMenuSurface(
   opts: Builder<MDCMenuSurfaceOpts>? = null,
-  attrs: Builder<MDCMenuSurfaceScopeAttrsScope>? = null,
-  content: ComposableBuilder<MDCMenuSurfaceScope>? = null,
+  attrs: Builder<MDCMenuSurfaceAttrsScope>? = null,
+  content: ComposableBuilder<ElementScope<HTMLElement>>? = null,
 ) {
   MDCMenuSurfaceStyle
   val options = MDCMenuSurfaceOpts().apply { opts?.invoke(this) }
@@ -38,8 +36,8 @@ public fun MDCMenuSurface(
     classes("mdc-menu-surface")
     if (options.fixed) classes("mdc-menu-surface--fixed")
     initialiseMDC(MDCMenuSurfaceModule.MDCMenuSurface::attachTo)
-    attrs?.invoke(this.unsafeCast<MDCMenuSurfaceScopeAttrsScope>())
+    attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAttrsScope>())
   }) {
-    content?.let { MDCMenuSurfaceScope(this).it() }
+    content?.let { it() }
   }
 }

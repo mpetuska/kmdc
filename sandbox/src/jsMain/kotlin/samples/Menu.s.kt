@@ -8,7 +8,6 @@ import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.menu.MDCMenu
 import dev.petuska.kmdc.menu.MDCMenuItem
 import dev.petuska.kmdc.menu.MDCMenuOpts
-import dev.petuska.kmdc.menu.surface.Corner
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAnchor
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
@@ -53,13 +52,13 @@ val MenuSamples = Samples("MDCMenu") {
         }
       }
       MDCMenu(opts = {
-          open = menuOpen
-        }, attrs = {
-          onSelected {
-            selectedValue = SAMPLE_MENU[it.detail.index]
-            menuOpen = false
-          }
+        open = menuOpen
+      }, attrs = {
+        onSelected {
+          selectedValue = SAMPLE_MENU[it.detail.index]
+          menuOpen = false
         }
+      }
       ) {
         SAMPLE_MENU.map {
           MDCMenuItem { Text(it) }

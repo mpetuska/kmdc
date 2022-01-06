@@ -23,7 +23,7 @@ public enum class CornerBit(public val byte: Byte) {
  * to right and RIGHT if the directionality is right to left.
  * Likewise END maps to RIGHT or LEFT depending on the directionality.
  */
-public enum class Corner(@Suppress("unused") corner: Byte) {
+public enum class Corner(@Suppress("UNUSED_PARAMETER ") corner: Byte) {
   TOP_LEFT(0),
   TOP_RIGHT(CornerBit.RIGHT.byte),
   BOTTOM_LEFT(CornerBit.BOTTOM.byte),

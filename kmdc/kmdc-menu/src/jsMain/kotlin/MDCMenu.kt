@@ -9,7 +9,6 @@ import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/menu/dist/mdc.menu.css")
@@ -25,10 +24,9 @@ public data class MDCMenuOpts(
   public data class Point(var x: Double = 0.0, var y: Double = 0.0)
 }
 
-public class MDCMenuScopeAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCMenuAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
 
-public class MDCMenuScope<T : HTMLElement>(public val listScope: MDCListScope<T>) :
-  ElementScope<T> by listScope
+public class MDCMenuScope(scope: ElementScope<HTMLUListElement>) : MDCListScope<HTMLUListElement>(scope)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu)
@@ -37,15 +35,15 @@ public class MDCMenuScope<T : HTMLElement>(public val listScope: MDCListScope<T>
 @Composable
 public fun MDCMenu(
   opts: Builder<MDCMenuOpts>? = null,
-  attrs: Builder<MDCMenuScopeAttrsScope>? = null,
-  content: ComposableBuilder<MDCMenuScope<HTMLUListElement>>? = null,
+  attrs: Builder<MDCMenuAttrsScope>? = null,
+  content: ComposableBuilder<MDCMenuScope>? = null,
 ) {
   MDCMenuStyle
   val options = MDCMenuOpts().apply { opts?.invoke(this) }
   MDCMenuSurface(attrs = {
     classes("mdc-menu")
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
-    attrs?.invoke(this.unsafeCast<MDCMenuScopeAttrsScope>())
+    attrs?.invoke(this.unsafeCast<MDCMenuAttrsScope>())
   }) {
     DomSideEffect(options) { scope ->
       scope.mdc<MDCMenuModule.MDCMenu> {
