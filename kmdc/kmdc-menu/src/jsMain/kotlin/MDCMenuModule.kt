@@ -1,5 +1,6 @@
 package dev.petuska.kmdc.menu
 
+import dev.petuska.kmdc.core.Destroyable
 import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.menu.surface.Corner
 import org.w3c.dom.Element
@@ -7,12 +8,12 @@ import org.w3c.dom.HTMLElement
 
 @JsModule("@material/menu")
 public external object MDCMenuModule {
-  public class MDCMenu(element: Element) {
+  public class MDCMenu(element: Element) : Destroyable {
     public companion object {
       public fun attachTo(element: Element): MDCMenu
     }
 
-    public fun destroy()
+    override fun destroy()
 
     public var open: Boolean
 

@@ -15,6 +15,7 @@ import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 import onSelected
+import org.jetbrains.compose.web.dom.Text
 
 private val SAMPLE_MENU = listOf("Menu Item 1", "Menu Item 2", "Menu Item 3")
 
@@ -33,7 +34,7 @@ val MenuSamples = Samples("MDCMenu") {
       onSelected { menuOpen = false }
     }) {
       SAMPLE_MENU.map {
-        MDCMenuItem({ text = it })
+        MDCMenuItem { Text(it) }
       }
     }
   }
@@ -61,7 +62,7 @@ val MenuSamples = Samples("MDCMenu") {
         }
       ) {
         SAMPLE_MENU.map {
-          MDCMenuItem({text = it})
+          MDCMenuItem { Text(it) }
         }
       }
     }

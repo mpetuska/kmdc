@@ -23,13 +23,13 @@ public enum class CornerBit(public val byte: Byte) {
  * to right and RIGHT if the directionality is right to left.
  * Likewise END maps to RIGHT or LEFT depending on the directionality.
  */
-public enum class Corner(corner: Byte) {
+public enum class Corner(@Suppress("unused") corner: Byte) {
   TOP_LEFT(0),
   TOP_RIGHT(CornerBit.RIGHT.byte),
   BOTTOM_LEFT(CornerBit.BOTTOM.byte),
   BOTTOM_RIGHT(CornerBit.BOTTOM.byte or CornerBit.RIGHT.byte),
   TOP_START(CornerBit.FLIP_RTL.byte),
-  TOP_END(CornerBit.FLIP_RTL.byte or CornerBit.RIGHT.byte), // tslint:disable-line:no-bitwise
-  BOTTOM_START(CornerBit.BOTTOM.byte or CornerBit.FLIP_RTL.byte), // tslint:disable-line:no-bitwise
-  BOTTOM_END(CornerBit.BOTTOM.byte or CornerBit.RIGHT.byte or CornerBit.FLIP_RTL.byte), // tslint:disable-line:no-bitwise
+  TOP_END(CornerBit.FLIP_RTL.byte or CornerBit.RIGHT.byte),
+  BOTTOM_START(CornerBit.BOTTOM.byte or CornerBit.FLIP_RTL.byte),
+  BOTTOM_END(CornerBit.BOTTOM.byte or CornerBit.RIGHT.byte or CornerBit.FLIP_RTL.byte)
 }

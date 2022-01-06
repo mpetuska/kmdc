@@ -1,10 +1,6 @@
 package dev.petuska.kmdc.menu
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
@@ -44,30 +40,30 @@ public fun MDCMenu(
   attrs: Builder<MDCMenuScopeAttrsScope>? = null,
   content: ComposableBuilder<MDCMenuScope<HTMLUListElement>>? = null,
 ) {
-  var menuMdc by remember { mutableStateOf<MDCMenuModule.MDCMenu?>(null) }
   MDCMenuStyle
   val options = MDCMenuOpts().apply { opts?.invoke(this) }
   MDCMenuSurface(attrs = {
     classes("mdc-menu")
-    initialiseMDC(
-      MDCMenuModule.MDCMenu::attachTo,
-      postInit = { _, mdc -> menuMdc = mdc }
-    )
-    menuMdc?.let { mdc ->
-      mdc.open = options.open
-      if (options.fixed) mdc.setFixedPosition(options.fixed)
-      options.selectedIndex?.let { mdc.setSelectedIndex(it) }
-      options.absolutePosition?.let { mdc.setAbsolutePosition(it.x, it.y) }
-      options.anchorCorner?.let { mdc.setAnchorCorner(it) }
-    }
+    initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
     attrs?.invoke(this.unsafeCast<MDCMenuScopeAttrsScope>())
   }) {
-    MDCList(attrs = {
-      attr("role", "menu")
-      attr("aria-hidden", "true")
-      attr("aria-orientation", "vertical")
-      tabIndex(-1)
-    }) {
+    DomSideEffect(options) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> {
+        open = options.open
+        if (options.fixed) setFixedPosition(options.fixed)
+        options.selectedIndex?.let { setSelectedIndex(it) }
+        options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
+        options.anchorCorner?.let { setAnchorCorner(it) }
+      }
+    }
+    MDCList(
+      attrs = {
+        attr("role", "menu")
+        attr("aria-hidden", "true")
+        attr("aria-orientation", "vertical")
+        tabIndex(-1)
+      }
+    ) {
       content?.let { MDCMenuScope(this).it() }
     }
   }
