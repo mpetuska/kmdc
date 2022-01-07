@@ -15,11 +15,11 @@ import org.w3c.dom.HTMLUListElement
 private external val MDCMenuStyle: dynamic
 
 public data class MDCMenuOpts(
-  var open: Boolean = false,
-  var fixed: Boolean = false,
-  var anchorCorner: Corner? = null,
-  var selectedIndex: Int? = null,
-  var absolutePosition: Point? = null
+    var open: Boolean = false,
+    var fixed: Boolean = false,
+    var anchorCorner: Corner? = null,
+    var selectedIndex: Int? = null,
+    var absolutePosition: Point? = null
 ) {
   public data class Point(var x: Double = 0.0, var y: Double = 0.0)
 }
@@ -58,11 +58,11 @@ public fun MDCMenu(
       scope.mdc<MDCMenuModule.MDCMenu> { options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) } }
     }
     DomSideEffect(options.anchorCorner) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it) } }
+      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it.value) } }
     }
     MDCList(
       attrs = {
-        attr("role", "menu")
+        role("menu")
         attr("aria-hidden", "true")
         attr("aria-orientation", "vertical")
         tabIndex(-1)

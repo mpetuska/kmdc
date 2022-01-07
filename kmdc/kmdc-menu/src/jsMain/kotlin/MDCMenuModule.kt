@@ -3,6 +3,7 @@ package dev.petuska.kmdc.menu
 import dev.petuska.kmdc.core.Destroyable
 import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.menu.surface.Corner
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
@@ -17,7 +18,7 @@ public external object MDCMenuModule {
 
     public var open: Boolean
 
-    public fun setAnchorCorner(corner: Corner)
+    public fun setAnchorCorner(corner: Int)
     public fun setAbsolutePosition(x: Double, y: Double)
     public fun setFixedPosition(isFixed: Boolean)
     public fun setSelectedIndex(index: Int)
