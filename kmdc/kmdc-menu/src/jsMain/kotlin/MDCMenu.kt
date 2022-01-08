@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
-import dev.petuska.kmdc.menu.surface.Corner
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -17,7 +16,8 @@ private external val MDCMenuStyle: dynamic
 public data class MDCMenuOpts(
   var open: Boolean = false,
   var fixed: Boolean = false,
-  var anchorCorner: Corner? = null,
+  var wrapFocus: Boolean? = null,
+  var anchorCorner: Byte? = null,
   var selectedIndex: Int? = null,
   var absolutePosition: Point? = null
 ) {
@@ -51,6 +51,9 @@ public fun MDCMenu(
     DomSideEffect(options.fixed) { scope ->
       scope.mdc<MDCMenuModule.MDCMenu> { setFixedPosition(options.fixed) }
     }
+    DomSideEffect(options.wrapFocus) { scope ->
+      scope.mdc<MDCMenuModule.MDCMenu> { options.wrapFocus?.let { wrapFocus = it } }
+    }
     DomSideEffect(options.selectedIndex) { scope ->
       scope.mdc<MDCMenuModule.MDCMenu> { options.selectedIndex?.let { setSelectedIndex(it) } }
     }
@@ -58,7 +61,7 @@ public fun MDCMenu(
       scope.mdc<MDCMenuModule.MDCMenu> { options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) } }
     }
     DomSideEffect(options.anchorCorner) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it.value) } }
+      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it) } }
     }
     MDCList(
       attrs = {

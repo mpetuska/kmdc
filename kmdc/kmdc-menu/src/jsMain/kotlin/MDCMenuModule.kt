@@ -15,6 +15,7 @@ public external object MDCMenuModule {
     override fun destroy()
 
     public var open: Boolean
+    public var wrapFocus: Boolean
 
     public fun setAnchorCorner(corner: Byte)
     public fun setAbsolutePosition(x: Double, y: Double)
