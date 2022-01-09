@@ -20,10 +20,10 @@ import org.w3c.dom.HTMLUListElement
 public data class MDCListItemOpts(
   public var disabled: Boolean = false,
   public var selected: Boolean = false,
-  public var activated: Boolean = false,
+  public var activated: Boolean = false
 )
 
-public class MDCListItemScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
+public open class MDCListItemScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
