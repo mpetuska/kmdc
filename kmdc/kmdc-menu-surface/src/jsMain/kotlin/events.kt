@@ -21,4 +21,3 @@ public fun MDCMenuSurfaceAttrsScope.onClosing(listener: (event: SyntheticEvent<E
 public fun MDCMenuSurfaceAttrsScope.onOpened(listener: (event: SyntheticEvent<EventTarget>) -> Unit) {
   addEventListener(MDCMenuSurfaceModule.strings.OPENED_EVENT, listener)
 }
-

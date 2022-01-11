@@ -1,6 +1,5 @@
 package dev.petuska.kmdc.menu.surface
 import dev.petuska.kmdc.core.Destroyable
-import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
