@@ -12,6 +12,7 @@ import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 import onSelected
+import onClosed
 import org.jetbrains.compose.web.dom.Text
 
 private val SAMPLE_MENU = listOf("Menu Item 1", "Menu Item 2", "Menu Item 3")
@@ -38,6 +39,7 @@ private fun MenuPositioned() {
     absolutePosition = MDCMenuOpts.Point(100.0, 200.0)
   }, attrs = {
     onSelected { menuOpen = false }
+    onClosed { menuOpen = false }
   }) {
     SAMPLE_MENU.map {
       MDCMenuItem { Text(it) }
@@ -68,6 +70,7 @@ private fun MenuAnchored() {
         selectedValue = SAMPLE_MENU[it.detail.index]
         menuOpen = false
       }
+      onClosed { menuOpen = false }
     }
     ) {
       SAMPLE_MENU.map {
