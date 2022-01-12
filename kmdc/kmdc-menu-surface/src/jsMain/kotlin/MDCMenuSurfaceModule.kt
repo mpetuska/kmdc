@@ -1,5 +1,6 @@
 package dev.petuska.kmdc.menu.surface
 import dev.petuska.kmdc.core.Destroyable
+import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
@@ -41,4 +42,12 @@ public external object MDCMenuSurfaceModule {
     public val CLOSING_EVENT: String
     public val OPENED_EVENT: String
   }
+
+  public class MDCMenuSurfaceEventDetail {
+    public val item: Element
+  }
+
+  public class MDCMenuSurfaceClosingEvent : MDCEvent<MDCMenuSurfaceEventDetail>
+  public class MDCMenuSurfaceClosedEvent : MDCEvent<MDCMenuSurfaceEventDetail>
+  public class MDCMenuSurfaceOpenedEvent : MDCEvent<MDCMenuSurfaceEventDetail>
 }
