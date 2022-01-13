@@ -6,22 +6,22 @@ import dev.petuska.kmdc.core.MDCAttrsDsl
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
  */
 @MDCAttrsDsl
-public fun MDCMenuSurfaceAttrsScope.onClosed(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceClosedEvent) -> Unit) {
+public fun MDCMenuSurfaceAttrsScope.onClosed(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceEvent) -> Unit) {
   addEventListener(MDCMenuSurfaceModule.strings.CLOSED_EVENT) {
-    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceClosedEvent>())
+    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceEvent>())
   }
 }
 
 @MDCAttrsDsl
-public fun MDCMenuSurfaceAttrsScope.onClosing(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceClosingEvent) -> Unit) {
+public fun MDCMenuSurfaceAttrsScope.onClosing(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceEvent) -> Unit) {
   addEventListener(MDCMenuSurfaceModule.strings.CLOSING_EVENT) {
-    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceClosingEvent>())
+    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceEvent>())
   }
 }
 
 @MDCAttrsDsl
-public fun MDCMenuSurfaceAttrsScope.onOpened(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceOpenedEvent) -> Unit) {
+public fun MDCMenuSurfaceAttrsScope.onOpened(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceEvent) -> Unit) {
   addEventListener(MDCMenuSurfaceModule.strings.OPENED_EVENT) {
-    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceOpenedEvent>())
+    listener(it.nativeEvent.unsafeCast<MDCMenuSurfaceModule.MDCMenuSurfaceEvent>())
   }
 }

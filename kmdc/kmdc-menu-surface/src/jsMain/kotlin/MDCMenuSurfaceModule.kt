@@ -47,7 +47,5 @@ public external object MDCMenuSurfaceModule {
     public val item: Element
   }
 
-  public class MDCMenuSurfaceClosingEvent : MDCEvent<MDCMenuSurfaceEventDetail>
-  public class MDCMenuSurfaceClosedEvent : MDCEvent<MDCMenuSurfaceEventDetail>
-  public class MDCMenuSurfaceOpenedEvent : MDCEvent<MDCMenuSurfaceEventDetail>
+  public class MDCMenuSurfaceEvent : MDCEvent<MDCMenuSurfaceEventDetail>
 }
