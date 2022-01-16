@@ -1,64 +1,27 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.uniqueDomElementId
-import dev.petuska.kmdc.ripple.MDCRippleModule
+import dev.petuska.kmdc.core.MDCInternalDsl
+import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextInput
-import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLLabelElement
 
 @JsModule("@material/textfield/dist/mdc.textfield.css")
 public external val MDCTextFieldStyle: dynamic
-
-@JsModule("@material/textfield")
-public external object MDCTextFieldModule {
-  public class MDCTextField(element: Element) {
-    public companion object {
-      public fun attachTo(element: Element): MDCTextField
-    }
-
-    public fun destroy()
-
-    public var value: String
-    public var disabled: Boolean
-    public var valid: Boolean
-    public var prefixText: String
-    public var suffixText: String
-
-    // Proxied from input element
-    public var required: Boolean
-    public var pattern: String
-    public var minLength: Number
-    public var maxLength: Number
-    public var min: Number
-    public var max: Number
-    public var step: Number
-
-    // Write-only
-    public var useNativeValidation: Boolean
-    public var helperTextContent: String
-    public var ripple: MDCRippleModule.MDCRipple
-    public var leadingIconAriaLabel: String
-    public var trailingIconAriaLabel: String
-    public var leadingIconContent: String
-    public var trailingIconContent: String
-
-    public fun focus()
-    public fun layout()
-  }
-}
 
 public open class MDCTextFieldCommonOpts(
   public var type: Type = Type.Filled,
@@ -71,6 +34,8 @@ public open class MDCTextFieldCommonOpts(
     Filled("mdc-text-field--filled"), Outlined("mdc-text-field--outlined")
   }
 }
+
+public class MDCTextFieldScope(scope: ElementScope<HTMLLabelElement>) : ElementScope<HTMLLabelElement> by scope
 
 public class MDCTextFieldOpts(
   type: Type = Type.Filled,
@@ -90,23 +55,22 @@ public class MDCTextFieldOpts(
 public fun MDCTextField(
   value: String,
   opts: Builder<MDCTextFieldOpts>? = null,
-  attrs: (InputAttrsBuilder<String>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsBuilder<String>>? = null,
+  leadingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
+  trailingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
 ) {
   MDCTextFieldStyle
   val options = MDCTextFieldOpts().apply { opts?.invoke(this) }
-  val labelId = remember { uniqueDomElementId() }
-  val helperId = remember { uniqueDomElementId() }
+  val labelId = rememberUniqueDomElementId()
+  val helperId = "$labelId-helper"
   Label(
     attrs = {
       classes("mdc-text-field", *options.type.classes)
       if (options.label == null) classes("mdc-text-field--no-label")
       if (options.disabled) classes("mdc-text-field--disabled")
-      ref {
-        it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
-        onDispose {
-          it.mdc<MDCTextFieldModule.MDCTextField> { destroy() }
-        }
-      }
+      leadingIcon?.let { classes("mdc-text-field--with-leading-icon") }
+      trailingIcon?.let { classes("mdc-text-field--with-trailing-icon") }
+      initialiseMDC(MDCTextFieldModule.MDCTextField::attachTo)
     }
   ) {
     when (options.type) {
@@ -120,26 +84,28 @@ public fun MDCTextField(
             id(labelId)
           }) { Text(it) }
         }
-        options.prefix?.let {
-          Span(attrs = {
-            classes("mdc-text-field__affix", "mdc-text-field__affix--prefix")
-          }) {
-            Text(it)
-          }
-        }
-        options.suffix?.let {
-          Span(attrs = {
-            classes("mdc-text-field__affix", "mdc-text-field__affix--suffix")
-          }) {
-            Text(it)
-          }
-        }
-        MDCTextFieldInput(value, options, attrs, labelId, helperId)
+        MDCTextFieldCore(
+          value = value,
+          options = options,
+          attrs = attrs,
+          labelId = labelId,
+          helperId = helperId,
+          leadingIcon = leadingIcon,
+          trailingIcon = trailingIcon,
+        )
         Span(attrs = { classes("mdc-line-ripple") })
       }
       MDCTextFieldCommonOpts.Type.Outlined -> {
         MDCTextFieldNotch(options, labelId, value.isNotEmpty())
-        MDCTextFieldInput(value, options, attrs, labelId, helperId)
+        MDCTextFieldCore(
+          value = value,
+          options = options,
+          attrs = attrs,
+          labelId = labelId,
+          helperId = helperId,
+          leadingIcon = leadingIcon,
+          trailingIcon = trailingIcon,
+        )
       }
     }
   }
@@ -150,6 +116,36 @@ public fun MDCTextField(
       })
     }
   }
+}
+
+@Composable
+@MDCInternalDsl
+private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
+  value: String,
+  options: MDCTextFieldOpts,
+  attrs: Builder<InputAttrsBuilder<String>>?,
+  labelId: String,
+  helperId: String,
+  leadingIcon: ComposableBuilder<MDCTextFieldScope>?,
+  trailingIcon: ComposableBuilder<MDCTextFieldScope>?
+) {
+  leadingIcon?.invoke(MDCTextFieldScope(this))
+  options.prefix?.let {
+    Span(attrs = {
+      classes("mdc-text-field__affix", "mdc-text-field__affix--prefix")
+    }) {
+      Text(it)
+    }
+  }
+  MDCTextFieldInput(value, options, attrs, labelId, helperId)
+  options.suffix?.let {
+    Span(attrs = {
+      classes("mdc-text-field__affix", "mdc-text-field__affix--suffix")
+    }) {
+      Text(it)
+    }
+  }
+  trailingIcon?.invoke(MDCTextFieldScope(this))
 }
 
 @MDCDsl

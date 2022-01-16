@@ -31,8 +31,8 @@ private fun MenuPositioned() {
   var menuOpen by remember { mutableStateOf(false) }
 
   MDCButton(
-      text = "${if (menuOpen) "Close" else "Open"} Fixed Menu",
-      attrs = { onClick { menuOpen = !menuOpen } }
+    text = "${if (menuOpen) "Close" else "Open"} Fixed Menu",
+    attrs = { onClick { menuOpen = !menuOpen } }
   )
   MDCMenu(opts = {
     open = menuOpen
@@ -52,19 +52,24 @@ private fun MenuAnchored() {
   var menuOpen by remember { mutableStateOf(false) }
 
   MDCMenuSurfaceAnchor {
-    MDCTextField(selectedValue, {
-      label = "Menu Selection"
-      type = MDCTextFieldCommonOpts.Type.Outlined
-    }) {
-      onClick {
-        console.log("Menu clicked")
-        menuOpen = true
+    MDCTextField(
+      value = selectedValue,
+      opts = {
+        label = "Menu Selection"
+        type = MDCTextFieldCommonOpts.Type.Outlined
+      },
+      attrs = {
+        onClick {
+          console.log("Menu clicked")
+          menuOpen = true
+        }
       }
-    }
-    MDCMenu(opts = {
-      open = menuOpen
-      anchorCorner = MDCMenuSurfaceModule.Corner.TOP_START
-    }, attrs = {
+    )
+    MDCMenu(
+      opts = {
+        open = menuOpen
+        anchorCorner = MDCMenuSurfaceModule.Corner.TOP_START
+      }, attrs = {
       onSelected {
         selectedValue = SAMPLE_MENU[it.detail.index]
         menuOpen = false

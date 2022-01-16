@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.uniqueDomElementId
 import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsBuilder
 import org.jetbrains.compose.web.attributes.cols
@@ -45,12 +45,7 @@ public fun MDCTextArea(
       classes("mdc-text-field", "mdc-text-field--textarea", *options.type.classes)
       if (options.label == null) classes("mdc-text-field--no-label")
       if (options.disabled) classes("mdc-text-field--disabled")
-      ref {
-        it.mdc = MDCTextFieldModule.MDCTextField.attachTo(it)
-        onDispose {
-          it.mdc<MDCTextFieldModule.MDCTextField> { destroy() }
-        }
-      }
+      initialiseMDC(MDCTextFieldModule.MDCTextField::attachTo)
     }
   ) {
     options.maxLength?.let {
