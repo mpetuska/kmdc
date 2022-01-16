@@ -2,6 +2,7 @@ package dev.petuska.kmdc.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
+import androidx.compose.runtime.remember
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
@@ -64,3 +65,9 @@ private var nextDomElementId = 0
  */
 @MDCInternalDsl
 public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"
+
+@Composable
+@MDCInternalDsl
+@Suppress("NOTHING_TO_INLINE")
+public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
+  remember { uniqueDomElementId() + (suffix?.let { "-$it" } ?: "") }
