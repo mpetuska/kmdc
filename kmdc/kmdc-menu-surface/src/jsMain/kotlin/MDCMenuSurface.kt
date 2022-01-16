@@ -16,7 +16,7 @@ public data class MDCMenuSurfaceOpts(
   public var fixed: Boolean = false,
 )
 
-public open class MDCMenuSurfaceAttrsScope() : AttrsBuilder<HTMLDivElement>()
+public open class MDCMenuSurfaceAttrsScope : AttrsBuilder<HTMLDivElement>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
