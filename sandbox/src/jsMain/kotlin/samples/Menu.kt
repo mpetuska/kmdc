@@ -7,6 +7,7 @@ import dev.petuska.kmdc.menu.MDCMenuItem
 import dev.petuska.kmdc.menu.MDCMenuOpts
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAnchor
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
+import dev.petuska.kmdc.menu.surface.onClosed
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import local.sandbox.engine.Sample
@@ -37,7 +38,7 @@ private fun MenuPositioned() {
     open = menuOpen
     absolutePosition = MDCMenuOpts.Point(100.0, 200.0)
   }, attrs = {
-    onSelected { menuOpen = false }
+    onClosed { menuOpen = false }
   }) {
     SAMPLE_MENU.map {
       MDCMenuItem { Text(it) }
@@ -73,6 +74,7 @@ private fun MenuAnchored() {
         selectedValue = SAMPLE_MENU[it.detail.index]
         menuOpen = false
       }
+      onClosed { menuOpen = false }
     }
     ) {
       SAMPLE_MENU.map {
