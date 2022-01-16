@@ -1,13 +1,17 @@
 package dev.petuska.kmdc.menu
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/menu/dist/mdc.menu.css")
@@ -24,7 +28,7 @@ public data class MDCMenuOpts(
   public data class Point(var x: Double = 0.0, var y: Double = 0.0)
 }
 
-public class MDCMenuAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCMenuAttrsScope private constructor() : MDCMenuSurfaceAttrsScope()
 
 public class MDCMenuScope(scope: ElementScope<HTMLUListElement>) : MDCListScope<HTMLUListElement>(scope)
 

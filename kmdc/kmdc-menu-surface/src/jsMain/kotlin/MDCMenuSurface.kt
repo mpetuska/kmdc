@@ -16,6 +16,8 @@ public data class MDCMenuSurfaceOpts(
   public var fixed: Boolean = false,
 )
 
+public open class MDCMenuSurfaceAttrsScope() : AttrsBuilder<HTMLDivElement>()
+
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
  */
@@ -23,7 +25,7 @@ public data class MDCMenuSurfaceOpts(
 @Composable
 public fun MDCMenuSurface(
   opts: Builder<MDCMenuSurfaceOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLDivElement>>? = null,
+  attrs: Builder<MDCMenuSurfaceAttrsScope>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
   MDCMenuSurfaceStyle
@@ -33,7 +35,7 @@ public fun MDCMenuSurface(
       classes("mdc-menu-surface")
       if (options.fixed) classes("mdc-menu-surface--fixed")
       initialiseMDC(MDCMenuSurfaceModule.MDCMenuSurface::attachTo)
-      attrs?.invoke(this)
+      attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAttrsScope>())
     },
     content = content
   )
