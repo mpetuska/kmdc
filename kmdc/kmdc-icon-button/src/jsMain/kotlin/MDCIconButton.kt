@@ -43,7 +43,7 @@ public fun MDCIconButton(
       attrs?.invoke(this)
     },
   ) {
-    MDCRipple()
+    MDCRipple(opts = { isUnbounded = true })
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconButtonScope(this).it() }
   }
@@ -73,7 +73,7 @@ public fun MDCIconLink(
       attrs?.invoke(this)
     },
   ) {
-    MDCRipple()
+    MDCRipple(opts = { isUnbounded = true })
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconLinkScope(this).it() }
   }
