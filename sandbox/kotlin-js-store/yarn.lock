@@ -330,6 +330,29 @@
     "@material/typography" "^13.0.0"
     tslib "^2.1.0"
 
+"@material/select@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/select/-/select-13.0.0.tgz#0bd1933c983ec86440bd5a5540e25aeba3918868"
+  integrity sha512-wVprsSMicU/l+LAqXdOU+qdzzdHupLXpWWQo2Rsk8G6AxL1Zna+/+ETnRlDdr2wHHK/KNDXSBdmuCcoEIRshcA==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/density" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/floating-label" "^13.0.0"
+    "@material/line-ripple" "^13.0.0"
+    "@material/list" "^13.0.0"
+    "@material/menu" "^13.0.0"
+    "@material/menu-surface" "^13.0.0"
+    "@material/notched-outline" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/shape" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/shape@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/shape/-/shape-13.0.0.tgz#42751ceb4c709c87026f14340aed1831106fdfda"
