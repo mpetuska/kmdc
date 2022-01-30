@@ -7,7 +7,7 @@ import dev.petuska.kmdc.core.MDCAttrsDsl
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onOpening(listener: () -> Unit) {
-  addEventListener(MDCDialogConstants.strings.OPENING_EVENT) {
+  addEventListener(MDCDialogModule.strings.OPENING_EVENT) {
     listener()
   }
 }
@@ -17,7 +17,7 @@ public fun MDCDialogAttrsScope.onOpening(listener: () -> Unit) {
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onOpened(listener: () -> Unit) {
-  addEventListener(MDCDialogConstants.strings.OPENED_EVENT) {
+  addEventListener(MDCDialogModule.strings.OPENED_EVENT) {
     listener()
   }
 }
@@ -27,7 +27,7 @@ public fun MDCDialogAttrsScope.onOpened(listener: () -> Unit) {
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onClosing(listener: (event: MDCDialogModule.MDCDialogCloseEvent) -> Unit) {
-  addEventListener(MDCDialogConstants.strings.CLOSING_EVENT) {
+  addEventListener(MDCDialogModule.strings.CLOSING_EVENT) {
     listener(it.nativeEvent.unsafeCast<MDCDialogModule.MDCDialogCloseEvent>())
   }
 }
@@ -37,7 +37,7 @@ public fun MDCDialogAttrsScope.onClosing(listener: (event: MDCDialogModule.MDCDi
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onClosed(listener: (event: MDCDialogModule.MDCDialogCloseEvent) -> Unit) {
-  addEventListener(MDCDialogConstants.strings.CLOSED_EVENT) {
+  addEventListener(MDCDialogModule.strings.CLOSED_EVENT) {
     listener(it.nativeEvent.unsafeCast<MDCDialogModule.MDCDialogCloseEvent>())
   }
 }
