@@ -14,7 +14,7 @@ import org.w3c.dom.HTMLElement
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<HTMLElement>.mdcSelectIcon(clickable: Boolean) {
+public fun AttrsBuilder<HTMLElement>.MDCSelectIcon(clickable: Boolean) {
   classes("mdc-select__icon")
   if (clickable) {
     tabIndex(0)
@@ -35,7 +35,7 @@ public fun MDCSelectLeadingIconScope.MDCSelectLeadingIcon(
 ) {
   I(
     attrs = {
-      mdcSelectIcon(clickable)
+      MDCSelectIcon(clickable)
       attrs?.invoke(this)
     },
     content = content
