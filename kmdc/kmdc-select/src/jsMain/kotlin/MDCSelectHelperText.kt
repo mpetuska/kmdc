@@ -6,14 +6,15 @@ import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-internal fun MDCSelectHelperText(helperTextId: String, helperText: MDCSelectHelperText) {
+internal fun MDCSelectHelperText(id: String, text: String, type: MDCSelectOpts.HelperTextType) {
   P(
     attrs = {
-      id(helperTextId)
-      classes(*helperText.type.classes)
+      id(id)
+      classes("mdc-select-helper-text")
+      classes(*type.classes)
       initialiseMDC(MDCSelectModule.MDCSelectHelperText.Companion::attachTo)
     }
   ) {
-    Text(helperText.text)
+    Text(text)
   }
 }

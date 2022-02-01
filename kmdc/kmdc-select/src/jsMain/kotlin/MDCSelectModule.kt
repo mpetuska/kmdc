@@ -6,9 +6,9 @@ import org.w3c.dom.Element
 
 @JsModule("@material/select")
 public external object MDCSelectModule {
-  public class MDCSelect(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+  public class MDCSelect<T>(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public companion object {
-      public fun attachTo(element: Element): MDCSelect
+      public fun <T> attachTo(element: Element): MDCSelect<T>
     }
 
     public var value: String?
@@ -18,6 +18,8 @@ public external object MDCSelectModule {
     public var disabled: Boolean
 
     public var required: Boolean
+
+    public var items: List<T>
   }
 
   public class MDCSelectHelperText(element: Element) : MDCBaseModule.MDCComponent<dynamic> {

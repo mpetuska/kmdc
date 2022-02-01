@@ -7,10 +7,8 @@ import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.select.MDCSelect
-import dev.petuska.kmdc.select.MDCSelectHelperText
 import dev.petuska.kmdc.select.MDCSelectOpts
-import dev.petuska.kmdc.select.MDCSelectItem
-import dev.petuska.kmdc.select.MDCSelectLeadingIcon
+import dev.petuska.kmdc.select.onChange
 import dev.petuska.kmdcx.icons.MDCIconOpts
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
@@ -23,26 +21,27 @@ import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
 private val SelectSamples = Samples("MDCSelect") {
-  var selectedValue by remember { mutableStateOf(fruitItems[1]) }
+  var selectedValue by remember { mutableStateOf(fruits[1]) }
   var isRequired by remember { mutableStateOf(false) }
   var isDisabled by remember { mutableStateOf(false) }
 
   Sample("Filled") {
     Div {
       MDCSelect(
-        fruitItems,
+        fruits + "Potato",
         opts = {
           type = MDCSelectOpts.Type.Filled
           value = selectedValue
-          onChange = { selectedValue = it }
           required = isRequired
           disabled = isDisabled
+          itemDisabled = { this == "Potato" }
           hiddenInputName = "filledSelect"
           label = "Fruit"
+        },
+        attrs = {
+          onChange { selectedValue = it }
         }
-      ) {
-        Text(it.value)
-      }
+      )
     }
     Div {
       MDCFormField {
@@ -58,27 +57,30 @@ private val SelectSamples = Samples("MDCSelect") {
 
   Sample("Outlined") {
     MDCSelect(
-      fruitItems,
+      fruits + "Potato",
       opts = {
         type = MDCSelectOpts.Type.Outlined
         value = selectedValue
-        onChange = { selectedValue = it }
         label = "Fruit"
+        itemDisabled = { this == "Potato" }
+      },
+      attrs = {
+        onChange { selectedValue = it }
       }
-    ) {
-      Text(it.value)
-    }
+    )
   }
 
   Sample("Helper text") {
-    var helperTextType by remember { mutableStateOf(MDCSelectHelperText.Type.Default) }
+    var helperTextType by remember { mutableStateOf(MDCSelectOpts.HelperTextType.Default) }
     Div {
       MDCSelect(
-        MDCSelectHelperText.Type.values().toList(),
+        MDCSelectOpts.HelperTextType.values().toList(),
         opts = {
           type = MDCSelectOpts.Type.Filled
           value = helperTextType
-          onChange = { helperTextType = it }
+        },
+        attrs = {
+          onChange { helperTextType = it }
         }
       ) {
         Text(it.name)
@@ -87,40 +89,35 @@ private val SelectSamples = Samples("MDCSelect") {
     Br()
     Div {
       MDCSelect(
-        fruitItems,
+        fruits,
         opts = {
           type = MDCSelectOpts.Type.Outlined
           value = selectedValue
-          onChange = { selectedValue = it }
           label = "Fruit"
           required = true
-          helperText = MDCSelectHelperText("Please pick up your favorite fruit", helperTextType)
+          helperText = "Please pick up your favorite fruit"
+          this.helperTextType = helperTextType
+        },
+        attrs = {
+          onChange { selectedValue = it }
         }
-      ) {
-        Text(it.value)
-      }
+      )
     }
   }
 
   Sample("With leading icon") {
     MDCSelect(
-      fruitItems,
+      fruits,
       opts = {
         type = MDCSelectOpts.Type.Filled
         value = selectedValue
-        onChange = { selectedValue = it }
+        leadingIcon = MDCIconOpts.MDCIconType.FoodBank.iconType
+        leadingIconClickable = true
       },
-      leadingIcon = {
-        MDCSelectLeadingIcon(
-          clickable = true,
-          attrs = { classes("material-icons") }
-        ) {
-          Text(MDCIconOpts.MDCIconType.FoodBank.iconType)
-        }
+      attrs = {
+        onChange { selectedValue = it }
       }
-    ) {
-      Text(it.value)
-    }
+    )
 
     Span(attrs = { style { width(10.px) } })
 
@@ -128,23 +125,15 @@ private val SelectSamples = Samples("MDCSelect") {
       fruits,
       opts = {
         type = MDCSelectOpts.Type.Outlined
-        value = selectedValue.value
-        onChange = { selectedValue = FruitItem(it, false) }
+        value = selectedValue
+        leadingIcon = MDCIconOpts.MDCIconType.FoodBank.iconType
+        leadingIconClickable = false
       },
-      leadingIcon = {
-        MDCSelectLeadingIcon(
-          clickable = false,
-          attrs = { classes("material-icons") }
-        ) {
-          Text(MDCIconOpts.MDCIconType.FoodBank.iconType)
-        }
+      attrs = {
+        onChange { selectedValue = it }
       }
     )
   }
 }
 
 private val fruits = listOf("", "Apple", "Orange", "Banana")
-
-private val fruitItems = (fruits + "Potato").map { FruitItem(it, it == "Potato") }
-
-private data class FruitItem(override val value: String, override val disabled: Boolean) : MDCSelectItem

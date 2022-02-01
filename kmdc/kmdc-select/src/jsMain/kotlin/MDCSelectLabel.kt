@@ -8,7 +8,7 @@ import org.jetbrains.compose.web.dom.Text
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
  */
 @Composable
-internal fun <T : MDCSelectItem> MDCSelectLabel(
+internal fun <T> MDCSelectLabel(
   options: MDCSelectOpts<T>,
   labelId: String
 ) {
