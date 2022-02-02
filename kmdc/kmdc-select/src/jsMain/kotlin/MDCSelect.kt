@@ -70,6 +70,7 @@ public fun <T> MDCSelect(
   val selectedTextId = rememberUniqueDomElementId()
   val helperTextId = rememberUniqueDomElementId()
   val options = MDCSelectOpts<T>().apply { opts?.invoke(this) }
+  val hasLeadingIcon = options.leadingIcon != null
 
   fun T.itemValue() = with(options) { itemValue() }
   fun T.itemDisabled() = with(options) { itemDisabled() }
@@ -82,15 +83,16 @@ public fun <T> MDCSelect(
         if (required) classes("mdc-select--required")
         if (disabled) classes("mdc-select--disabled")
         if (required && value?.itemValue().isNullOrBlank()) classes("mdc-select--invalid")
-        if (leadingIcon != null) classes("mdc-select--with-leading-icon")
+        if (hasLeadingIcon) classes("mdc-select--with-leading-icon")
         if (helperText != null) {
           aria("controls", helperTextId)
           aria("describedby", helperTextId)
         }
       }
-      initialiseMDC(mdcInit = {
-        MDCSelectModule.MDCSelect.attachTo<T>(it).also { it.items = items }
-      })
+      initialiseMDC(
+        mdcInit = { MDCSelectModule.MDCSelect.attachTo<T>(it) },
+        postInit = { _, mdc -> mdc.items = items }
+      )
       attrs?.invoke(this.unsafeCast<MDCSelectAttrsScope<T>>())
     }
   ) {
@@ -136,7 +138,7 @@ public fun <T> MDCSelect(
               role("option")
             }
           ) {
-            if (options.leadingIcon != null) {
+            if (hasLeadingIcon) {
               MDCListItemGraphic()
             }
             MDCListItemText {

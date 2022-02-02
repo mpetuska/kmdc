@@ -70,9 +70,7 @@ private fun <T> MDCSelectLeadingIcon(options: MDCSelectOpts<T>, icon: String) {
         tabIndex(0)
         role("button")
       }
-      options.leadingIconClasses.takeUnless { it.isEmpty() }?.let {
-        classes(*it.toTypedArray())
-      }
+      classes(*options.leadingIconClasses.toTypedArray())
     }
   ) {
     Text(icon)

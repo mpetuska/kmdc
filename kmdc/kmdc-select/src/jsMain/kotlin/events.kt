@@ -11,7 +11,7 @@ import org.w3c.dom.Element
 public fun <T> MDCSelectAttrsScope<T>.onChange(listener: (value: T) -> Unit) {
   addEventListener(MDCSelectModule.strings.CHANGE_EVENT) {
     val event = it.nativeEvent.unsafeCast<MDCSelectModule.MDCSelectChangeEvent>()
-    (it.nativeEvent.currentTarget as? Element)
+    (event.currentTarget as? Element)
       ?.mdc<MDCSelectModule.MDCSelect<T>> {
         listener(items[event.detail.index])
       }
