@@ -14,6 +14,7 @@ private external val MDCMenuSurfaceStyle: dynamic
 
 public data class MDCMenuSurfaceOpts(
   public var fixed: Boolean = false,
+  public var fullwidth: Boolean = false
 )
 
 public open class MDCMenuSurfaceAttrsScope : AttrsBuilder<HTMLDivElement>()
@@ -34,6 +35,7 @@ public fun MDCMenuSurface(
     attrs = {
       classes("mdc-menu-surface")
       if (options.fixed) classes("mdc-menu-surface--fixed")
+      if (options.fullwidth) classes("mdc-menu-surface--fullwidth")
       initialiseMDC(MDCMenuSurfaceModule.MDCMenuSurface::attachTo)
       attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAttrsScope>())
     },
