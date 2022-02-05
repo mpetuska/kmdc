@@ -6,9 +6,9 @@ import dev.petuska.kmdc.core.MDCAttrsDsl
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun MDCDialogAttrsScope.onOpening(listener: () -> Unit) {
+public fun MDCDialogAttrsScope.onOpening(listener: (event: MDCDialogModule.MDCDialogOpenEvent) -> Unit) {
   addEventListener(MDCDialogModule.strings.OPENING_EVENT) {
-    listener()
+    listener(it.nativeEvent.unsafeCast<MDCDialogModule.MDCDialogOpenEvent>())
   }
 }
 
@@ -16,9 +16,9 @@ public fun MDCDialogAttrsScope.onOpening(listener: () -> Unit) {
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun MDCDialogAttrsScope.onOpened(listener: () -> Unit) {
+public fun MDCDialogAttrsScope.onOpened(listener: (event: MDCDialogModule.MDCDialogOpenEvent) -> Unit) {
   addEventListener(MDCDialogModule.strings.OPENED_EVENT) {
-    listener()
+    listener(it.nativeEvent.unsafeCast<MDCDialogModule.MDCDialogOpenEvent>())
   }
 }
 

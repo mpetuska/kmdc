@@ -2,12 +2,12 @@ package dev.petuska.kmdc.dialog
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
+import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.H2
-import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLHeadingElement
 
@@ -38,16 +38,15 @@ public fun MDCDialogScope.MDCDialogHeader(
 @MDCDsl
 @Composable
 public fun MDCDialogHeaderScope.MDCDialogCloseIconButton(
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null
+  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  content: ComposableBuilder<MDCButtonScope>? = null
 ) {
   MDCButton(
     attrs = {
       mdcDialogAction("close")
-      classes("mdc-dialog__close", "material-icons")
+      classes("mdc-dialog__close")
       attrs?.invoke(this)
     },
-    content = {
-      Text("close")
-    }
+    content = content
   )
 }

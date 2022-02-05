@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.dialog
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
@@ -9,7 +8,7 @@ import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.uniqueDomElementId
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -47,8 +46,8 @@ public fun MDCDialog(
 ) {
   MDCDialogCSS
   val options = MDCDialogOpts().apply { opts?.invoke(this) }
-  val headerId = remember { uniqueDomElementId() }
-  val contentId = remember { uniqueDomElementId() }
+  val titleId = rememberUniqueDomElementId()
+  val contentId = rememberUniqueDomElementId()
   Div(
     attrs = {
       classes("mdc-dialog")
@@ -59,7 +58,7 @@ public fun MDCDialog(
     }
   ) {
     DomSideEffect(options.open) {
-      it.mdc<MDCDialogModule.MDCDialog> { it.mdc<MDCDialogModule.MDCDialog> { if (options.open) open() else close("") } }
+      it.mdc<MDCDialogModule.MDCDialog> { if (options.open) open() else close("") }
     }
     DomSideEffect(options.scrimClickAction) {
       it.mdc<MDCDialogModule.MDCDialog> { scrimClickAction = options.scrimClickAction }
@@ -77,10 +76,10 @@ public fun MDCDialog(
           classes("mdc-dialog__surface")
           attr("role", if (options.fullscreen) "dialog" else "alertdialog")
           aria("modal", "true")
-          aria("labelledby", headerId)
+          aria("labelledby", titleId)
           aria("describedby", contentId)
         },
-        content = content?.let { { MDCDialogScope(this, headerId, contentId).it() } }
+        content = content?.let { { MDCDialogScope(this, titleId, contentId).it() } }
       )
     }
     Div(attrs = { classes("mdc-dialog__scrim") })

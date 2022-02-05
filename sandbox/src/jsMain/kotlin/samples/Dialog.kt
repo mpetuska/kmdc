@@ -1,6 +1,5 @@
 package local.sandbox.samples
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,22 +34,13 @@ import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
 private val DialogSamples = Samples("MDCDialog") {
-  Sample("Alert Dialog") {
-    AlertDialog()
-  }
-  Sample("Simple Dialog") {
-    SimpleDialog()
-  }
-  Sample("Confirmation Dialog") {
-    ConfirmationDialog()
-  }
-  Sample("Full-screen Dialog") {
-    FullScreenDialog()
-  }
+  AlertDialog()
+  SimpleDialog()
+  ConfirmationDialog()
+  FullScreenDialog()
 }
 
-@Composable
-private fun AlertDialog() {
+private val AlertDialog by Sample(name = "Alert Dialog") {
   var open by remember { mutableStateOf(false) }
 
   MDCButton("Toggle Dialog", attrs = { onClick { open = !open } })
@@ -80,8 +70,7 @@ private fun AlertDialog() {
   }
 }
 
-@Composable
-private fun SimpleDialog() {
+private val SimpleDialog by Sample(name = "Simple Dialog") {
   var open by remember { mutableStateOf(false) }
 
   MDCButton("Toggle Dialog", attrs = { onClick { open = !open } })
@@ -122,8 +111,7 @@ private fun SimpleDialog() {
   }
 }
 
-@Composable
-private fun ConfirmationDialog() {
+private val ConfirmationDialog by Sample(name = "Confirmation Dialog") {
   var open by remember { mutableStateOf(false) }
   var choice by remember { mutableStateOf<String?>(null) }
 
@@ -182,8 +170,7 @@ private fun ConfirmationDialog() {
   }
 }
 
-@Composable
-private fun FullScreenDialog() {
+private val FullScreenDialog by Sample(name = "Full-screen Dialog") {
   var open by remember { mutableStateOf(false) }
 
   MDCButton("Toggle Dialog", attrs = { onClick { open = !open } })

@@ -37,6 +37,10 @@ public external object MDCDialogModule {
     public val FULLSCREEN: String
   }
 
+  public interface MDCDialogOpenEventDetail
+
+  public class MDCDialogOpenEvent : MDCEvent<MDCDialogOpenEventDetail>
+
   public class MDCDialogCloseEventDetail {
     public val action: String?
   }

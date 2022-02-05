@@ -17,11 +17,22 @@ public class MDCDialogTitleScope(scope: ElementScope<HTMLHeadingElement>) : Elem
 @MDCDsl
 @Composable
 public fun MDCDialogScope.MDCDialogTitle(
-  title: String? = null,
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
   content: ComposableBuilder<MDCDialogTitleScope>? = null
 ) {
-  MDCDialogTitleImpl(titleId, title, attrs, content)
+  MDCDialogTitleImpl(titleId, attrs, content)
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ */
+@MDCDsl
+@Composable
+public fun MDCDialogScope.MDCDialogTitle(
+  title: String,
+  attrs: AttrBuilderContext<HTMLHeadingElement>? = null
+) {
+  MDCDialogTitleImpl(titleId, attrs) { Text(title) }
 }
 
 /**
@@ -30,17 +41,27 @@ public fun MDCDialogScope.MDCDialogTitle(
 @MDCDsl
 @Composable
 public fun MDCDialogHeaderScope.MDCDialogTitle(
-  title: String? = null,
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
   content: ComposableBuilder<MDCDialogTitleScope>? = null
 ) {
-  MDCDialogTitleImpl(titleId, title, attrs, content)
+  MDCDialogTitleImpl(titleId, attrs, content)
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ */
+@MDCDsl
+@Composable
+public fun MDCDialogHeaderScope.MDCDialogTitle(
+  title: String,
+  attrs: AttrBuilderContext<HTMLHeadingElement>? = null
+) {
+  MDCDialogTitleImpl(titleId, attrs) { Text(title) }
 }
 
 @Composable
 private fun MDCDialogTitleImpl(
   titleId: String,
-  title: String?,
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
   content: ComposableBuilder<MDCDialogTitleScope>? = null
 ) {
@@ -51,7 +72,6 @@ private fun MDCDialogTitleImpl(
       attrs?.invoke(this)
     },
     content = {
-      title?.let { Text(it) }
       content?.let { MDCDialogTitleScope(this).it() }
     }
   )
