@@ -96,6 +96,27 @@
   dependencies:
     tslib "^2.1.0"
 
+"@material/dialog@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-13.0.0.tgz#59b8b7295bfdfea9ea72af9afa7c99efb7744d55"
+  integrity sha512-1Ggo9Bid94F1ttZJKSjIcgMvkVQtKsqwbqLs5cWlleaiwtAcwUE12XA2B1MNj8xM9ajU3BJm4GigupBOK1jGHQ==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/button" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/icon-button" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/shape" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/tokens" "^13.0.0"
+    "@material/touch-target" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/dom@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/dom/-/dom-13.0.0.tgz#3f3cc935f6e59fa99e3dafe118d3e48091118c0e"

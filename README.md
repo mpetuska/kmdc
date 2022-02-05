@@ -86,7 +86,7 @@ Here's a tracker list of currently completed [material-components-web] modules (
 - [ ] mdc-circular-progress
 - [ ] mdc-data-table
 - [x] mdc-density (won't wrap)
-- [ ] mdc-dialog
+- [x] mdc-dialog
 - [x] mdc-dom (won't wrap)
 - [x] mdc-drawer
 - [ ] mdc-elevation
