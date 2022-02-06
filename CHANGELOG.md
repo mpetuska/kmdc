@@ -8,6 +8,9 @@
 ### New modules wrapped
 - [x] mdc-switch
 - [x] mdc-slider
+- [x] mdc-select
+- [x] mdc-dialog
+- [x] mdc-circular-progress
 
 # 0.0.2
 ## Versions
