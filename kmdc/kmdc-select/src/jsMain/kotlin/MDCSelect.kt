@@ -3,9 +3,9 @@ package dev.petuska.kmdc.select
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
@@ -89,22 +89,16 @@ public fun <T> MDCSelect(
           aria("describedby", helperTextId)
         }
       }
-      initialiseMDC(
-        mdcInit = { MDCSelectModule.MDCSelect.attachTo<T>(it) },
-        postInit = { this.items = items }
-      )
-      attrs?.invoke(this.unsafeCast<MDCSelectAttrsScope<T>>())
+      initialiseMDC<HTMLDivElement, MDCSelectModule.MDCSelect<T>>(MDCSelectModule.MDCSelect.Companion::attachTo) {
+        this.items = items
+      }
+      attrs?.invoke(unsafeCast<MDCSelectAttrsScope<T>>())
     }
   ) {
-
-    DomSideEffect(options.required) {
-      it.mdc<MDCSelectModule.MDCSelect<T>> { required = options.required }
-    }
-    DomSideEffect(options.disabled) {
-      it.mdc<MDCSelectModule.MDCSelect<T>> { disabled = options.disabled }
-    }
-    DomSideEffect(options.value) {
-      it.mdc<MDCSelectModule.MDCSelect<T>> { value = options.value?.itemValue() }
+    MDCSideEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
+    MDCSideEffect(options.disabled, MDCSelectModule.MDCSelect<T>::disabled)
+    MDCSideEffect<MDCSelectModule.MDCSelect<T>>(options.value) {
+      value = options.value?.itemValue()
     }
 
     options.hiddenInputName?.let {

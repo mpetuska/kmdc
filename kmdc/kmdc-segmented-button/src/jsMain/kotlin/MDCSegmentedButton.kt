@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -46,13 +46,7 @@ public fun MDCSegmentedButton(
       } else {
         attr("role", "group")
       }
-      ref {
-        val mdc = MDCSegmentedButtonModule.MDCSegmentedButton.attachTo(it)
-        it.mdc = mdc
-        onDispose {
-          it.mdc<MDCSegmentedButtonModule.MDCSegmentedButton> { destroy() }
-        }
-      }
+      initialiseMDC(MDCSegmentedButtonModule.MDCSegmentedButton::attachTo)
       attrs?.invoke(this.unsafeCast<MDCSegmentedButtonAttrsScope>())
     },
     content = content?.let { { MDCSegmentedButtonScope(this, options).it() } }

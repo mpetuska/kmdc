@@ -57,9 +57,7 @@ public fun MDCSlider(
       attrs?.invoke(this.unsafeCast<MDCSliderAttrsScope>())
     }
   ) {
-    MDCSideEffect<MDCSliderModule.MDCSlider>(options.disabled) {
-      setDisabled(options.disabled)
-    }
+    MDCSideEffect(options.disabled, MDCSliderModule.MDCSlider::setDisabled)
     with(options) {
       if (range) {
         MDCSliderInput(value = value, min = min, max = value2!!, label = label, rangeStart = true)

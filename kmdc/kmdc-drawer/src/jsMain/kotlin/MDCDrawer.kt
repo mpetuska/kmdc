@@ -5,31 +5,19 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Aside
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 
 @JsModule("@material/drawer/dist/mdc.drawer.css")
 private external val MDCDrawerCSS: dynamic
-
-@JsModule("@material/drawer")
-private external object MDCDrawerModule {
-  class MDCDrawer(element: Element) {
-    companion object {
-      fun attachTo(element: Element): MDCDrawer
-    }
-    fun destroy()
-
-    var open: Boolean
-  }
-}
 
 public data class MDCDrawerOpts(
   var type: Type = Type.Dismissible,
@@ -66,18 +54,11 @@ public fun MDCDrawer(
   Aside(
     attrs = {
       classes("mdc-drawer", *options.type.classes, *options.state.classes)
-      ref {
-        it.mdc = MDCDrawerModule.MDCDrawer.attachTo(it)
-        onDispose {
-          it.mdc<MDCDrawerModule.MDCDrawer> { destroy() }
-        }
-      }
+      initialiseMDC(MDCDrawerModule.MDCDrawer::attachTo)
       attrs?.invoke(this)
     },
   ) {
-    DomSideEffect(options.isOpen) {
-      it.mdc<MDCDrawerModule.MDCDrawer> { open = options.isOpen }
-    }
+    MDCSideEffect(options.isOpen, MDCDrawerModule.MDCDrawer::open)
     content?.let { MDCDrawerScope(this).it() }
   }
 }

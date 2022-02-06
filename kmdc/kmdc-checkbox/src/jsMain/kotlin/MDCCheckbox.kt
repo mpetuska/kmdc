@@ -1,15 +1,13 @@
 package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffectScope
 import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.uniqueDomElementId
-import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
-import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
@@ -20,28 +18,9 @@ import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.svg.Path
 import org.jetbrains.compose.web.svg.Svg
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/checkbox/dist/mdc.checkbox.css")
 public external val MDCCheckboxStyle: dynamic
-
-@JsModule("@material/checkbox")
-public external object MDCCheckboxModule {
-  public class MDCCheckbox(element: Element) : MDCFormFieldModule.MDCFormFieldInput {
-    public companion object {
-      public fun attachTo(element: Element): MDCCheckbox
-    }
-
-    public fun destroy()
-
-    public var checked: Boolean
-    public var indeterminate: Boolean
-    public var disabled: Boolean
-    public var value: String
-    override val ripple: MDCRippleModule.MDCRipple?
-  }
-}
 
 public data class MDCCheckboxOpts(
   public var disabled: Boolean = false,
@@ -72,9 +51,13 @@ public fun MDCFormFieldScope.MDCCheckbox(
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
 ) {
-  MDCCheckboxBody(checked, opts, attrs) { parent, mdcCheckbox ->
-    setInput(parent, mdcCheckbox)
-  }
+  MDCCheckboxBody(checked, opts, attrs = {
+    ref {
+      it.mdc<MDCCheckboxModule.MDCCheckbox> { setInput(it, this) }
+      onDispose { }
+    }
+    attrs?.invoke(this)
+  })
 }
 
 @OptIn(ExperimentalComposeWebSvgApi::class)
@@ -84,12 +67,6 @@ private fun MDCCheckboxBody(
   checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
-  initialize: (
-    DisposableEffectScope.(
-      parent: HTMLDivElement,
-      mdcCheckbox: MDCCheckboxModule.MDCCheckbox
-    ) -> Unit
-  )? = null,
 ) {
   MDCCheckboxStyle
   val options = MDCCheckboxOpts().apply { opts?.invoke(this) }
@@ -98,14 +75,7 @@ private fun MDCCheckboxBody(
   Div(attrs = {
     classes("mdc-checkbox")
     if (options.disabled) classes("mdc-checkbox--disabled")
-    ref {
-      val mdc = MDCCheckboxModule.MDCCheckbox.attachTo(it).apply { indeterminate = options.indeterminate }
-      it.mdc = mdc
-      initialize?.invoke(this, it, mdc)
-      onDispose {
-        it.mdc<MDCCheckboxModule.MDCCheckbox> { destroy() }
-      }
-    }
+    initialiseMDC(MDCCheckboxModule.MDCCheckbox::attachTo)
   }) {
     DomSideEffect(options.indeterminate) {
       it.mdc<MDCCheckboxModule.MDCCheckbox> { indeterminate = options.indeterminate }

@@ -5,9 +5,9 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
@@ -57,18 +57,12 @@ public fun MDCDialog(
       attrs?.invoke(this.unsafeCast<MDCDialogAttrsScope>())
     }
   ) {
-    DomSideEffect(options.open) {
-      it.mdc<MDCDialogModule.MDCDialog> { if (options.open) open() else close("") }
+    MDCSideEffect<MDCDialogModule.MDCDialog>(options.open) {
+      if (options.open) open() else close("")
     }
-    DomSideEffect(options.scrimClickAction) {
-      it.mdc<MDCDialogModule.MDCDialog> { scrimClickAction = options.scrimClickAction }
-    }
-    DomSideEffect(options.escapeKeyAction) {
-      it.mdc<MDCDialogModule.MDCDialog> { escapeKeyAction = options.escapeKeyAction }
-    }
-    DomSideEffect(options.autoStackButtons) {
-      it.mdc<MDCDialogModule.MDCDialog> { autoStackButtons = options.autoStackButtons }
-    }
+    MDCSideEffect(options.scrimClickAction, MDCDialogModule.MDCDialog::scrimClickAction)
+    MDCSideEffect(options.escapeKeyAction, MDCDialogModule.MDCDialog::escapeKeyAction)
+    MDCSideEffect(options.autoStackButtons, MDCDialogModule.MDCDialog::autoStackButtons)
 
     Div(attrs = { classes("mdc-dialog__container") }) {
       Div(

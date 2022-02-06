@@ -5,20 +5,6 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.jsObject
 import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.Element
-
-@JsModule("@material/ripple")
-public external object MDCRippleModule {
-  public interface MDCRippleAttachOpts {
-    public var isUnbounded: Boolean?
-  }
-
-  public class MDCRipple(element: Element, opts: MDCRippleAttachOpts = definedExternally) {
-    public companion object {
-      public fun attachTo(element: Element, opts: MDCRippleAttachOpts = definedExternally): MDCRipple
-    }
-  }
-}
 
 public data class MDCRippleOpts(var isUnbounded: Boolean = false)
 
@@ -32,12 +18,12 @@ public fun ElementScope<*>.MDCRipple(
 ) {
   val options = MDCRippleOpts().apply { opts?.invoke(this) }
   DisposableRefEffect {
-    MDCRippleModule.MDCRipple.attachTo(
+    val mdc = MDCRippleModule.MDCRipple.attachTo(
       element = it,
       opts = jsObject {
         isUnbounded = options.isUnbounded
       }
     )
-    onDispose {}
+    onDispose { mdc.destroy() }
   }
 }

@@ -1,6 +1,10 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package dev.petuska.kmdc.core
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -12,17 +16,12 @@ public typealias Builder<T> = T.() -> Unit
 public typealias ComposableBuilder<T> = @Composable Builder<T>
 
 @MDCInternalDsl
-public external interface Destroyable {
-  public fun destroy()
-}
-
-@MDCInternalDsl
 public abstract external class MDCEvent<T> : Event {
   public var detail: T
 }
 
 @MDCInternalDsl
-public var Element.mdc: dynamic
+private var Element.mdc: dynamic
   get() = asDynamic().mdc
   set(value) {
     asDynamic().mdc = value
@@ -36,7 +35,7 @@ public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T =
   js("({})").unsafeCast<T>().apply(builder)
 
 @MDCInternalDsl
-public fun <E : Element, T> AttrsBuilder<E>.initialiseMDC(
+public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsBuilder<E>.initialiseMDC(
   mdcInit: (E) -> T,
   onDispose: Builder<T>? = null,
   postInit: (T.(el: E) -> Unit)? = null,
@@ -46,17 +45,12 @@ public fun <E : Element, T> AttrsBuilder<E>.initialiseMDC(
       postInit?.invoke(mdc, it)
     }
     onDispose {
-      it.mdc(onDispose)
+      it.mdc<T> {
+        destroy()
+        onDispose?.invoke(this)
+      }
     }
   }
-}
-
-@MDCInternalDsl
-public fun <E : Element, T : Destroyable> AttrsBuilder<E>.initialiseMDC(
-  mdcInit: (E) -> T,
-  postInit: (T.(el: E) -> Unit)? = null,
-) {
-  initialiseMDC(mdcInit, Destroyable::destroy, postInit)
 }
 
 private var nextDomElementId = 0
@@ -71,12 +65,15 @@ public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"
 
 @Composable
 @MDCInternalDsl
-@Suppress("NOTHING_TO_INLINE")
 public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
   remember { uniqueDomElementId() + (suffix?.let { "-$it" } ?: "") }
 
-@MDCInternalDsl
 @Composable
+@MDCInternalDsl
+public inline fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
+
+@Composable
+@MDCInternalDsl
 public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
   effect: Builder<MDC>
@@ -88,15 +85,24 @@ public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   }
 }
 
-@MDCInternalDsl
 @Composable
+@MDCInternalDsl
 public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   value: V,
-  property: KMutableProperty1<MDC, V>
+  setter: MDC.(V) -> Unit
 ) {
   DomSideEffect(value) {
     it.mdc<MDC> {
-      property.set(this, value)
+      setter(value)
     }
   }
+}
+
+@Composable
+@MDCInternalDsl
+public inline fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
+  value: V,
+  property: KMutableProperty1<MDC, V>
+) {
+  MDCSideEffect(value, property::set)
 }

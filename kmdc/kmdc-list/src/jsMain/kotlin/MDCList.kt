@@ -4,53 +4,17 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Nav
 import org.jetbrains.compose.web.dom.Ul
-import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLUListElement
-import org.w3c.dom.events.Event
 
 @JsModule("@material/list/dist/mdc.list.css")
 public external val MDCListStyle: dynamic
-
-@JsModule("@material/list")
-public external object MDCListModule {
-  public interface MDCListActionEventDetail {
-    public val index: Int
-  }
-
-  public class MDCListActionEvent : Event {
-    public val detail: MDCListActionEventDetail
-  }
-
-  public class MDCList(element: Element) {
-    public companion object {
-      public fun attachTo(element: Element): MDCList
-    }
-    public fun destroy()
-
-    public var vertical: Boolean
-    public val listElements: Array<Element>
-    public var wrapFocus: Boolean
-    public val typeaheadInProgress: Boolean
-    public var hasTypeahead: Boolean
-    public var singleSelection: Boolean
-
-    /**
-     * type: `number | number[]`
-     */
-    public var selectedIndex: dynamic
-
-    public fun layout()
-    public fun getPrimaryText(item: Element): String
-    public fun initializeListType()
-    public fun setEnabled(itemIndex: Int, isEnabled: Boolean)
-  }
-}
 
 public data class MDCListOpts(
   public var size: Size = Size.SingleLine,
@@ -91,19 +55,12 @@ public fun MDCList(
   Ul(attrs = {
     classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    ref {
-      val mdc = MDCListModule.MDCList.attachTo(it)
-      mdc.singleSelection = options.singleSelection
-      it.mdc = mdc
-      onDispose {
-        it.mdc<MDCListModule.MDCList> { destroy() }
-      }
+    initialiseMDC(MDCListModule.MDCList::attachTo) {
+      singleSelection = options.singleSelection
     }
     attrs?.invoke(this)
   }) {
-    DomSideEffect(options.singleSelection) {
-      it.mdc<MDCListModule.MDCList> { singleSelection = options.singleSelection }
-    }
+    MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     content?.let { MDCListScope(this).it() }
   }
 }
@@ -124,19 +81,12 @@ public fun MDCNavList(
   Nav(attrs = {
     classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    ref {
-      val mdc = MDCListModule.MDCList.attachTo(it)
-      mdc.singleSelection = options.singleSelection
-      it.mdc = mdc
-      onDispose {
-        it.mdc<MDCListModule.MDCList> { destroy() }
-      }
+    initialiseMDC(MDCListModule.MDCList::attachTo) {
+      singleSelection = options.singleSelection
     }
     attrs?.invoke(this)
   }) {
-    DomSideEffect(options.singleSelection) {
-      it.mdc<MDCListModule.MDCList> { singleSelection = options.singleSelection }
-    }
+    MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     content?.let { MDCListScope(this).it() }
   }
 }
