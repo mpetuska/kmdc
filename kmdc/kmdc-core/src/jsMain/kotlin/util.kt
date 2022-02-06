@@ -1,19 +1,22 @@
 package dev.petuska.kmdc.core
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffectScope
 import androidx.compose.runtime.remember
 import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
+import kotlin.reflect.KMutableProperty1
 
 public typealias Builder<T> = T.() -> Unit
 public typealias ComposableBuilder<T> = @Composable Builder<T>
 
+@MDCInternalDsl
 public external interface Destroyable {
   public fun destroy()
 }
 
+@MDCInternalDsl
 public abstract external class MDCEvent<T> : Event {
   public var detail: T
 }
@@ -36,11 +39,11 @@ public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T =
 public fun <E : Element, T> AttrsBuilder<E>.initialiseMDC(
   mdcInit: (E) -> T,
   onDispose: Builder<T>? = null,
-  postInit: (DisposableEffectScope.(el: E, mdc: T) -> Unit)? = null,
+  postInit: (T.(el: E) -> Unit)? = null,
 ) {
   ref {
     it.mdc = mdcInit(it).also { mdc ->
-      postInit?.invoke(this, it, mdc)
+      postInit?.invoke(mdc, it)
     }
     onDispose {
       it.mdc(onDispose)
@@ -51,7 +54,7 @@ public fun <E : Element, T> AttrsBuilder<E>.initialiseMDC(
 @MDCInternalDsl
 public fun <E : Element, T : Destroyable> AttrsBuilder<E>.initialiseMDC(
   mdcInit: (E) -> T,
-  postInit: (DisposableEffectScope.(el: E, mdc: T) -> Unit)? = null,
+  postInit: (T.(el: E) -> Unit)? = null,
 ) {
   initialiseMDC(mdcInit, Destroyable::destroy, postInit)
 }
@@ -71,3 +74,29 @@ public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"
 @Suppress("NOTHING_TO_INLINE")
 public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
   remember { uniqueDomElementId() + (suffix?.let { "-$it" } ?: "") }
+
+@MDCInternalDsl
+@Composable
+public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
+  vararg keys: Any?,
+  effect: Builder<MDC>
+) {
+  keys.forEach { key ->
+    DomSideEffect(key) {
+      it.mdc(effect)
+    }
+  }
+}
+
+@MDCInternalDsl
+@Composable
+public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
+  value: V,
+  property: KMutableProperty1<MDC, V>
+) {
+  DomSideEffect(value) {
+    it.mdc<MDC> {
+      property.set(this, value)
+    }
+  }
+}

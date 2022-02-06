@@ -91,7 +91,7 @@ public fun <T> MDCSelect(
       }
       initialiseMDC(
         mdcInit = { MDCSelectModule.MDCSelect.attachTo<T>(it) },
-        postInit = { _, mdc -> mdc.items = items }
+        postInit = { this.items = items }
       )
       attrs?.invoke(this.unsafeCast<MDCSelectAttrsScope<T>>())
     }

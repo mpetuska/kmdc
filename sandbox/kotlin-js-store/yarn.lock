@@ -89,6 +89,19 @@
     "@material/typography" "^13.0.0"
     tslib "^2.1.0"
 
+"@material/circular-progress@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/circular-progress/-/circular-progress-13.0.0.tgz#ad90b88d1e88d522f7492ded4eaaac56376ce2aa"
+  integrity sha512-jSbr0ywY2N6s05tyqTXl/cG339C+qU3ck3FwXUq5SJup8CWT0AoJ8EG/CD10CEhNH8nH9Iwstve95oNgIt8G4g==
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/base" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/progress-indicator" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/density@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/density/-/density-13.0.0.tgz#5ae2fdec0418775014fed24e7ccdd5ba5d005d54"

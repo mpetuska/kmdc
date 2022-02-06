@@ -3,6 +3,7 @@ package dev.petuska.kmdc.slider
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.Div
@@ -50,10 +51,15 @@ public fun MDCSlider(
       if (options.discrete) classes("mdc-slider--discrete")
       if (options.tickMarks) classes("mdc-slider--tick-marks")
       if (options.disabled) classes("mdc-slider--disabled")
-      initialiseMDC(MDCSliderModule.MDCSlider::attachTo)
+      initialiseMDC(MDCSliderModule.MDCSlider::attachTo) {
+        setDisabled(options.disabled)
+      }
       attrs?.invoke(this.unsafeCast<MDCSliderAttrsScope>())
     }
   ) {
+    MDCSideEffect<MDCSliderModule.MDCSlider>(options.disabled) {
+      setDisabled(options.disabled)
+    }
     with(options) {
       if (range) {
         MDCSliderInput(value = value, min = min, max = value2!!, label = label, rangeStart = true)
