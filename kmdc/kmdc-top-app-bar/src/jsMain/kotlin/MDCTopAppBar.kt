@@ -7,27 +7,16 @@ import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Header
 import org.jetbrains.compose.web.dom.Main
-import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 @JsModule("@material/top-app-bar/dist/mdc.top-app-bar.css")
 private external val MDCTopAppBarStyle: dynamic
-
-@JsModule("@material/top-app-bar")
-private external object MDCTopAppBarModule {
-  class MDCTopAppBar(element: Element) {
-    companion object {
-      fun attachTo(element: Element): MDCTopAppBar
-    }
-    fun destroy()
-  }
-}
 
 public data class MDCTopAppBarContextOpts(
   var type: Type = Type.Default,
@@ -81,12 +70,7 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
   Header(
     attrs = {
       classes("mdc-top-app-bar", *type.classes)
-      ref {
-        it.mdc = MDCTopAppBarModule.MDCTopAppBar.attachTo(it)
-        onDispose {
-          it.mdc<MDCTopAppBarModule.MDCTopAppBar> { destroy() }
-        }
-      }
+      initialiseMDC(MDCTopAppBarModule.MDCTopAppBar::attachTo)
       attrs?.invoke(this)
     },
   ) {

@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
 import org.jetbrains.compose.web.dom.Aside
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
@@ -45,17 +45,9 @@ public fun MDCSnackbar(
   Aside(attrs = {
     classes("mdc-snackbar", *options.type.classes)
     attrs?.invoke(this)
-    initialiseMDC(MDCSnackbarModule.MDCSnackbar.Companion::attachTo)
+    initialiseMDC(MDCSnackbarModule.MDCSnackbar::attachTo)
   }) {
-    DomSideEffect(options.open) {
-      it.mdc<MDCSnackbarModule.MDCSnackbar> {
-        if (options.open) {
-          open()
-        } else {
-          close()
-        }
-      }
-    }
+    MDCSideEffect<MDCSnackbarModule.MDCSnackbar>(options.open) { if (options.open) open() else close() }
     Div(
       attrs = {
         classes("mdc-snackbar__surface")

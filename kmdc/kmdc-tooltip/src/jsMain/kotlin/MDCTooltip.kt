@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -13,48 +13,9 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.events.Event
 
 @JsModule("@material/tooltip/dist/mdc.tooltip.css")
 private external val MDCTooltipStyle: dynamic
-
-@JsModule("@material/tooltip")
-public external object MDCTooltipModule {
-  public class MDCTooltip(element: Element) {
-    public companion object {
-      public fun attachTo(element: Element): MDCTooltip
-    }
-
-    public fun initialize()
-    public fun initialSyncWithDOM()
-    public fun destroy()
-    public fun setTooltipPosition(
-      xPos: dynamic = definedExternally,
-      yPos: dynamic = definedExternally,
-      withCaretPos: dynamic = definedExternally,
-    )
-
-    public fun setAnchorBoundaryType(type: dynamic)
-    public fun setShowDelay(delayMs: Number)
-    public fun setHideDelay(delayMs: Number)
-    public fun hide()
-    public fun isShown(): Boolean
-    public fun <E : Event> attachScrollHandler(
-      addEventListenerFn: (event: dynamic, handler: (event: E) -> Unit) -> Unit
-    )
-
-    public fun <E : Event> removeScrollHandler(
-      removeEventHandlerFn: (event: dynamic, handler: (event: E) -> Unit) -> Unit
-    )
-
-    public fun getDefaultFoundation(): dynamic
-
-    public var checked: Boolean
-    public var indeterminate: Boolean
-    public var disabled: Boolean
-    public var value: String
-  }
-}
 
 public open class MDCTooltipOpts(
   public var persistent: Boolean = false,
@@ -85,13 +46,7 @@ public fun MDCTooltip(
         tabIndex(-1)
         attr("data-mdc-tooltip-persistent", "true")
       }
-      ref {
-        val mdc = MDCTooltipModule.MDCTooltip.attachTo(it)
-        it.mdc = mdc
-        onDispose {
-          it.mdc<MDCTooltipModule.MDCTooltip> { destroy() }
-        }
-      }
+      initialiseMDC(MDCTooltipModule.MDCTooltip::attachTo)
       attrs?.invoke(this)
     }
   ) {

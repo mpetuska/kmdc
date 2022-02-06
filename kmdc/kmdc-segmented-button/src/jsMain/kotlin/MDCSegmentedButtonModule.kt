@@ -1,12 +1,13 @@
 package dev.petuska.kmdc.segmented.button
 
+import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.w3c.dom.Element
 
 @JsModule("@material/segmented-button")
 public external object MDCSegmentedButtonModule {
-  public class MDCSegmentedButton(element: Element) {
+  public class MDCSegmentedButton(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public companion object {
       public fun attachTo(element: Element): MDCSegmentedButton
     }
@@ -19,25 +20,19 @@ public external object MDCSegmentedButtonModule {
       ) -> MDCSegmentedButtonSegment = definedExternally
     )
 
-    public fun initialSyncWithDOM()
-    public fun destroy()
-    public fun getDefaultFoundation(): dynamic
     public fun getSelectedSegments(): Array<dynamic>
     public fun selectSegment(indexOrSegmentId: dynamic)
     public fun unselectSegment(indexOrSegmentId: dynamic)
     public fun isSegmentSelected(indexOrSegmentId: dynamic): Boolean
   }
 
-  public class MDCSegmentedButtonSegment(element: Element) {
+  public class MDCSegmentedButtonSegment(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public companion object {
       public fun attachTo(element: Element): MDCSegmentedButtonSegment
     }
 
     public var ripple: MDCRippleModule.MDCRipple
     public fun initialize(rippleFactory: (el: Element, foundation: dynamic) -> MDCRippleModule.MDCRipple)
-    public fun initialSyncWithDOM()
-    public fun destroy()
-    public fun getDefaultFoundation(): dynamic
     public fun setIndex(index: Number)
     public fun setIsSingleSelect(isSingleSelect: Boolean)
     public fun isSelected(): Boolean

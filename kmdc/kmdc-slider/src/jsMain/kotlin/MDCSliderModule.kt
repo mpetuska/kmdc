@@ -1,12 +1,13 @@
 package dev.petuska.kmdc.slider
 
+import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 @JsModule("@material/slider")
 public external object MDCSliderModule {
-  public class MDCSlider(element: Element) {
+  public class MDCSlider(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public interface MDCSliderOptions {
       public var skipInitialUIUpdate: Boolean?
     }
@@ -16,9 +17,7 @@ public external object MDCSliderModule {
     }
 
     public var root: HTMLElement
-    public fun getDefaultFoundation(): dynamic
     public fun initialize(options: MDCSliderOptions = definedExternally): dynamic
-    public fun initialSyncWithDOM()
     public fun layout()
     public fun getValueStart(): Number
     public fun setValueStart(valueStart: Number)

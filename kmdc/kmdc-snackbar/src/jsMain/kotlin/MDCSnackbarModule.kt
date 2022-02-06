@@ -1,10 +1,10 @@
-import dev.petuska.kmdc.core.Destroyable
+import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 
 @JsModule("@material/snackbar")
 public external object MDCSnackbarModule {
-  public class MDCSnackbar(element: Element) : Destroyable {
+  public class MDCSnackbar(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public companion object {
       public fun attachTo(element: Element): MDCSnackbar
     }
@@ -16,11 +16,8 @@ public external object MDCSnackbarModule {
       ) -> (() -> (ariaEl: Element, labelEl: Element?) -> Unit) = definedExternally
     )
 
-    public fun initialSyncWithDOM()
-    public override fun destroy()
     public fun open()
     public fun close(reason: String = definedExternally)
-    public fun getDefaultFoundation(): dynamic
     public var timeoutMs: Number
     public var closeOnEscape: Boolean
     public val isOpen: Boolean

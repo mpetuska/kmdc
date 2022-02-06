@@ -1,15 +1,13 @@
 package dev.petuska.kmdc.radio
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffectScope
 import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.uniqueDomElementId
-import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
-import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
 import org.jetbrains.compose.web.attributes.disabled
@@ -17,27 +15,9 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Input
 import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/radio/dist/mdc.radio.css")
 public external val MDCRadioStyle: dynamic
-
-@JsModule("@material/radio")
-public external object MDCRadioModule {
-  public class MDCRadio(element: Element) : MDCFormFieldModule.MDCFormFieldInput {
-    public companion object {
-      public fun attachTo(element: Element): MDCRadio
-    }
-
-    public fun destroy()
-
-    public var checked: Boolean
-    public var disabled: Boolean
-    public var value: String
-    override val ripple: MDCRippleModule.MDCRipple?
-  }
-}
 
 public data class MDCRadioOpts(
   public var disabled: Boolean = false,
@@ -67,9 +47,13 @@ public fun MDCFormFieldScope.MDCRadio(
   opts: Builder<MDCRadioOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
 ) {
-  MDCRadioBody(checked, opts, attrs) { parent, mdcRadio ->
-    setInput(parent, mdcRadio)
-  }
+  MDCRadioBody(checked, opts, attrs = {
+    ref {
+      it.mdc<MDCRadioModule.MDCRadio> { setInput(it, this) }
+      onDispose { }
+    }
+    attrs?.invoke(this)
+  })
 }
 
 @MDCDsl
@@ -78,7 +62,6 @@ private fun MDCRadioBody(
   checked: Boolean,
   opts: Builder<MDCRadioOpts>? = null,
   attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
-  initialize: (DisposableEffectScope.(parent: HTMLDivElement, mdcRadio: MDCRadioModule.MDCRadio) -> Unit)? = null,
 ) {
   MDCRadioStyle
   val options = MDCRadioOpts().apply { opts?.invoke(this) }
@@ -87,14 +70,7 @@ private fun MDCRadioBody(
   Div(attrs = {
     classes("mdc-radio")
     if (options.disabled) classes("mdc-radio--disabled")
-    ref {
-      val mdc = MDCRadioModule.MDCRadio.attachTo(it)
-      it.mdc = mdc
-      initialize?.invoke(this, it, mdc)
-      onDispose {
-        it.mdc<MDCRadioModule.MDCRadio> { destroy() }
-      }
-    }
+    initialiseMDC(MDCRadioModule.MDCRadio::attachTo)
   }) {
     Input(type = InputType.Radio, attrs = {
       classes("mdc-radio__native-control") // This must precede `checked()`

@@ -5,7 +5,6 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.ripple.MDCRipple
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -64,12 +63,7 @@ public fun MDCIconLink(
   A(
     attrs = {
       classes(*listOfNotNull("mdc-icon-button", if (options.on) "mdc-icon-button--on" else null).toTypedArray())
-      ref {
-        it.mdc = MDCIconButtonModule.MDCIconButtonToggle.attachTo(it)
-        onDispose {
-          it.mdc<MDCIconButtonModule.MDCIconButtonToggle> { destroy() }
-        }
-      }
+      initialiseMDC(MDCIconButtonModule.MDCIconButtonToggle::attachTo)
       attrs?.invoke(this)
     },
   ) {

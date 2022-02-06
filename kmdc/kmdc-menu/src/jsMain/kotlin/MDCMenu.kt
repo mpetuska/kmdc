@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
@@ -20,7 +20,7 @@ private external val MDCMenuStyle: dynamic
 public data class MDCMenuOpts(
   var open: Boolean = false,
   var fixed: Boolean = false,
-  var wrapFocus: Boolean? = null,
+  var wrapFocus: Boolean = false,
   var anchorCorner: Byte? = null,
   var selectedIndex: Int? = null,
   var absolutePosition: Point? = null
@@ -49,23 +49,13 @@ public fun MDCMenu(
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
     attrs?.invoke(this.unsafeCast<MDCMenuAttrsScope>())
   }) {
-    DomSideEffect(options.open) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { open = options.open }
-    }
-    DomSideEffect(options.fixed) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { setFixedPosition(options.fixed) }
-    }
-    DomSideEffect(options.wrapFocus) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.wrapFocus?.let { wrapFocus = it } }
-    }
-    DomSideEffect(options.selectedIndex) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.selectedIndex?.let { setSelectedIndex(it) } }
-    }
-    DomSideEffect(options.absolutePosition) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) } }
-    }
-    DomSideEffect(options.anchorCorner) { scope ->
-      scope.mdc<MDCMenuModule.MDCMenu> { options.anchorCorner?.let { setAnchorCorner(it) } }
+    MDCSideEffect(options.open, MDCMenuModule.MDCMenu::open)
+    MDCSideEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
+    MDCSideEffect(options.selectedIndex, MDCMenuModule.MDCMenu::setSelectedIndex)
+    MDCSideEffect(options.fixed, MDCMenuModule.MDCMenu::setFixedPosition)
+    MDCSideEffect(options.anchorCorner, MDCMenuModule.MDCMenu::setAnchorCorner)
+    MDCSideEffect<MDCMenuModule.MDCMenu>(options.absolutePosition) {
+      options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
     }
     MDCList(
       attrs = {

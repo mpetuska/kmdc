@@ -1,17 +1,16 @@
 package dev.petuska.kmdc.menu.surface
-import dev.petuska.kmdc.core.Destroyable
+
+import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 @JsModule("@material/menu-surface")
 public external object MDCMenuSurfaceModule {
-  public class MDCMenuSurface(element: Element) : Destroyable {
+  public class MDCMenuSurface(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
     public companion object {
       public fun attachTo(element: Element): MDCMenuSurface
     }
-
-    public override fun destroy()
 
     public var anchorElement: HTMLElement
 
@@ -21,10 +20,10 @@ public external object MDCMenuSurfaceModule {
     public fun setAnchorCorner(corner: Byte)
   }
 
-  // As of 1.6.20-M1, enum will be supported https://youtrack.jetbrains.com/issue/KT-37916
+// As of 1.6.20-M1, enum will be supported https://youtrack.jetbrains.com/issue/KT-37916
   // public enum class Corner { TOP_LEFT, ... }
 
-  // Until then, we import the Corner definition under object
+// Until then, we import the Corner definition under object
   public object Corner {
     public val TOP_LEFT: Byte
     public val TOP_RIGHT: Byte

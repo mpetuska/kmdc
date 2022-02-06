@@ -4,36 +4,21 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/linear-progress/dist/mdc.linear-progress.css")
 private external val MDCLinearProgressCSS: dynamic
 
-@JsModule("@material/linear-progress")
-private external object MDCLinearProgressModule {
-  class MDCLinearProgress(element: Element) {
-    companion object {
-      fun attachTo(element: Element): MDCLinearProgress
-    }
-
-    var determinate: Boolean
-    var progress: Number
-    var buffer: Number
-    fun open()
-    fun close()
-  }
-}
-
 public data class MDCLinearProgressOpts(
-  var progress: Number? = null,
-  var buffer: Number? = null,
-  var indeterminate: Boolean = false,
+  var progress: Number = 0,
+  var buffer: Number = 0,
+  var determinate: Boolean = false,
   var closed: Boolean = false,
   var label: String? = null,
 )
@@ -54,40 +39,25 @@ public fun MDCLinearProgress(
   val options = MDCLinearProgressOpts().apply { opts?.invoke(this) }
   Div(attrs = {
     classes("mdc-linear-progress")
-    if (options.indeterminate) classes("mdc-linear-progress--indeterminate")
+    if (!options.determinate) classes("mdc-linear-progress--indeterminate")
     if (options.closed) classes("mdc-linear-progress--closed")
     attr("role", "progressbar")
     attr("aria-valuemin", "0")
     attr("aria-valuemax", "1")
     attr("aria-valuenow", "0")
     options.label?.let { attr("aria-label", it) }
-    ref {
-      it.mdc = MDCLinearProgressModule.MDCLinearProgress.attachTo(it)
-      onDispose {}
+    initialiseMDC(MDCLinearProgressModule.MDCLinearProgress::attachTo) {
+      determinate = options.determinate
+      progress = options.progress
+      buffer = options.buffer
     }
     attrs?.invoke(this)
   }) {
-    DomSideEffect(options.indeterminate) {
-      it.mdc<MDCLinearProgressModule.MDCLinearProgress> { determinate = !options.indeterminate }
-    }
-    DomSideEffect(options.closed) {
-      it.mdc<MDCLinearProgressModule.MDCLinearProgress> {
-        if (options.closed) {
-          close()
-        } else {
-          open()
-        }
-      }
-    }
-    DomSideEffect(options.progress) {
-      options.progress?.let { number ->
-        it.mdc<MDCLinearProgressModule.MDCLinearProgress> { progress = number }
-      }
-    }
-    DomSideEffect(options.buffer) {
-      options.buffer?.let { number ->
-        it.mdc<MDCLinearProgressModule.MDCLinearProgress> { buffer = number }
-      }
+    MDCSideEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
+    MDCSideEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
+    MDCSideEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)
+    MDCSideEffect<MDCLinearProgressModule.MDCLinearProgress>(options.closed) {
+      if (options.closed) close() else open()
     }
     Div({ classes("mdc-linear-progress__buffer") }) {
       Div({ classes("mdc-linear-progress__buffer-bar") })

@@ -24,9 +24,7 @@ private val SliderSamples = Samples("MDCSlider") {
       attrs = {
         registerEvents(name)
         onSliderInput {
-          it.detail.let { detail ->
-            v1 = detail.value.toInt()
-          }
+          v1 = it.detail.value.toInt()
         }
       }
     )
