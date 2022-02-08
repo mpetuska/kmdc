@@ -57,7 +57,9 @@ internal fun <T> MDCSelectAnchor(
 
     MDCSelectDownArrowIcon()
 
-    Span(attrs = { classes("mdc-line-ripple") })
+    if (options.type == MDCSelectOpts.Type.Filled) {
+      Span(attrs = { classes("mdc-line-ripple") })
+    }
   }
 }
 
