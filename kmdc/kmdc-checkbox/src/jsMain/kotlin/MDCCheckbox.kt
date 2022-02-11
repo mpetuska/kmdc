@@ -10,7 +10,7 @@ import dev.petuska.kmdc.core.uniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Input
@@ -36,7 +36,7 @@ public data class MDCCheckboxOpts(
 public fun MDCCheckbox(
   checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCCheckboxBody(checked, opts, attrs)
 }
@@ -49,7 +49,7 @@ public fun MDCCheckbox(
 public fun MDCFormFieldScope.MDCCheckbox(
   checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCCheckboxBody(checked, opts, attrs = {
     ref {
@@ -66,7 +66,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
 private fun MDCCheckboxBody(
   checked: Boolean,
   opts: Builder<MDCCheckboxOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCCheckboxStyle
   val options = MDCCheckboxOpts().apply { opts?.invoke(this) }

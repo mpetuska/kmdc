@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
@@ -12,7 +12,7 @@ import org.w3c.dom.HTMLDivElement
 @JsModule("@material/data-table/dist/mdc.data-table.css")
 private external val MDCDataTableCSS: dynamic
 
-public class MDCDataTableAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCDataTableAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 public class MDCDataTableScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 public data class MDCDataTableOpts(
@@ -35,7 +35,7 @@ public fun MDCDataTable(
     attrs = {
       classes("mdc-data-table")
 
-      attrs?.invoke(unsafeCast<MDCDataTableAttrsScope>())
+      attrs?.invoke(MDCDataTableAttrsScope(this))
     }
   ) {
 

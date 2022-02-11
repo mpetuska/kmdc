@@ -11,7 +11,9 @@ import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/menu/dist/mdc.menu.css")
@@ -28,7 +30,7 @@ public data class MDCMenuOpts(
   public data class Point(var x: Double = 0.0, var y: Double = 0.0)
 }
 
-public class MDCMenuAttrsScope private constructor() : MDCMenuSurfaceAttrsScope()
+public class MDCMenuAttrsScope(scope: AttrsScope<HTMLDivElement>) : MDCMenuSurfaceAttrsScope(scope)
 
 public class MDCMenuScope(scope: ElementScope<HTMLUListElement>) : MDCListScope<HTMLUListElement>(scope)
 
@@ -47,7 +49,7 @@ public fun MDCMenu(
   MDCMenuSurface(attrs = {
     classes("mdc-menu")
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
-    attrs?.invoke(this.unsafeCast<MDCMenuAttrsScope>())
+    attrs?.invoke(MDCMenuAttrsScope(this))
   }) {
     MDCSideEffect(options.open, MDCMenuModule.MDCMenu::open)
     MDCSideEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)

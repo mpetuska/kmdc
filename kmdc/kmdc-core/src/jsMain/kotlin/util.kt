@@ -3,10 +3,11 @@
 package dev.petuska.kmdc.core
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
@@ -35,7 +36,7 @@ public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T =
   js("({})").unsafeCast<T>().apply(builder)
 
 @MDCInternalDsl
-public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsBuilder<E>.initialiseMDC(
+public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initialiseMDC(
   mdcInit: (E) -> T,
   onDispose: Builder<T>? = null,
   postInit: (T.(el: E) -> Unit)? = null,
@@ -78,10 +79,9 @@ public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
   effect: Builder<MDC>
 ) {
-  keys.forEach { key ->
-    DomSideEffect(key) {
-      it.mdc(effect)
-    }
+  DisposableEffect(*keys) {
+    scopeElement.mdc(effect)
+    onDispose { }
   }
 }
 
@@ -91,10 +91,8 @@ public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffec
   value: V,
   setter: MDC.(V) -> Unit
 ) {
-  DomSideEffect(value) {
-    it.mdc<MDC> {
-      setter(value)
-    }
+  MDCSideEffect<MDC>(value) {
+    setter(value)
   }
 }
 

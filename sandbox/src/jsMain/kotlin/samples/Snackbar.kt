@@ -17,7 +17,7 @@ import dev.petuska.kmdc.snackbar.onSnackbarOpened
 import dev.petuska.kmdc.snackbar.onSnackbarOpening
 import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLElement
 
@@ -52,7 +52,7 @@ private val SnackbarSamples = Samples("MDCSnackbar") {
   }
 }
 
-private fun AttrsBuilder<HTMLElement>.registerEvents(name: String) {
+private fun AttrsScope<HTMLElement>.registerEvents(name: String) {
   onSnackbarOpening { console.log("$name#onSnackbarOpening", it.detail) }
   onSnackbarOpened { console.log("$name#onSnackbarOpened", it.detail) }
   onSnackbarClosing { console.log("$name#onSnackbarClosing", it.detail) }

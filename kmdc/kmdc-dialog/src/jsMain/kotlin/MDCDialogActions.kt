@@ -6,7 +6,7 @@ import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -61,7 +61,7 @@ public fun MDCDialogActionsScope.MDCDialogActionButton(
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<out HTMLButtonElement>.mdcDialogButtonDefault() {
+public fun AttrsScope<out HTMLButtonElement>.mdcDialogButtonDefault() {
   classes("mdc-dialog__button")
   attr(MDCDialogModule.strings.BUTTON_DEFAULT_ATTRIBUTE, "true")
 }
@@ -70,7 +70,7 @@ public fun AttrsBuilder<out HTMLButtonElement>.mdcDialogButtonDefault() {
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<out HTMLButtonElement>.mdcDialogAction(action: String) {
+public fun AttrsScope<out HTMLButtonElement>.mdcDialogAction(action: String) {
   classes("mdc-dialog__button")
   attr(MDCDialogModule.strings.ACTION_ATTRIBUTE, action)
 }
@@ -79,6 +79,6 @@ public fun AttrsBuilder<out HTMLButtonElement>.mdcDialogAction(action: String) {
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<out HTMLElement>.mdcDialogAction(action: String) {
+public fun AttrsScope<out HTMLElement>.mdcDialogAction(action: String) {
   attr(MDCDialogModule.strings.ACTION_ATTRIBUTE, action)
 }

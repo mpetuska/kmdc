@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.ripple.MDCRipple
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -32,7 +32,7 @@ public open class MDCListItemScope<T : HTMLElement>(scope: ElementScope<T>) : El
 @Composable
 public fun MDCListScope<HTMLUListElement>.MDCListItem(
   opts: Builder<MDCListItemOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLLIElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLLIElement>>? = null,
   content: ComposableBuilder<MDCListItemScope<HTMLLIElement>>? = null,
 ) {
   val options = MDCListItemOpts().apply { opts?.invoke(this) }
@@ -61,7 +61,7 @@ public fun MDCListScope<HTMLUListElement>.MDCListItem(
 @Composable
 public fun MDCListScope<HTMLElement>.MDCListItem(
   opts: Builder<MDCListItemOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLAnchorElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLAnchorElement>>? = null,
   content: ComposableBuilder<MDCListItemScope<HTMLAnchorElement>>? = null,
 ) {
   val options = MDCListItemOpts().apply { opts?.invoke(this) }
@@ -89,7 +89,7 @@ public fun MDCListScope<HTMLElement>.MDCListItem(
 @MDCDsl
 @Composable
 public fun MDCListItemScope<*>.MDCListItemGraphic(
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {
@@ -104,7 +104,7 @@ public fun MDCListItemScope<*>.MDCListItemGraphic(
 @MDCDsl
 @Composable
 public fun MDCListItemScope<*>.MDCListItemMeta(
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {

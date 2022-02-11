@@ -5,10 +5,9 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/segmented-button/dist/mdc.segmented-button.css")
@@ -18,7 +17,7 @@ public data class MDCSegmentedButtonOpts(
   var singleSelect: Boolean = false,
 )
 
-public class MDCSegmentedButtonAttrsScope private constructor() : AttrsBuilder<HTMLButtonElement>()
+public class MDCSegmentedButtonAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 public class MDCSegmentedButtonScope(
   scope: ElementScope<HTMLDivElement>,
   internal val options: MDCSegmentedButtonOpts
@@ -47,7 +46,7 @@ public fun MDCSegmentedButton(
         attr("role", "group")
       }
       initialiseMDC(MDCSegmentedButtonModule.MDCSegmentedButton::attachTo)
-      attrs?.invoke(this.unsafeCast<MDCSegmentedButtonAttrsScope>())
+      attrs?.invoke(MDCSegmentedButtonAttrsScope(this))
     },
     content = content?.let { { MDCSegmentedButtonScope(this, options).it() } }
   )

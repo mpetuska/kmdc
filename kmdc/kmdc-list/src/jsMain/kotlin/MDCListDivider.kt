@@ -3,7 +3,7 @@ package dev.petuska.kmdc.list
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.Li
@@ -28,7 +28,7 @@ public class MDCListDividerOpts(
 @Composable
 public fun MDCListScope<*>.MDCListDivider(
   opts: Builder<MDCListDividerOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLLIElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLLIElement>>? = null,
   content: ContentBuilder<HTMLLIElement>? = null,
 ) {
   val options = MDCListDividerOpts().apply { opts?.invoke(this) }
@@ -49,7 +49,7 @@ public fun MDCListScope<*>.MDCListDivider(
 @Composable
 public fun MDCListGroupScope.MDCListDivider(
   opts: Builder<MDCListDividerOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLHRElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLHRElement>>? = null,
 ) {
   val options = MDCListDividerOpts().apply { opts?.invoke(this) }
   Hr(

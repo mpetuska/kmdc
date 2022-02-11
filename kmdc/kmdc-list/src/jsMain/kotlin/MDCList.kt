@@ -6,7 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Nav
 import org.jetbrains.compose.web.dom.Ul
@@ -46,7 +46,7 @@ public open class MDCListScope<T : HTMLElement>(scope: ElementScope<T>) : Elemen
 @Composable
 public fun MDCList(
   opts: Builder<MDCListOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLUListElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLUListElement>>? = null,
   content: ComposableBuilder<MDCListScope<HTMLUListElement>>? = null,
 ) {
   MDCListStyle
@@ -72,7 +72,7 @@ public fun MDCList(
 @Composable
 public fun MDCNavList(
   opts: Builder<MDCListOpts>? = null,
-  attrs: Builder<AttrsBuilder<HTMLElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLElement>>? = null,
   content: ComposableBuilder<MDCListScope<HTMLElement>>? = null,
 ) {
   MDCListStyle

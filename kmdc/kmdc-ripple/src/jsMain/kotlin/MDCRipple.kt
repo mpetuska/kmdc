@@ -1,6 +1,7 @@
 package dev.petuska.kmdc.ripple
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.jsObject
@@ -17,9 +18,9 @@ public fun ElementScope<*>.MDCRipple(
   opts: Builder<MDCRippleOpts>? = null
 ) {
   val options = MDCRippleOpts().apply { opts?.invoke(this) }
-  DisposableRefEffect {
+  DisposableEffect(null) {
     val mdc = MDCRippleModule.MDCRipple.attachTo(
-      element = it,
+      element = scopeElement,
       opts = jsObject {
         isUnbounded = options.isUnbounded
       }

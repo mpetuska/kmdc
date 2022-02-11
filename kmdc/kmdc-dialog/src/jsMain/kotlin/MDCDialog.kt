@@ -9,7 +9,7 @@ import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
@@ -18,7 +18,7 @@ import org.w3c.dom.HTMLElement
 @JsModule("@material/dialog/dist/mdc.dialog.css")
 private external val MDCDialogCSS: dynamic
 
-public class MDCDialogAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCDialogAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 
 public data class MDCDialogOpts(
   var open: Boolean = false,
@@ -54,7 +54,7 @@ public fun MDCDialog(
       if (options.fullscreen) classes(MDCDialogModule.cssClasses.FULLSCREEN)
       if (!options.autoStackButtons) classes(MDCDialogModule.cssClasses.STACKED)
       initialiseMDC(MDCDialogModule.MDCDialog::attachTo)
-      attrs?.invoke(this.unsafeCast<MDCDialogAttrsScope>())
+      attrs?.invoke(MDCDialogAttrsScope(this))
     }
   ) {
     MDCSideEffect<MDCDialogModule.MDCDialog>(options.open) {
@@ -84,6 +84,6 @@ public fun MDCDialog(
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<out HTMLElement>.mdcDialogInitialFocus() {
+public fun AttrsScope<out HTMLElement>.mdcDialogInitialFocus() {
   attr(MDCDialogModule.strings.INITIAL_FOCUS_ATTRIBUTE, "true")
 }

@@ -13,7 +13,7 @@ import dev.petuska.kmdc.list.MDCListItem
 import dev.petuska.kmdc.list.MDCListItemGraphic
 import dev.petuska.kmdc.list.MDCListItemText
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.attributes.name
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -52,7 +52,7 @@ public data class MDCSelectOpts<T>(
   }
 }
 
-public class MDCSelectAttrsScope<T> private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCSelectAttrsScope<T>(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
@@ -92,7 +92,7 @@ public fun <T> MDCSelect(
       initialiseMDC<HTMLDivElement, MDCSelectModule.MDCSelect<T>>(MDCSelectModule.MDCSelect.Companion::attachTo) {
         this.items = items
       }
-      attrs?.invoke(unsafeCast<MDCSelectAttrsScope<T>>())
+      attrs?.invoke(MDCSelectAttrsScope(this))
     }
   ) {
     MDCSideEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
