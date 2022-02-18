@@ -22,7 +22,7 @@ internal fun MDCSliderOpts.MDCSliderTrack(
       classes("mdc-slider__track--inactive")
     })
     Div(attrs = {
-      classes("mdc-slider--active")
+      classes("mdc-slider__track--active")
     }) {
       Div(attrs = {
         classes("mdc-slider__track--active_fill")
