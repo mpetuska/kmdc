@@ -11,6 +11,7 @@
 - [x] mdc-select
 - [x] mdc-dialog
 - [x] mdc-circular-progress
+- [x] mdc-data-table
 
 # 0.0.2
 ## Versions

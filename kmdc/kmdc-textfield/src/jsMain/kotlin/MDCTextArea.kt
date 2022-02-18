@@ -6,7 +6,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.uniqueDomElementId
-import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsBuilder
+import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.attributes.rows
@@ -34,7 +34,7 @@ public class MDCTextAreaOpts(
 public fun MDCTextArea(
   value: String,
   opts: Builder<MDCTextAreaOpts>? = null,
-  attrs: Builder<TextAreaAttrsBuilder>? = null,
+  attrs: Builder<TextAreaAttrsScope>? = null,
 ) {
   MDCTextFieldStyle
   val options = MDCTextAreaOpts().apply { opts?.invoke(this) }
@@ -84,7 +84,7 @@ public fun MDCTextArea(
 private fun MDCTextAreaInput(
   value: String,
   options: MDCTextAreaOpts,
-  attrs: Builder<TextAreaAttrsBuilder>?,
+  attrs: Builder<TextAreaAttrsScope>?,
   labelId: String,
   helperId: String,
 ) {

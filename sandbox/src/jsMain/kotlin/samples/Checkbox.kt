@@ -16,7 +16,7 @@ private val CheckboxSamples = Samples("MDCCheckbox") {
     MDCFormField {
       MDCCheckbox(
         checked = checked,
-        opts = { label = it },
+        label = it,
         attrs = { onClick { checked = !checked } }
       )
     }
@@ -25,21 +25,16 @@ private val CheckboxSamples = Samples("MDCCheckbox") {
     MDCFormField {
       MDCCheckbox(
         checked = checked,
-        opts = {
-          label = it
-          disabled = true
-        }
+        label = it,
+        disabled = true,
       )
     }
   }
   Sample("Indeterminate", "Toggle `Default` checkbox to see changes") {
     MDCFormField {
       MDCCheckbox(
-        checked = checked,
-        opts = {
-          label = it
-          indeterminate = !checked
-        }
+        checked = checked.takeIf { it },
+        label = it,
       )
     }
   }

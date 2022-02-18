@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -27,7 +27,7 @@ public class MDCRichTooltipAnchorScope(
    * @param id tooltip ID
    */
   @MDCAttrsDsl
-  public fun <E : Element> AttrsBuilder<E>.tooltipId(id: String): AttrsBuilder<E> = also {
+  public fun <E : Element> AttrsScope<E>.tooltipId(id: String): AttrsScope<E> = also {
     it.tooltipId(id, options.interactive)
     if (options.interactive) {
       attr("aria-haspopup", "dialog")

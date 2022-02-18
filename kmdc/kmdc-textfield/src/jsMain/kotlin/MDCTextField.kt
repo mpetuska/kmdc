@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInternalDsl
+import dev.petuska.kmdc.core.MDCInternalAPI
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -55,7 +55,7 @@ public class MDCTextFieldOpts(
 public fun MDCTextField(
   value: String,
   opts: Builder<MDCTextFieldOpts>? = null,
-  attrs: Builder<InputAttrsBuilder<String>>? = null,
+  attrs: Builder<InputAttrsScope<String>>? = null,
   leadingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
   trailingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
 ) {
@@ -119,11 +119,11 @@ public fun MDCTextField(
 }
 
 @Composable
-@MDCInternalDsl
+@MDCInternalAPI
 private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   value: String,
   options: MDCTextFieldOpts,
-  attrs: Builder<InputAttrsBuilder<String>>?,
+  attrs: Builder<InputAttrsScope<String>>?,
   labelId: String,
   helperId: String,
   leadingIcon: ComposableBuilder<MDCTextFieldScope>?,
@@ -201,7 +201,7 @@ internal fun MDCTextFieldHelperLine(
 private fun MDCTextFieldInput(
   value: String,
   options: MDCTextFieldOpts,
-  attrs: (InputAttrsBuilder<String>.() -> Unit)?,
+  attrs: Builder<InputAttrsScope<String>>?,
   labelId: String,
   helperId: String,
 ) {

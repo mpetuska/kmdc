@@ -12,9 +12,11 @@ import kotlin.test.assertEquals
 class MDCButtonTest {
   @Test
   fun render() = runTest {
-    fun HTMLElement.assertHtml(count: Int) {
+    fun HTMLElement.assertHtml(count: Int, upgraded: Boolean) {
       assertEquals(
-        expected = """<button class="mdc-button"><span class="mdc-button__ripple"></span>Clicked $count times</button>""",
+        expected = """<button class="mdc-button${
+        if (upgraded) " mdc-ripple-upgraded" else ""
+        }"><span class="mdc-button__ripple"></span>Clicked $count times</button>""",
         actual = innerHTML
       )
     }
@@ -23,12 +25,12 @@ class MDCButtonTest {
     composition {
       MDCButton("Clicked $count times", attrs = { onClick { count++ } })
     }
-    root.assertHtml(0)
+    root.assertHtml(0, false)
     root.firstElementChild.unsafeCast<HTMLButtonElement>().click()
     waitForRecompositionComplete()
-    root.assertHtml(1)
+    root.assertHtml(1, true)
     count = 10
     waitForRecompositionComplete()
-    root.assertHtml(10)
+    root.assertHtml(10, true)
   }
 }

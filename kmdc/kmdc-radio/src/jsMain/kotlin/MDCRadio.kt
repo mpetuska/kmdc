@@ -9,7 +9,7 @@ import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.uniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Input
@@ -32,7 +32,7 @@ public data class MDCRadioOpts(
 public fun MDCRadio(
   checked: Boolean,
   opts: Builder<MDCRadioOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioBody(checked, opts, attrs)
 }
@@ -45,7 +45,7 @@ public fun MDCRadio(
 public fun MDCFormFieldScope.MDCRadio(
   checked: Boolean,
   opts: Builder<MDCRadioOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioBody(checked, opts, attrs = {
     ref {
@@ -61,7 +61,7 @@ public fun MDCFormFieldScope.MDCRadio(
 private fun MDCRadioBody(
   checked: Boolean,
   opts: Builder<MDCRadioOpts>? = null,
-  attrs: (InputAttrsBuilder<Boolean>.() -> Unit)? = null,
+  attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioStyle
   val options = MDCRadioOpts().apply { opts?.invoke(this) }

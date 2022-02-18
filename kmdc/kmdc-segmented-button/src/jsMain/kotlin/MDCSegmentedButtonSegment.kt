@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -15,7 +15,9 @@ public data class MDCSegmentedButtonSegmentOpts(
   var touch: Boolean = false
 )
 
-public class MDCSegmentedButtonSegmentAttrsScope private constructor() : AttrsBuilder<HTMLButtonElement>()
+public class MDCSegmentedButtonSegmentAttrsScope(scope: AttrsScope<HTMLButtonElement>) :
+  AttrsScope<HTMLButtonElement> by scope
+
 public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElement>) :
   ElementScope<HTMLButtonElement> by scope
 
@@ -45,7 +47,7 @@ public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
       } else {
         attr("aria-pressed", "${options.selected}")
       }
-      attrs?.invoke(this.unsafeCast<MDCSegmentedButtonSegmentAttrsScope>())
+      attrs?.invoke(MDCSegmentedButtonSegmentAttrsScope(this))
     }
   ) {
     if (options.touch) {

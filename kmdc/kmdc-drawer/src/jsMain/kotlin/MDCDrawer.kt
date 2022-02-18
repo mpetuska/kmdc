@@ -7,7 +7,7 @@ import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -85,6 +85,6 @@ public fun MDCDrawerScrim(
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<*>.mdcDrawerAppContent() {
+public fun AttrsScope<*>.mdcDrawerAppContent() {
   classes("mdc-drawer-app-content")
 }

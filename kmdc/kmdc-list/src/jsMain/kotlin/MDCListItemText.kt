@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
@@ -19,7 +19,7 @@ public class MDCListItemTextScope(scope: ElementScope<HTMLSpanElement>) : Elemen
 @MDCDsl
 @Composable
 public fun MDCListItemScope<*>.MDCListItemText(
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
   content: ComposableBuilder<MDCListItemTextScope>? = null,
 ) {
   Span(attrs = {
@@ -35,7 +35,7 @@ public fun MDCListItemScope<*>.MDCListItemText(
 @Composable
 public fun MDCListItemScope<*>.MDCListItemText(
   text: String,
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
 ) {
   MDCListItemText(attrs = attrs) { Text(text) }
 }
@@ -46,7 +46,7 @@ public fun MDCListItemScope<*>.MDCListItemText(
 @MDCDsl
 @Composable
 public fun MDCListItemTextScope.MDCListItemPrimaryText(
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {
@@ -62,7 +62,7 @@ public fun MDCListItemTextScope.MDCListItemPrimaryText(
 @Composable
 public fun MDCListItemTextScope.MDCListItemPrimaryText(
   text: String,
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
 ) {
   MDCListItemPrimaryText(attrs = attrs) { Text(text) }
 }
@@ -73,7 +73,7 @@ public fun MDCListItemTextScope.MDCListItemPrimaryText(
 @MDCDsl
 @Composable
 public fun MDCListItemTextScope.MDCListItemSecondaryText(
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {
@@ -89,7 +89,7 @@ public fun MDCListItemTextScope.MDCListItemSecondaryText(
 @Composable
 public fun MDCListItemTextScope.MDCListItemSecondaryText(
   text: String,
-  attrs: Builder<AttrsBuilder<HTMLSpanElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
 ) {
   MDCListItemSecondaryText(attrs = attrs) { Text(text) }
 }

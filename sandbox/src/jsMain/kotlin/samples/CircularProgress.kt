@@ -30,17 +30,17 @@ private val CircularProgressSamples = Samples("MDCCircularProgress") {
     var size by remember { mutableStateOf(36) }
     Div {
       MDCFormField {
-        MDCCheckbox(determinate, opts = { label = "Determinate" }, attrs = {
+        MDCCheckbox(determinate, label = "Determinate", attrs = {
           onClick { determinate = !determinate }
         })
       }
       MDCFormField {
-        MDCCheckbox(closed, opts = { label = "Closed" }, attrs = {
+        MDCCheckbox(closed, label = "Closed", attrs = {
           onClick { closed = !closed }
         })
       }
       MDCFormField {
-        MDCCheckbox(fourColor, opts = { label = "Four Colour" }, attrs = {
+        MDCCheckbox(fourColor, label = "Four Colour", attrs = {
           onClick { fourColor = !fourColor }
         })
       }

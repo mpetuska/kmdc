@@ -12,9 +12,6 @@ import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
-import dev.petuska.kmdc.slider.MDCSlider
-import dev.petuska.kmdc.slider.onSliderInput
-import dev.petuska.kmdc.typography.MDCBody1
 import dev.petuska.kmdc.typography.MDCH1
 import dev.petuska.kmdc.typography.mdcTypography
 import org.jetbrains.compose.web.css.AlignItems
@@ -99,9 +96,7 @@ private fun MDCLayoutGridCellsScope.SamplesList(
           val checked = sample in enabledSamples
           MDCCheckbox(
             checked = checked,
-            opts = {
-              label = sample.name
-            },
+            label = sample.name,
             attrs = {
               onInput {
                 val currentSamples = parameters?.get("sample")?.toMutableSet() ?: mutableListOf()

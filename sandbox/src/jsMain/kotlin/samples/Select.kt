@@ -45,12 +45,12 @@ private val SelectSamples = Samples("MDCSelect") {
     }
     Div {
       MDCFormField {
-        MDCCheckbox(isRequired, opts = { label = "Required" }, attrs = { onChange { isRequired = it.value } })
+        MDCCheckbox(isRequired, label = "Required", attrs = { onChange { isRequired = it.value } })
       }
     }
     Div {
       MDCFormField {
-        MDCCheckbox(isDisabled, opts = { label = "Disabled" }, attrs = { onChange { isDisabled = it.value } })
+        MDCCheckbox(isDisabled, label = "Disabled", attrs = { onChange { isDisabled = it.value } })
       }
     }
   }

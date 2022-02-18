@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
@@ -83,9 +83,11 @@ public fun MDCTooltip(
  * @param hidden whether this element should be hidden from screen-readers to avoid duplication with tooltip content
  */
 @MDCAttrsDsl
-public fun <T : Element> AttrsBuilder<T>.tooltipId(id: String, hidden: Boolean = false): AttrsBuilder<T> = if (hidden) {
-  attr("data-tooltip-id", id)
-  attr("data-hide-tooltip-from-screenreader", "true")
-} else {
-  attr("aria-describedby", id)
+public fun <T : Element> AttrsScope<T>.tooltipId(id: String, hidden: Boolean = false) {
+  if (hidden) {
+    attr("data-tooltip-id", id)
+    attr("data-hide-tooltip-from-screenreader", "true")
+  } else {
+    attr("aria-describedby", id)
+  }
 }

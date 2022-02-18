@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -25,7 +25,7 @@ public class MDCListGroupScope(scope: ElementScope<HTMLDivElement>) : ElementSco
   level = DeprecationLevel.WARNING
 )
 public fun MDCListGroup(
-  attrs: Builder<AttrsBuilder<HTMLDivElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLDivElement>>? = null,
   content: ComposableBuilder<MDCListGroupScope>? = null,
 ) {
   Div(attrs = {
@@ -40,7 +40,7 @@ public fun MDCListGroup(
 @MDCDsl
 @Composable
 public fun MDCListGroupScope.MDCListGroupSubheader(
-  attrs: Builder<AttrsBuilder<HTMLHeadingElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLHeadingElement>>? = null,
   content: ContentBuilder<HTMLHeadingElement>? = null,
 ) {
   H3(attrs = {
@@ -56,7 +56,7 @@ public fun MDCListGroupScope.MDCListGroupSubheader(
 @Composable
 public fun MDCListGroupScope.MDCListGroupSubheader(
   text: String,
-  attrs: Builder<AttrsBuilder<HTMLHeadingElement>>? = null,
+  attrs: Builder<AttrsScope<HTMLHeadingElement>>? = null,
 ) {
   MDCListGroupSubheader(attrs) { Text(text) }
 }

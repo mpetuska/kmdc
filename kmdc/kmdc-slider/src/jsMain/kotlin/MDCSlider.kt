@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
@@ -13,7 +13,7 @@ import org.w3c.dom.HTMLDivElement
 @JsModule("@material/slider/dist/mdc.slider.css")
 private external val MDCSliderCSS: dynamic
 
-public class MDCSliderAttrsScope private constructor() : AttrsBuilder<HTMLDivElement>()
+public class MDCSliderAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 
 public class MDCSliderScope(scope: ElementScope<HTMLDivElement>, public val options: MDCSliderOpts) :
   ElementScope<HTMLDivElement> by scope
@@ -54,7 +54,7 @@ public fun MDCSlider(
       initialiseMDC(MDCSliderModule.MDCSlider::attachTo) {
         setDisabled(options.disabled)
       }
-      attrs?.invoke(this.unsafeCast<MDCSliderAttrsScope>())
+      attrs?.invoke(MDCSliderAttrsScope(this))
     }
   ) {
     MDCSideEffect(options.disabled, MDCSliderModule.MDCSlider::setDisabled)

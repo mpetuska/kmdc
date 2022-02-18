@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.aria
 import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.max
 import org.jetbrains.compose.web.attributes.min
@@ -24,7 +24,7 @@ internal fun MDCSliderOpts.MDCSliderInput(
   max: Number,
   label: String?,
   rangeStart: Boolean?,
-  attrs: Builder<InputAttrsBuilder<Number?>>? = null,
+  attrs: Builder<InputAttrsScope<Number?>>? = null,
 ) {
   Input(
     type = InputType.Range,

@@ -7,7 +7,7 @@ kotlin {
   sourceSets {
     all {
       languageSettings {
-        optIn("dev.petuska.kmdc.core.MDCInternalDsl")
+        optIn("dev.petuska.kmdc.core.MDCInternalAPI")
         optIn("kotlin.RequiresOptIn")
       }
     }

@@ -3,7 +3,7 @@ package dev.petuska.kmdc.typography
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.H1
@@ -43,7 +43,7 @@ public enum class MDCTypographyStyle(public val style: String) {
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
  */
 @MDCAttrsDsl
-public fun AttrsBuilder<*>.mdcTypography() {
+public fun AttrsScope<*>.mdcTypography() {
   classes("mdc-typography")
 }
 
