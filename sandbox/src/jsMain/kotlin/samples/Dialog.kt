@@ -196,13 +196,13 @@ private val FullScreenDialog by Sample(name = "Full-screen Dialog") {
     MDCDialogContent {
       Text(
         " Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" +
-            "        Sed scelerisque metus dapibus, maximus massa pulvinar, commodo nunc.\n" +
-            "        Quisque vitae luctus lectus, ut tempus ipsum. Sed suscipit gravida scelerisque.\n" +
-            "        Aenean vulputate elementum est, quis consectetur orci consectetur ac.\n" +
-            "        Quisque accumsan vel nisi id dapibus. Suspendisse nec urna eu massa ornare rutrum.\n" +
-            "        Vivamus at nisi sit amet nulla pretium volutpat sit amet in justo. Donec mi metus,\n" +
-            "        interdum ac tincidunt at, vehicula vitae nisl. Morbi fermentum dapibus massa,\n" +
-            "        nec lobortis massa vestibulum eu."
+          "        Sed scelerisque metus dapibus, maximus massa pulvinar, commodo nunc.\n" +
+          "        Quisque vitae luctus lectus, ut tempus ipsum. Sed suscipit gravida scelerisque.\n" +
+          "        Aenean vulputate elementum est, quis consectetur orci consectetur ac.\n" +
+          "        Quisque accumsan vel nisi id dapibus. Suspendisse nec urna eu massa ornare rutrum.\n" +
+          "        Vivamus at nisi sit amet nulla pretium volutpat sit amet in justo. Donec mi metus,\n" +
+          "        interdum ac tincidunt at, vehicula vitae nisl. Morbi fermentum dapibus massa,\n" +
+          "        nec lobortis massa vestibulum eu."
       )
     }
     MDCDialogActions {

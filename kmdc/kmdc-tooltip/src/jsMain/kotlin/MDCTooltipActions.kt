@@ -1,11 +1,15 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.button.MDCButton
+import dev.petuska.kmdc.button.MDCButtonOpts
+import dev.petuska.kmdc.button.MDCButtonScope
+import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Text
@@ -34,36 +38,29 @@ public fun MDCRichTooltipScope.MDCTooltipActions(
 }
 
 /**
- * [Bugged](https://github.com/material-components/material-components-web/issues/7496)
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tooltip)
  */
 @MDCDsl
 @Composable
 public fun MDCTooltipRichActionsScope.MDCTooltipAction(
+  opts: Builder<MDCButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ContentBuilder<HTMLButtonElement>? = null,
+  content: ComposableBuilder<MDCButtonScope>? = null,
 ) {
-  Button(
-    attrs = {
-      classes("mdc-tooltip__action")
-      attr("aria-label", "action")
-      attrs?.invoke(this)
-    },
-    content = content,
-  )
+  MDCButton(opts = opts, attrs = attrs, content = content)
 }
 
 /**
- * [Bugged](https://github.com/material-components/material-components-web/issues/7496)
  * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tooltip)
  */
 @MDCDsl
 @Composable
-public fun MDCTooltipRichActionsScope.MDCTooltipAction(
+public inline fun MDCTooltipRichActionsScope.MDCTooltipAction(
   text: String,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  noinline opts: Builder<MDCButtonOpts>? = null,
+  noinline attrs: AttrBuilderContext<HTMLButtonElement>? = null,
 ) {
-  MDCTooltipAction(attrs) {
+  MDCTooltipAction(opts, attrs) {
     Text(text)
   }
 }
