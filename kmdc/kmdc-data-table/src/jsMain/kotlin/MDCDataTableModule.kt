@@ -4,11 +4,11 @@ package dev.petuska.kmdc.data.table
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
-import dev.petuska.kmdc.core.MDCInternalDsl
+import dev.petuska.kmdc.core.MDCInternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
-@MDCInternalDsl
+@MDCInternalAPI
 @JsModule("@material/data-table")
 public external object MDCDataTableModule {
   public class MDCDataTable(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
@@ -45,6 +45,7 @@ public external object MDCDataTableModule {
   public interface MDCDataTableRowSelectionChangedEventDetail {
     public val rowNumber: Number
     public val rowId: String?
+    public val rowIndex: Int
     public val selected: Boolean?
   }
 

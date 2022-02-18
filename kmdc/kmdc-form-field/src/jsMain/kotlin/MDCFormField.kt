@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInternalAPI
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
 import org.jetbrains.compose.web.attributes.AttrsScope
@@ -27,6 +29,7 @@ public data class MDCFormFieldOpts(
 }
 
 public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope {
+  @MDCInternalAPI
   public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldModule.MDCFormFieldInput) {
     htmlInput.parentElement?.let {
       if (it.classList.contains("mdc-form-field")) {

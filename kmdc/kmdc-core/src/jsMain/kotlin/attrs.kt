@@ -6,12 +6,12 @@ import org.jetbrains.compose.web.attributes.AttrsScope
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
-@MDCInternalDsl
+@MDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
   attr("aria-$key", "$value")
 }
 
-@MDCInternalDsl
+@MDCInternalAPI
 public inline fun <T : HTMLElement> AttrsScope<T>.role(value: Any) {
   attr("role", "$value")
 }

@@ -1,12 +1,12 @@
 package dev.petuska.kmdc.linear.progress
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.initialiseMDC
-import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
@@ -32,7 +32,7 @@ public class MDCLinearProgressScope(scope: ElementScope<HTMLDivElement>) : Eleme
 @Composable
 public fun MDCLinearProgress(
   opts: Builder<MDCLinearProgressOpts>? = null,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: AttrsBuilder<HTMLDivElement>? = null,
   content: ComposableBuilder<MDCLinearProgressScope>? = null
 ) {
   MDCLinearProgressCSS

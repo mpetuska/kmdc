@@ -14,7 +14,7 @@ class MDCButtonTest {
   fun render() = runTest {
     fun HTMLElement.assertHtml(count: Int) {
       assertEquals(
-        expected = """<button class="mdc-button"><span class="mdc-button__ripple"></span>Clicked $count times</button>""",
+        expected = """<button class="mdc-button mdc-ripple-upgraded"><span class="mdc-button__ripple"></span>Clicked $count times</button>""",
         actual = innerHTML
       )
     }

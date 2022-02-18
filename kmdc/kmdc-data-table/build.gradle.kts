@@ -12,6 +12,8 @@ kotlin {
     jsMain {
       dependencies {
         api(project(":kmdc:kmdc-core"))
+        api(project(":kmdc:kmdc-checkbox"))
+        api(project(":kmdc:kmdc-linear-progress"))
         api(npm("@material/data-table", mdcVersion))
       }
     }
