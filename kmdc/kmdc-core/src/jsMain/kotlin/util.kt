@@ -7,6 +7,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import kotlinx.browser.window
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
@@ -90,7 +91,18 @@ public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initia
   }
 }
 
-private var nextDomElementId = 0
+/**
+ * We're hooking it up to global context to avoid duplicate counters
+ * in case multiple kmdc versions somehow make it into the same project
+ */
+private val nextDomElementId: Int
+  get() {
+    val key = "_kmdcCounter" // NEVER EVER CHANGE THIS
+    val dynamicWindow = window.asDynamic()
+    val next = (dynamicWindow[key] ?: 0) + 1
+    dynamicWindow[key] = next
+    return next.unsafeCast<Int>()
+  }
 
 /**
  * Returns a new unique DOM element ID.
@@ -98,7 +110,7 @@ private var nextDomElementId = 0
  * Guarantees 2^53-1 sequential IDs, good for 28 million IDs per second over a period of ten years.
  */
 @MDCInternalAPI
-public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"
+public fun uniqueDomElementId(): String = "kmdc-$nextDomElementId"
 
 /**
  * Returns a new unique DOM element ID and remembers it between recompositions.
