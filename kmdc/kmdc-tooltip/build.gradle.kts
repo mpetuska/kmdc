@@ -13,6 +13,7 @@ kotlin {
       dependencies {
         api(project(":kmdc:kmdc-core"))
         api(project(":kmdc:kmdc-ripple"))
+        api(project(":kmdc:kmdc-button"))
         api(npm("@material/tooltip", mdcVersion))
       }
     }

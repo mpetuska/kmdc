@@ -83,7 +83,7 @@ private val Interactive by Sample {
          aliquam sit amet sit amet eros.
         """.trimIndent()
       )
-      MDCTooltipLink("link", "google.com")
+      MDCTooltipLink("link", "https://google.com")
     }
     MDCTooltipActions {
       MDCTooltipAction("action")
