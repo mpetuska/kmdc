@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInternalAPI
 import dev.petuska.kmdc.core.initialiseMDC

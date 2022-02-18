@@ -25,8 +25,11 @@ public external object MDCDataTableModule {
     public fun hideProgress()
   }
 
-  public enum class SortValue {
-    ASCENDING, DESCENDING, NONE, OTHER
+  public object SortValue {
+    public val ASCENDING: SortValue
+    public val DESCENDING: SortValue
+    public val NONE: SortValue
+    public val OTHER: SortValue
   }
 
   public object events {

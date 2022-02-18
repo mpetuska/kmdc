@@ -1,6 +1,5 @@
 package dev.petuska.kmdc.data.table
 
-import MDCDataTableProgressIndicator
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder

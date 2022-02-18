@@ -7,11 +7,11 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import kotlin.reflect.KMutableProperty1
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
+import kotlin.reflect.KMutableProperty1
 
 public typealias Builder<T> = T.() -> Unit
 public typealias AttrsBuilder<T> = Builder<AttrsScope<T>>

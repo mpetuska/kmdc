@@ -1,5 +1,7 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
+package dev.petuska.kmdc.data.table
+
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
@@ -13,7 +15,6 @@ import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.imply
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.data.table.MDCDataTableContainerScope
 import org.jetbrains.compose.web.attributes.Scope
 import org.jetbrains.compose.web.attributes.scope
 import org.jetbrains.compose.web.dom.ElementScope
