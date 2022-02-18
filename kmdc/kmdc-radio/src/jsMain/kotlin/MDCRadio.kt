@@ -1,12 +1,11 @@
 package dev.petuska.kmdc.radio
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.uniqueDomElementId
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
@@ -65,7 +64,7 @@ private fun MDCRadioBody(
 ) {
   MDCRadioStyle
   val options = MDCRadioOpts().apply { opts?.invoke(this) }
-  val radioId = remember { uniqueDomElementId() }
+  val radioId = rememberUniqueDomElementId()
 
   Div(attrs = {
     classes("mdc-radio")

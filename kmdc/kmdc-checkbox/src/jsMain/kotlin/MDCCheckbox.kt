@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
@@ -11,7 +10,7 @@ import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.uniqueDomElementId
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
@@ -63,7 +62,7 @@ public fun MDCCheckbox(
   label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  val checkboxId = remember { uniqueDomElementId() }
+  val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
     disabled = disabled,
     indeterminate = checked == null,
@@ -95,7 +94,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
   label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  val checkboxId = remember { uniqueDomElementId() }
+  val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
     disabled = disabled,
     indeterminate = checked == null,

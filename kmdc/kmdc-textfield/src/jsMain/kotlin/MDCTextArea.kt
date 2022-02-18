@@ -1,11 +1,10 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.uniqueDomElementId
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
@@ -38,8 +37,8 @@ public fun MDCTextArea(
 ) {
   MDCTextFieldStyle
   val options = MDCTextAreaOpts().apply { opts?.invoke(this) }
-  val labelId = remember { uniqueDomElementId() }
-  val helperId = remember { uniqueDomElementId() }
+  val labelId = rememberUniqueDomElementId()
+  val helperId = rememberUniqueDomElementId()
   Label(
     attrs = {
       classes("mdc-text-field", "mdc-text-field--textarea", *options.type.classes)

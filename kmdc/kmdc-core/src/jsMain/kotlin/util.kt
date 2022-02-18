@@ -100,6 +100,11 @@ private var nextDomElementId = 0
 @MDCInternalAPI
 public fun uniqueDomElementId(): String = "kmdc-${nextDomElementId++}"
 
+/**
+ * Returns a new unique DOM element ID and remembers it between recompositions.
+ *
+ * Guarantees 2^53-1 sequential IDs, good for 28 million IDs per second over a period of ten years.
+ */
 @Composable
 @MDCInternalAPI
 public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
