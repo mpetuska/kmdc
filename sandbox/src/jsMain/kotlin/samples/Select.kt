@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
+import dev.petuska.kmdc.radio.MDCRadio
 import dev.petuska.kmdc.select.MDCSelect
 import dev.petuska.kmdc.select.MDCSelectOpts
 import dev.petuska.kmdc.select.onChange
@@ -134,6 +135,57 @@ private val SelectSamples = Samples("MDCSelect") {
       }
     )
   }
+
+  Sample("With changing list") {
+    var fruitList by remember { mutableStateOf(true) }
+    var selectedFruit by remember { mutableStateOf(fruits[0]) }
+    var selectedVegetable by remember { mutableStateOf(vegetables[0]) }
+
+    Div {
+      MDCFormField {
+        MDCRadio(
+          checked = fruitList,
+          opts = { label = "Fruits" },
+          attrs = {
+            onInput { fruitList = true }
+          }
+        )
+        MDCRadio(
+          checked = !fruitList,
+          opts = { label = "Vegetables" },
+          attrs = {
+            onInput { fruitList = false }
+          }
+        )
+      }
+    }
+
+    MDCSelect(
+      if (fruitList) {
+        fruits
+      } else {
+        vegetables
+      },
+      opts = {
+        value = if (fruitList) {
+          selectedFruit
+        } else {
+          selectedVegetable
+        }
+      },
+      attrs = {
+        onChange {
+          if (fruitList) {
+            selectedFruit = it
+          } else {
+            selectedVegetable = it
+          }
+        }
+      }
+    )
+  }
 }
 
 private val fruits = listOf("", "Apple", "Orange", "Banana")
+
+private val vegetables = listOf("", "Lettuce", "Celery")
