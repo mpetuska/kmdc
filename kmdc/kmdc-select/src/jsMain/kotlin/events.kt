@@ -14,7 +14,7 @@ public fun <T> MDCSelectAttrsScope<T>.onChange(listener: (value: T) -> Unit) {
     (event.currentTarget as? Element)
       ?.mdc<MDCSelectModule.MDCSelect<T>> {
         if (event.detail.index == -1) {
-          console.warn("MDCSelect component - index -1 for change event")
+          console.warn("MDCSelect component - set value's index not found for change event")
         } else {
           listener(items[event.detail.index])
         }
