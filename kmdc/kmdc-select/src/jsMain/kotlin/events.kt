@@ -13,7 +13,11 @@ public fun <T> MDCSelectAttrsScope<T>.onChange(listener: (value: T) -> Unit) {
     val event = it.nativeEvent.unsafeCast<MDCSelectModule.MDCSelectChangeEvent>()
     (event.currentTarget as? Element)
       ?.mdc<MDCSelectModule.MDCSelect<T>> {
-        listener(items[event.detail.index])
+        if (event.detail.index == -1) {
+          console.warn("MDCSelect component - set value's index not found for change event")
+        } else {
+          listener(items[event.detail.index])
+        }
       }
       ?: console.warn("MDCSelect component - current target not found for change event")
   }

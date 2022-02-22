@@ -1,11 +1,12 @@
 package dev.petuska.kmdc.select
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
@@ -89,12 +90,20 @@ public fun <T> MDCSelect(
           aria("describedby", helperTextId)
         }
       }
-      initialiseMDC<HTMLDivElement, MDCSelectModule.MDCSelect<T>>(MDCSelectModule.MDCSelect.Companion::attachTo) {
-        this.items = items
-      }
       attrs?.invoke(MDCSelectAttrsScope(this))
     }
   ) {
+    DisposableEffect(items) {
+      scopeElement.asDynamic().mdc = MDCSelectModule.MDCSelect.attachTo<T>(scopeElement)
+      scopeElement.mdc<MDCSelectModule.MDCSelect<T>> {
+        this.items = items
+        required = options.required
+        disabled = options.disabled
+      }
+      onDispose {
+        scopeElement.mdc<MDCSelectModule.MDCSelect<T>> { destroy() }
+      }
+    }
     MDCSideEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
     MDCSideEffect(options.disabled, MDCSelectModule.MDCSelect<T>::disabled)
     MDCSideEffect<MDCSelectModule.MDCSelect<T>>(options.value) {
