@@ -61,7 +61,7 @@ jobs:
 
       - name: Restore native cache
         id: cache-native
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.0.1
         with:
           path: |
             scripts/build
@@ -77,7 +77,7 @@ jobs:
 
       - name: Restore Gradle cache
         id: cache-gradle
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.0.1
         with:
           path: |
             ~/.gradle/caches
@@ -165,7 +165,7 @@ jobs:
       - name: Restore native cache
         if: ${{ matrix.repository.enabled == true }}
         id: cache-native
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.0.1
         with:
           path: |
             scripts/build
@@ -187,7 +187,7 @@ jobs:
       - name: Restore Gradle cache
         if: ${{ matrix.repository.enabled == true }}
         id: cache-gradle
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.0.1
         with:
           path: |
             ~/.gradle/caches
