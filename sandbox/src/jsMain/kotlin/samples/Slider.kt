@@ -13,6 +13,7 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
+@EagerInitialization
 private val SliderSamples = Samples("MDCSlider") {
   Sample("Continuous") { name ->
     var v1 by remember { mutableStateOf(50) }

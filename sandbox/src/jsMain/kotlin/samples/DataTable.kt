@@ -6,7 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonOpts
-import dev.petuska.kmdc.core.MDCInternalAPI
+import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.data.table.MDCDataTable
@@ -83,7 +83,7 @@ private data class Item(
   val selected: Boolean = false,
 )
 
-@OptIn(MDCInternalAPI::class)
+@OptIn(KMDCInternalAPI::class)
 private val Interactive by Sample(
   "Adds row selection, data loading and sorting to the mix"
 ) {

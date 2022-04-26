@@ -3,8 +3,8 @@ package dev.petuska.kmdc.textfield
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInternalAPI
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
@@ -119,7 +119,7 @@ public fun MDCTextField(
 }
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   value: String,
   options: MDCTextFieldOpts,

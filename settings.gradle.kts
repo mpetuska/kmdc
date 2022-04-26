@@ -7,8 +7,6 @@ refreshVersions { extraArtifactVersionKeyRules(file("versions.rules")) }
 
 rootProject.name = "KMDC"
 
-include(":test")
-
 fun includeModuleGroup(path: String) {
   rootDir.resolve(path).listFiles { file: File -> file.isDirectory && file.name.startsWith(path) }
     ?.map { ":$path:${it.name}" }?.forEach(::include)?.also { include(":$path") }

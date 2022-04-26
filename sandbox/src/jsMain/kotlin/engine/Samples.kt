@@ -8,12 +8,14 @@ import dev.petuska.kmdc.typography.MDCH5
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+data class Samples
 @SampleDsl
-data class Samples(
+constructor(
   val name: String,
   val description: String?,
   private val content: SampleRender
 ) {
+  @SampleDsl
   constructor(name: String, content: SampleRender) : this(name, null, content)
 
   companion object {

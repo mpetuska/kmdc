@@ -36,7 +36,7 @@ kotlin {
   sourceSets {
     named("commonTest") {
       dependencies {
-        implementation("dev.petuska:test")
+        implementation(kotlin("test"))
       }
     }
     named("jsMain") {
@@ -46,6 +46,11 @@ kotlin {
         implementation("app.softwork:routing-compose:_")
         implementation(devNpm("sass", "^1.42.1"))
         implementation(devNpm("sass-loader", "^12.3.0"))
+      }
+    }
+    all {
+      languageSettings {
+        optIn("kotlin.ExperimentalStdlibApi")
       }
     }
   }

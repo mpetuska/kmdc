@@ -1,5 +1,6 @@
 package dev.petuska.kmdc.core
 
+@MDCExternalAPI
 @JsModule("@material/base")
 public external object MDCBaseModule {
   public abstract class MDCComponent<F> {

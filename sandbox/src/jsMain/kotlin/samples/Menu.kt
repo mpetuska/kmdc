@@ -21,6 +21,7 @@ import org.jetbrains.compose.web.dom.Text
 
 private val SAMPLE_MENU = listOf("Menu Item 1", "Menu Item 2", "Menu Item 3")
 
+@EagerInitialization
 private val MenuSamples = Samples("MDCMenu") {
   Sample("Absolutely Positioned Menu") {
     MenuPositioned()

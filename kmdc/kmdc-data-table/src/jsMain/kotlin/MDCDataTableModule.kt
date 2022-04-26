@@ -4,11 +4,11 @@ package dev.petuska.kmdc.data.table
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
-import dev.petuska.kmdc.core.MDCInternalAPI
+import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
-@MDCInternalAPI
+@MDCExternalAPI
 @JsModule("@material/data-table")
 public external object MDCDataTableModule {
   public class MDCDataTable(element: Element) : MDCBaseModule.MDCComponent<dynamic> {

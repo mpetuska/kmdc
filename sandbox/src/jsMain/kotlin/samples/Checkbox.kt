@@ -10,6 +10,7 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
+@EagerInitialization
 private val CheckboxSamples = Samples("MDCCheckbox") {
   var checked by remember { mutableStateOf(false) }
   Sample("Default") {

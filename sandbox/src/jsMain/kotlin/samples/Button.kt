@@ -10,7 +10,8 @@ import local.sandbox.engine.Sample
 import local.sandbox.engine.Samples
 
 @Suppress("unused")
-private val ButtonSamples = Samples("MDCButton") {
+@EagerInitialization
+private val samples = Samples("MDCButton") {
   MDCButtonOpts.Type.values().forEach {
     Sample("$it") { _ ->
       var count by remember { mutableStateOf(0) }

@@ -33,6 +33,7 @@ import org.jetbrains.compose.web.attributes.forId
 import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
+@EagerInitialization
 private val DialogSamples = Samples("MDCDialog") {
   AlertDialog()
   SimpleDialog()

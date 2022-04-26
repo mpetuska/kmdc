@@ -9,15 +9,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import kotlinx.browser.window
 import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 import kotlin.reflect.KMutableProperty1
 
 public typealias Builder<T> = T.() -> Unit
-public typealias AttrsBuilder<T> = Builder<AttrsScope<T>>
+public typealias AttrsBuilder<T> = AttrBuilderContext<T>
 public typealias ComposableBuilder<T> = @Composable Builder<T>
-public typealias ContentBuilder<T> = ComposableBuilder<ElementScope<T>>
+public typealias ContentBuilder<T> = ContentBuilder<T>
 
 /**
  * Implies [ComposableBuilder] lambda as a parent [ContentBuilder] lambda, converting implicit [ElementScope]<[E]> to [T] via [unsafeCast].
@@ -25,7 +27,7 @@ public typealias ContentBuilder<T> = ComposableBuilder<ElementScope<T>>
  * @receiver lambda to rescope
  * @return rescoped lambda that implies [T] on invocation
  */
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <E : Element, T : ElementScope<E>> ComposableBuilder<T>.imply(): ContentBuilder<E> {
   return let { { unsafeCast<T>().it() } }
 }
@@ -36,7 +38,7 @@ public inline fun <E : Element, T : ElementScope<E>> ComposableBuilder<T>.imply(
  * @receiver scope to apply [block] to
  * @param block to imply and apply
  */
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noinline block: Builder<T>?) {
   block?.invoke(unsafeCast<T>())
 }
@@ -48,31 +50,31 @@ public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noin
  * @param block to imply and apply
  */
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(noinline block: ComposableBuilder<T>?) {
   block?.invoke(unsafeCast<T>())
 }
 
-@MDCInternalAPI
+@KMDCInternalAPI
 public abstract external class MDCEvent<T> : Event {
   public var detail: T
 }
 
-@MDCInternalAPI
+@KMDCInternalAPI
 private var Element.mdc: dynamic
   get() = asDynamic().mdc
   set(value) {
     asDynamic().mdc = value
   }
 
-@MDCInternalAPI
+@KMDCInternalAPI
 public fun <T> Element.mdc(action: Builder<T>? = null): T? = mdc.unsafeCast<T?>()?.also { action?.invoke(it) }
 
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T =
   js("({})").unsafeCast<T>().apply(builder)
 
-@MDCInternalAPI
+@KMDCInternalAPI
 public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initialiseMDC(
   mdcInit: (E) -> T,
   onDispose: Builder<T>? = null,
@@ -109,7 +111,7 @@ private val nextDomElementId: Int
  *
  * Guarantees 2^53-1 sequential IDs, good for 28 million IDs per second over a period of ten years.
  */
-@MDCInternalAPI
+@KMDCInternalAPI
 public fun uniqueDomElementId(): String = "kmdc-$nextDomElementId"
 
 /**
@@ -118,16 +120,16 @@ public fun uniqueDomElementId(): String = "kmdc-$nextDomElementId"
  * Guarantees 2^53-1 sequential IDs, good for 28 million IDs per second over a period of ten years.
  */
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
   remember { uniqueDomElementId() + (suffix?.let { "-$it" } ?: "") }
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
   effect: Builder<MDC>
@@ -139,7 +141,7 @@ public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
 }
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   value: V,
   setter: MDC.(V) -> Unit
@@ -150,7 +152,7 @@ public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffec
 }
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   value: V,
   property: KMutableProperty1<MDC, V>
