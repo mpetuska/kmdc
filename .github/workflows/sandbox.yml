@@ -110,7 +110,7 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
         run: ${{ github.event.inputs.command }}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) && always() }}
         with:
           name: publications-${{ runner.os }}
