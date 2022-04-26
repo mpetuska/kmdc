@@ -198,7 +198,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
 
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         if: ${{ matrix.repository.enabled == true }}
         with:
           name: publications-${{ runner.os }}
@@ -218,7 +218,7 @@ jobs:
     needs: [ build ]
     if: ${{ github.event.inputs.skipPages != 'y' }}
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: dokka
 
