@@ -15,6 +15,7 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
+@EagerInitialization
 private val TextFieldSamples = Samples("MDCTextField") {
   MDCTextFieldCommonOpts.Type.values().forEach { t ->
     Sample("$t") { name ->

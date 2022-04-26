@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInternalAPI
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -11,7 +11,7 @@ import org.jetbrains.compose.web.dom.I
 import org.w3c.dom.HTMLElement
 
 @Composable
-@MDCInternalAPI
+@KMDCInternalAPI
 internal fun MDCTextFieldScope.MDCTextFieldIcon(
   leading: Boolean,
   clickable: Boolean = false,

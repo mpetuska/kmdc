@@ -4,14 +4,13 @@
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="" />
+      <option name="scriptParameters" value="-t" />
       <option name="taskDescriptions">
         <list />
       </option>
       <option name="taskNames">
         <list>
           <option value="jsBrowserRun" />
-          <option value="-t" />
         </list>
       </option>
       <option name="vmOptions" />

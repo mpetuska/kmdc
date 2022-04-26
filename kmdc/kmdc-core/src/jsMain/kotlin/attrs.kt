@@ -6,12 +6,18 @@ import org.jetbrains.compose.web.attributes.AttrsScope
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
-@MDCInternalAPI
+@KMDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
   attr("aria-$key", "$value")
 }
 
-@MDCInternalAPI
+public typealias Classes = Collection<String>
+@KMDCInternalAPI
+public inline fun <T : Element> AttrsScope<T>.classes(classes: Classes) {
+  classes.forEach { classes(it) }
+}
+
+@KMDCInternalAPI
 public inline fun <T : HTMLElement> AttrsScope<T>.role(value: Any) {
   attr("role", "$value")
 }

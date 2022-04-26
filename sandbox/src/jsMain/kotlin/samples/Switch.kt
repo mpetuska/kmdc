@@ -18,6 +18,7 @@ import local.sandbox.engine.Samples
 import org.jetbrains.compose.web.attributes.disabled
 
 @Suppress("unused")
+@EagerInitialization
 private val SwitchSamples = Samples("MDCSwitch") {
   Sample("Initially Off") { name ->
     Render(name, false)

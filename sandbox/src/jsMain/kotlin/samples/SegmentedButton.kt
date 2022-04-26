@@ -14,6 +14,7 @@ import local.sandbox.engine.Samples
 import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
+@EagerInitialization
 private val SegmentedButtonSamples = Samples(
   name = "MDCSegmentedButton",
   description = "See custom event logs in the console"

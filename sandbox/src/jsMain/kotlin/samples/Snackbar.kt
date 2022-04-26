@@ -22,6 +22,7 @@ import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLElement
 
 @Suppress("unused")
+@EagerInitialization
 private val SnackbarSamples = Samples("MDCSnackbar") {
   MDCSnackbarOpts.Type.values().forEach { type ->
     Sample("$type") { name ->

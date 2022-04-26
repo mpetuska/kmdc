@@ -29,7 +29,7 @@ kotlin {
         // Be lazy and use the shortcut
         implementation("dev.petuska:kmdc:_")
         implementation("dev.petuska:kmdcx:_")
-        
+
         // Do some work and see dem gains
         implementation("dev.petuska:kmdc-button:_")
         implementation("dev.petuska:kmdc-radio:_")
@@ -60,7 +60,7 @@ the [sandbox](./sandbox/src/jsMain/kotlin/samples))
 @Composable
 fun Sample() {
   var checked by remember { mutableStateOf(false) } // Declaring controlled state
-  
+
   MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField component as recommended by MDC docs
     MDCCheckbox(
       checked = checked, // MDCCheckbox breaks regular args schema in favour of more convenient usage
@@ -114,7 +114,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-snackbar
 - [x] mdc-switch
 - [ ] mdc-tab-bar
-- [ ] mdc-tab-indicator
+- [x] mdc-tab-indicator
 - [ ] mdc-tab-scroller
 - [ ] mdc-tab
 - [x] mdc-textfield
@@ -158,6 +158,7 @@ KMDC project modules can be categorised into three groups:
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.
 
-> Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md#what-should-i-know-before-i-get-started)
+> Further details can be found
+> in [Contributing Guidelines](./docs/CONTRIBUTING.md#what-should-i-know-before-i-get-started)
 
 [material-components-web]: https://github.com/material-components/material-components-web/tree/v13.0.0

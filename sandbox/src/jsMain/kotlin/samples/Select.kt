@@ -21,6 +21,7 @@ import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
+@EagerInitialization
 private val SelectSamples = Samples("MDCSelect") {
   var selectedValue by remember { mutableStateOf(fruits[1]) }
   var isRequired by remember { mutableStateOf(false) }

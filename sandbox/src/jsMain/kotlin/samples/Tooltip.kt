@@ -14,6 +14,7 @@ import local.sandbox.engine.Samples
 import org.jetbrains.compose.web.dom.Text
 
 @Suppress("unused")
+@EagerInitialization
 private val TooltipSamples = Samples("MDCTooltip") {
   Simple()
   Rich()

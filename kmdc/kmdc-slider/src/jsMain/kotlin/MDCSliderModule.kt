@@ -2,11 +2,11 @@ package dev.petuska.kmdc.slider
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCEvent
-import dev.petuska.kmdc.core.MDCInternalAPI
+import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
-@MDCInternalAPI
+@MDCExternalAPI
 @JsModule("@material/slider")
 public external object MDCSliderModule {
   public class MDCSlider(element: Element) : MDCBaseModule.MDCComponent<dynamic> {

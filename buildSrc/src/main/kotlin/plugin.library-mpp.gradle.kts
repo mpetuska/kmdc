@@ -42,7 +42,7 @@ kotlin {
   sourceSets {
     commonTest {
       dependencies {
-        implementation(project(":test"))
+        implementation(kotlin("test"))
       }
     }
   }

@@ -21,7 +21,7 @@ import org.jetbrains.compose.web.css.justifyContent
 import org.jetbrains.compose.web.dom.Div
 
 @Suppress("unused")
-private val CircularProgressSamples = Samples("MDCCircularProgress") {
+private val samples = Samples("MDCCircularProgress") {
   Sample("Interactive", "Play around with various settings live") {
     var determinate by remember { mutableStateOf(false) }
     var closed by remember { mutableStateOf(false) }

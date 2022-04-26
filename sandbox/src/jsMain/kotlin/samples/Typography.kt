@@ -28,6 +28,7 @@ import org.jetbrains.compose.web.dom.Div
 import org.w3c.dom.HTMLDivElement
 
 @Suppress("unused")
+@EagerInitialization
 private val TypographySamples = Samples("Typography") {
   @Composable
   fun Render(content: ContentBuilder<HTMLDivElement>) {
