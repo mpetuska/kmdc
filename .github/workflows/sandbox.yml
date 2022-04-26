@@ -55,7 +55,7 @@ jobs:
             mingw-w64-x86_64-extra-cmake-modules
             mingw64/mingw-w64-x86_64-cyrus-sasl
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         if: ${{ startsWith(matrix.os.runner, github.event.inputs.runner) }}
 
       - name: Restore libmongoc cache
