@@ -81,7 +81,7 @@ publishing {
       pom {
         name by project.name
         url by "https://github.com/$ghOwnerId/${rootProject.name}"
-        description by project.description
+        description.set(provider { project.description })
 
         licenses {
           license {
