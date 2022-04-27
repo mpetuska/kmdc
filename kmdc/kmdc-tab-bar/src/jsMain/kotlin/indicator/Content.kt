@@ -35,3 +35,27 @@ public fun MDCTabIndicatorScope.Content(
     content = content
   )
 }
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ */
+@MDCDsl
+@Composable
+public fun MDCTabIndicatorScope.Icon(
+  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  content: ContentBuilder<HTMLSpanElement>? = null
+) {
+  Content(MDCTabIndicator.Icon, attrs, content)
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ */
+@MDCDsl
+@Composable
+public fun MDCTabIndicatorScope.Underline(
+  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  content: ContentBuilder<HTMLSpanElement>? = null
+) {
+  Content(MDCTabIndicator.Underline, attrs, content)
+}

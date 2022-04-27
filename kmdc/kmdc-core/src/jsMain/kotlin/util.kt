@@ -9,17 +9,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import kotlinx.browser.window
 import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 import kotlin.reflect.KMutableProperty1
 
 public typealias Builder<T> = T.() -> Unit
-public typealias AttrsBuilder<T> = AttrBuilderContext<T>
+public typealias AttrsBuilder<T> = org.jetbrains.compose.web.dom.AttrBuilderContext<T>
 public typealias ComposableBuilder<T> = @Composable Builder<T>
-public typealias ContentBuilder<T> = ContentBuilder<T>
+public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
 
 /**
  * Implies [ComposableBuilder] lambda as a parent [ContentBuilder] lambda, converting implicit [ElementScope]<[E]> to [T] via [unsafeCast].
@@ -54,6 +52,10 @@ public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noin
 public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(noinline block: ComposableBuilder<T>?) {
   block?.invoke(unsafeCast<T>())
 }
+
+@KMDCInternalAPI
+public inline fun <T : Element, E : ElementScope<T>> ComposableBuilder<E>?.reinterpret(): ContentBuilder<T>? =
+  this?.let { { unsafeCast<E>().it() } }
 
 @KMDCInternalAPI
 public abstract external class MDCEvent<T> : Event {

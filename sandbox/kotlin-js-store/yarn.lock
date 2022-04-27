@@ -485,6 +485,21 @@
     "@material/theme" "^13.0.0"
     tslib "^2.1.0"
 
+"@material/tab@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@material/tab/-/tab-13.0.0.tgz#3b616e1f1679977a943f8aba81c02746299a6028"
+  integrity sha512-7tziMFiyiFZner39h6ue6A6rfJhz8LDyeVPYfdAMe8ZO8GT+PczDr5yuectamR8fNBE7Fk9Bj/KvIOx+LjKgDg==
+  dependencies:
+    "@material/base" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/tab-indicator" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    tslib "^2.1.0"
+
 "@material/textfield@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/textfield/-/textfield-13.0.0.tgz#64cd2677ed954a0287b6e5b7b07dbdbf07328ef0"
