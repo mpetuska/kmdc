@@ -12,6 +12,7 @@ public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
 }
 
 public typealias Classes = Collection<String>
+
 @KMDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.classes(classes: Classes) {
   classes.forEach { classes(it) }

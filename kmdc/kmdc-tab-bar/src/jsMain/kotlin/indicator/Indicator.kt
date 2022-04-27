@@ -7,6 +7,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.tab.MDCTabBaseScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLSpanElement
@@ -25,7 +26,7 @@ public interface MDCTabIndicatorScope : ElementScope<HTMLSpanElement>
  */
 @MDCDsl
 @Composable
-public fun MDCTabIndicator(
+public fun MDCTabBaseScope.Indicator(
   active: Boolean = false,
   transition: MDCTabIndicatorTransition = MDCTabIndicatorTransition.Slide,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,

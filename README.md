@@ -113,10 +113,10 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-slider
 - [x] mdc-snackbar
 - [x] mdc-switch
-- [ ] mdc-tab-bar
+- [x] mdc-tab-bar
 - [x] mdc-tab-indicator
-- [ ] mdc-tab-scroller
-- [ ] mdc-tab
+- [x] mdc-tab-scroller
+- [x] mdc-tab
 - [x] mdc-textfield
 - [ ] mdc-theme (SASS)
 - [x] mdc-tokens (won't wrap)

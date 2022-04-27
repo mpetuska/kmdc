@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="sandbox [jsBrowserRun -t]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+  <configuration default="false" name="Start Sandbox" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="-t" />
+      <option name="scriptParameters" value="--continuous" />
       <option name="taskDescriptions">
         <list />
       </option>
