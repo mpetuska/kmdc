@@ -5,6 +5,8 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/menu"
+
 kotlin {
   sourceSets {
     named("jsMain") {

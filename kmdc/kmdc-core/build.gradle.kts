@@ -3,6 +3,8 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
+description = "Core internal KMDC utilities"
+
 kotlin {
   sourceSets {
     jsMain {
