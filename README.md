@@ -4,6 +4,8 @@
 
 # Kompose Material Design Components (KMDC)
 
+> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced each release.
+
 A set of Kotlin wrappers
 over [material-components-web@13.0.0][material-components-web]
 library providing Jetbrains Compose DSL for building beautiful WEB UIs. The API surface is identical to JS version,
