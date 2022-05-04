@@ -35,7 +35,7 @@ public class MDCMenuAttrsScope(scope: AttrsScope<HTMLDivElement>) : MDCMenuSurfa
 public class MDCMenuScope(scope: ElementScope<HTMLUListElement>) : MDCListScope<HTMLUListElement>(scope)
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu)
  */
 @MDCDsl
 @Composable

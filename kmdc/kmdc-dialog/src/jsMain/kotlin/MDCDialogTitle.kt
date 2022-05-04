@@ -12,7 +12,7 @@ import org.w3c.dom.HTMLHeadingElement
 public class MDCDialogTitleScope(scope: ElementScope<HTMLHeadingElement>) : ElementScope<HTMLHeadingElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable
@@ -24,7 +24,7 @@ public fun MDCDialogScope.MDCDialogTitle(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable
@@ -36,7 +36,7 @@ public fun MDCDialogScope.MDCDialogTitle(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable
@@ -48,7 +48,7 @@ public fun MDCDialogHeaderScope.MDCDialogTitle(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable

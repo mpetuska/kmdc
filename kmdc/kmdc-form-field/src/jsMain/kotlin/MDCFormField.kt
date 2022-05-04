@@ -41,7 +41,7 @@ public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-form-field)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-form-field)
  */
 @MDCDsl
 @Composable

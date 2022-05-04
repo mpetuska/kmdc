@@ -25,7 +25,7 @@ public class MDCSegmentedButtonScope(
   ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCDsl
 @Composable

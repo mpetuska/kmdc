@@ -26,7 +26,7 @@ public data class MDCLinearProgressOpts(
 public class MDCLinearProgressScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-linear-progress)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-linear-progress)
  */
 @MDCDsl
 @Composable

@@ -30,7 +30,7 @@ import org.w3c.dom.HTMLTableSectionElement
 public sealed interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionElement>
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -50,7 +50,7 @@ public fun MDCDataTableContainerScope.MDCDataTableBody(
 public sealed interface MDCDataTableRowScope : ElementScope<HTMLTableRowElement>
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -71,7 +71,7 @@ public fun MDCDataTableBodyScope.MDCDataTableRow(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -91,7 +91,7 @@ public fun MDCDataTableRowScope.MDCDataTableCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -104,7 +104,7 @@ public inline fun MDCDataTableRowScope.MDCDataTableCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -143,7 +143,7 @@ public fun MDCDataTableRowScope.MDCDataTableHeaderCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable

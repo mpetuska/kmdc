@@ -20,7 +20,7 @@ public data class MDCMenuSurfaceOpts(
 public open class MDCMenuSurfaceAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu-surface)
  */
 @MDCDsl
 @Composable

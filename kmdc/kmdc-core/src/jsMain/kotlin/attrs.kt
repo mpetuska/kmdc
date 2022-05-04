@@ -11,6 +11,11 @@ public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
   attr("aria-$key", "$value")
 }
 
+@KMDCInternalAPI
+public inline fun <T : Element> AttrsScope<T>.data(key: String, value: Any) {
+  attr("data-$key", "$value")
+}
+
 public typealias Classes = Collection<String>
 
 @KMDCInternalAPI

@@ -22,7 +22,7 @@ public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElemen
   ElementScope<HTMLButtonElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCDsl
 @Composable
@@ -61,7 +61,7 @@ public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCDsl
 @Composable

@@ -24,7 +24,7 @@ public data class MDCRadioOpts(
 )
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-radio)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
 @MDCDsl
 @Composable
@@ -37,7 +37,7 @@ public fun MDCRadio(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-radio)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
 @MDCDsl
 @Composable

@@ -16,7 +16,7 @@ import org.w3c.dom.HTMLHeadingElement
 public class MDCDrawerHeaderScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -34,7 +34,7 @@ public fun MDCDrawerScope.MDCDrawerHeader(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -44,7 +44,7 @@ public fun MDCDrawerScope.MDCDrawerHeader(
 ): Unit = MDCDrawerHeader(attrs) { Text(text) }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -62,7 +62,7 @@ public fun MDCDrawerScope.MDCDrawerTitle(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -72,7 +72,7 @@ public fun MDCDrawerScope.MDCDrawerTitle(
 ): Unit = MDCDrawerTitle(attrs) { Text(text) }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -90,7 +90,7 @@ public fun MDCDrawerScope.MDCDrawerSubtitle(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable

@@ -35,7 +35,7 @@ public class MDCDialogScope(
 ) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable
@@ -81,7 +81,7 @@ public fun MDCDialog(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
 public fun AttrsScope<out HTMLElement>.mdcDialogInitialFocus() {

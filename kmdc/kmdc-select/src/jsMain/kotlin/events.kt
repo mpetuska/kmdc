@@ -5,7 +5,7 @@ import dev.petuska.kmdc.core.mdc
 import org.w3c.dom.Element
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
 @MDCAttrsDsl
 public fun <T> MDCSelectAttrsScope<T>.onChange(listener: (value: T) -> Unit) {

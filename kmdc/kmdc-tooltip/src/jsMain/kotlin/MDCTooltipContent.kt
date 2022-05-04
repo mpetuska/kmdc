@@ -13,7 +13,7 @@ public class MDCTooltipRichContentScope(scope: ElementScope<HTMLParagraphElement
   ElementScope<HTMLParagraphElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tooltip)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
 @MDCDsl
 @Composable
@@ -31,7 +31,7 @@ public fun MDCRichTooltipScope.MDCTooltipContent(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tooltip)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
 @MDCDsl
 @Composable

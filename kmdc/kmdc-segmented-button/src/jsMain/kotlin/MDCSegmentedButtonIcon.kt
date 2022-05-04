@@ -10,7 +10,7 @@ import org.jetbrains.compose.web.dom.I
 import org.w3c.dom.HTMLElement
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
 public fun AttrsScope<HTMLElement>.mdcSegmentedButtonIcon() {
@@ -18,7 +18,7 @@ public fun AttrsScope<HTMLElement>.mdcSegmentedButtonIcon() {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCDsl
 @Composable

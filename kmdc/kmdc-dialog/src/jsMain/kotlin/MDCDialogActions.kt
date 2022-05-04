@@ -17,7 +17,7 @@ import org.w3c.dom.HTMLElement
 public class MDCDialogActionsScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @Suppress("unused")
 @MDCDsl
@@ -36,7 +36,7 @@ public fun MDCDialogScope.MDCDialogActions(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @Suppress("unused")
 @MDCDsl
@@ -58,7 +58,7 @@ public fun MDCDialogActionsScope.MDCDialogActionButton(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
 public fun AttrsScope<out HTMLButtonElement>.mdcDialogButtonDefault() {
@@ -67,7 +67,7 @@ public fun AttrsScope<out HTMLButtonElement>.mdcDialogButtonDefault() {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
 public fun AttrsScope<out HTMLButtonElement>.mdcDialogAction(action: String) {
@@ -76,7 +76,7 @@ public fun AttrsScope<out HTMLButtonElement>.mdcDialogAction(action: String) {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
 public fun AttrsScope<out HTMLElement>.mdcDialogAction(action: String) {

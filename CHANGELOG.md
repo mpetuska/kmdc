@@ -9,13 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Build Versions
+### Verified Versions
 
 - JDK: 11+
-- Kotlin: 1.6.10
-- Compose: 1.0.1
+- Kotlin: 1.6.21
+- Compose: 1.2.0-alpha01-dev675
 
 ### Added
+
+- [x] mdc-chips
 
 ### Changed
 
@@ -25,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.3]
 
-### Build Versions
+### Verified Versions
 
 - JDK: 11+
 - Kotlin: 1.6.21
@@ -53,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.2] - 2021-12-28
 
-### Build Versions
+### Verified Versions
 
 - JDK: 11+
 - Kotlin: 1.6.10
@@ -83,7 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.1] - 2021-11-21
 
-### Build Versions
+### Verified Versions
 
 - JDK: 11+
 - Kotlin: 1.5.31

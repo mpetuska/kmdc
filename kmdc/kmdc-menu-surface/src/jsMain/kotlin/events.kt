@@ -3,7 +3,7 @@ package dev.petuska.kmdc.menu.surface
 import dev.petuska.kmdc.core.MDCAttrsDsl
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-menu-surface)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu-surface)
  */
 @MDCAttrsDsl
 public fun MDCMenuSurfaceAttrsScope.onClosed(listener: (event: MDCMenuSurfaceModule.MDCMenuSurfaceEvent) -> Unit) {

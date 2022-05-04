@@ -11,7 +11,7 @@ import org.w3c.dom.HTMLDivElement
 public class MDCTopAppBarRowScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-top-app-bar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
 @MDCDsl
 @Composable

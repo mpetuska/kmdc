@@ -5,7 +5,7 @@ import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
 @Composable
 internal fun <T> MDCSelectLabel(
@@ -36,7 +36,7 @@ internal fun <T> MDCSelectLabel(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
 @Composable
 private fun MDCSelectFloatingLabel(id: String, label: String) {

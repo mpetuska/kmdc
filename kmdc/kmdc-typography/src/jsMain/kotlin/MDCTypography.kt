@@ -40,7 +40,7 @@ public enum class MDCTypographyStyle(public val style: String) {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCAttrsDsl
 public fun AttrsScope<*>.mdcTypography() {
@@ -48,7 +48,7 @@ public fun AttrsScope<*>.mdcTypography() {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -69,7 +69,7 @@ private fun <T : HTMLElement> MDCText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -79,7 +79,7 @@ public fun MDCH1(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -89,7 +89,7 @@ public fun MDCH2(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -99,7 +99,7 @@ public fun MDCH3(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -109,7 +109,7 @@ public fun MDCH4(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -119,7 +119,7 @@ public fun MDCH5(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -129,7 +129,7 @@ public fun MDCH6(text: String, attrs: AttrBuilderContext<HTMLHeadingElement>? = 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -139,7 +139,7 @@ public fun MDCSubtitle1(text: String, attrs: AttrBuilderContext<HTMLHeadingEleme
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -149,7 +149,7 @@ public fun MDCSubtitle2(text: String, attrs: AttrBuilderContext<HTMLHeadingEleme
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -159,7 +159,7 @@ public fun MDCBody1(text: String, attrs: AttrBuilderContext<HTMLParagraphElement
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -169,7 +169,7 @@ public fun MDCBody2(text: String, attrs: AttrBuilderContext<HTMLParagraphElement
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -179,7 +179,7 @@ public fun MDCCaption(text: String, attrs: AttrBuilderContext<HTMLSpanElement>? 
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable
@@ -189,7 +189,7 @@ public fun MDCButtonText(text: String, attrs: AttrBuilderContext<HTMLSpanElement
   }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-typography)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-typography)
  */
 @MDCDsl
 @Composable

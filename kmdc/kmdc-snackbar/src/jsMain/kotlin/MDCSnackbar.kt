@@ -31,7 +31,7 @@ public data class MDCSnackbarOpts(
 public class MDCSnackbarScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCDsl
 @Composable

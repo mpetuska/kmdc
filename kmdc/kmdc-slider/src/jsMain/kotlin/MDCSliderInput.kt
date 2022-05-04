@@ -14,7 +14,7 @@ import org.jetbrains.compose.web.attributes.step
 import org.jetbrains.compose.web.dom.Input
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-slider)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
 @MDCDsl
 @Composable

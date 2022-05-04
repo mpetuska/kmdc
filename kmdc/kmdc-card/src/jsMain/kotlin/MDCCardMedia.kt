@@ -21,7 +21,7 @@ public data class MDCCardMediaOpts(var type: Type = Type.Free) {
 public class MDCCardMediaScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -42,7 +42,7 @@ public fun MDCCardScope.MDCCardMedia(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
