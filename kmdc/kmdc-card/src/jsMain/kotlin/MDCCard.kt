@@ -22,7 +22,7 @@ public data class MDCCardOpts(var type: Type = Type.Elevated) {
 public class MDCCardScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable

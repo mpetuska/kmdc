@@ -19,7 +19,7 @@ import org.w3c.dom.HTMLButtonElement
 private external val MDCSwitchCSS: dynamic
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-switch)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-switch)
  */
 @OptIn(ExperimentalComposeWebSvgApi::class)
 @MDCDsl

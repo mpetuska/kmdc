@@ -12,7 +12,7 @@ private external object SegmentedButtonModuleConstants {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
 public fun MDCSegmentedButtonAttrsScope.onSegmentSelected(
@@ -24,7 +24,7 @@ public fun MDCSegmentedButtonAttrsScope.onSegmentSelected(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
 public fun MDCSegmentedButtonAttrsScope.onSegmentChange(
@@ -45,7 +45,7 @@ private external object SegmentModuleConstants {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
 public fun MDCSegmentedButtonSegmentAttrsScope.onSegmentSelected(
@@ -57,7 +57,7 @@ public fun MDCSegmentedButtonSegmentAttrsScope.onSegmentSelected(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
 public fun MDCSegmentedButtonSegmentAttrsScope.onSegmentClick(

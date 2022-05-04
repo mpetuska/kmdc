@@ -31,7 +31,7 @@ public data class MDCButtonOpts(
 public class MDCButtonScope(scope: ElementScope<HTMLButtonElement>) : ElementScope<HTMLButtonElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button)
  */
 @MDCDsl
 @Composable
@@ -55,7 +55,7 @@ public fun MDCButton(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button)
  */
 @MDCDsl
 @Composable

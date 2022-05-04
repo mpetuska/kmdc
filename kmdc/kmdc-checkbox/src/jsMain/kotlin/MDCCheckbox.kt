@@ -52,7 +52,7 @@ public fun MDCCheckbox(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-checkbox)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
  */
 @MDCDsl
 @Composable
@@ -84,7 +84,7 @@ public fun MDCCheckbox(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-checkbox)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
  */
 @MDCDsl
 @Composable

@@ -6,7 +6,7 @@ import org.jetbrains.compose.web.attributes.AttrsScope
 import org.w3c.dom.HTMLElement
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCAttrsDsl
 public inline fun AttrsScope<HTMLElement>.onSnackbarOpening(
@@ -18,7 +18,7 @@ public inline fun AttrsScope<HTMLElement>.onSnackbarOpening(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCAttrsDsl
 public inline fun AttrsScope<HTMLElement>.onSnackbarOpened(
@@ -30,7 +30,7 @@ public inline fun AttrsScope<HTMLElement>.onSnackbarOpened(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCAttrsDsl
 public inline fun AttrsScope<HTMLElement>.onSnackbarClosing(
@@ -42,7 +42,7 @@ public inline fun AttrsScope<HTMLElement>.onSnackbarClosing(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCAttrsDsl
 public inline fun AttrsScope<HTMLElement>.onSnackbarClosed(

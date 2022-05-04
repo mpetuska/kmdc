@@ -26,7 +26,7 @@ public data class MDCListItemOpts(
 public open class MDCListItemScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -55,7 +55,7 @@ public fun MDCListScope<HTMLUListElement>.MDCListItem(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -84,7 +84,7 @@ public fun MDCListScope<HTMLElement>.MDCListItem(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -99,7 +99,7 @@ public fun MDCListItemScope<*>.MDCListItemGraphic(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable

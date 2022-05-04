@@ -3,7 +3,7 @@ package dev.petuska.kmdc.data.table
 import dev.petuska.kmdc.core.MDCAttrsDsl
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: (event: MDCDataTableModule.MDCRowSelectionChangedEvent) -> Unit) {
@@ -13,7 +13,7 @@ public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: (event: MDCDat
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onRowClick(listener: (event: MDCDataTableModule.MDCRowClickEvent) -> Unit) {
@@ -23,7 +23,7 @@ public fun MDCDataTableAttrsScope.onRowClick(listener: (event: MDCDataTableModul
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onSelectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
@@ -33,7 +33,7 @@ public fun MDCDataTableAttrsScope.onSelectedAll(listener: (event: MDCDataTableMo
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onUnselectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
@@ -43,7 +43,7 @@ public fun MDCDataTableAttrsScope.onUnselectedAll(listener: (event: MDCDataTable
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onSorted(listener: (event: MDCDataTableModule.MDCSortedEvent) -> Unit) {

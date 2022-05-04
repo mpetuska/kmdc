@@ -40,7 +40,7 @@ public data class MDCDrawerOpts(
 public class MDCDrawerScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -64,7 +64,7 @@ public fun MDCDrawer(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCDsl
 @Composable
@@ -82,7 +82,7 @@ public fun MDCDrawerScrim(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-drawer)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
 @MDCAttrsDsl
 public fun AttrsScope<*>.mdcDrawerAppContent() {

@@ -22,7 +22,7 @@ import org.w3c.dom.HTMLDivElement
 public class MDCSnackbarActionsScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCDsl
 @Composable
@@ -41,7 +41,7 @@ public fun MDCSnackbarScope.MDCSnackbarActions(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCDsl
 @Composable
@@ -62,7 +62,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCDsl
 @Composable
@@ -75,7 +75,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-snackbar)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
 @MDCDsl
 @Composable

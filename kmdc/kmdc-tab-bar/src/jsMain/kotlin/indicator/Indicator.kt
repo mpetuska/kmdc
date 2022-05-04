@@ -22,7 +22,7 @@ public enum class MDCTabIndicatorTransition(public val classes: Classes = listOf
 public interface MDCTabIndicatorScope : ElementScope<HTMLSpanElement>
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
 @MDCDsl
 @Composable

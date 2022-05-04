@@ -24,7 +24,7 @@ public class MDCIconButtonScope(scope: ElementScope<HTMLButtonElement>) : Elemen
 public class MDCIconLinkScope(scope: ElementScope<HTMLAnchorElement>) : ElementScope<HTMLAnchorElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-icon-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
 @MDCDsl
 @Composable
@@ -49,7 +49,7 @@ public fun MDCIconButton(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-icon-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
 @MDCDsl
 @Composable

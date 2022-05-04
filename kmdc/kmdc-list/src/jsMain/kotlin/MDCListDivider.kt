@@ -22,7 +22,7 @@ public class MDCListDividerOpts(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -43,7 +43,7 @@ public fun MDCListScope<*>.MDCListDivider(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable

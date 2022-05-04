@@ -11,10 +11,11 @@ import org.jetbrains.compose.web.dom.H2
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLHeadingElement
 
-public class MDCDialogHeaderScope(scope: ElementScope<HTMLHeadingElement>, internal val titleId: String) : ElementScope<HTMLHeadingElement> by scope
+public class MDCDialogHeaderScope(scope: ElementScope<HTMLHeadingElement>, internal val titleId: String) :
+  ElementScope<HTMLHeadingElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCDsl
 @Composable
@@ -32,7 +33,7 @@ public fun MDCDialogScope.MDCDialogHeader(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-dialog)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @Suppress("unused")
 @MDCDsl

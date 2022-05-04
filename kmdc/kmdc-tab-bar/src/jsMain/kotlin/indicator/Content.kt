@@ -16,7 +16,7 @@ public enum class MDCTabIndicator(public val classes: Classes = listOf()) {
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
 @MDCDsl
 @Composable
@@ -37,7 +37,7 @@ public fun MDCTabIndicatorScope.Content(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
 @MDCDsl
 @Composable
@@ -49,7 +49,7 @@ public fun MDCTabIndicatorScope.Icon(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-indicator)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
 @MDCDsl
 @Composable

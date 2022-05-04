@@ -33,7 +33,7 @@ import org.w3c.dom.HTMLTableRowElement
 public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowElement>
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -53,7 +53,7 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -75,7 +75,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -88,7 +88,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable
@@ -121,7 +121,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-data-table)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCDsl
 @Composable

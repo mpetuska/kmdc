@@ -14,7 +14,7 @@ import org.w3c.dom.HTMLSpanElement
 public class MDCListItemTextScope(scope: ElementScope<HTMLSpanElement>) : ElementScope<HTMLSpanElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -29,7 +29,7 @@ public fun MDCListItemScope<*>.MDCListItemText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -41,7 +41,7 @@ public fun MDCListItemScope<*>.MDCListItemText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -56,7 +56,7 @@ public fun MDCListItemTextScope.MDCListItemPrimaryText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -68,7 +68,7 @@ public fun MDCListItemTextScope.MDCListItemPrimaryText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable
@@ -83,7 +83,7 @@ public fun MDCListItemTextScope.MDCListItemSecondaryText(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-deprecated-list)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
 @MDCDsl
 @Composable

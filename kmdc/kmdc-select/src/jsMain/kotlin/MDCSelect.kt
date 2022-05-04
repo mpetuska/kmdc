@@ -56,7 +56,7 @@ public data class MDCSelectOpts<T>(
 public class MDCSelectAttrsScope<T>(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
 @MDCDsl
 @Composable

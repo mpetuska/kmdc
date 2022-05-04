@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLSpanElement
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button)
  */
 @MDCDsl
 @Composable
@@ -27,7 +27,7 @@ public fun MDCButtonScope.MDCButtonLabel(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-button)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button)
  */
 @MDCDsl
 @Composable

@@ -18,7 +18,7 @@ private external val MDCTabScrollerCSS: dynamic
 public interface MDCTabScrollerScope : ElementScope<HTMLDivElement>
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-scroller)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-scroller)
  */
 @MDCDsl
 @Composable

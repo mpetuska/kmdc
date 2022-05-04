@@ -27,7 +27,7 @@ public data class MDCCardActionsOpts(var type: Type = Type.Normal) {
 public class MDCCardActionsScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -47,7 +47,7 @@ public fun MDCCardScope.MDCCardActions(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -65,7 +65,7 @@ public fun MDCCardActionsScope.MDCCardActionButtons(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -83,7 +83,7 @@ public fun MDCCardActionsScope.MDCCardActionButton(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -101,7 +101,7 @@ public fun MDCCardActionsScope.MDCCardActionIcons(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
@@ -119,7 +119,7 @@ public fun MDCCardActionsScope.MDCCardActionIconButton(
 }
 
 /**
- * [JS API](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card)
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
 @MDCDsl
 @Composable
