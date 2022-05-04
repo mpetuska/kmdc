@@ -4,7 +4,9 @@
 
 # Kompose Material Design Components (KMDC)
 
-A set of kotlin wrappers
+> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced each release.
+
+A set of Kotlin wrappers
 over [material-components-web@13.0.0][material-components-web]
 library providing Jetbrains Compose DSL for building beautiful WEB UIs. The API surface is identical to JS version,
 except for few places where slight adjustments are made to make it more fluid for compose.
@@ -48,9 +50,9 @@ is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`). Most of the comp
 order schema:
 
 1. `opts: (MDCComponentOpts.() -> Unit)? = null` - MDC-specific options overrides
-2. `attrs: (ArrtsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
+2. `attrs: (AttrsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
    element
-3. `content: (ElementBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying
+3. `content: (ComposableBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying
    HTML element
 
 Here's a quick peek how these things come together (more samples can be found in
@@ -64,7 +66,7 @@ fun Sample() {
   MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField component as recommended by MDC docs
     MDCCheckbox(
       checked = checked, // MDCCheckbox breaks regular args schema in favour of more convenient usage
-      opts = { label = it }, // Overriding MDCCheckbox-specific options
+      label = "MDCCheckbox",
       attrs = { onClick { checked = !checked } } // Overriding underlying HTMLInput element attributes
     ) // MDCCheckbox doesn't allow for additional inner content
   }
