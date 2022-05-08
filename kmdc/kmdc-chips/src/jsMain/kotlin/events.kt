@@ -1,33 +1,26 @@
 package dev.petuska.kmdc.chips
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEvent
+import dev.petuska.kmdc.core.MDCEventHandler
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
 @MDCAttrsDsl
-public fun MDCChipsAttrsScope.onInteraction(listener: (event: MDCChipsModule.MDCChipSet.InteractionEvent) -> Unit) {
-  addEventListener("MDCChipSet:interaction") {
-    listener(it.nativeEvent.unsafeCast<MDCChipsModule.MDCChipSet.InteractionEvent>())
-  }
-}
+public val onInteraction: MDCEventHandler<MDCChipsAttrsScope, MDCChipsModule.MDCChipSet.InteractionEventDetail> =
+  MDCEvent("MDCChipSet:interaction")
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
 @MDCAttrsDsl
-public fun MDCChipsAttrsScope.onRemoval(listener: (event: MDCChipsModule.MDCChipSet.RemovalEvent) -> Unit) {
-  addEventListener("MDCChipSet:removal") {
-    listener(it.nativeEvent.unsafeCast<MDCChipsModule.MDCChipSet.RemovalEvent>())
-  }
-}
+public val onRemoval: MDCEventHandler<MDCChipsAttrsScope, MDCChipsModule.MDCChipSet.RemovalEventDetail> =
+  MDCEvent("MDCChipSet:removal")
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
 @MDCAttrsDsl
-public fun MDCChipsAttrsScope.onSelection(listener: (event: MDCChipsModule.MDCChipSet.SelectionEvent) -> Unit) {
-  addEventListener("MDCChipSet:selection") {
-    listener(it.nativeEvent.unsafeCast<MDCChipsModule.MDCChipSet.SelectionEvent>())
-  }
-}
+public val onSelection: MDCEventHandler<MDCChipsAttrsScope, MDCChipsModule.MDCChipSet.SelectionEventDetail> =
+  MDCEvent("MDCChipSet:selection")

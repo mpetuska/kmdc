@@ -1,4 +1,4 @@
-package local.sandbox.engine
+package engine
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -9,7 +9,6 @@ import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
-import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.typography.MDCCaption
 import dev.petuska.kmdc.typography.MDCH6
 import dev.petuska.kmdcx.icons.MDCIcon
@@ -33,9 +32,10 @@ import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Hr
 import org.w3c.dom.HTMLHeadingElement
+import samples.SamplesScope
 
 @Composable
-fun MDCLayoutGridCellsScope.NamedCell(
+fun SamplesScope.NamedCell(
   name: String?,
   description: String? = null,
   span: UInt = 6u,
@@ -45,7 +45,7 @@ fun MDCLayoutGridCellsScope.NamedCell(
       attrs
     )
   },
-  content: SampleRender
+  content: @Composable SamplesScope.() -> Unit
 ) {
   var collapsed by remember { mutableStateOf(false) }
   MDCLayoutGridCell({ this.span = span }, attrs = {

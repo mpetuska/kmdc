@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.segmented.button
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.w3c.dom.Element
 
@@ -41,14 +40,9 @@ public external object MDCSegmentedButtonModule {
     public fun getSegmentId(): dynamic
   }
 
-  public interface SegmentDetail {
+  public interface MDCSegmentedButtonEventDetail {
     public val index: Number
     public val selected: Boolean
     public val segmentId: String?
   }
-
-  public class MDCSegmentedButtonEvent : MDCEvent<SegmentDetail>
-
-  public class MDCSegmentedButtonSegmentEvent : MDCEvent<SegmentDetail>
-  public class MDCSegmentedButtonSegmentClickEvent : MDCEvent<Number>
 }

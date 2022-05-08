@@ -40,6 +40,7 @@ kotlin {
       }
     }
     named("jsMain") {
+      kotlin.srcDir("src/jsMain/samples")
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")

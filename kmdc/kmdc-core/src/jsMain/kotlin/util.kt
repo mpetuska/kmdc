@@ -11,7 +11,6 @@ import kotlinx.browser.window
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
-import org.w3c.dom.events.Event
 import kotlin.reflect.KMutableProperty1
 
 public typealias Builder<T> = T.() -> Unit
@@ -20,14 +19,14 @@ public typealias ComposableBuilder<T> = @Composable Builder<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
 
 /**
- * Implies [ComposableBuilder] lambda as a parent [ContentBuilder] lambda, converting implicit [ElementScope]<[E]> to [T] via [unsafeCast].
+ * Reinterprets [ComposableBuilder] lambda as a parent [ContentBuilder] lambda, converting implicit [ElementScope]<[E]> to [S] via [unsafeCast].
  * This should only be used for controlled scope types which do not have any member properties or functions.
- * @receiver lambda to rescope
- * @return rescoped lambda that implies [T] on invocation
+ * @receiver lambda to reinterpret
+ * @return reinterpreted lambda that implies [S] on invocation
  */
 @KMDCInternalAPI
-public inline fun <E : Element, T : ElementScope<E>> ComposableBuilder<T>.imply(): ContentBuilder<E> {
-  return let { { unsafeCast<T>().it() } }
+public inline fun <E : Element, S : ElementScope<E>> ComposableBuilder<S>?.reinterpret(): ContentBuilder<E>? {
+  return this?.let { { unsafeCast<S>().it() } }
 }
 
 /**
@@ -51,15 +50,6 @@ public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noin
 @KMDCInternalAPI
 public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(noinline block: ComposableBuilder<T>?) {
   block?.invoke(unsafeCast<T>())
-}
-
-@KMDCInternalAPI
-public inline fun <T : Element, E : ElementScope<T>> ComposableBuilder<E>?.reinterpret(): ContentBuilder<T>? =
-  this?.let { { unsafeCast<E>().it() } }
-
-@KMDCInternalAPI
-public abstract external class MDCEvent<T> : Event {
-  public var detail: T
 }
 
 @KMDCInternalAPI
@@ -95,16 +85,17 @@ public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initia
   }
 }
 
+internal val kmdcCounterKey = "_kmdcCounter" // NEVER EVER CHANGE THIS
+
 /**
  * We're hooking it up to global context to avoid duplicate counters
  * in case multiple kmdc versions somehow make it into the same project
  */
 private val nextDomElementId: Int
   get() {
-    val key = "_kmdcCounter" // NEVER EVER CHANGE THIS
     val dynamicWindow = window.asDynamic()
-    val next = (dynamicWindow[key] ?: 0) + 1
-    dynamicWindow[key] = next
+    val next = (dynamicWindow[kmdcCounterKey] ?: 0) + 1
+    dynamicWindow[kmdcCounterKey] = next
     return next.unsafeCast<Int>()
   }
 

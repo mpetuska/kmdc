@@ -1,4 +1,4 @@
-package local.sandbox.engine
+package engine
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -11,7 +11,6 @@ import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.layout.grid.MDCLayoutGrid
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCells
-import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.typography.MDCH1
 import dev.petuska.kmdc.typography.mdcTypography
 import org.jetbrains.compose.web.css.AlignItems
@@ -35,14 +34,18 @@ import org.jetbrains.compose.web.css.paddingRight
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.textAlign
 import org.jetbrains.compose.web.dom.Div
+import samples.Samples
+import samples.SamplesScope
+import samples.allSamples
 
 @Composable
 fun Sandbox() {
   Header()
   var enabledSamples by remember { mutableStateOf(setOf<Samples>()) }
+  val samplesMap = remember { allSamples.associateBy(Samples::name) }
   HashRouter(initRoute = "") {
     (parameters?.map?.get("sample") ?: listOf())
-      .mapNotNull { name -> Samples.all.firstOrNull { it.name == name } }
+      .mapNotNull { name -> samplesMap[name] }
       .toSet()
       .let { enabledSamples = it }
     noMatch {
@@ -70,7 +73,7 @@ private fun Header() {
 }
 
 @Composable
-private fun MDCLayoutGridCellsScope.SamplesList(
+private fun SamplesScope.SamplesList(
   parameters: Map<String, List<String>>?,
   enabledSamples: Collection<Samples>
 ) {
@@ -84,7 +87,7 @@ private fun MDCLayoutGridCellsScope.SamplesList(
         flexWrap(FlexWrap.Wrap)
       }
     }) {
-      Samples.all.forEach { sample ->
+      allSamples.forEach { sample ->
         MDCFormField(attrs = {
           style {
             paddingRight(1.em)
@@ -124,11 +127,11 @@ private fun MDCLayoutGridCellsScope.SamplesList(
 }
 
 @Composable
-private fun MDCLayoutGridCellsScope.SamplesView(enabledSamples: Collection<Samples>) {
+private fun SamplesScope.SamplesView(enabledSamples: Collection<Samples>) {
   MDCLayoutGridCell({ span = 12u }) {
     MDCLayoutGrid {
       MDCLayoutGridCells {
-        enabledSamples.forEach { sample -> with(sample) { invoke() } }
+        enabledSamples.forEach { sample -> with(sample) { render() } }
       }
     }
   }

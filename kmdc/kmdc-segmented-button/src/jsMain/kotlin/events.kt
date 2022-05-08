@@ -1,7 +1,11 @@
 package dev.petuska.kmdc.segmented.button
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEvent
+import dev.petuska.kmdc.core.MDCEventHandler
+import dev.petuska.kmdc.core.MDCExternalAPI
 
+@MDCExternalAPI
 @JsModule("@material/segmented-button/segmented-button/constants")
 private external object SegmentedButtonModuleConstants {
   @Suppress("ClassName")
@@ -15,25 +19,15 @@ private external object SegmentedButtonModuleConstants {
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
-public fun MDCSegmentedButtonAttrsScope.onSegmentSelected(
-  listener: (event: MDCSegmentedButtonModule.MDCSegmentedButtonEvent) -> Unit
-) {
-  addEventListener(SegmentedButtonModuleConstants.events.SELECTED) {
-    listener(it.nativeEvent.unsafeCast<MDCSegmentedButtonModule.MDCSegmentedButtonEvent>())
-  }
-}
+public val onSegmentSelected: MDCEventHandler<MDCSegmentedButtonAttrsScope, MDCSegmentedButtonModule.MDCSegmentedButtonEventDetail> =
+  MDCEvent(SegmentedButtonModuleConstants.events.SELECTED)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
-public fun MDCSegmentedButtonAttrsScope.onSegmentChange(
-  listener: (event: MDCSegmentedButtonModule.MDCSegmentedButtonEvent) -> Unit
-) {
-  addEventListener(SegmentedButtonModuleConstants.events.CHANGE) {
-    listener(it.nativeEvent.unsafeCast<MDCSegmentedButtonModule.MDCSegmentedButtonEvent>())
-  }
-}
+public val onSegmentChange: MDCEventHandler<MDCSegmentedButtonAttrsScope, MDCSegmentedButtonModule.MDCSegmentedButtonEventDetail> =
+  MDCEvent(SegmentedButtonModuleConstants.events.CHANGE)
 
 @JsModule("@material/segmented-button/segment/constants")
 private external object SegmentModuleConstants {
@@ -48,22 +42,12 @@ private external object SegmentModuleConstants {
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
-public fun MDCSegmentedButtonSegmentAttrsScope.onSegmentSelected(
-  listener: (event: MDCSegmentedButtonModule.MDCSegmentedButtonSegmentEvent) -> Unit
-) {
-  addEventListener(SegmentModuleConstants.events.SELECTED) {
-    listener(it.nativeEvent.unsafeCast<MDCSegmentedButtonModule.MDCSegmentedButtonSegmentEvent>())
-  }
-}
+public val onSelected: MDCEventHandler<MDCSegmentedButtonSegmentAttrsScope, MDCSegmentedButtonModule.MDCSegmentedButtonEventDetail> =
+  MDCEvent(SegmentModuleConstants.events.SELECTED)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
 @MDCAttrsDsl
-public fun MDCSegmentedButtonSegmentAttrsScope.onSegmentClick(
-  listener: (event: MDCSegmentedButtonModule.MDCSegmentedButtonSegmentClickEvent) -> Unit
-) {
-  addEventListener(SegmentModuleConstants.events.CLICK) {
-    listener(it.nativeEvent.unsafeCast<MDCSegmentedButtonModule.MDCSegmentedButtonSegmentClickEvent>())
-  }
-}
+public val onClicked: MDCEventHandler<MDCSegmentedButtonSegmentAttrsScope, Number> =
+  MDCEvent(SegmentModuleConstants.events.CLICK)

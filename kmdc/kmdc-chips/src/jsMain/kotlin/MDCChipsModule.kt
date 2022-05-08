@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.chips
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 
@@ -21,23 +20,17 @@ public external object MDCChipsModule {
       public fun removeChip(index: Int): Boolean
     }
 
-    public class InteractionEvent : MDCEvent<InteractionEvent.Detail> {
-      public interface Detail {
-        public val chipID: String
-        public val chipIndex: Int
-      }
+    public interface InteractionEventDetail {
+      public val chipID: String
+      public val chipIndex: Int
     }
 
-    public class RemovalEvent : MDCEvent<RemovalEvent.Detail> {
-      public interface Detail : InteractionEvent.Detail {
-        public val isComplete: Boolean
-      }
+    public interface RemovalEventDetail : InteractionEventDetail {
+      public val isComplete: Boolean
     }
 
-    public class SelectionEvent : MDCEvent<SelectionEvent.Detail> {
-      public interface Detail : InteractionEvent.Detail {
-        public val isSelected: Boolean
-      }
+    public interface SelectionEventDetail : InteractionEventDetail {
+      public val isSelected: Boolean
     }
   }
 }

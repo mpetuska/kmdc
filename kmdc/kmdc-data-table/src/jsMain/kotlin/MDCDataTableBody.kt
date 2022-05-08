@@ -13,7 +13,7 @@ import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.imply
+import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.Scope
 import org.jetbrains.compose.web.attributes.scope
@@ -43,7 +43,7 @@ public fun MDCDataTableContainerScope.MDCDataTableBody(
       classes("mdc-data-table__content")
       applyAttrs(attrs)
     },
-    content = content?.imply()
+    content = content?.reinterpret()
   )
 }
 
@@ -66,7 +66,7 @@ public fun MDCDataTableBodyScope.MDCDataTableRow(
       aria("selected", true)
       applyAttrs(attrs)
     },
-    content = content?.imply()
+    content = content?.reinterpret()
   )
 }
 
@@ -86,7 +86,7 @@ public fun MDCDataTableRowScope.MDCDataTableCell(
       if (numeric) classes("mdc-data-table__cell--numeric")
       applyAttrs(attrs)
     },
-    content = content?.imply()
+    content = content?.reinterpret()
   )
 }
 
@@ -138,7 +138,7 @@ public fun MDCDataTableRowScope.MDCDataTableHeaderCell(
       if (selected != null) id(id)
       applyAttrs(attrs)
     },
-    content = content?.imply()
+    content = content?.reinterpret()
   )
 }
 

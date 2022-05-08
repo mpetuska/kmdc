@@ -13,7 +13,7 @@ import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.imply
+import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.icon.button.MDCIconButton
@@ -47,7 +47,7 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
         classes("mdc-data-table__header-row")
         applyAttrs(attrs)
       },
-      content = content?.imply()
+      content = content?.reinterpret()
     )
   }
 }
@@ -70,7 +70,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
       if (numeric) classes("mdc-data-table__header-cell--numeric")
       applyAttrs(attrs)
     },
-    content = content?.imply()
+    content = content?.reinterpret()
   )
 }
 

@@ -1,53 +1,41 @@
 package dev.petuska.kmdc.data.table
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEvent
+import dev.petuska.kmdc.core.MDCEventHandler
+import kotlin.js.Json
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: (event: MDCDataTableModule.MDCRowSelectionChangedEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.ROW_SELECTION_CHANGED) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCRowSelectionChangedEvent>())
-  }
-}
+public val onRowSelectionChanged: MDCEventHandler<MDCDataTableAttrsScope, MDCDataTableModule.MDCDataTableRowSelectionChangedEventDetail> =
+  MDCEvent(MDCDataTableModule.events.ROW_SELECTION_CHANGED)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onRowClick(listener: (event: MDCDataTableModule.MDCRowClickEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.ROW_CLICK) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCRowClickEvent>())
-  }
-}
+public val onRowClick: MDCEventHandler<MDCDataTableAttrsScope, MDCDataTableModule.RowClickEventDetail> =
+  MDCEvent(MDCDataTableModule.events.ROW_CLICK)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onSelectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.SELECTED_ALL) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSelectedAllEvent>())
-  }
-}
+public val onSelectedAll: MDCEventHandler<MDCDataTableAttrsScope, Json> =
+  MDCEvent(MDCDataTableModule.events.SELECTED_ALL)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onUnselectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.UNSELECTED_ALL) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSelectedAllEvent>())
-  }
-}
+public val onUnselectedAll: MDCEventHandler<MDCDataTableAttrsScope, Json> =
+  MDCEvent(MDCDataTableModule.events.UNSELECTED_ALL)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onSorted(listener: (event: MDCDataTableModule.MDCSortedEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.SORTED) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSortedEvent>())
-  }
-}
+public val onSorted: MDCEventHandler<MDCDataTableAttrsScope, MDCDataTableModule.SortActionEventDetail> =
+  MDCEvent(MDCDataTableModule.events.SORTED)

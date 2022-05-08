@@ -65,7 +65,7 @@ correct and work properly. This is achieved with the help of a [sandbox](../sand
 development loop for KMDC looks as follows:
 
 1. Implement your changes or new features
-2. Add a new [Sample](../sandbox/src/jsMain/kotlin/samples/Button.kt) to either one of the existing samples for a
+2. Add a new [Sample](../sandbox/src/jsMain/samples/MDCButton.kt) to either one of the existing samples for a
    component or an entirely new samples bundle.
 3. Boot up the sandbox in continuous mode `./gradlew jsBrowserRun -t`
 4. Inspect your sample in the browser [http://localhost:3000](http://localhost:3000)
@@ -81,7 +81,7 @@ There are a few conventions that new modules should follow to maintain consisten
 * If a module is wrapping some npm module (such as `kmdc-button`, which wraps `mdc-button` npm module), the name should
   match npm module's name, replacing `mdc-` prefix with `kmdc-` if it has one.
 * No wrapper module should depend on more than one npm module
-* All modules should be placed in [lib](../lib) meta-module to be picked up as a dependency by root module shortcut
+* All modules should be placed in [kmdc](../kmdc) meta-module to be picked up as a dependency by root module shortcut
   artefact.
 
 ## How Can I Contribute?
@@ -270,7 +270,7 @@ Since sandbox is used as a main way to "test" changes in development as well as 
 some structure is imposed on its usage to keep everything tidy and easy to navigate.
 
 * Each use-case or component should have its own dedicated samples file
-  in [sandbox/src/jsMain/kotlin/samples](../sandbox/src/jsMain/kotlin/samples)
+  in [sandbox/src/jsMain/samples](../sandbox/src/jsMain/samples)
 * No changes should be made in the sandbox outside of `samples` package as the ad-hock samples framework is configured
   to register and render all samples in a proper layout automagically.
 * All top-level entities in samples file should be private to avoid polluting public namespace.
@@ -278,7 +278,7 @@ some structure is imposed on its usage to keep everything tidy and easy to navig
   have them named as well).
 * Both `Samples()` and `Sample()` builders also accept optional description argument. Use it to provide some
   instructions or extended usage description of your sample (
-  e.g. [checkbox](../sandbox/src/jsMain/kotlin/samples/Checkbox.kt#L35) sample).
+  e.g. [checkbox](../sandbox/src/jsMain/samples/MDCCheckbox.kt#L33) sample).
 * Neither samples file nor top level value names do not need to match the name passed in `Samples("name") { ... }`
   builder, so name them whatever you deem sufficiently descriptive.
 * The hierarchy is similar to jest test hierarchy, where a single feature is encapsulated in `describe`
@@ -289,16 +289,17 @@ some structure is imposed on its usage to keep everything tidy and easy to navig
 Here's an example of the `Samples` adhering to the above conventions:
 
 ```kotlin
-@Suppress("unused")
-private val ButtonSamples = Samples("MDCButton") { // `Samples()` is named to indicate which composable is being used
-  MDCButtonOpts.Type.values().forEach {
-    Sample("$it") { _ -> // Easily generates definitive list of `Sample()` for all possible values of MDCButton type, using it as a sample name
-      var count by remember { mutableStateOf(0) } // State lives within the sample as it needs to be unique for each sample in this case
-      MDCButton( // Composable is rendered withing `Sample()` scope as opposed to root `Samples()`
-        text = "Clicked $count times",
-        opts = { type = it },
-        attrs = { onClick { count++ } } // Sample provides some interactivity to showcase usage
-      )
+object MDCButton : Samples() {
+  override val content: SamplesRender = {
+    MDCButtonType.values().forEach {
+      Sample("$it") { _ -> // Easily generates definitive list of `Sample()` for all possible values of MDCButton type, using it as a sample name
+        var count by remember { mutableStateOf(0) } // State lives within the sample as it needs to be unique for each sample in this case
+        MDCButton( // Composable is rendered withing `Sample()` scope as opposed to root `Samples()`
+          text = "Clicked $count times",
+          opts = { type = it },
+          attrs = { onClick { count++ } } // Sample provides some interactivity to showcase usage
+        )
+      }
     }
   }
 }

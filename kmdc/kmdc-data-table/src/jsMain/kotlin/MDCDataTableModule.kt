@@ -3,7 +3,6 @@
 package dev.petuska.kmdc.data.table
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
@@ -39,11 +38,6 @@ public external object MDCDataTableModule {
     public val UNSELECTED_ALL: String
     public val SORTED: String
   }
-
-  public abstract class MDCRowSelectionChangedEvent : MDCEvent<MDCDataTableRowSelectionChangedEventDetail>
-  public abstract class MDCRowClickEvent : MDCEvent<RowClickEventDetail>
-  public abstract class MDCSelectedAllEvent : MDCEvent<Unit>
-  public abstract class MDCSortedEvent : MDCEvent<SortActionEventDetail>
 
   public interface MDCDataTableRowSelectionChangedEventDetail {
     public val rowNumber: Number

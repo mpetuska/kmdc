@@ -2,9 +2,10 @@ package dev.petuska.kmdc.snackbar
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
+import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonLabel
-import dev.petuska.kmdc.button.MDCButtonOpts
 import dev.petuska.kmdc.button.MDCButtonScope
+import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
@@ -46,12 +47,14 @@ public fun MDCSnackbarScope.MDCSnackbarActions(
 @MDCDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarAction(
-  opts: Builder<MDCButtonOpts>? = null,
+  type: MDCButtonType = MDCButtonType.Text,
+  icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
   content: ComposableBuilder<MDCButtonScope>? = null,
 ) {
   MDCButton(
-    opts = opts,
+    type = type,
+    icon = icon,
     attrs = {
       classes("mdc-snackbar__action")
       type(ButtonType.Button)
@@ -68,10 +71,11 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarAction(
   text: String,
-  opts: Builder<MDCButtonOpts>? = null,
+  type: MDCButtonType = MDCButtonType.Text,
+  icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
 ) {
-  MDCSnackbarAction(opts, attrs) { MDCButtonLabel(text) }
+  MDCSnackbarAction(type, icon, attrs) { MDCButtonLabel(text) }
 }
 
 /**

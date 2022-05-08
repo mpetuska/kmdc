@@ -1,10 +1,11 @@
 package dev.petuska.kmdc.menu
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
+import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
+@MDCExternalAPI
 @JsModule("@material/menu")
 public external object MDCMenuModule {
   public class MDCMenu(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
@@ -35,6 +36,4 @@ public external object MDCMenuModule {
     public val item: Element
     public val index: Int
   }
-
-  public class MDCMenuSelectedEvent : MDCEvent<MDCMenuSelectedEventDetail>
 }

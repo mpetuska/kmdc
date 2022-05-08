@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.dialog
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 
 @JsModule("@material/dialog")
@@ -39,11 +38,7 @@ public external object MDCDialogModule {
 
   public interface MDCDialogOpenEventDetail
 
-  public class MDCDialogOpenEvent : MDCEvent<MDCDialogOpenEventDetail>
-
   public class MDCDialogCloseEventDetail {
     public val action: String?
   }
-
-  public class MDCDialogCloseEvent : MDCEvent<MDCDialogCloseEventDetail>
 }

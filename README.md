@@ -4,7 +4,8 @@
 
 # Kompose Material Design Components (KMDC)
 
-> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced each release.
+> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced
+> each release.
 
 A set of Kotlin wrappers
 over [material-components-web@13.0.0][material-components-web]
@@ -56,7 +57,7 @@ order schema:
    HTML element
 
 Here's a quick peek how these things come together (more samples can be found in
-the [sandbox](./sandbox/src/jsMain/kotlin/samples))
+the [sandbox](./sandbox/src/jsMain/samples))
 
 ```kotlin
 @Composable
@@ -155,8 +156,8 @@ KMDC project modules can be categorised into three groups:
 * Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
     * `./gradlew jsBrowserRun -t` to start development server
     * Visit [http://localhost:3000](http://localhost:3000) to see your content
-    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/kotlin/samples/Button.kt)
-      property for it
+    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/samples/MDCButton.kt)
+      object for it
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.
 
