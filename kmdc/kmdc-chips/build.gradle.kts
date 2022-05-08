@@ -11,6 +11,7 @@ kotlin {
       dependencies {
         api(compose.web.svg)
         api(kmdc("core"))
+        api(kmdc("touch-target"))
         api(mdc("chips"))
       }
     }

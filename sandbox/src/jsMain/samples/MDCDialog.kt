@@ -4,8 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import dev.petuska.kmdc.button.Label
 import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonLabel
 import dev.petuska.kmdc.dialog.MDCDialog
 import dev.petuska.kmdc.dialog.MDCDialogActionButton
 import dev.petuska.kmdc.dialog.MDCDialogActions
@@ -60,10 +60,10 @@ object MDCDialog : Samples() {
       }
       MDCDialogActions {
         MDCDialogActionButton("cancel") {
-          MDCButtonLabel("Cancel")
+          Label("Cancel")
         }
         MDCDialogActionButton("discard") {
-          MDCButtonLabel("Discard")
+          Label("Discard")
         }
       }
     }
@@ -213,7 +213,7 @@ object MDCDialog : Samples() {
             onClick { open = false }
           }
         ) {
-          MDCButtonLabel("OK")
+          Label("OK")
         }
       }
     }

@@ -3,7 +3,7 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/fab"
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/image-list"
 
 kotlin {
   sourceSets {

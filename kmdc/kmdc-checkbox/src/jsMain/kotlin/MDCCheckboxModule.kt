@@ -1,10 +1,12 @@
 package dev.petuska.kmdc.checkbox
 
 import dev.petuska.kmdc.core.MDCBaseModule
+import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.w3c.dom.Element
 
+@MDCExternalAPI
 @JsModule("@material/checkbox")
 public external object MDCCheckboxModule {
   public class MDCCheckbox(element: Element) :

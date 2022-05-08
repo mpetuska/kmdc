@@ -15,7 +15,7 @@ import org.jetbrains.compose.web.dom.Input
 import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Text
 
-@JsModule("@material/radio/dist/mdc.radio.css")
+@JsModule("@material/radio/mdc-radio.scss")
 public external val MDCRadioStyle: dynamic
 
 public data class MDCRadioOpts(
@@ -30,10 +30,11 @@ public data class MDCRadioOpts(
 @Composable
 public fun MDCRadio(
   checked: Boolean,
+  touch: Boolean = false,
   opts: Builder<MDCRadioOpts>? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  MDCRadioBody(checked, opts, attrs)
+  MDCRadioBody(checked = checked, touch = touch, opts, attrs)
 }
 
 /**
@@ -43,10 +44,11 @@ public fun MDCRadio(
 @Composable
 public fun MDCFormFieldScope.MDCRadio(
   checked: Boolean,
+  touch: Boolean = false,
   opts: Builder<MDCRadioOpts>? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  MDCRadioBody(checked, opts, attrs = {
+  MDCRadioBody(checked = checked, touch = touch, opts, attrs = {
     ref {
       it.mdc<MDCRadioModule.MDCRadio> { setInput(it, this) }
       onDispose { }
@@ -59,6 +61,7 @@ public fun MDCFormFieldScope.MDCRadio(
 @Composable
 private fun MDCRadioBody(
   checked: Boolean,
+  touch: Boolean,
   opts: Builder<MDCRadioOpts>? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
@@ -69,6 +72,7 @@ private fun MDCRadioBody(
   Div(attrs = {
     classes("mdc-radio")
     if (options.disabled) classes("mdc-radio--disabled")
+    if (touch) classes("mdc-radio--touch")
     initialiseMDC(MDCRadioModule.MDCRadio::attachTo)
   }) {
     Input(type = InputType.Radio, attrs = {

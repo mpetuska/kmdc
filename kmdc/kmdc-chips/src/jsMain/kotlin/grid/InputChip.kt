@@ -34,6 +34,7 @@ public fun MDCChipsGridScope.InputChip(
   disabled: Boolean = false,
   withPrimaryGraphic: Boolean = false,
   withPrimaryIcon: Boolean = false,
+  touch: Boolean = false,
   withTrailingAction: Boolean = false,
   navigableTrailingAction: Boolean = true,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -44,6 +45,7 @@ public fun MDCChipsGridScope.InputChip(
     disabled = disabled,
     withPrimaryGraphic = withPrimaryGraphic,
     withPrimaryIcon = withPrimaryIcon,
+    touch = touch,
     attrs = {
       role("row")
       if (withTrailingAction) classes("mdc-evolution-chip--with-trailing-action")

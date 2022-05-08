@@ -12,6 +12,7 @@ kotlin {
       dependencies {
         api(kmdc("core"))
         api(kmdc("ripple"))
+        api(kmdc("touch-target"))
         api(mdc("fab"))
       }
     }
