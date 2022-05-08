@@ -26,6 +26,7 @@ internal fun MDCChipsScope.Chip(
   disabled: Boolean,
   withPrimaryGraphic: Boolean,
   withPrimaryIcon: Boolean,
+  touch: Boolean,
   attrs: AttrsBuilder<HTMLSpanElement>?,
   content: ComposableBuilder<MDCChipScope>?
 ) {
@@ -34,6 +35,7 @@ internal fun MDCChipsScope.Chip(
     if (disabled) classes("mdc-evolution-chip--disabled")
     if (withPrimaryGraphic || withPrimaryIcon) classes("mdc-evolution-chip--with-primary-graphic")
     if (withPrimaryIcon) classes("mdc-evolution-chip--with-primary-icon")
+    if (touch) classes("mdc-evolution-chip--touch")
     id(id)
     applyAttrs(attrs)
   }, content = {

@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.snackbar
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.button.Label
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonLabel
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.Builder
@@ -75,7 +75,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
 ) {
-  MDCSnackbarAction(type, icon, attrs) { MDCButtonLabel(text) }
+  MDCSnackbarAction(type, icon, attrs) { Label(text) }
 }
 
 /**

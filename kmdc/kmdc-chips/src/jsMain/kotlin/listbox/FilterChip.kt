@@ -29,6 +29,7 @@ public fun MDCChipsListboxScope.FilterChip(
   disabled: Boolean = false,
   withPrimaryGraphic: Boolean = false,
   withPrimaryIcon: Boolean = false,
+  touch: Boolean = false,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
   content: ComposableBuilder<MDCFilterChipScope>? = null
 ) {
@@ -39,6 +40,7 @@ public fun MDCChipsListboxScope.FilterChip(
       disabled = disabled,
       withPrimaryGraphic = withPrimaryGraphic,
       withPrimaryIcon = withPrimaryIcon,
+      touch = touch,
       attrs = {
         classes("mdc-evolution-chip--filter", "mdc-evolution-chip--selectable")
         if (selected) classes("mdc-evolution-chip--selected")

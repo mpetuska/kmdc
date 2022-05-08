@@ -7,6 +7,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyAttrs
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
@@ -45,7 +46,8 @@ public fun MDCSnackbar(
   val options = MDCSnackbarOpts().apply { opts?.invoke(this) }
   MDCSnackbarCSS
   Aside(attrs = {
-    classes("mdc-snackbar", *options.type.classes)
+    classes("mdc-snackbar")
+    classes(options.type.classes)
     initialiseMDC(MDCSnackbarModule.MDCSnackbar::attachTo)
     applyAttrs(attrs)
   }) {

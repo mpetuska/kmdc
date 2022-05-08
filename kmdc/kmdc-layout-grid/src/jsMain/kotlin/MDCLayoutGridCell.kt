@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.w3c.dom.HTMLDivElement
@@ -36,7 +37,8 @@ public fun MDCLayoutGridCellsScope.MDCLayoutGridCell(
   val options = MDCLayoutGridCellOpts().apply { opts?.invoke(this) }
   Div(
     attrs = {
-      classes("mdc-layout-grid__cell", *options.align.classes)
+      classes("mdc-layout-grid__cell")
+      classes(options.align.classes)
       options.order?.let { classes("mdc-layout-grid__cell--order-$it") }
       options.span?.let { classes("mdc-layout-grid__cell--span-$it") }
       options.spanMap?.let {

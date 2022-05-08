@@ -7,6 +7,7 @@ import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -69,7 +70,8 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
   val type = MDCTopAppBarType.current
   Header(
     attrs = {
-      classes("mdc-top-app-bar", *type.classes)
+      classes("mdc-top-app-bar")
+      classes(type.classes)
       initialiseMDC(MDCTopAppBarModule.MDCTopAppBar::attachTo)
       attrs?.invoke(this)
     },

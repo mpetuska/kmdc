@@ -25,23 +25,25 @@ import org.jetbrains.compose.web.svg.Path
 import org.jetbrains.compose.web.svg.Svg
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/checkbox/dist/mdc.checkbox.css")
-public external val MDCCheckboxStyle: dynamic
+@JsModule("@material/checkbox/mdc-checkbox.scss")
+public external val MDCCheckboxStyles: dynamic
 
-public sealed interface MDCCheckboxScope : ElementScope<HTMLDivElement>
+public interface MDCCheckboxScope : ElementScope<HTMLDivElement>
 
 @MDCDsl
 @Composable
 public fun MDCCheckbox(
   disabled: Boolean = false,
   indeterminate: Boolean = false,
+  touch: Boolean = false,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
   content: ComposableBuilder<MDCCheckboxScope>? = null,
 ) {
-  MDCCheckboxStyle
+  MDCCheckboxStyles
 
   Div(attrs = {
     classes("mdc-checkbox")
+    if (touch) classes("mdc-checkbox--touch")
     initialiseMDC(MDCCheckboxModule.MDCCheckbox::attachTo)
     applyAttrs(attrs)
   }) {
@@ -59,11 +61,13 @@ public fun MDCCheckbox(
 public fun MDCCheckbox(
   checked: Boolean?,
   disabled: Boolean = false,
+  touch: Boolean = false,
   label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
+    touch = touch,
     disabled = disabled,
     indeterminate = checked == null,
   ) {
@@ -91,11 +95,13 @@ public fun MDCCheckbox(
 public fun MDCFormFieldScope.MDCCheckbox(
   checked: Boolean?,
   disabled: Boolean = false,
+  touch: Boolean = false,
   label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
+    touch = touch,
     disabled = disabled,
     indeterminate = checked == null,
   ) {

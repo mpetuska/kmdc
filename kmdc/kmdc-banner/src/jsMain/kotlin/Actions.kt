@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.banner
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.button.Label
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonLabel
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.AttrsBuilder
@@ -90,7 +90,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
 ) {
   Action(true, type, icon, attrs) {
-    MDCButtonLabel(text)
+    Label(text)
   }
 }
 
@@ -120,6 +120,6 @@ public fun MDCBannerActionsScope.SecondaryAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
 ) {
   Action(false, type, icon, attrs) {
-    MDCButtonLabel(text)
+    Label(text)
   }
 }

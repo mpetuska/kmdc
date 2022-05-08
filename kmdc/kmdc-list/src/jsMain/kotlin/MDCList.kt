@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyContent
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
@@ -54,7 +55,9 @@ public fun MDCList(
   val options = MDCListOpts().apply { opts?.invoke(this) }
 
   Ul(attrs = {
-    classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
+    classes("mdc-deprecated-list")
+    classes(options.size.classes)
+    classes(options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
     initialiseMDC(MDCListModule.MDCList::attachTo) {
       singleSelection = options.singleSelection
@@ -80,7 +83,9 @@ public fun MDCNavList(
   val options = MDCListOpts().apply { opts?.invoke(this) }
 
   Nav(attrs = {
-    classes("mdc-deprecated-list", *options.size.classes, *options.type.classes)
+    classes("mdc-deprecated-list")
+    classes(options.size.classes)
+    classes(options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
     initialiseMDC(MDCListModule.MDCList::attachTo) {
       singleSelection = options.singleSelection

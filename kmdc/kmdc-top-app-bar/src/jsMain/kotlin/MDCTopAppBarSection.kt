@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Section
@@ -34,7 +35,8 @@ public fun MDCTopAppBarRowScope.MDCTopAppBarSection(
   val options = MDCTopAppBarSectionOpts().apply { opts?.invoke(this) }
   Section(
     attrs = {
-      classes("mdc-top-app-bar__section", *options.align.classes)
+      classes("mdc-top-app-bar__section")
+      classes(options.align.classes)
       options.role?.let {
         attr("role", it)
       }

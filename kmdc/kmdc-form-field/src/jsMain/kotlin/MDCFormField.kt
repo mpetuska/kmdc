@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
 import org.jetbrains.compose.web.attributes.AttrsScope
@@ -54,7 +55,8 @@ public fun MDCFormField(
   val options = MDCFormFieldOpts().apply { opts?.invoke(this) }
 
   Div(attrs = {
-    classes("mdc-form-field", *options.align.classes)
+    classes("mdc-form-field")
+    classes(options.align.classes)
     if (options.nowrap) classes("mdc-form-field--nowrap")
     initialiseMDC(MDCFormFieldModule.MDCFormField::attachTo)
     attrs?.invoke(this)

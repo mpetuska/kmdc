@@ -22,6 +22,7 @@ public fun MDCChipsGridScope.ActionChip(
   disabled: Boolean = false,
   withPrimaryGraphic: Boolean = false,
   withPrimaryIcon: Boolean = false,
+  touch: Boolean = false,
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
   content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
@@ -30,6 +31,7 @@ public fun MDCChipsGridScope.ActionChip(
     disabled = disabled,
     withPrimaryGraphic = withPrimaryGraphic,
     withPrimaryIcon = withPrimaryIcon,
+    touch = touch,
     attrs = {
       role("row")
     },

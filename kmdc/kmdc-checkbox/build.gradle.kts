@@ -12,6 +12,7 @@ kotlin {
         api(compose.web.svg)
         api(kmdc("core"))
         api(kmdc("form-field"))
+        api(kmdc("touch-target"))
         api(mdc("checkbox"))
       }
     }
