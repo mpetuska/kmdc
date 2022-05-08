@@ -13,6 +13,7 @@ import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
 import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/menu/dist/mdc.menu.css")
@@ -22,7 +23,7 @@ public data class MDCMenuOpts(
   var open: Boolean = false,
   var fixed: Boolean = false,
   var wrapFocus: Boolean = false,
-  var anchorCorner: Byte? = null,
+  var anchorCorner: MDCMenuSurfaceModule.Corner? = null,
   var selectedIndex: Int? = null,
   var absolutePosition: Point? = null
 ) {

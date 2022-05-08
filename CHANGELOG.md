@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [JDK]\: 11+
 - [Kotlin]\: 1.6.21
-- [Compose]\: 1.2.0-alpha01-dev675
+- [Compose]\: 1.2.0-alpha01-dev679
 - [MDC]\: ^14.0.0
 
 ### Added
@@ -24,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Standardised event handlers
-- Bumped MDC version to [v14.0.0](https://github.com/material-components/material-components-web/tree/v14.0.0)
 
 ### Removed
 

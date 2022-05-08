@@ -13,6 +13,6 @@ public external interface MDCTabBarActivatedEventDetail {
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-bar)
  */
 @MDCAttrsDsl
-public fun MDCTabBarAttrsScope.onClosing(listener: MDCEventListener<MDCTabBarActivatedEventDetail>) {
+public fun MDCTabBarAttrsScope.onActivated(listener: MDCEventListener<MDCTabBarActivatedEventDetail>) {
   addMdcEventListener("MDCTabBar:activated", listener)
 }

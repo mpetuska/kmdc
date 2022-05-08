@@ -92,11 +92,10 @@ object MDCTabBar : Samples() {
   }
 
   private fun MDCTabBarAttrsScope.registerEvents() {
-    onActivated { console.log("MDCTabBar::onActivated", it) }
+    onActivated { console.log("MDCTabBar::onActivated", it.detail) }
   }
 
   private fun MDCTabAttrsScope.registerEvents() {
-    onInteracted { console.log("MDCTab::onInteracted", it) }
+    onInteracted { console.log("MDCTab::onInteracted", it.detail) }
   }
-
 }

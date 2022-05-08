@@ -2,6 +2,7 @@ package dev.petuska.kmdc.menu
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCExternalAPI
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
@@ -16,7 +17,7 @@ public external object MDCMenuModule {
     public var open: Boolean
     public var wrapFocus: Boolean
 
-    public fun setAnchorCorner(corner: Byte?)
+    public fun setAnchorCorner(corner: MDCMenuSurfaceModule.Corner?)
     public fun setAbsolutePosition(x: Double, y: Double)
     public fun setFixedPosition(isFixed: Boolean)
     public fun setSelectedIndex(index: Int?)
