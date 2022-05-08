@@ -9,9 +9,9 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-icon-button"))
-        api(npm("@material/top-app-bar", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("icon-button"))
+        api(mdc("top-app-bar"))
       }
     }
   }

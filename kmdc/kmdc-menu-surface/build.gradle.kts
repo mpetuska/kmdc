@@ -9,8 +9,8 @@ kotlin {
   sourceSets {
     named("jsMain") {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/menu-surface", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("menu-surface"))
       }
     }
   }

@@ -12,7 +12,7 @@ kotlin {
     jsMain {
       dependencies {
         val mdcIconsVersion = versionFor("version.npm.material-icons")
-        api(project(":kmdc:kmdc-core"))
+        api(kmdc("core"))
         api(npm("material-icons", mdcIconsVersion))
       }
     }

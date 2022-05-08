@@ -10,11 +10,11 @@ kotlin {
     commonMain
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/tab-indicator", mdcVersion))
-        api(npm("@material/tab", mdcVersion))
-        api(npm("@material/tab-scroller", mdcVersion))
-        api(npm("@material/tab-bar", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("tab-indicator"))
+        api(mdc("tab"))
+        api(mdc("tab-scroller"))
+        api(mdc("tab-bar"))
       }
     }
   }

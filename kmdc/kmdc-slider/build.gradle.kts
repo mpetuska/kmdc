@@ -9,8 +9,8 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/slider", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("slider"))
       }
     }
   }

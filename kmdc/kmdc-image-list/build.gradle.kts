@@ -3,7 +3,7 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/dialog"
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/fab"
 
 kotlin {
   sourceSets {
@@ -11,8 +11,7 @@ kotlin {
     jsMain {
       dependencies {
         api(kmdc("core"))
-        api(kmdc("button"))
-        api(mdc("dialog"))
+        api(mdc("image-list"))
       }
     }
   }

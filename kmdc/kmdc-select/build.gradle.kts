@@ -10,10 +10,10 @@ kotlin {
     commonMain
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-list"))
-        api(project(":kmdc:kmdc-menu-surface"))
-        api(npm("@material/select", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("list"))
+        api(kmdc("menu-surface"))
+        api(mdc("select"))
         api(compose.web.svg)
       }
     }

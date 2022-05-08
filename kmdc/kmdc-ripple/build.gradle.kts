@@ -9,8 +9,8 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/ripple", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("ripple"))
       }
     }
   }
