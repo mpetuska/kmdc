@@ -10,9 +10,9 @@ kotlin {
     commonMain
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-ripple"))
-        api(npm("@material/fab", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("ripple"))
+        api(mdc("fab"))
       }
     }
   }

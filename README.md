@@ -98,7 +98,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [ ] mdc-floating-label
 - [x] mdc-form-field
 - [x] mdc-icon-button
-- [ ] mdc-image-list
+- [x] mdc-image-list
 - [x] mdc-layout-grid
 - [ ] mdc-line-ripple
 - [x] mdc-linear-progress

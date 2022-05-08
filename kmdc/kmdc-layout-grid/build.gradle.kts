@@ -9,8 +9,8 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/layout-grid", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("layout-grid"))
       }
     }
   }

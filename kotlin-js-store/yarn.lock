@@ -292,6 +292,17 @@
     "@material/touch-target" "^14.0.0"
     tslib "^2.1.0"
 
+"@material/image-list@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@material/image-list/-/image-list-14.0.0.tgz#56185d799585f79aa85c31e6730139b3b7198c53"
+  integrity sha512-vx/7WCMbiZoy/R+DmO7r0N3jWzFjlvvDMeBpXt0btglWP3EYbVnDqzseW4u1TtY+IBbJldW/DsiCN1oLnlEVxw==
+  dependencies:
+    "@material/feature-targeting" "^14.0.0"
+    "@material/shape" "^14.0.0"
+    "@material/theme" "^14.0.0"
+    "@material/typography" "^14.0.0"
+    tslib "^2.1.0"
+
 "@material/layout-grid@^14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-14.0.0.tgz#d70569dfd7d372f0c72d30b8b87f3965a3c6bc72"

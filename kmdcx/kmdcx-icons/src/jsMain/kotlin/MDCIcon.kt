@@ -3,6 +3,7 @@ package dev.petuska.kmdcx.icons
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Span
@@ -26,7 +27,7 @@ public fun MDCIconSpan(
   val options = MDCIconOpts().apply { opts?.invoke(this) }
 
   Span(attrs = {
-    classes(*options.type.classes)
+    classes(options.type.classes)
     attrs?.invoke(this)
   }) {
     Text(options.icon.iconType)
@@ -46,7 +47,7 @@ public fun MDCIconI(
   val options = MDCIconOpts().apply { opts?.invoke(this) }
 
   I(attrs = {
-    classes(*options.type.classes)
+    classes(options.type.classes)
     attrs?.invoke(this)
   }) {
     Text(options.icon.iconType)

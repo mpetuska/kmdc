@@ -1,6 +1,7 @@
 import de.fayard.refreshVersions.core.versionFor
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.kotlin.dsl.named
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jsMain: NamedDomainObjectProvider<KotlinSourceSet>
@@ -10,3 +11,6 @@ val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jsTest: NamedDoma
   get() = named<KotlinSourceSet>("jsTest")
 
 val mdcVersion = versionFor("version.npm.material-components-web")
+
+fun KotlinDependencyHandler.kmdc(module: String) = project(":kmdc:kmdc-$module")
+fun KotlinDependencyHandler.mdc(module: String) = npm("@material/$module", mdcVersion)

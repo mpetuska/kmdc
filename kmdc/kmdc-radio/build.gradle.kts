@@ -9,9 +9,9 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-form-field"))
-        api(npm("@material/radio", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("form-field"))
+        api(mdc("radio"))
       }
     }
   }

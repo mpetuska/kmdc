@@ -10,9 +10,9 @@ kotlin {
     jsMain {
       dependencies {
         api(compose.web.svg)
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-form-field"))
-        api(npm("@material/checkbox", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("form-field"))
+        api(mdc("checkbox"))
       }
     }
   }

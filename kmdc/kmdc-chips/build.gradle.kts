@@ -10,8 +10,8 @@ kotlin {
     jsMain {
       dependencies {
         api(compose.web.svg)
-        api(project(":kmdc:kmdc-core"))
-        api(npm("@material/chips", mdcVersion))
+        api(kmdc("core"))
+        api(mdc("chips"))
       }
     }
   }

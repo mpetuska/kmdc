@@ -9,9 +9,9 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-ripple"))
-        api(npm("@material/segmented-button", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("ripple"))
+        api(mdc("segmented-button"))
       }
     }
   }

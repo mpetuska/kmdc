@@ -9,9 +9,9 @@ kotlin {
   sourceSets {
     jsMain {
       dependencies {
-        api(project(":kmdc:kmdc-core"))
-        api(project(":kmdc:kmdc-ripple"))
-        api(npm("@material/switch", mdcVersion))
+        api(kmdc("core"))
+        api(kmdc("ripple"))
+        api(mdc("switch"))
         api(compose.web.svg)
       }
     }
