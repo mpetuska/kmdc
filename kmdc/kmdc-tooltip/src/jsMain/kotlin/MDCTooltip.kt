@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.reinterpret
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -21,7 +23,7 @@ public open class MDCTooltipOpts(
   public var persistent: Boolean = false,
 )
 
-public class MDCTooltipScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
+public interface MDCTooltipScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
@@ -46,13 +48,13 @@ public fun MDCTooltip(
         tabIndex(-1)
         attr("data-mdc-tooltip-persistent", "true")
       }
-      initialiseMDC(MDCTooltipModule.MDCTooltip::attachTo)
-      attrs?.invoke(this)
+      initialiseMDC(MDCTooltipModule::MDCTooltip)
+      applyAttrs(attrs)
     }
   ) {
     Div(
       attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
-      content = content?.let { { MDCTooltipScope(this).it() } }
+      content = content.reinterpret()
     )
   }
 }

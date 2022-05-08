@@ -1,16 +1,14 @@
 package dev.petuska.kmdc.tooltip
 
 import dev.petuska.kmdc.core.MDCBaseModule
+import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.events.Event
 
+@MDCExternalAPI
 @JsModule("@material/tooltip")
 public external object MDCTooltipModule {
   public class MDCTooltip(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCTooltip
-    }
-
     public fun initialize()
     public fun setTooltipPosition(
       xPos: dynamic = definedExternally,

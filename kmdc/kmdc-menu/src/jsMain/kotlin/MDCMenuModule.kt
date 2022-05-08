@@ -31,9 +31,4 @@ public external object MDCMenuModule {
   public object strings {
     public val SELECTED_EVENT: String
   }
-
-  public class MDCMenuSelectedEventDetail {
-    public val item: Element
-    public val index: Int
-  }
 }

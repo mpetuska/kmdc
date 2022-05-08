@@ -19,18 +19,5 @@ public external object MDCChipsModule {
       public fun isChipSelected(index: Int, action: MDCChipActionType): Boolean
       public fun removeChip(index: Int): Boolean
     }
-
-    public interface InteractionEventDetail {
-      public val chipID: String
-      public val chipIndex: Int
-    }
-
-    public interface RemovalEventDetail : InteractionEventDetail {
-      public val isComplete: Boolean
-    }
-
-    public interface SelectionEventDetail : InteractionEventDetail {
-      public val isSelected: Boolean
-    }
   }
 }

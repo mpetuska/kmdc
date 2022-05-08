@@ -8,7 +8,7 @@ import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.circular.progress.MDCCircularProgress
 import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.slider.MDCSlider
-import dev.petuska.kmdc.slider.onSliderInput
+import dev.petuska.kmdc.slider.onInput
 import dev.petuska.kmdc.typography.MDCOverline
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
@@ -51,7 +51,7 @@ object MDCCircularProgress : Samples() {
             min = 24
             max = 48
           }, attrs = {
-            onSliderInput {
+            onInput {
               size = it.detail.value.toInt()
             }
           })
@@ -67,7 +67,7 @@ object MDCCircularProgress : Samples() {
             max = 1
             step = 0.01
           }, attrs = {
-            onSliderInput {
+            onInput {
               progress = it.detail.value.toDouble()
             }
           })

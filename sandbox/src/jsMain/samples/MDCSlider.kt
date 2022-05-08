@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.slider.MDCSlider
 import dev.petuska.kmdc.slider.MDCSliderAttrsScope
-import dev.petuska.kmdc.slider.onSliderChange
-import dev.petuska.kmdc.slider.onSliderInput
+import dev.petuska.kmdc.slider.onChange
+import dev.petuska.kmdc.slider.onInput
 import dev.petuska.kmdc.typography.MDCBody1
 
 object MDCSlider : Samples() {
@@ -21,7 +21,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             v1 = it.detail.value.toInt()
           }
         }
@@ -38,7 +38,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             it.detail.let { detail ->
               if (detail.thumb == 1) {
                 v1 = detail.value.toInt()
@@ -60,7 +60,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             it.detail.let { detail ->
               v1 = detail.value.toInt()
             }
@@ -80,7 +80,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             it.detail.let { detail ->
               if (detail.thumb == 1) {
                 v1 = detail.value.toInt()
@@ -104,7 +104,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             it.detail.let { detail ->
               v1 = detail.value.toInt()
             }
@@ -126,7 +126,7 @@ object MDCSlider : Samples() {
         },
         attrs = {
           registerEvents(name)
-          onSliderInput {
+          onInput {
             it.detail.let { detail ->
               if (detail.thumb == 1) {
                 v1 = detail.value.toInt()
@@ -141,7 +141,7 @@ object MDCSlider : Samples() {
   }
 
   private fun MDCSliderAttrsScope.registerEvents(name: String) {
-    onSliderInput { console.log("$name#onSliderInput", it.detail) }
-    onSliderChange { console.log("$name#onSliderChange", it.detail) }
+    onInput { console.log("$name#onInput", it.detail) }
+    onChange { console.log("$name#onChange", it.detail) }
   }
 }

@@ -35,10 +35,4 @@ public external object MDCDialogModule {
     public val STACKED: String
     public val FULLSCREEN: String
   }
-
-  public interface MDCDialogOpenEventDetail
-
-  public class MDCDialogCloseEventDetail {
-    public val action: String?
-  }
 }

@@ -1,19 +1,26 @@
 package dev.petuska.kmdc.slider
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEvent
-import dev.petuska.kmdc.core.MDCEventHandler
+import dev.petuska.kmdc.core.MDCEventListener
+import dev.petuska.kmdc.core.addMdcEventListener
+
+public interface MDCSliderChangeEventDetail {
+  public val value: Number
+  public val thumb: Int
+}
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
 @MDCAttrsDsl
-public val onSliderChange: MDCEventHandler<MDCSliderAttrsScope, MDCSliderModule.MDCSliderChangeEventDetail> =
-  MDCEvent(MDCSliderModule.events.CHANGE)
+public fun MDCSliderAttrsScope.onChange(listener: MDCEventListener<MDCSliderChangeEventDetail>) {
+  addMdcEventListener(MDCSliderModule.events.CHANGE, listener)
+}
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
 @MDCAttrsDsl
-public val onSliderInput: MDCEventHandler<MDCSliderAttrsScope, MDCSliderModule.MDCSliderChangeEventDetail> =
-  MDCEvent(MDCSliderModule.events.INPUT)
+public fun MDCSliderAttrsScope.onInput(listener: MDCEventListener<MDCSliderChangeEventDetail>) {
+  addMdcEventListener(MDCSliderModule.events.INPUT, listener)
+}

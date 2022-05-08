@@ -24,7 +24,6 @@ public external object MDCSnackbarModule {
     public var actionButtonText: String
   }
 
-  public interface MDCSnackbarOpenEventDetail
   public interface MDCSnackbarCloseEventDetail {
     public val reason: String?
   }

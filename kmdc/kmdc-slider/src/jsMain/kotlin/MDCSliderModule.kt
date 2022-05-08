@@ -34,9 +34,4 @@ public external object MDCSliderModule {
     public val CHANGE: String
     public val INPUT: String
   }
-
-  public interface MDCSliderChangeEventDetail {
-    public val value: Number
-    public val thumb: Int
-  }
 }

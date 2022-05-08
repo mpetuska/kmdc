@@ -17,8 +17,4 @@ public external object MDCTabModule {
     public fun computeContentClientRect(): dynamic
     public fun computeDimensions(): dynamic
   }
-
-  public class MDCTabInteractedEventDetail {
-    public val tabId: String
-  }
 }

@@ -7,10 +7,6 @@ import org.w3c.dom.Element
 @JsModule("@material/segmented-button")
 public external object MDCSegmentedButtonModule {
   public class MDCSegmentedButton(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCSegmentedButton
-    }
-
     public val segments: Array<MDCSegmentedButtonSegment>
     public fun initialize(
       segmentFactory: (
@@ -38,11 +34,5 @@ public external object MDCSegmentedButtonModule {
     public fun setSelected()
     public fun setUnselected()
     public fun getSegmentId(): dynamic
-  }
-
-  public interface MDCSegmentedButtonEventDetail {
-    public val index: Number
-    public val selected: Boolean
-    public val segmentId: String?
   }
 }

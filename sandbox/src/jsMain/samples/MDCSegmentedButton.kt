@@ -6,9 +6,8 @@ import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonIcon
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonLabel
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegment
 import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegmentAttrsScope
+import dev.petuska.kmdc.segmented.button.onChange
 import dev.petuska.kmdc.segmented.button.onClicked
-import dev.petuska.kmdc.segmented.button.onSegmentChange
-import dev.petuska.kmdc.segmented.button.onSegmentSelected
 import dev.petuska.kmdc.segmented.button.onSelected
 import org.jetbrains.compose.web.dom.Text
 
@@ -19,8 +18,8 @@ object MDCSegmentedButton : Samples(description = "See custom event logs in the 
   }
 
   private fun MDCSegmentedButtonAttrsScope.registerEvents(name: String) {
-    onSegmentChange { console.log("$name#onSegmentChange", it.detail) }
-    onSegmentSelected { console.log("$name#onSegmentSelected", it.detail) }
+    onChange { console.log("$name#onSegmentChange", it.detail) }
+    onSelected { console.log("$name#onSegmentSelected", it.detail) }
   }
 
   private fun MDCSegmentedButtonSegmentAttrsScope.registerEvents(name: String) {

@@ -5,16 +5,11 @@ package dev.petuska.kmdc.data.table
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
 
 @MDCExternalAPI
 @JsModule("@material/data-table")
 public external object MDCDataTableModule {
   public class MDCDataTable(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCDataTable
-    }
-
     public fun layout()
     public fun getHeaderCells(): Array<Element>
     public fun getRows(): Array<Element>
@@ -38,30 +33,6 @@ public external object MDCDataTableModule {
     public val UNSELECTED_ALL: String
     public val SORTED: String
   }
-
-  public interface MDCDataTableRowSelectionChangedEventDetail {
-    public val rowNumber: Number
-    public val rowId: String?
-    public val rowIndex: Int
-    public val selected: Boolean?
-  }
-
-  public interface SortActionEventData {
-    public val columnId: String?
-    public val columnIndex: Number
-    public val headerCell: HTMLElement
-  }
-
-  public interface SortActionEventDetail : SortActionEventData {
-    public val sortValue: SortValue
-  }
-
-  public interface RowClickEventData {
-    public val rowId: String?
-    public val row: HTMLElement
-  }
-
-  public interface RowClickEventDetail : RowClickEventData
 
   public interface ProgressIndicatorStyles {
     public var height: String

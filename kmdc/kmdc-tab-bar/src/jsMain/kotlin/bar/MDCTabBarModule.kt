@@ -13,9 +13,4 @@ public external object MDCTabBarModule {
     public fun activateTab(index: Int)
     public fun scrollIntoView(index: Int)
   }
-
-  public class MDCTabBarActivatedEventDetail {
-    public val index: Int
-    public val tabId: String
-  }
 }

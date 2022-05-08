@@ -55,7 +55,7 @@ public fun MDCDataTable(
   content: ComposableBuilder<MDCDataTableScope>? = null,
 ) {
   MDCDataTable(attrs = {
-    initialiseMDC(MDCDataTableModule.MDCDataTable::attachTo) {
+    initialiseMDC(MDCDataTableModule::MDCDataTable) {
       if (loading) showProgress() else hideProgress()
     }
     applyAttrs(attrs)
