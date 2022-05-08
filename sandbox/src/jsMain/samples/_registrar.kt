@@ -8,6 +8,7 @@ val allSamples = arrayOf(
   MDCCircularProgress,
   MDCDataTable,
   MDCDialog,
+  MDCFab,
   MDCMenu,
   MDCRadio,
   MDCSegmentedButton,
