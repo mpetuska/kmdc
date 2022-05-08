@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
@@ -53,7 +54,9 @@ public fun MDCDrawer(
   val options = MDCDrawerOpts().apply { opts?.invoke(this) }
   Aside(
     attrs = {
-      classes("mdc-drawer", *options.type.classes, *options.state.classes)
+      classes("mdc-drawer")
+      classes(options.type.classes)
+      classes(options.state.classes)
       initialiseMDC(MDCDrawerModule.MDCDrawer::attachTo)
       attrs?.invoke(this)
     },

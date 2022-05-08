@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -35,7 +36,8 @@ public fun MDCCard(
   val options = MDCCardOpts().apply { opts?.invoke(this) }
   Div(
     attrs = {
-      classes("mdc-card", *options.type.classes)
+      classes("mdc-card")
+      classes(options.type.classes)
       attrs?.invoke(this)
     },
     content = content?.let { { MDCCardScope(this).it() } }

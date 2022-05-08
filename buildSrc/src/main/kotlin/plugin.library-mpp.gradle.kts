@@ -49,6 +49,8 @@ kotlin {
       dependencies {
         implementation(kotlin("test-js"))
         implementation("io.kotest:kotest-assertions-core:_")
+        implementation(devNpm("sass", "^1.42.1"))
+        implementation(devNpm("sass-loader", "^12.3.0"))
       }
     }
   }

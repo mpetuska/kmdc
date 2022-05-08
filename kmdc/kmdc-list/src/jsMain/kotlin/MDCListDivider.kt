@@ -3,6 +3,7 @@ package dev.petuska.kmdc.list
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Hr
@@ -34,7 +35,8 @@ public fun MDCListScope<*>.MDCListDivider(
   val options = MDCListDividerOpts().apply { opts?.invoke(this) }
   Li(
     attrs = {
-      classes("mdc-deprecated-list-divider", *options.inset.classes)
+      classes("mdc-deprecated-list-divider")
+      classes(options.inset.classes)
       attr("role", "separator")
       attrs?.invoke(this)
     },
@@ -54,7 +56,8 @@ public fun MDCListGroupScope.MDCListDivider(
   val options = MDCListDividerOpts().apply { opts?.invoke(this) }
   Hr(
     attrs = {
-      classes("mdc-deprecated-list-divider", *options.inset.classes)
+      classes("mdc-deprecated-list-divider")
+      classes(options.inset.classes)
       attrs?.invoke(this)
     },
   )
