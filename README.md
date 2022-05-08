@@ -125,7 +125,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-tokens (won't wrap)
 - [x] mdc-tooltip
 - [x] mdc-top-app-bar
-- [ ] mdc-touch-target
+- [x] mdc-touch-target
 - [x] mdc-typography
 
 Other libraries and extensions:
