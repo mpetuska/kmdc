@@ -3,7 +3,7 @@ plugins {
   id("plugin.publishing-mpp")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/tab"
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/tab-bar"
 
 kotlin {
   sourceSets {

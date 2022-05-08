@@ -16,10 +16,10 @@ public inline fun <T : Element> AttrsScope<T>.data(key: String, value: Any) {
   attr("data-$key", "$value")
 }
 
-public typealias Classes = Collection<String>
+public typealias Classes = Array<String>
 
 @KMDCInternalAPI
-public inline fun <T : Element> AttrsScope<T>.classes(classes: Classes) {
+public inline fun <T : Element> AttrsScope<T>.classes(classes: Array<out String>) {
   classes.forEach { classes(it) }
 }
 

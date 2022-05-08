@@ -2,7 +2,6 @@ package dev.petuska.kmdc.tab.indicator
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Classes
 import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.aria
@@ -10,9 +9,9 @@ import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLSpanElement
 
-public enum class MDCTabIndicator(public val classes: Classes = listOf()) {
-  Underline(listOf("mdc-tab-indicator__content--underline")),
-  Icon(listOf("mdc-tab-indicator__content--icon"))
+public enum class MDCTabIndicator(public vararg val classes: String) {
+  Underline("mdc-tab-indicator__content--underline"),
+  Icon("mdc-tab-indicator__content--icon")
 }
 
 /**
