@@ -14,7 +14,6 @@ import dev.petuska.kmdc.image.list.MDCImageList
 import dev.petuska.kmdc.image.list.MDCImageListType
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Hr
-import kotlin.random.Random
 
 object MDCImageList : Samples() {
   override val content: SamplesRender = {
@@ -44,13 +43,6 @@ object MDCImageList : Samples() {
     }
   }
 
-  private fun randomImage(
-    seed: String,
-    width: Int = Random.nextInt(300) + 50,
-    height: Int = Random.nextInt(200) + 50
-  ) =
-    "https://picsum.photos/seed/$seed/$width/$height"
-
   private val Standard = Sample("Standard") {
     Layout { withTextProtection ->
       MDCImageList(
@@ -61,7 +53,7 @@ object MDCImageList : Samples() {
       ) {
         repeat(7) {
           Item {
-            Image(src = randomImage("kmdc-$it"))
+            Image(src = randomImageUrl("kmdc-$it"))
             Label("Image #$it")
           }
         }
@@ -79,7 +71,7 @@ object MDCImageList : Samples() {
       ) {
         repeat(7) {
           Item {
-            Image(src = randomImage("kmdc-$it"))
+            Image(src = randomImageUrl("kmdc-$it"))
             Label("Image #$it")
           }
         }
