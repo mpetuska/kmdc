@@ -2,6 +2,7 @@ package dev.petuska.kmdc.select
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.aria
+import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -72,7 +73,7 @@ private fun <T> MDCSelectLeadingIcon(options: MDCSelectOpts<T>, icon: String) {
         tabIndex(0)
         role("button")
       }
-      classes(*options.leadingIconClasses.toTypedArray())
+      classes(options.leadingIconClasses.toTypedArray())
     }
   ) {
     Text(icon)
