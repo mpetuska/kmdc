@@ -1,6 +1,7 @@
 package samples
 
 val allSamples = arrayOf(
+  MDCBanner,
   MDCButton,
   MDCCheckbox,
   MDCChips,

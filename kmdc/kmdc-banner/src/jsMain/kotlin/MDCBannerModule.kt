@@ -18,10 +18,6 @@ public external object MDCBannerModule {
     public fun getSecondaryActionText(): String
     public fun setSecondaryActionText(actionButtonText: String)
     public fun layout()
-
-    public interface MDCBannerCloseEventDetail {
-      public val reason: CloseReason
-    }
   }
 
   public enum class CloseReason {

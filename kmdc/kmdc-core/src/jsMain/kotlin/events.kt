@@ -20,3 +20,16 @@ public fun <A : AttrsScope<*>, D> MDCEvent(
     }
   }
 }
+
+public typealias MDCEventListener<D> = (event: MDCEvent<D>) -> Unit
+
+@KMDCInternalAPI
+@Suppress("FunctionName")
+public fun <A : AttrsScope<*>, D> A.addMdcEventListener(
+  eventName: String,
+  listener: MDCEventListener<D>
+) {
+  addEventListener(eventName) {
+    listener(it.nativeEvent.unsafeCast<MDCEvent<D>>())
+  }
+}

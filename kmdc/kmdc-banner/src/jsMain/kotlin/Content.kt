@@ -12,6 +12,7 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.I
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
+import org.jetbrains.compose.web.dom.Text as ComposeText
 
 public interface MDCBannerContentScope : ElementScope<HTMLDivElement>
 
@@ -60,7 +61,7 @@ public fun MDCBannerContentScope.Text(
   text: String,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
 ) {
-  Text(attrs) { org.jetbrains.compose.web.dom.Text(text) }
+  Text(attrs) { ComposeText(text) }
 }
 
 public interface MDCBannerGraphicScope : ElementScope<HTMLDivElement>
