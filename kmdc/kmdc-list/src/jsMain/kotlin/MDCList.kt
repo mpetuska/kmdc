@@ -5,6 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
@@ -37,7 +38,7 @@ public data class MDCListOpts(
   }
 }
 
-public open class MDCListScope<T : HTMLElement>(scope: ElementScope<T>) : ElementScope<T> by scope
+public interface MDCListScope<T : HTMLElement> : ElementScope<T>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
@@ -61,7 +62,7 @@ public fun MDCList(
     attrs?.invoke(this)
   }) {
     MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
-    content?.let { MDCListScope(this).it() }
+    applyContent(content)
   }
 }
 
@@ -87,6 +88,6 @@ public fun MDCNavList(
     attrs?.invoke(this)
   }) {
     MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
-    content?.let { MDCListScope(this).it() }
+    applyContent(content)
   }
 }

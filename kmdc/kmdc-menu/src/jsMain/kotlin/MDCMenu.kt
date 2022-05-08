@@ -5,15 +5,14 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListScope
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/menu/dist/mdc.menu.css")
@@ -30,9 +29,9 @@ public data class MDCMenuOpts(
   public data class Point(var x: Double = 0.0, var y: Double = 0.0)
 }
 
-public class MDCMenuAttrsScope(scope: AttrsScope<HTMLDivElement>) : MDCMenuSurfaceAttrsScope(scope)
+public interface MDCMenuAttrsScope : MDCMenuSurfaceAttrsScope
 
-public class MDCMenuScope(scope: ElementScope<HTMLUListElement>) : MDCListScope<HTMLUListElement>(scope)
+public interface MDCMenuScope : MDCListScope<HTMLUListElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu)
@@ -49,7 +48,7 @@ public fun MDCMenu(
   MDCMenuSurface(attrs = {
     classes("mdc-menu")
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
-    attrs?.invoke(MDCMenuAttrsScope(this))
+    applyAttrs(attrs)
   }) {
     MDCSideEffect(options.open, MDCMenuModule.MDCMenu::open)
     MDCSideEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
@@ -66,7 +65,7 @@ public fun MDCMenu(
         attr("aria-orientation", "vertical")
         tabIndex(-1)
       },
-      content = content?.let { { MDCMenuScope(this).it() } }
+      content = content.reinterpret()
     )
   }
 }
