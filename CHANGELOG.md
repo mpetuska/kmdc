@@ -11,15 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Verified Versions
 
-- JDK: 11+
-- Kotlin: 1.6.21
-- Compose: 1.2.0-alpha01-dev675
+- [JDK]\: 11+
+- [Kotlin]\: 1.6.21
+- [Compose]\: 1.2.0-alpha01-dev679
+- [MDC]\: ^14.0.0
 
 ### Added
 
 - [x] mdc-chips
+- [x] mdc-banner
 
 ### Changed
+
+- Standardised event handlers
 
 ### Removed
 
@@ -29,9 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Verified Versions
 
-- JDK: 11+
-- Kotlin: 1.6.21
-- Compose: 1.2.0-alpha01-dev675
+- [JDK]\: 11
+- [Kotlin]\: 1.6.21
+- [Compose]\: 1.2.0-alpha01-dev675
+- [MDC]\: ^13.0.0
 
 ### Added
 
@@ -57,9 +62,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Verified Versions
 
-- JDK: 11+
-- Kotlin: 1.6.10
-- Compose: 1.0.1
+- [JDK]\: 11
+- [Kotlin]\: 1.6.10
+- [Compose]\: 1.0.1
+- [MDC]\: ^13.0.0
 
 ### Added
 
@@ -77,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed teardown hooks on some components
 - Revisited old components to make all of them controlled for consistency
 - Reworked sandbox
-- MDCTypography extended to support custom attributes
+- [MDC]Typography extended to support custom attributes
 
 ### Removed
 
@@ -87,9 +93,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Verified Versions
 
-- JDK: 11+
-- Kotlin: 1.5.31
-- Compose: 1.0.0-rc1
+- [JDK]\: 11
+- [Kotlin]\: 1.5.31
+- [Compose]\: 1.0.0-rc1
+- [MDC]\: ^13.0.0
 
 ### Added
 
@@ -113,7 +120,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed teardown hooks on some components
 - Revisited old components to make all of them controlled for consistency
 - Reworked sandbox
-- MDCTypography extended to support custom attributes
+- [MDC]Typography extended to support custom attributes
 
 ### Removed
 
@@ -126,3 +133,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.2]: https://github.com/mpetuska/npm-publish/compare/0.0.1...0.0.2
 
 [0.0.1]: https://github.com/mpetuska/npm-publish/releases/tag/0.0.1
+
+[JDK]: https://adoptium.net/temurin/releases/
+
+[Compose]: https://github.com/JetBrains/compose-jb/releases
+
+[Kotlin]: https://github.com/JetBrains/Kotlin/releases
+
+[MDC]: https://github.com/material-components/material-components-web/releases

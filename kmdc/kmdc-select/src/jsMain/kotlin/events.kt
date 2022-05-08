@@ -1,6 +1,7 @@
 package dev.petuska.kmdc.select
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.core.mdc
 import org.w3c.dom.Element
 
@@ -10,7 +11,7 @@ import org.w3c.dom.Element
 @MDCAttrsDsl
 public fun <T> MDCSelectAttrsScope<T>.onChange(listener: (value: T) -> Unit) {
   addEventListener(MDCSelectModule.strings.CHANGE_EVENT) {
-    val event = it.nativeEvent.unsafeCast<MDCSelectModule.MDCSelectChangeEvent>()
+    val event = it.nativeEvent.unsafeCast<MDCEvent<MDCSelectModule.MDCSelectChangeEventDetail>>()
     (event.currentTarget as? Element)
       ?.mdc<MDCSelectModule.MDCSelect<T>> {
         if (event.detail.index == -1) {

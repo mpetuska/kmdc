@@ -1,17 +1,12 @@
 package dev.petuska.kmdc.segmented.button
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.w3c.dom.Element
 
 @JsModule("@material/segmented-button")
 public external object MDCSegmentedButtonModule {
   public class MDCSegmentedButton(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCSegmentedButton
-    }
-
     public val segments: Array<MDCSegmentedButtonSegment>
     public fun initialize(
       segmentFactory: (
@@ -40,15 +35,4 @@ public external object MDCSegmentedButtonModule {
     public fun setUnselected()
     public fun getSegmentId(): dynamic
   }
-
-  public interface SegmentDetail {
-    public val index: Number
-    public val selected: Boolean
-    public val segmentId: String?
-  }
-
-  public class MDCSegmentedButtonEvent : MDCEvent<SegmentDetail>
-
-  public class MDCSegmentedButtonSegmentEvent : MDCEvent<SegmentDetail>
-  public class MDCSegmentedButtonSegmentClickEvent : MDCEvent<Number>
 }

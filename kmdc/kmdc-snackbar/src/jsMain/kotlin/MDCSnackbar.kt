@@ -6,9 +6,10 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.initialiseMDC
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
-import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLElement
@@ -28,6 +29,7 @@ public data class MDCSnackbarOpts(
   }
 }
 
+public interface MDCSnackbarAttrsScope : AttrsScope<HTMLElement>
 public class MDCSnackbarScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope
 
 /**
@@ -37,15 +39,15 @@ public class MDCSnackbarScope(scope: ElementScope<HTMLElement>) : ElementScope<H
 @Composable
 public fun MDCSnackbar(
   opts: Builder<MDCSnackbarOpts>? = null,
-  attrs: AttrBuilderContext<HTMLElement>? = null,
+  attrs: Builder<MDCSnackbarAttrsScope>? = null,
   content: ComposableBuilder<MDCSnackbarScope>? = null,
 ) {
   val options = MDCSnackbarOpts().apply { opts?.invoke(this) }
   MDCSnackbarCSS
   Aside(attrs = {
     classes("mdc-snackbar", *options.type.classes)
-    attrs?.invoke(this)
     initialiseMDC(MDCSnackbarModule.MDCSnackbar::attachTo)
+    applyAttrs(attrs)
   }) {
     MDCSideEffect<MDCSnackbarModule.MDCSnackbar>(options.open) { if (options.open) open() else close() }
     Div(

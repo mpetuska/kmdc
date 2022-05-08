@@ -45,6 +45,12 @@ kotlin {
         implementation(kotlin("test"))
       }
     }
+    named("jsTest") {
+      dependencies {
+        implementation(kotlin("test-js"))
+        implementation("io.kotest:kotest-assertions-core:_")
+      }
+    }
   }
 }
 

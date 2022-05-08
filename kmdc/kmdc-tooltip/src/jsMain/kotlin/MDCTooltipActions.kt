@@ -1,12 +1,10 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonOpts
+import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -43,11 +41,12 @@ public fun MDCRichTooltipScope.MDCTooltipActions(
 @MDCDsl
 @Composable
 public fun MDCTooltipRichActionsScope.MDCTooltipAction(
-  opts: Builder<MDCButtonOpts>? = null,
+  type: MDCButtonType = MDCButtonType.Text,
+  icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
   content: ComposableBuilder<MDCButtonScope>? = null,
 ) {
-  MDCButton(opts = opts, attrs = attrs, content = content)
+  MDCButton(type = type, icon = icon, attrs = attrs, content = content)
 }
 
 /**
@@ -55,12 +54,13 @@ public fun MDCTooltipRichActionsScope.MDCTooltipAction(
  */
 @MDCDsl
 @Composable
-public inline fun MDCTooltipRichActionsScope.MDCTooltipAction(
+public fun MDCTooltipRichActionsScope.MDCTooltipAction(
   text: String,
-  noinline opts: Builder<MDCButtonOpts>? = null,
-  noinline attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  type: MDCButtonType = MDCButtonType.Text,
+  icon: MDCButtonIconType = MDCButtonIconType.None,
+  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
 ) {
-  MDCTooltipAction(opts, attrs) {
+  MDCTooltipAction(type, icon, attrs) {
     Text(text)
   }
 }

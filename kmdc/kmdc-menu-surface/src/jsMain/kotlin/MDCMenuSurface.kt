@@ -3,6 +3,7 @@ package dev.petuska.kmdc.menu.surface
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -17,7 +18,7 @@ public data class MDCMenuSurfaceOpts(
   public var fullwidth: Boolean = false
 )
 
-public open class MDCMenuSurfaceAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
+public interface MDCMenuSurfaceAttrsScope : AttrsScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu-surface)
@@ -36,8 +37,8 @@ public fun MDCMenuSurface(
       classes("mdc-menu-surface")
       if (options.fixed) classes("mdc-menu-surface--fixed")
       if (options.fullwidth) classes("mdc-menu-surface--fullwidth")
-      initialiseMDC(MDCMenuSurfaceModule.MDCMenuSurface::attachTo)
-      attrs?.invoke(this.unsafeCast<MDCMenuSurfaceAttrsScope>())
+      initialiseMDC(MDCMenuSurfaceModule::MDCMenuSurface)
+      applyAttrs(attrs)
     },
     content = content
   )

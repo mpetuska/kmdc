@@ -4,7 +4,8 @@
 
 # Kompose Material Design Components (KMDC)
 
-> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced each release.
+> The library is currently very experimental with no API stability guarantees. Breaking changes are being introduced
+> each release.
 
 A set of Kotlin wrappers
 over [material-components-web@13.0.0][material-components-web]
@@ -56,7 +57,7 @@ order schema:
    HTML element
 
 Here's a quick peek how these things come together (more samples can be found in
-the [sandbox](./sandbox/src/jsMain/kotlin/samples))
+the [sandbox](./sandbox/src/jsMain/samples))
 
 ```kotlin
 @Composable
@@ -79,7 +80,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 
 - [ ] mdc-animation (SASS)
 - [x] mdc-auto-init (won't wrap)
-- [ ] mdc-banner
+- [x] mdc-banner
 - [x] mdc-base (won't wrap)
 - [x] mdc-button
 - [x] mdc-card
@@ -131,15 +132,6 @@ Other libraries and extensions:
 
 - [x] material-icons
 
-## Contributing
-
-All contributions are welcome. Have a look for
-a [good first issue](https://github.com/mpetuska/kmdc/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-in the issue tracker, or open your own issue if you have some ideas. If you want to chat, either start
-a [discussion](https://github.com/mpetuska/kmdc/discussions) or ping me
-on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
-> Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md)
-
 ### Module Structure
 
 KMDC project modules can be categorised into three groups:
@@ -155,12 +147,27 @@ KMDC project modules can be categorised into three groups:
 * Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
     * `./gradlew jsBrowserRun -t` to start development server
     * Visit [http://localhost:3000](http://localhost:3000) to see your content
-    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/kotlin/samples/Button.kt)
-      property for it
+    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/samples/MDCButton.kt)
+      object for it
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.
 
 > Further details can be found
 > in [Contributing Guidelines](./docs/CONTRIBUTING.md#what-should-i-know-before-i-get-started)
+
+## Contributing
+
+All contributions are welcome. Have a look for
+a [good first issue](https://github.com/mpetuska/kmdc/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+in the issue tracker, or open your own issue if you have some ideas. If you want to chat, either start
+a [discussion](https://github.com/mpetuska/kmdc/discussions) or ping me
+on [slack](https://kotlinlang.slack.com/team/UL1A5BA2X).
+> Further details can be found in [Contributing Guidelines](./docs/CONTRIBUTING.md)
+
+Thanks to all the people who contributed to kmdc so far!
+
+<a href="https://github.com/mpetuska/kmdc/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mpetuska/kmdc" />
+</a>
 
 [material-components-web]: https://github.com/material-components/material-components-web/tree/v13.0.0

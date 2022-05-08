@@ -1,13 +1,19 @@
+package dev.petuska.kmdc.menu
+
 import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.menu.MDCMenuAttrsScope
-import dev.petuska.kmdc.menu.MDCMenuModule
+import dev.petuska.kmdc.core.MDCEventListener
+import dev.petuska.kmdc.core.addMdcEventListener
+import org.w3c.dom.Element
+
+public external interface MDCMenuSelectedEventDetail {
+  public val item: Element
+  public val index: Int
+}
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu)
  */
 @MDCAttrsDsl
-public fun MDCMenuAttrsScope.onSelected(listener: (event: MDCMenuModule.MDCMenuSelectedEvent) -> Unit) {
-  addEventListener(MDCMenuModule.strings.SELECTED_EVENT) {
-    listener(it.nativeEvent.unsafeCast<MDCMenuModule.MDCMenuSelectedEvent>())
-  }
+public fun MDCMenuAttrsScope.onSelected(listener: MDCEventListener<MDCMenuSelectedEventDetail>) {
+  addMdcEventListener(MDCMenuModule.strings.SELECTED_EVENT, listener)
 }

@@ -1,10 +1,12 @@
 package dev.petuska.kmdc.menu
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
+import dev.petuska.kmdc.core.MDCExternalAPI
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
+@MDCExternalAPI
 @JsModule("@material/menu")
 public external object MDCMenuModule {
   public class MDCMenu(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
@@ -15,7 +17,7 @@ public external object MDCMenuModule {
     public var open: Boolean
     public var wrapFocus: Boolean
 
-    public fun setAnchorCorner(corner: Byte?)
+    public fun setAnchorCorner(corner: MDCMenuSurfaceModule.Corner?)
     public fun setAbsolutePosition(x: Double, y: Double)
     public fun setFixedPosition(isFixed: Boolean)
     public fun setSelectedIndex(index: Int?)
@@ -30,11 +32,4 @@ public external object MDCMenuModule {
   public object strings {
     public val SELECTED_EVENT: String
   }
-
-  public class MDCMenuSelectedEventDetail {
-    public val item: Element
-    public val index: Int
-  }
-
-  public class MDCMenuSelectedEvent : MDCEvent<MDCMenuSelectedEventDetail>
 }

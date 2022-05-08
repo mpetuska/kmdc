@@ -1,53 +1,66 @@
 package dev.petuska.kmdc.data.table
 
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEventListener
+import dev.petuska.kmdc.core.addMdcEventListener
+import org.w3c.dom.HTMLElement
+import kotlin.js.Json
 
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
- */
-@MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: (event: MDCDataTableModule.MDCRowSelectionChangedEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.ROW_SELECTION_CHANGED) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCRowSelectionChangedEvent>())
-  }
+public external interface MDCDataTableRowSelectionChangedEventDetail {
+  public val rowNumber: Number
+  public val rowId: String?
+  public val rowIndex: Int
+  public val selected: Boolean?
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onRowClick(listener: (event: MDCDataTableModule.MDCRowClickEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.ROW_CLICK) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCRowClickEvent>())
-  }
+public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: MDCEventListener<MDCDataTableRowSelectionChangedEventDetail>) {
+  addMdcEventListener(MDCDataTableModule.events.ROW_SELECTION_CHANGED, listener)
+}
+
+public external interface MDCDataTableRowClickEventDetail {
+  public val rowId: String?
+  public val row: HTMLElement
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onSelectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.SELECTED_ALL) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSelectedAllEvent>())
-  }
+public fun MDCDataTableAttrsScope.onRowClick(listener: MDCEventListener<MDCDataTableRowClickEventDetail>) {
+  addMdcEventListener(MDCDataTableModule.events.ROW_CLICK, listener)
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onUnselectedAll(listener: (event: MDCDataTableModule.MDCSelectedAllEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.UNSELECTED_ALL) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSelectedAllEvent>())
-  }
+public fun MDCDataTableAttrsScope.onSelectedAll(listener: MDCEventListener<Json>) {
+  addMdcEventListener(MDCDataTableModule.events.SELECTED_ALL, listener)
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onSorted(listener: (event: MDCDataTableModule.MDCSortedEvent) -> Unit) {
-  addEventListener(MDCDataTableModule.events.SORTED) {
-    listener(it.nativeEvent.unsafeCast<MDCDataTableModule.MDCSortedEvent>())
-  }
+public fun MDCDataTableAttrsScope.onUnselectedAll(listener: MDCEventListener<Json>) {
+  addMdcEventListener(MDCDataTableModule.events.UNSELECTED_ALL, listener)
+}
+
+public external interface MDCDataTableSortActionEventDetail {
+  public val columnId: String?
+  public val columnIndex: Number
+  public val headerCell: HTMLElement
+  public val sortValue: MDCDataTableModule.SortValue
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
+ */
+@MDCAttrsDsl
+public fun MDCDataTableAttrsScope.onSorted(listener: MDCEventListener<MDCDataTableSortActionEventDetail>) {
+  addMdcEventListener(MDCDataTableModule.events.SORTED, listener)
 }

@@ -8,8 +8,8 @@ import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.imply
 import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.reinterpret
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -55,7 +55,7 @@ public fun MDCDataTable(
   content: ComposableBuilder<MDCDataTableScope>? = null,
 ) {
   MDCDataTable(attrs = {
-    initialiseMDC(MDCDataTableModule.MDCDataTable::attachTo) {
+    initialiseMDC(MDCDataTableModule::MDCDataTable) {
       if (loading) showProgress() else hideProgress()
     }
     applyAttrs(attrs)
@@ -89,7 +89,7 @@ public fun MDCDataTableScope.MDCDataTableContainer(
         classes("mdc-data-table__table")
         applyAttrs(attrs)
       },
-      content = content?.imply()
+      content = content?.reinterpret()
     )
   }
 }

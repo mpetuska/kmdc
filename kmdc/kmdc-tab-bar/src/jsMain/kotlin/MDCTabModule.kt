@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.tab
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 
@@ -17,11 +16,5 @@ public external object MDCTabModule {
     public fun focus()
     public fun computeContentClientRect(): dynamic
     public fun computeDimensions(): dynamic
-  }
-
-  public class MDCTabInteractedEvent : MDCEvent<MDCTabInteractedEvent.Detail> {
-    public interface Detail {
-      public val tabId: String
-    }
   }
 }

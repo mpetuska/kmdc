@@ -45,7 +45,7 @@ public fun MDCSegmentedButton(
       } else {
         attr("role", "group")
       }
-      initialiseMDC(MDCSegmentedButtonModule.MDCSegmentedButton::attachTo)
+      initialiseMDC(MDCSegmentedButtonModule::MDCSegmentedButton)
       attrs?.invoke(MDCSegmentedButtonAttrsScope(this))
     },
     content = content?.let { { MDCSegmentedButtonScope(this, options).it() } }

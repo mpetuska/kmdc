@@ -1,5 +1,4 @@
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 
 @JsModule("@material/snackbar")
@@ -25,11 +24,7 @@ public external object MDCSnackbarModule {
     public var actionButtonText: String
   }
 
-  public interface MDCSnackbarOpenEventDetail
   public interface MDCSnackbarCloseEventDetail {
     public val reason: String?
   }
-
-  public class MDCSnackbarOpenEvent : MDCEvent<MDCSnackbarOpenEventDetail>
-  public class MDCSnackbarCloseEvent : MDCEvent<MDCSnackbarCloseEventDetail>
 }

@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.slider
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
@@ -35,11 +34,4 @@ public external object MDCSliderModule {
     public val CHANGE: String
     public val INPUT: String
   }
-
-  public class MDCSliderChangeEventDetail {
-    public val value: Number
-    public val thumb: Int
-  }
-
-  public class MDCSliderChangeEvent : MDCEvent<MDCSliderChangeEventDetail>
 }

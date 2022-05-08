@@ -1,7 +1,6 @@
 package dev.petuska.kmdc.select
 
 import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCEvent
 import org.w3c.dom.Element
 
 @JsModule("@material/select")
@@ -37,6 +36,4 @@ public external object MDCSelectModule {
     public val value: String
     public val index: Int
   }
-
-  public class MDCSelectChangeEvent : MDCEvent<MDCSelectChangeEventDetail>
 }
