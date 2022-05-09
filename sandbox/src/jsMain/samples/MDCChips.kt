@@ -20,15 +20,12 @@ import dev.petuska.kmdc.chips.listbox.MDCChipsListbox
 import dev.petuska.kmdc.chips.onInteraction
 import dev.petuska.kmdc.chips.onRemoval
 import dev.petuska.kmdc.chips.onSelection
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.typography.MDCBody1
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
 
 object MDCChips : Samples() {
-  @OptIn(KMDCInternalAPI::class)
   override val content: SamplesRender = {
     Grid()
     Sample("ListBox - single") {
@@ -104,7 +101,6 @@ object MDCChips : Samples() {
     onRemoval { console.log("MDCChips#onRemoval", it.detail) }
   }
 
-  @OptIn(KMDCInternalAPI::class)
   private val Grid: Sample = Sample("Grid") {
     var disabled by rememberMutableStateOf(false)
     Div {

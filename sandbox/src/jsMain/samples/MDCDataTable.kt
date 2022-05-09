@@ -7,7 +7,6 @@ import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.data.table.MDCDataTable
 import dev.petuska.kmdc.data.table.MDCDataTableAttrsScope
@@ -81,7 +80,6 @@ object MDCDataTable : Samples() {
     val selected: Boolean = false,
   )
 
-  @OptIn(KMDCInternalAPI::class)
   private val Interactive = Sample(
     "Interactive",
     "Adds row selection, data loading and sorting to the mix"
@@ -143,6 +141,7 @@ object MDCDataTable : Samples() {
         }
       ) {
         MDCDataTableContainer {
+          @OptIn(KMDCInternalAPI::class)
           val id = rememberUniqueDomElementId()
           MDCDataTableHeader {
             MDCDataTableCheckCell(items.all(Item::selected), label = "Toggle All")

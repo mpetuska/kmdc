@@ -10,6 +10,7 @@ val allSamples = arrayOf(
   MDCDialog,
   MDCFab,
   MDCImageList,
+  MDCLineRipple,
   MDCMenu,
   MDCRadio,
   MDCSegmentedButton,

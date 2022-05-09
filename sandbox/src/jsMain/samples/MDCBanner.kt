@@ -17,15 +17,12 @@ import dev.petuska.kmdc.banner.onOpened
 import dev.petuska.kmdc.banner.onOpening
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.form.field.MDCFormField
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
 object MDCBanner : Samples() {
-  @OptIn(KMDCInternalAPI::class)
   override val content: SamplesRender = {
     Sample {
       var open by rememberMutableStateOf(true)

@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.fab.Icon
 import dev.petuska.kmdc.fab.Label
 import dev.petuska.kmdc.fab.MDCFab
@@ -23,7 +21,6 @@ object MDCFab : Samples() {
     Extended()
   }
 
-  @OptIn(KMDCInternalAPI::class)
   @Composable
   private fun Layout(
     content: @Composable (exited: Boolean) -> Unit

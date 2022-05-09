@@ -1,15 +1,13 @@
 package samples
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
 
 object MDCCheckbox : Samples() {
   override val content: SamplesRender = {
-    var checked by remember { mutableStateOf(false) }
+    var checked by rememberMutableStateOf(false)
     Sample("Default") {
       MDCFormField {
         MDCCheckbox(
