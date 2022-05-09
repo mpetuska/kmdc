@@ -5,6 +5,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
+import dev.petuska.kmdc.elevation.MDCElevationOverlay
 import dev.petuska.kmdc.ripple.MDCRipple
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Button
@@ -47,6 +48,7 @@ public fun MDCButton(
       attrs?.invoke(this)
     }
   ) {
+    MDCElevationOverlay()
     Span(attrs = { classes("mdc-button__ripple") })
     Span(attrs = { classes("mdc-button__focus-ring") })
     MDCRipple()

@@ -39,6 +39,7 @@ fun SamplesScope.NamedCell(
   name: String?,
   description: String? = null,
   span: UInt = 6u,
+  sample: Boolean = false,
   titleRender: @Composable (text: String, attrs: AttrBuilderContext<HTMLHeadingElement>?) -> Unit = { text, attrs ->
     MDCH6(
       text,
@@ -100,9 +101,14 @@ fun SamplesScope.NamedCell(
     }
     MDCLayoutGrid(attrs = {
       if (collapsed) hidden()
+      if (sample && name == null) classes("sample-container")
     }) {
-      MDCLayoutGridCells {
+      if (sample) {
         content()
+      } else {
+        MDCLayoutGridCells {
+          content()
+        }
       }
     }
   }
