@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.image.list.Image
 import dev.petuska.kmdc.image.list.Item
@@ -21,7 +19,6 @@ object MDCImageList : Samples() {
     Masonry()
   }
 
-  @OptIn(KMDCInternalAPI::class)
   @Composable
   private fun Layout(
     content: @Composable (withTextProtection: Boolean) -> Unit

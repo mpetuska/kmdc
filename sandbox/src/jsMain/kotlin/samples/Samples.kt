@@ -1,6 +1,9 @@
 package samples
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
 import dev.petuska.kmdc.layout.grid.MDCLayoutGridScope
@@ -34,6 +37,9 @@ abstract class Samples(
     val height: Int = Random.nextInt(maxHeight.toInt()) + minHeight.toInt()
     return "https://picsum.photos/seed/$seed/$width/$height"
   }
+
+  @Composable
+  protected fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
 
   @Composable
   protected fun SamplesScope.Sample(
