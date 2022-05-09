@@ -4,7 +4,7 @@ import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCEventListener
 import dev.petuska.kmdc.core.addMdcEventListener
 
-public interface MDCSliderChangeEventDetail {
+public external interface MDCSliderChangeEventDetail {
   public val value: Number
   public val thumb: Int
 }

@@ -43,13 +43,12 @@ abstract class Samples(
 
   @Composable
   protected fun SamplesScope.Sample(
-    name: String,
-    description: String? = null,
-    span: UInt = 6u,
-    content: SampleRender
+    name: String, description: String? = null, span: UInt = 6u, content: SampleRender
   ) {
-    NamedCell(name, description, span) {
-      MDCLayoutGridCell({ this.span = 12u }) {
+    NamedCell(name, description, span, sample = true) {
+      MDCLayoutGridCell({ this.span = 12u }, attrs = {
+        classes("sample")
+      }) {
         content(name)
       }
     }
@@ -57,28 +56,25 @@ abstract class Samples(
 
   @Composable
   protected fun SamplesScope.Sample(
-    span: UInt = 6u,
-    content: SampleRender
+    span: UInt = 6u, content: SampleRender
   ) {
-    NamedCell(null, description, span) {
-      MDCLayoutGridCell({ this.span = 12u }) {
+    NamedCell(null, description, span, sample = true) {
+      MDCLayoutGridCell({ this.span = 12u }, attrs = {
+        classes("sample")
+      }) {
         content(name)
       }
     }
   }
 
   protected fun Sample(
-    name: String,
-    description: String? = null,
-    span: UInt = 6u,
-    content: SampleRender
+    name: String, description: String? = null, span: UInt = 6u, content: SampleRender
   ): Sample = {
     Sample(name, description, span, content)
   }
 
   protected fun Sample(
-    span: UInt = 6u,
-    content: SampleRender
+    span: UInt = 6u, content: SampleRender
   ): Sample = {
     Sample(span, content)
   }

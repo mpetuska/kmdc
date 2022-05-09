@@ -13,6 +13,7 @@ kotlin {
         api(kmdc("core"))
         api(kmdc("ripple"))
         api(kmdc("touch-target"))
+        api(kmdc("elevation"))
         api(mdc("button"))
         api(compose.web.svg)
       }

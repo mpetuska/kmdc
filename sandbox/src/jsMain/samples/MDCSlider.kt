@@ -39,11 +39,11 @@ object MDCSlider : Samples() {
         attrs = {
           registerEvents(name)
           onInput {
-            it.detail.let { detail ->
-              if (detail.thumb == 1) {
-                v1 = detail.value.toInt()
+            it.detail.run {
+              if (thumb == 1) {
+                v1 = value.toInt()
               } else {
-                v2 = detail.value.toInt()
+                v2 = value.toInt()
               }
             }
           }
