@@ -2,7 +2,7 @@ import util.enableSass
 
 plugins {
   kotlin("multiplatform")
-  id("org.jetbrains.compose")
+  id("convention.compose")
   id("convention.common")
 }
 
