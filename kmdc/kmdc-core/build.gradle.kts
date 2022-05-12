@@ -1,6 +1,6 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.library")
+  id("convention.publishing")
 }
 
 description = "Core internal KMDC utilities"

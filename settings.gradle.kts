@@ -3,9 +3,11 @@ plugins {
   id("com.gradle.enterprise") version "3.10"
 }
 
-refreshVersions { extraArtifactVersionKeyRules(file("versions.rules")) }
-
 rootProject.name = "KMDC"
+
+refreshVersions {
+  versionsPropertiesFile = rootDir.resolve("gradle/versions.properties")
+}
 
 fun includeModuleGroup(path: String) {
   rootDir.resolve(path).listFiles { file: File -> file.isDirectory && file.name.startsWith(path) }
@@ -14,3 +16,5 @@ fun includeModuleGroup(path: String) {
 
 includeModuleGroup("kmdc")
 includeModuleGroup("kmdcx")
+
+includeBuild("build-conventions")

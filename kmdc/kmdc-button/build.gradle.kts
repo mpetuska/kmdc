@@ -1,22 +1,15 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/button"
-
-kotlin {
-  sourceSets {
-    commonMain
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("ripple"))
-        api(kmdc("touch-target"))
-        api(kmdc("elevation"))
-        api(mdc("button"))
-        api(compose.web.svg)
-      }
+kmdc {
+  mdc by "button"
+  dependencies {
+    main {
+      api(compose.web.svg)
+      api(kmdc("ripple"))
+      api(kmdc("touch-target"))
+      api(kmdc("elevation"))
     }
   }
 }

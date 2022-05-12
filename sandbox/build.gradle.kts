@@ -1,14 +1,9 @@
+import util.enableSass
+
 plugins {
   kotlin("multiplatform")
   id("org.jetbrains.compose")
-}
-
-description = "Local consumer sandbox"
-
-repositories {
-  mavenCentral()
-  google()
-  maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+  id("convention.common")
 }
 
 gradleEnterprise {
@@ -22,10 +17,10 @@ kotlin {
   js {
     binaries.executable()
     useCommonJs()
+    enableSass(main = true, test = true)
     browser {
       commonWebpackConfig {
-        cssSupport.enabled = true
-        sourceMaps = false
+        sourceMaps = true
         devServer = devServer?.copy(
           open = false,
           port = 3000,
@@ -34,19 +29,12 @@ kotlin {
     }
   }
   sourceSets {
-    named("commonTest") {
-      dependencies {
-        implementation(kotlin("test"))
-      }
-    }
-    named("jsMain") {
+    jsMain {
       kotlin.srcDir("src/jsMain/samples")
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")
         implementation("app.softwork:routing-compose:_")
-        implementation(devNpm("sass", "^1.42.1"))
-        implementation(devNpm("sass-loader", "^12.3.0"))
       }
     }
     all {

@@ -1,6 +1,6 @@
 plugins {
-  id("plugin.library-mpp")
-  id("plugin.publishing-mpp")
+  id("convention.library")
+  id("convention.publishing")
 }
 
 description = "All KMDC extensions"

@@ -1,19 +1,13 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/card"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("button"))
-        api(kmdc("icon-button"))
-        api(mdc("card"))
-      }
+kmdc {
+  mdc by "card"
+  dependencies {
+    main {
+      api(kmdc("button"))
+      api(kmdc("icon-button"))
     }
   }
 }

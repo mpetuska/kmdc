@@ -1,19 +1,13 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/radio"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("form-field"))
-        api(kmdc("touch-target"))
-        api(mdc("radio"))
-      }
+kmdc {
+  mdc by "radio"
+  dependencies {
+    main {
+      api(kmdc("form-field"))
+      api(kmdc("touch-target"))
     }
   }
 }

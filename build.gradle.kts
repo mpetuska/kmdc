@@ -1,9 +1,9 @@
 plugins {
   if (System.getenv("CI") == null) {
-    id("plugin.git-hooks")
+    id("convention.git-hooks")
   }
-  id("plugin.publishing-nexus")
-  id("org.jetbrains.dokka")
+  id("convention.publishing-nexus")
+  id("convention.dokka")
 }
 
 gradleEnterprise {

@@ -1,18 +1,12 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/circular-progress"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(compose.web.svg)
-        api(kmdc("core"))
-        api(mdc("circular-progress"))
-      }
+kmdc {
+  mdc by "circular-progress"
+  dependencies {
+    main {
+      api(compose.web.svg)
     }
   }
 }

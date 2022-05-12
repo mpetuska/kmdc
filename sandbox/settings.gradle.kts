@@ -12,7 +12,8 @@ plugins {
 }
 
 refreshVersions {
-  extraArtifactVersionKeyRules(file("versions.rules"))
+  versionsPropertiesFile = rootDir.resolve("gradle/versions.properties")
 }
 
+includeBuild("../build-conventions")
 includeBuild("..")

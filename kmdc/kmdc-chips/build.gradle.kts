@@ -1,19 +1,13 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/chips"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(compose.web.svg)
-        api(kmdc("core"))
-        api(kmdc("touch-target"))
-        api(mdc("chips"))
-      }
+kmdc {
+  mdc by "chips"
+  dependencies {
+    main {
+      api(compose.web.svg)
+      api(kmdc("touch-target"))
     }
   }
 }
