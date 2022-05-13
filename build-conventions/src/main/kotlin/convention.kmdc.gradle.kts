@@ -13,6 +13,17 @@ extensions.configure(PomExtension::class) {
   description by kmdc.module.map { "Compose Multiplatform Kotlin/JS wrappers for $it" }
 }
 
+kotlin {
+  sourceSets {
+    configureEach {
+      languageSettings {
+        optIn("dev.petuska.kmdc.core.KMDCInternalAPI")
+        optIn("dev.petuska.kmdc.core.MDCExternalAPI")
+      }
+    }
+  }
+}
+
 afterEvaluate {
   extensions.configure(KotlinMultiplatformExtension::class.java) {
     sourceSets.jsMain.configure {

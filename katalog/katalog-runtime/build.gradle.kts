@@ -1,7 +1,23 @@
 plugins {
-  kotlin("jvm")
+  id("convention.library")
 }
 
 kotlin {
-  explicitApi()
+  targets {
+    jvm()
+    sourceSets {
+      commonMain {
+        dependencies {
+          api(compose.runtime)
+        }
+      }
+    }
+  }
+  sourceSets {
+    jsMain {
+      dependencies {
+        implementation("app.softwork:routing-compose:_")
+      }
+    }
+  }
 }

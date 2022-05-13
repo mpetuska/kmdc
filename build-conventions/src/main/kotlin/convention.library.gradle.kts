@@ -11,7 +11,7 @@ plugins {
 
 kotlin {
   explicitApi()
-  js {
+  js(IR) {
     useCommonJs()
     enableSass(main = false, test = true)
     browser {
@@ -36,10 +36,8 @@ kotlin {
   }
 
   sourceSets {
-    all {
+    configureEach {
       languageSettings {
-        optIn("dev.petuska.kmdc.core.KMDCInternalAPI")
-        optIn("dev.petuska.kmdc.core.MDCExternalAPI")
         optIn("kotlin.RequiresOptIn")
       }
     }

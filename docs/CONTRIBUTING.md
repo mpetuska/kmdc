@@ -262,7 +262,7 @@ easier, [Ktlint IDEA Plugin][ktlint-idea] is highly recommended.
 * Use 2-space indent
 * Prefer explicit imports over star imports
 * When invoking functions with a big argument list, consider using named arguments
-* Try to have as little `public` API as you can, deferring to `private` or `internal` members where possible
+* Try to have as little `public` API as you can, deferring to `private` or `domain` members where possible
 
 ### Sandbox Styleguide
 

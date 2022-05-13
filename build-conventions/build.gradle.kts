@@ -22,6 +22,7 @@ dependencies {
   implementation("com.github.jakemarsden:git-hooks-gradle-plugin:_")
   implementation("com.diffplug.spotless:spotless-plugin-gradle:_")
   implementation("io.github.gradle-nexus:publish-plugin:_")
+  implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:_")
   @OptIn(InternalRefreshVersionsApi::class)
   implementation("de.fayard.refreshVersions:refreshVersions-core:${RefreshVersionsCorePlugin.currentVersion}")
 }

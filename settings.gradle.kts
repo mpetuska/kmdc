@@ -7,6 +7,7 @@ rootProject.name = "KMDC"
 
 refreshVersions {
   versionsPropertiesFile = rootDir.resolve("gradle/versions.properties")
+  extraArtifactVersionKeyRules(rootDir.resolve("gradle/versions.rules"))
 }
 
 fun includeModuleGroup(path: String) {

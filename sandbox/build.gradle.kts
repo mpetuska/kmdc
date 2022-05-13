@@ -4,13 +4,7 @@ plugins {
   kotlin("multiplatform")
   id("convention.compose")
   id("convention.common")
-}
-
-gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-  }
+  id("convention.ksp")
 }
 
 kotlin {
@@ -31,9 +25,11 @@ kotlin {
   sourceSets {
     jsMain {
       kotlin.srcDir("src/jsMain/samples")
+      kotlin.srcDir(buildDir.resolve("generated/ksp/js/jsMain/kotlin"))
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")
+        implementation("dev.petuska:katalog-runtime")
         implementation("app.softwork:routing-compose:_")
       }
     }
@@ -42,5 +38,16 @@ kotlin {
         optIn("kotlin.ExperimentalStdlibApi")
       }
     }
+  }
+}
+
+dependencies {
+  "kspJs"("dev.petuska:katalog-ksp")
+}
+
+gradleEnterprise {
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
   }
 }
