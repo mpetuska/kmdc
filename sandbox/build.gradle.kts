@@ -14,7 +14,7 @@ kotlin {
     enableSass(main = true, test = true)
     browser {
       commonWebpackConfig {
-        sourceMaps = true
+        sourceMaps = false
         devServer = devServer?.copy(
           open = false,
           port = 3000,

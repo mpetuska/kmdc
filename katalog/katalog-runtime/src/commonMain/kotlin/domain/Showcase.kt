@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 
 public typealias ShowcaseContent = @Composable () -> Unit
 
-public data class ShowcaseItem(
+public data class Showcase(
   val id: String,
   val title: String,
   val description: String?,

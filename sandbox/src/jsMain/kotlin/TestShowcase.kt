@@ -1,6 +1,7 @@
 package test
 
 import androidx.compose.runtime.Composable
+import dev.petuska.katalog.runtime.Katalog
 import dev.petuska.katalog.runtime.KatalogConfig
 import dev.petuska.katalog.runtime.Showcase
 import org.jetbrains.compose.web.dom.Text
@@ -20,6 +21,8 @@ object Container {
 }
 
 @KatalogConfig
-fun config() {
+fun Katalog.Builder.config() {
   samples.require("./sandbox.scss")
+  title = "KMDC Katalog"
+  subtitle = "Play around with various KMDC components"
 }

@@ -18,7 +18,7 @@ import dev.petuska.katalog.plugin.domain.ShowcaseName
 import dev.petuska.katalog.plugin.util.KatalogLogger
 import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
-import dev.petuska.katalog.runtime.domain.ShowcaseItem
+import dev.petuska.katalog.runtime.domain.Showcase
 
 
 class ShowcaseVisitor(
@@ -32,23 +32,24 @@ class ShowcaseVisitor(
     val name = function.simpleName.getShortName()
     val propName = name + "KatalogShowcase"
     val title = data.title ?: function.simpleName.asString()
-    val type = ShowcaseItem::class.java.run { ClassName(packageName, simpleName) }
+    val type = Showcase::class.java.run { ClassName(packageName, simpleName) }
 
     val funRef = function.ref(this)
     val prop = PropertySpec.builder(propName, type).apply {
       function.containingFile?.let(::addOriginatingKSFile)
       codeBlockOf {
         addNamed(
-          """
-            %showcaseItem:T(
-              id = %id:S,
-              title = %title:S,
-              description = %description:S,
-              content = {
-                %invocation:L
-              },
-            )
-          """.trimIndent(), mapOf(
+          format = """
+                      %showcaseItem:T(
+                        id = %id:S,
+                        title = %title:S,
+                        description = %description:S,
+                        content = {
+                          %invocation:L
+                        },
+                      )
+                    """.trimIndent(),
+          arguments = mapOf(
             "id" to (data.id ?: "katalog-showcase--$name"),
             "showcaseItem" to type,
             "invocation" to function.invocation(funRef, title, data.description),
@@ -75,7 +76,7 @@ class ShowcaseVisitor(
     }
     parameters["description"]?.takeIf { it.type.resolve() == builtIns.stringType }
       ?.let { args["description"] = description }
-
+    
     addNamed(
       args.toList().joinToString(separator = ", ", prefix = "%fun:M(", postfix = ")") { (name, _) ->
         "%$name:S"
