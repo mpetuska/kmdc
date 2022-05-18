@@ -3,6 +3,7 @@ package dev.petuska.katalog.plugin.visitor
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSBuiltIns
 import com.google.devtools.ksp.processing.KSPLogger
+import com.google.devtools.ksp.symbol.FileLocation
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSNode
 import com.google.devtools.ksp.visitor.KSDefaultVisitor
@@ -19,12 +20,14 @@ import dev.petuska.katalog.plugin.util.KatalogLogger
 import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
 import dev.petuska.katalog.runtime.domain.Showcase
+import java.io.File
 
 
 class ShowcaseVisitor(
   private val builtIns: KSBuiltIns,
   private val codeGenerator: CodeGenerator,
   override val logger: KSPLogger,
+  private val contentRoot: File?,
 ) : KSDefaultVisitor<ShowcaseData, ShowcaseName>(), KatalogLogger {
 
   override fun visitFunctionDeclaration(function: KSFunctionDeclaration, data: ShowcaseData): ShowcaseName {
@@ -37,6 +40,15 @@ class ShowcaseVisitor(
     val funRef = function.ref(this)
     val prop = PropertySpec.builder(propName, type).apply {
       function.containingFile?.let(::addOriginatingKSFile)
+      val location = function.location.let {
+        if (it is FileLocation) {
+          it
+        } else {
+          null
+        }
+      }?.let { (filePath, lineNumber) ->
+        contentRoot?.let { File(filePath).relativeTo(it) }?.let { "$it#L$lineNumber" }
+      }
       codeBlockOf {
         addNamed(
           format = """
@@ -44,17 +56,19 @@ class ShowcaseVisitor(
                         id = %id:S,
                         title = %title:S,
                         description = %description:S,
+                        location = %location:S,
                         content = {
                           %invocation:L
                         },
                       )
                     """.trimIndent(),
           arguments = mapOf(
-            "id" to (data.id ?: "katalog-showcase--$name"),
+            "id" to (data.id ?: function.qualifiedName?.asString() ?: "katalog-showcase--$name"),
             "showcaseItem" to type,
             "invocation" to function.invocation(funRef, title, data.description),
             "title" to title,
             "description" to data.description,
+            "location" to location,
           )
         )
       }.also(::initializer)
@@ -76,7 +90,7 @@ class ShowcaseVisitor(
     }
     parameters["description"]?.takeIf { it.type.resolve() == builtIns.stringType }
       ?.let { args["description"] = description }
-    
+
     addNamed(
       args.toList().joinToString(separator = ", ", prefix = "%fun:M(", postfix = ")") { (name, _) ->
         "%$name:S"

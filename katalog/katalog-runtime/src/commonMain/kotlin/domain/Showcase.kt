@@ -8,5 +8,6 @@ public data class Showcase(
   val id: String,
   val title: String,
   val description: String?,
+  val location: String?,
   val content: ShowcaseContent
 )

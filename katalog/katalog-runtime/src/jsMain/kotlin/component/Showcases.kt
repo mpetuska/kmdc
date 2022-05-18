@@ -7,16 +7,13 @@ import app.softwork.routingcompose.NavLink
 import dev.petuska.katalog.runtime.UtilStyle
 import dev.petuska.katalog.runtime.domain.Showcase
 import dev.petuska.katalog.runtime.katalog
-import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.CSSColorValue
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
-import org.jetbrains.compose.web.css.JustifyContent
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.css.StyleSheet
-import org.jetbrains.compose.web.css.alignItems
 import org.jetbrains.compose.web.css.backgroundColor
 import org.jetbrains.compose.web.css.border
 import org.jetbrains.compose.web.css.borderRadius
@@ -25,7 +22,6 @@ import org.jetbrains.compose.web.css.display
 import org.jetbrains.compose.web.css.em
 import org.jetbrains.compose.web.css.flexDirection
 import org.jetbrains.compose.web.css.height
-import org.jetbrains.compose.web.css.justifyContent
 import org.jetbrains.compose.web.css.margin
 import org.jetbrains.compose.web.css.marginRight
 import org.jetbrains.compose.web.css.minWidth
@@ -35,7 +31,6 @@ import org.jetbrains.compose.web.css.value
 import org.jetbrains.compose.web.css.variable
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.H3
 import org.jetbrains.compose.web.dom.H4
 import org.jetbrains.compose.web.dom.Text
 
@@ -55,8 +50,6 @@ private object ShowcasesStyle : StyleSheet() {
     width(100.percent)
     display(DisplayStyle.Flex)
     flexDirection(FlexDirection.Column)
-    alignItems(AlignItems.Center)
-    justifyContent(JustifyContent.Center)
   }
   private val navBg by variable<CSSColorValue>()
   val navLink by style {
@@ -127,25 +120,8 @@ private fun Content(showcase: Showcase?) {
   Div(attrs = {
     classes(ShowcasesStyle.content, UtilStyle.roundedBoxShadow)
   }) {
-    showcase?.render()
-  }
-}
-
-
-@Composable
-private fun Showcase.render() {
-  Div(attrs = {
-    id("${id}__header")
-    classes("katalog-showcase-header")
-  }) {
-    H3 { Text(title) }
-    description?.let { H3 { Text(it) } }
-  }
-  Div(attrs = {
-    id("${id}__content")
-    classes("katalog-showcase-content")
-  }) {
-    Div { Text("ID: $id") }
-    content()
+    if (showcase != null) {
+      ShowcaseBox(showcase)
+    }
   }
 }

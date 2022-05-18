@@ -21,10 +21,13 @@ import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
 import dev.petuska.katalog.plugin.visitor.ShowcaseVisitor
 import dev.petuska.katalog.runtime.KatalogConfig
+import java.io.File
 import dev.petuska.katalog.runtime.Showcase as ShowcaseAnnotation
 
 class KatalogSymbolProcessor(
-  private val codeGenerator: CodeGenerator, override val logger: KSPLogger
+  private val codeGenerator: CodeGenerator,
+  override val logger: KSPLogger,
+  private val contentRoot: File?
 ) : SymbolProcessor, KatalogLogger {
   private val showcases = mutableSetOf<ShowcaseName>()
   private val configs = mutableMapOf<Int, List<KSFunctionDeclaration>>()
@@ -37,7 +40,7 @@ class KatalogSymbolProcessor(
       }.let(configs::putAll)
 
     val showcases = resolver.getSymbolsWithAnnotation(ShowcaseAnnotation::class.qualifiedName!!)
-    val visitor = ShowcaseVisitor(resolver.builtIns, codeGenerator, logger)
+    val visitor = ShowcaseVisitor(resolver.builtIns, codeGenerator, logger, contentRoot)
     showcases.mapNotNull {
       if (it.annotations.any { a -> a.shortName.asString() == "Composable" }) {
         val data = it.annotations.first { a -> a.shortName.getShortName() == "Showcase" }.showcaseData()

@@ -1,7 +1,11 @@
 package samples
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.banner.Actions
 import dev.petuska.kmdc.banner.Content
 import dev.petuska.kmdc.banner.Graphic
@@ -15,72 +19,52 @@ import dev.petuska.kmdc.banner.onClosed
 import dev.petuska.kmdc.banner.onClosing
 import dev.petuska.kmdc.banner.onOpened
 import dev.petuska.kmdc.banner.onOpening
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.form.field.MDCFormField
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Hr
+import sandbox.control.ActionInput
+import sandbox.control.BooleanChoice
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
-object MDCBanner : Samples() {
-  override val content: SamplesRender = {
-    Sample {
-      var open by rememberMutableStateOf(true)
-      var centered by rememberMutableStateOf(false)
-      var mobileStacked by rememberMutableStateOf(false)
-      Div {
-        MDCFormField {
-          MDCCheckbox(
-            checked = centered,
-            label = "Centered",
-            attrs = { onInput { centered = !centered } }
-          )
-        }
-        MDCFormField {
-          MDCCheckbox(
-            checked = mobileStacked,
-            label = "Mobile Stacked",
-            attrs = { onInput { mobileStacked = !mobileStacked } }
-          )
-        }
-        MDCButton(
-          text = if (open) "Close" else "Open",
-          attrs = {
-            onClick { open = !open }
-          }
-        )
+private class MDCBannerShowcaseVM {
+  var open by mutableStateOf(false)
+  var centered by mutableStateOf(false)
+  var mobileStacked by mutableStateOf(false)
+}
+
+@Composable
+@Showcase(title = "MDCBanner", id = "MDCBanner")
+fun MDCBannerShowcase() = InteractiveShowcase(
+  viewModel = { MDCBannerShowcaseVM() },
+  controls = {
+    BooleanChoice("Centered", centered) { centered = it }
+    BooleanChoice("Mobile Stacked", mobileStacked) { mobileStacked = it }
+    ActionInput(if (open) "Close" else "Open") { open = !open }
+  },
+) {
+  MDCBanner(
+    open = open,
+    centered = centered,
+    mobileStacked = mobileStacked,
+    attrs = {
+      registerEvents()
+      onOpening { open = true }
+      onClosing { open = false }
+    }
+  ) {
+    Content {
+      Graphic {
+        Icon(attrs = { classes("material-icons") }) { ComposeText("error_outline") }
       }
-      Hr()
-      Div {
-        MDCBanner(
-          open = open,
-          centered = centered,
-          mobileStacked = mobileStacked,
-          attrs = {
-            registerEvents()
-            onOpening { open = true }
-            onClosing { open = false }
-          }
-        ) {
-          Content {
-            Graphic {
-              Icon(attrs = { classes("material-icons") }) { ComposeText("error_outline") }
-            }
-            Text("There was a problem processing a transaction on your credit card.")
-          }
-          Actions {
-            PrimaryAction("Learn more")
-            SecondaryAction("Fix it")
-          }
-        }
-      }
+      Text("There was a problem processing a transaction on your credit card.")
+    }
+    Actions {
+      PrimaryAction("Learn more")
+      SecondaryAction("Fix it")
     }
   }
+}
 
-  private fun MDCBannerAttrsScope.registerEvents() {
-    onClosing { console.log("MDCBanner#onClosing", it.detail) }
-    onClosed { console.log("MDCBanner#onClosed", it.detail) }
-    onOpening { console.log("MDCBanner#onOpening", it.detail) }
-    onOpened { console.log("MDCBanner#onOpened", it.detail) }
-  }
+private fun MDCBannerAttrsScope.registerEvents() {
+  onClosing { console.log("MDCBanner#onClosing", it.detail) }
+  onClosed { console.log("MDCBanner#onClosed", it.detail) }
+  onOpening { console.log("MDCBanner#onOpening", it.detail) }
+  onOpened { console.log("MDCBanner#onOpened", it.detail) }
 }

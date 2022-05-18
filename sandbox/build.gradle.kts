@@ -45,6 +45,10 @@ dependencies {
   "kspJs"("dev.petuska:katalog-ksp")
 }
 
+ksp {
+  arg("katalog.contentRoot", rootDir.parentFile.absolutePath)
+}
+
 gradleEnterprise {
   buildScan {
     termsOfServiceUrl = "https://gradle.com/terms-of-service"
