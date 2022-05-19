@@ -3,6 +3,7 @@ package sandbox.control
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.form.field.MDCFormField
 import dev.petuska.kmdc.radio.MDCRadio
+import kotlin.reflect.KMutableProperty0
 
 
 @Composable
@@ -13,7 +14,7 @@ fun <T> RadioChoice(
   description: String? = null,
   onSelect: (selected: T) -> Unit
 ) {
-  Named(title, description) {
+  NamedBlock(title, description) {
     MDCFormField {
       options.forEach { (text, value) ->
         MDCRadio(checked = selected == value, opts = {
@@ -24,4 +25,14 @@ fun <T> RadioChoice(
       }
     }
   }
+}
+
+@Composable
+fun <T> RadioChoice(
+  title: String,
+  options: Map<String, T>,
+  selected: KMutableProperty0<T>,
+  description: String? = null,
+) {
+  RadioChoice(title, options, selected.get(), description, selected::set)
 }

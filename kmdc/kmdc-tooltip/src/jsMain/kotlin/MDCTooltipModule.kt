@@ -9,7 +9,6 @@ import org.w3c.dom.events.Event
 @JsModule("@material/tooltip")
 public external object MDCTooltipModule {
   public class MDCTooltip(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public fun initialize()
     public fun setTooltipPosition(
       xPos: dynamic = definedExternally,
       yPos: dynamic = definedExternally,

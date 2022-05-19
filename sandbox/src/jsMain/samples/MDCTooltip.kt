@@ -1,6 +1,14 @@
 package samples
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import dev.petuska.katalog.runtime.util.loremIpsum
 import dev.petuska.kmdc.button.MDCButton
+import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.tooltip.MDCRichTooltip
 import dev.petuska.kmdc.tooltip.MDCTooltip
 import dev.petuska.kmdc.tooltip.MDCTooltipAction
@@ -10,102 +18,61 @@ import dev.petuska.kmdc.tooltip.MDCTooltipLink
 import dev.petuska.kmdc.tooltip.MDCTooltipTitle
 import dev.petuska.kmdc.tooltip.tooltipId
 import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanChoice
+import sandbox.control.NamedBlock
 
-object MDCTooltip : Samples() {
-  override val content: SamplesRender = {
-    Simple()
-    Rich()
-    Interactive()
-    Persistent()
-  }
+private class MDCTooltipVM {
+  var interactive by mutableStateOf(false)
+  var persistent by mutableStateOf(false)
+  val baseTooltipId = "kmdc-tooltip-id-"
 
-  private val Simple = Sample("Simple") {
-    val tid = "tooltip-id"
+  @Composable
+  fun AnchorButton(tid: String) {
     MDCButton(
       text = "Hover over me",
+      type = MDCButtonType.Raised,
       attrs = {
         tooltipId(tid)
       }
     )
+  }
+}
+
+@Composable
+@Showcase(id = "MDCTooltip")
+fun MDCTooltip() = InteractiveShowcase(
+  viewModel = { MDCTooltipVM() },
+  controls = {
+    BooleanChoice("Interactive", ::interactive)
+    BooleanChoice("Persistent", ::persistent)
+  },
+) {
+  NamedBlock("Simple") {
+    val tid = "$baseTooltipId-simple"
+    AnchorButton(tid)
     MDCTooltip(
       id = tid,
-      text = "lorem ipsum dolor"
+      persistent = persistent,
+      text = loremIpsum
     )
   }
-
-  private val Rich = Sample("Rich") {
-    val tid = "tt0"
-
+  NamedBlock("Rich") {
+    val tid = "$baseTooltipId-rich"
     MDCRichTooltip(
       id = tid,
+      interactive = interactive,
+      persistent = persistent,
       anchorContent = {
-        MDCButton(
-          text = "Hover over me",
-          attrs = {
-            tooltipId(tid)
-          }
-        )
-      }
-    ) {
-      MDCTooltipContent(
-        """
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-         pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
-         aliquam sit amet sit amet eros.
-      """.trimIndent()
-      )
-    }
-  }
-
-  private val Interactive = Sample("Interactive") {
-    val tid = "tt1"
-
-    MDCRichTooltip(
-      id = tid,
-      opts = { interactive = true },
-      anchorContent = {
-        MDCButton(
-          text = "Hover over me",
-          attrs = {
-            tooltipId(tid)
-          }
-        )
+        AnchorButton(tid)
       }
     ) {
       MDCTooltipTitle("Lorem Ipsum")
       MDCTooltipContent {
-        Text(
-          """
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-         pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
-         aliquam sit amet sit amet eros.
-        """.trimIndent()
-        )
+        Text(loremIpsum)
         MDCTooltipLink("link", "https://google.com")
       }
       MDCTooltipActions {
         MDCTooltipAction("action")
-      }
-    }
-  }
-
-  private val Persistent = Sample("Persistent", "Lose focus to dismiss.") {
-    val tid = "tt2"
-
-    MDCRichTooltip(
-      id = tid,
-      opts = { persistent = true },
-      anchorContent = {
-        MDCButton(
-          text = "Click me",
-          attrs = {
-            tooltipId(tid)
-          }
-        )
-      }
-    ) {
-      MDCTooltipContent {
-        Text("I won't go away until I lose focus")
       }
     }
   }

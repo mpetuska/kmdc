@@ -54,10 +54,16 @@ public fun <E : Element, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<E>.MD
   mdcInit: (E) -> MDC,
   onDispose: (MDC.(E) -> Unit)? = null,
   keys: Array<Any?> = arrayOf(Unit),
+  rebuildOnChange: Boolean = false,
   setup: (MDC.(E) -> Unit)? = null,
 ) {
   DisposableEffect(keys = keys) {
-    scopeElement.mdc = scopeElement.mdc ?: mdcInit(scopeElement)
+    scopeElement.mdc = scopeElement.mdc
+    if (scopeElement.mdc == null || rebuildOnChange) {
+      if (rebuildOnChange) scopeElement.mdc<MDC> { destroy() }
+      scopeElement.mdc = mdcInit(scopeElement)
+    }
+
     setup?.invoke(scopeElement.mdc as MDC, scopeElement)
     onDispose {
       scopeElement.mdc<MDC> {

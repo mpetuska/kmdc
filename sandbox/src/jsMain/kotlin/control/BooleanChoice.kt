@@ -13,7 +13,7 @@ fun BooleanChoice(
   description: String? = null,
   onSelect: (selected: Boolean) -> Unit
 ) {
-  Named(title, description) {
+  NamedBlock(title, description) {
     MDCFormField {
       MDCCheckbox(
         checked = selected,

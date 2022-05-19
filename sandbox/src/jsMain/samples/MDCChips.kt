@@ -25,7 +25,7 @@ import dev.petuska.kmdc.chips.onRemoval
 import dev.petuska.kmdc.chips.onSelection
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanChoice
-import sandbox.control.Named
+import sandbox.control.NamedBlock
 
 private class MDCChipsVM {
   var disabled by mutableStateOf(false)
@@ -45,7 +45,7 @@ fun MDCChips() = InteractiveShowcase(
     BooleanChoice("Touch", ::touch)
   },
 ) {
-  Named("Grid") {
+  NamedBlock("Grid") {
     MDCChipsGrid(overflow = overflow, attrs = {
       registerEvents()
     }) {
@@ -89,7 +89,7 @@ fun MDCChips() = InteractiveShowcase(
       }
     }
   }
-  Named("Listbox") {
+  NamedBlock("Listbox") {
     val selected = remember { mutableStateListOf<String>("1") }
     MDCChipsListbox(overflow = overflow, multiselectable = multiselectable, attrs = {
       registerEvents()
