@@ -7,12 +7,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.textfield.MDCTextArea
 import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
 import dev.petuska.kmdc.textfield.MDCTextFieldLeadingIcon
 import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
+import dev.petuska.kmdc.textfield.MDCTextFieldType
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanChoice
 import sandbox.control.NamedBlock
@@ -21,7 +20,7 @@ import sandbox.control.RadioChoice
 import sandbox.control.TextInput
 
 private class MDCTextFieldVM {
-  var type by mutableStateOf(MDCTextFieldCommonOpts.Type.Filled)
+  var type by mutableStateOf(MDCTextFieldType.Filled)
   var disabled by mutableStateOf(false)
   var label by mutableStateOf("")
   var helperText by mutableStateOf("")
@@ -41,7 +40,7 @@ private class MDCTextFieldVM {
 fun MDCTextField() = InteractiveShowcase(
   viewModel = { MDCTextFieldVM() },
   controls = {
-    RadioChoice("Type", MDCTextFieldCommonOpts.Type.values().associateBy(MDCTextFieldCommonOpts.Type::name), ::type)
+    RadioChoice("Type", MDCTextFieldType.values().associateBy(MDCTextFieldType::name), ::type)
     BooleanChoice("Disabled", ::disabled)
     TextInput("Label", ::label)
     TextInput("Helper Text", ::helperText)
@@ -61,21 +60,16 @@ fun MDCTextField() = InteractiveShowcase(
   },
 ) {
   var text by remember { mutableStateOf("") }
-  val commonOpts: Builder<MDCTextFieldCommonOpts> = {
-    type = this@InteractiveShowcase.type
-    disabled = this@InteractiveShowcase.disabled
-    label = this@InteractiveShowcase.label.takeIf(String::isNotBlank)
-    helperText = this@InteractiveShowcase.helperText.takeIf(String::isNotBlank)
-    maxLength = this@InteractiveShowcase.maxLength.takeIf(String::isNotBlank)?.toUInt()
-  }
   NamedBlock("Field") {
     MDCTextField(
-      text,
-      opts = {
-        commonOpts()
-        prefix = this@InteractiveShowcase.prefix.takeIf(String::isNotBlank)
-        suffix = this@InteractiveShowcase.suffix.takeIf(String::isNotBlank)
-      },
+      value = text,
+      type = type,
+      disabled = disabled,
+      label = label.takeIf(String::isNotBlank),
+      helperText = helperText.takeIf(String::isNotBlank),
+      maxLength = maxLength.takeIf(String::isNotBlank)?.toUInt(),
+      prefix = prefix.takeIf(String::isNotBlank),
+      suffix = suffix.takeIf(String::isNotBlank),
       attrs = {
         onInput { text = it.value }
       },
@@ -93,12 +87,14 @@ fun MDCTextField() = InteractiveShowcase(
   }
   NamedBlock("Area") {
     MDCTextArea(
-      text,
-      opts = {
-        commonOpts()
-        rows = this@InteractiveShowcase.rows.toUInt()
-        columns = this@InteractiveShowcase.columns.toUInt()
-      },
+      value = text,
+      type = type,
+      disabled = disabled,
+      label = label.takeIf(String::isNotBlank),
+      helperText = helperText.takeIf(String::isNotBlank),
+      maxLength = maxLength.takeIf(String::isNotBlank)?.toUInt(),
+      rows = rows.toUInt(),
+      columns = columns.toUInt(),
       attrs = {
         onInput { text = it.value }
       }

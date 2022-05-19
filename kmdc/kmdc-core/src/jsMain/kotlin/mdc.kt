@@ -46,6 +46,7 @@ public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initia
  * @param mdcInit component provider
  * @param onDispose to further cleanup the removed component
  * @param keys to control the component lifecycle
+ * @param rebuildOnChange reinitialize MDC component on each [keys] change
  * @param setup to configure the created component
  */
 @Composable

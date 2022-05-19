@@ -21,7 +21,7 @@ import dev.petuska.kmdc.tab.indicator.Underline
 import dev.petuska.kmdc.tab.onInteracted
 import dev.petuska.kmdc.tab.scroller.Scroller
 import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
+import dev.petuska.kmdc.textfield.MDCTextFieldType
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.min
 import org.jetbrains.compose.web.attributes.step
@@ -46,16 +46,16 @@ object MDCTabBar : Samples() {
     var stacked by rememberMutableStateOf(false)
     var minnWidth by rememberMutableStateOf(false)
     Div {
-      MDCTextField("$tabs", opts = {
-        type = MDCTextFieldCommonOpts.Type.Outlined
-        label = "Tabs"
-      }, attrs = {
-        type(InputType.Number)
-        value(tabs)
-        step(1)
-        min("0")
-        onInput { it.value.toInt().let { v -> tabs = v } }
-      })
+      MDCTextField("$tabs",
+        type = MDCTextFieldType.Outlined,
+        label = "Tabs",
+        attrs = {
+          type(InputType.Number)
+          value(tabs)
+          step(1)
+          min("0")
+          onInput { it.value.toInt().let { v -> tabs = v } }
+        })
       MDCFormField { MDCCheckbox(stacked, label = "Stacked", attrs = { onInput { stacked = it.value } }) }
       MDCFormField { MDCCheckbox(minnWidth, label = "Min Width", attrs = { onInput { minnWidth = it.value } }) }
 

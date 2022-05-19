@@ -5,8 +5,8 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.line.ripple.MDCLineRipple
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
@@ -25,29 +25,11 @@ import org.w3c.dom.HTMLLabelElement
 @JsModule("@material/textfield/dist/mdc.textfield.css")
 public external val MDCTextFieldStyle: dynamic
 
-public open class MDCTextFieldCommonOpts(
-  public var type: Type = Type.Filled,
-  public var disabled: Boolean = false,
-  public var label: String? = null,
-  public var helperText: String? = null,
-  public var maxLength: UInt? = null,
-) {
-  public enum class Type(public vararg val classes: String) {
-    Filled("mdc-text-field--filled"), Outlined("mdc-text-field--outlined")
-  }
+public enum class MDCTextFieldType(public vararg val classes: String) {
+  Filled("mdc-text-field--filled"), Outlined("mdc-text-field--outlined")
 }
 
 public class MDCTextFieldScope(scope: ElementScope<HTMLLabelElement>) : ElementScope<HTMLLabelElement> by scope
-
-public class MDCTextFieldOpts(
-  type: Type = Type.Filled,
-  disabled: Boolean = false,
-  label: String? = null,
-  helperText: String? = null,
-  maxLength: UInt? = null,
-  public var prefix: String? = null,
-  public var suffix: String? = null,
-) : MDCTextFieldCommonOpts(type, disabled, label, helperText, maxLength)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
@@ -56,30 +38,39 @@ public class MDCTextFieldOpts(
 @Composable
 public fun MDCTextField(
   value: String,
-  opts: Builder<MDCTextFieldOpts>? = null,
+  type: MDCTextFieldType = MDCTextFieldType.Filled,
+  disabled: Boolean = false,
+  label: String? = null,
+  helperText: String? = null,
+  maxLength: UInt? = null,
+  prefix: String? = null,
+  suffix: String? = null,
   attrs: Builder<InputAttrsScope<String>>? = null,
   leadingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
   trailingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
 ) {
   MDCTextFieldStyle
-  val options = MDCTextFieldOpts().apply { opts?.invoke(this) }
   val labelId = rememberUniqueDomElementId()
   val helperId = "$labelId-helper"
   Label(
     attrs = {
       classes("mdc-text-field")
-      classes(options.type.classes)
-      if (options.label == null) classes("mdc-text-field--no-label")
-      if (options.disabled) classes("mdc-text-field--disabled")
+      classes(type.classes)
+      if (label == null) classes("mdc-text-field--no-label")
+      if (disabled) classes("mdc-text-field--disabled")
       leadingIcon?.let { classes("mdc-text-field--with-leading-icon") }
       trailingIcon?.let { classes("mdc-text-field--with-trailing-icon") }
-      initialiseMDC(MDCTextFieldModule.MDCTextField::attachTo)
     }
   ) {
-    when (options.type) {
-      MDCTextFieldCommonOpts.Type.Filled -> {
+    MDCInitEffect(
+      MDCTextFieldModule::MDCTextField,
+      rebuildOnChange = true,
+      keys = arrayOf(label, prefix, suffix, leadingIcon == null, trailingIcon == null)
+    )
+    when (type) {
+      MDCTextFieldType.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })
-        options.label?.let {
+        label?.let {
           Span(attrs = {
             classes("mdc-floating-label")
             if (value.isNotEmpty())
@@ -89,31 +80,43 @@ public fun MDCTextField(
         }
         MDCTextFieldCore(
           value = value,
-          options = options,
+          prefix = prefix,
+          suffix = suffix,
           attrs = attrs,
           labelId = labelId,
           helperId = helperId,
           leadingIcon = leadingIcon,
           trailingIcon = trailingIcon,
+          maxLength = maxLength,
+          helperText = helperText,
+          disabled = disabled,
         )
         MDCLineRipple(false)
       }
-      MDCTextFieldCommonOpts.Type.Outlined -> {
-        MDCTextFieldNotch(options, labelId, value.isNotEmpty())
+      MDCTextFieldType.Outlined -> {
+        MDCTextFieldNotch(
+          label = label,
+          labelId = labelId,
+          inputIsNotEmpty = value.isNotEmpty()
+        )
         MDCTextFieldCore(
           value = value,
-          options = options,
+          prefix = prefix,
+          suffix = suffix,
           attrs = attrs,
           labelId = labelId,
           helperId = helperId,
           leadingIcon = leadingIcon,
           trailingIcon = trailingIcon,
+          maxLength = maxLength,
+          helperText = helperText,
+          disabled = disabled,
         )
       }
     }
   }
-  MDCTextFieldHelperLine(options, helperId) {
-    options.maxLength?.let {
+  MDCTextFieldHelperLine(helperText = helperText, maxLength = maxLength, helperId = helperId) {
+    maxLength?.let {
       Div(attrs = {
         classes("mdc-text-field-character-counter")
       })
@@ -125,23 +128,35 @@ public fun MDCTextField(
 @KMDCInternalAPI
 private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   value: String,
-  options: MDCTextFieldOpts,
-  attrs: Builder<InputAttrsScope<String>>?,
   labelId: String,
   helperId: String,
+  prefix: String?,
+  suffix: String?,
+  disabled: Boolean,
+  maxLength: UInt?,
+  helperText: String?,
+  attrs: Builder<InputAttrsScope<String>>?,
   leadingIcon: ComposableBuilder<MDCTextFieldScope>?,
   trailingIcon: ComposableBuilder<MDCTextFieldScope>?
 ) {
   leadingIcon?.invoke(MDCTextFieldScope(this))
-  options.prefix?.let {
+  prefix?.let {
     Span(attrs = {
       classes("mdc-text-field__affix", "mdc-text-field__affix--prefix")
     }) {
       Text(it)
     }
   }
-  MDCTextFieldInput(value, options, attrs, labelId, helperId)
-  options.suffix?.let {
+  MDCTextFieldInput(
+    value = value,
+    helperText = helperText,
+    disabled = disabled,
+    attrs = attrs,
+    labelId = labelId,
+    helperId = helperId,
+    maxLength = maxLength,
+  )
+  suffix?.let {
     Span(attrs = {
       classes("mdc-text-field__affix", "mdc-text-field__affix--suffix")
     }) {
@@ -153,7 +168,11 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
 
 @MDCDsl
 @Composable
-internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String, inputIsNotEmpty: Boolean) {
+internal fun MDCTextFieldNotch(
+  label: String?,
+  labelId: String,
+  inputIsNotEmpty: Boolean
+) {
   Span(
     attrs = {
       classes("mdc-notched-outline")
@@ -163,7 +182,7 @@ internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String,
   ) {
     Span(attrs = { classes("mdc-notched-outline__leading") })
     Span(attrs = { classes("mdc-notched-outline__notch") }) {
-      options.label?.let {
+      label?.let {
         Span(attrs = {
           classes("mdc-floating-label")
           if (inputIsNotEmpty)
@@ -179,13 +198,14 @@ internal fun MDCTextFieldNotch(options: MDCTextFieldCommonOpts, labelId: String,
 @MDCDsl
 @Composable
 internal fun MDCTextFieldHelperLine(
-  options: MDCTextFieldCommonOpts,
+  helperText: String?,
+  maxLength: UInt?,
   helperId: String,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
-  if (options.helperText != null || options.maxLength != null) {
+  if (helperText != null || maxLength != null) {
     Div(attrs = { classes("mdc-text-field-helper-line") }) {
-      options.helperText?.let {
+      helperText?.let {
         Div(attrs = {
           classes("mdc-text-field-helper-text")
           id(helperId)
@@ -203,22 +223,24 @@ internal fun MDCTextFieldHelperLine(
 @Composable
 private fun MDCTextFieldInput(
   value: String,
-  options: MDCTextFieldOpts,
-  attrs: Builder<InputAttrsScope<String>>?,
-  labelId: String,
+  maxLength: UInt?,
+  disabled: Boolean,
+  helperText: String?,
   helperId: String,
+  labelId: String,
+  attrs: Builder<InputAttrsScope<String>>?,
 ) {
   TextInput(value, attrs = {
     classes("mdc-text-field__input")
     attr("aria-labelledby", labelId)
-    options.helperText?.let {
+    helperText?.let {
       attr("aria-describedby", helperId)
       attr("aria-controls", helperId)
     }
-    options.maxLength?.let {
+    maxLength?.let {
       maxLength(it.toInt())
     }
-    if (options.disabled) disabled()
+    if (disabled) disabled()
     attrs?.invoke(this)
   })
 }

@@ -13,7 +13,7 @@ import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAnchor
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
 import dev.petuska.kmdc.menu.surface.onClosed
 import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldCommonOpts
+import dev.petuska.kmdc.textfield.MDCTextFieldType
 import org.jetbrains.compose.web.dom.Text
 
 object MDCMenu : Samples() {
@@ -44,15 +44,15 @@ object MDCMenu : Samples() {
     var menuOpen by remember { mutableStateOf(false) }
 
     MDCMenuSurfaceAnchor {
-      MDCTextField(value = selectedValue, opts = {
-        label = "Menu Selection"
-        type = MDCTextFieldCommonOpts.Type.Outlined
-      }, attrs = {
-        onClick {
-          console.log("Menu clicked")
-          menuOpen = true
-        }
-      })
+      MDCTextField(value = selectedValue,
+        label = "Menu Selection",
+        type = MDCTextFieldType.Outlined,
+        attrs = {
+          onClick {
+            console.log("Menu clicked")
+            menuOpen = true
+          }
+        })
       MDCMenu(opts = {
         open = menuOpen
         anchorCorner = MDCMenuSurfaceModule.Corner.TOP_START

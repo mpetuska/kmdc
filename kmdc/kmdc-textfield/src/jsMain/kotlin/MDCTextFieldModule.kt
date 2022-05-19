@@ -1,16 +1,14 @@
 package dev.petuska.kmdc.textfield
 
 import dev.petuska.kmdc.core.MDCBaseModule
+import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.ripple.MDCRippleModule
 import org.w3c.dom.Element
 
 @JsModule("@material/textfield")
+@MDCExternalAPI
 public external object MDCTextFieldModule {
   public class MDCTextField(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCTextField
-    }
-
     public var value: String
     public var disabled: Boolean
     public var valid: Boolean
