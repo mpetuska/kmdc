@@ -8,6 +8,7 @@ import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
+import dev.petuska.kmdc.line.ripple.MDCLineRipple
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
@@ -95,7 +96,7 @@ public fun MDCTextField(
           leadingIcon = leadingIcon,
           trailingIcon = trailingIcon,
         )
-        Span(attrs = { classes("mdc-line-ripple") })
+        MDCLineRipple(false)
       }
       MDCTextFieldCommonOpts.Type.Outlined -> {
         MDCTextFieldNotch(options, labelId, value.isNotEmpty())

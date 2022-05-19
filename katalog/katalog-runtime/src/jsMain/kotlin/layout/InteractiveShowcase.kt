@@ -40,7 +40,7 @@ public object InteractiveShowcaseStyle : StyleSheet() {
 @Composable
 public inline fun <VM : Any> InteractiveShowcase(
   viewModel: () -> VM,
-  crossinline controls: @Composable VM.() -> Unit,
+  noinline controls: (@Composable VM.() -> Unit)? = null,
   noinline details: (@Composable () -> Unit)? = null,
   crossinline preview: @Composable VM.() -> Unit,
 ) {
@@ -52,8 +52,10 @@ public inline fun <VM : Any> InteractiveShowcase(
       Div(attrs = { classes(InteractiveShowcaseStyle.preview, UtilStyle.roundedBoxShadow) }) {
         vm.preview()
       }
-      Div(attrs = { classes(InteractiveShowcaseStyle.controls, UtilStyle.roundedBoxShadow) }) {
-        vm.controls()
+      if (controls != null) {
+        Div(attrs = { classes(InteractiveShowcaseStyle.controls, UtilStyle.roundedBoxShadow) }) {
+          vm.controls()
+        }
       }
     }
     if (details != null) {

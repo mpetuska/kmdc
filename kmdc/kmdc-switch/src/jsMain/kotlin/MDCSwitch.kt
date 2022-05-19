@@ -2,8 +2,8 @@ package dev.petuska.kmdc.switch
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.ButtonType
@@ -39,9 +39,9 @@ public fun MDCSwitch(
     } else {
       classes("mdc-switch--unselected")
     }
-    initialiseMDC(MDCSwitchModule.MDCSwitch::attachTo)
     attrs?.invoke(this)
   }) {
+    MDCInitEffect(MDCSwitchModule.MDCSwitch::attachTo)
     Div(attrs = {
       classes("mdc-switch__track")
     })

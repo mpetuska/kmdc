@@ -7,7 +7,7 @@ import org.jetbrains.compose.web.css.display
 import org.jetbrains.compose.web.dom.Div
 
 @Composable
-fun NamedInput(name: String, description: String? = null, content: @Composable () -> Unit) {
+fun Named(name: String, description: String? = null, content: @Composable () -> Unit) {
   Div {
     MDCOverline(name, attrs = {
       classes("mdc-typography--overline")

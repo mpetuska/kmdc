@@ -11,39 +11,40 @@ import dev.petuska.kmdc.button.Label
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonType
-import org.jetbrains.compose.web.dom.P
+import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanChoice
 import sandbox.control.RadioChoice
+import sandbox.control.TextInput
 
-private class MDCButtonShowcaseVM {
+private class MDCButtonVM {
   var type by mutableStateOf(MDCButtonType.Text)
   var icon by mutableStateOf(MDCButtonIconType.None)
   var touch by mutableStateOf(false)
-  var count by mutableStateOf(0)
+  var disabled by mutableStateOf(false)
+  var label by mutableStateOf("My Label")
 }
 
 @Composable
-@Showcase(title = "MDCButton", id = "MDCButton")
-fun MDCButtonShowcase() = InteractiveShowcase(
-  viewModel = { MDCButtonShowcaseVM() },
+@Showcase(id = "MDCButton")
+fun MDCButton() = InteractiveShowcase(
+  viewModel = { MDCButtonVM() },
   controls = {
     RadioChoice("Type", MDCButtonType.values().associateBy(MDCButtonType::name), type) { type = it }
     RadioChoice("Icon", MDCButtonIconType.values().associateBy(MDCButtonIconType::name), icon) { icon = it }
-    BooleanChoice("Touch", touch) { touch = it }
+    BooleanChoice("Disabled", ::disabled)
+    BooleanChoice("Touch", ::touch)
+    TextInput("Label", label) { label = it }
   },
-  details = {
-    P { Text("ALT-CLICK to decrement, CLICK to increment") }
-  }
 ) {
   MDCButton(type = type, icon = icon, touch = touch, attrs = {
-    onClick { if (it.altKey) count-- else count++ }
+    if (disabled) disabled()
   }) {
     val renderIcon = @Composable {
       Icon(attrs = { classes("material-icons") }) { Text("star") }
     }
     if (icon == MDCButtonIconType.Leading) renderIcon()
-    Label("Clicked $count times")
+    Label(label)
     if (icon == MDCButtonIconType.Trailing) renderIcon()
   }
 }

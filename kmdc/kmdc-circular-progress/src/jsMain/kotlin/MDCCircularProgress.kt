@@ -3,9 +3,9 @@ package dev.petuska.kmdc.circular.progress
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.css.height
@@ -60,18 +60,15 @@ public fun MDCCircularProgress(
       width(options.size.px)
       height(options.size.px)
     }
-    initialiseMDC(MDCCircularProgressModule.MDCCircularProgress::attachTo) {
+
+    attrs?.invoke(this)
+  }) {
+    MDCInitEffect(MDCCircularProgressModule::MDCCircularProgress) {
       progress = options.progress
       determinate = options.determinate
     }
-    attrs?.invoke(this)
-  }) {
     MDCSideEffect(options.determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
     MDCSideEffect(options.progress, MDCCircularProgressModule.MDCCircularProgress::progress)
-    MDCSideEffect<MDCCircularProgressModule.MDCCircularProgress>(options.size) {
-      foundation.init()
-      progress = options.progress
-    }
     MDCCircularProgressDeterminateContainer(options.size)
     MDCCircularProgressIndeterminateContainer(options.size, options.fourColor)
   }

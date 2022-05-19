@@ -10,7 +10,7 @@ fun TextInput(
   description: String? = null,
   onInput: (String) -> Unit,
 ) {
-  NamedInput(name, description) {
+  Named(name, description) {
     MDCTextField(
       value = text,
       attrs = {

@@ -5,10 +5,10 @@ import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
@@ -44,9 +44,9 @@ public fun MDCCheckbox(
   Div(attrs = {
     classes("mdc-checkbox")
     if (touch) classes("mdc-checkbox--touch")
-    initialiseMDC(MDCCheckboxModule.MDCCheckbox::attachTo)
     applyAttrs(attrs)
   }) {
+    MDCInitEffect(MDCCheckboxModule::MDCCheckbox)
     MDCSideEffect(indeterminate, MDCCheckboxModule.MDCCheckbox::indeterminate)
     MDCSideEffect(disabled, MDCCheckboxModule.MDCCheckbox::disabled)
     applyContent(content)

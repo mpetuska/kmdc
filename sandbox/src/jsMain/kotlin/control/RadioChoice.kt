@@ -13,7 +13,7 @@ fun <T> RadioChoice(
   description: String? = null,
   onSelect: (selected: T) -> Unit
 ) {
-  NamedInput(title, description) {
+  Named(title, description) {
     MDCFormField {
       options.forEach { (text, value) ->
         MDCRadio(checked = selected == value, opts = {

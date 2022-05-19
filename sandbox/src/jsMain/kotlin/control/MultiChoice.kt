@@ -12,7 +12,7 @@ fun <T> MultiChoice(
   description: String? = null,
   onSelect: (label: String, selected: Boolean) -> Unit
 ) {
-  NamedInput(title, description) {
+  Named(title, description) {
     MDCFormField {
       options.forEach { (text, selected) ->
         MDCCheckbox(

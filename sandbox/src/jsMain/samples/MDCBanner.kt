@@ -19,36 +19,30 @@ import dev.petuska.kmdc.banner.onClosed
 import dev.petuska.kmdc.banner.onClosing
 import dev.petuska.kmdc.banner.onOpened
 import dev.petuska.kmdc.banner.onOpening
-import sandbox.control.ActionInput
 import sandbox.control.BooleanChoice
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
-private class MDCBannerShowcaseVM {
-  var open by mutableStateOf(false)
+private class MDCBannerVM {
+  var open by mutableStateOf(true)
   var centered by mutableStateOf(false)
   var mobileStacked by mutableStateOf(false)
 }
 
 @Composable
-@Showcase(title = "MDCBanner", id = "MDCBanner")
-fun MDCBannerShowcase() = InteractiveShowcase(
-  viewModel = { MDCBannerShowcaseVM() },
+@Showcase(id = "MDCBanner")
+fun MDCBanner() = InteractiveShowcase(
+  viewModel = { MDCBannerVM() },
   controls = {
-    BooleanChoice("Centered", centered) { centered = it }
-    BooleanChoice("Mobile Stacked", mobileStacked) { mobileStacked = it }
-    ActionInput(if (open) "Close" else "Open") { open = !open }
+    BooleanChoice("Centered", ::centered)
+    BooleanChoice("Mobile Stacked", ::mobileStacked)
+    BooleanChoice("Open", ::open)
   },
 ) {
-  MDCBanner(
-    open = open,
-    centered = centered,
-    mobileStacked = mobileStacked,
-    attrs = {
-      registerEvents()
-      onOpening { open = true }
-      onClosing { open = false }
-    }
-  ) {
+  MDCBanner(open = open, centered = centered, mobileStacked = mobileStacked, attrs = {
+    registerEvents()
+    onOpening { open = true }
+    onClosing { open = false }
+  }) {
     Content {
       Graphic {
         Icon(attrs = { classes("material-icons") }) { ComposeText("error_outline") }

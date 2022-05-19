@@ -12,10 +12,6 @@ public external object MDCCheckboxModule {
   public class MDCCheckbox(element: Element) :
     MDCBaseModule.MDCComponent<dynamic>,
     MDCFormFieldModule.MDCFormFieldInput {
-    public companion object {
-      public fun attachTo(element: Element): MDCCheckbox
-    }
-
     public var checked: Boolean
     public var indeterminate: Boolean
     public var disabled: Boolean

@@ -5,10 +5,10 @@ import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.reinterpret
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
@@ -55,12 +55,9 @@ public fun MDCDataTable(
   content: ComposableBuilder<MDCDataTableScope>? = null,
 ) {
   MDCDataTable(attrs = {
-    initialiseMDC(MDCDataTableModule::MDCDataTable) {
-      if (loading) showProgress() else hideProgress()
-    }
     applyAttrs(attrs)
   }) {
-    MDCSideEffect<MDCDataTableModule.MDCDataTable>(loading) {
+    MDCInitEffect(MDCDataTableModule::MDCDataTable, keys = arrayOf(loading)) {
       if (loading) showProgress() else hideProgress()
     }
     applyContent(content)

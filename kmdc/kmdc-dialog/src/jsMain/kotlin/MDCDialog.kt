@@ -5,9 +5,9 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
@@ -53,11 +53,10 @@ public fun MDCDialog(
       classes("mdc-dialog")
       if (options.fullscreen) classes(MDCDialogModule.cssClasses.FULLSCREEN)
       if (!options.autoStackButtons) classes(MDCDialogModule.cssClasses.STACKED)
-      initialiseMDC(MDCDialogModule.MDCDialog::attachTo)
       attrs?.invoke(MDCDialogAttrsScope(this))
     }
   ) {
-    MDCSideEffect<MDCDialogModule.MDCDialog>(options.open) {
+    MDCInitEffect(MDCDialogModule.MDCDialog::attachTo, keys = arrayOf(options.open)) {
       if (options.open) open() else close("")
     }
     MDCSideEffect(options.scrimClickAction, MDCDialogModule.MDCDialog::scrimClickAction)

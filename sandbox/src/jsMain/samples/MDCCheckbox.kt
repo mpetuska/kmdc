@@ -11,7 +11,7 @@ import dev.petuska.kmdc.form.field.MDCFormField
 import sandbox.control.BooleanChoice
 import sandbox.control.TextInput
 
-private class MDCCheckboxShowcaseVM {
+private class MDCCheckboxVM {
   var disabled by mutableStateOf(false)
   var indeterminate by mutableStateOf(false)
   var touch by mutableStateOf(false)
@@ -20,13 +20,14 @@ private class MDCCheckboxShowcaseVM {
 }
 
 @Composable
-@Showcase(title = "MDCCheckbox", id = "MDCCheckbox")
-fun MDCCheckboxShowcase() = InteractiveShowcase(
-  viewModel = { MDCCheckboxShowcaseVM() },
+@Showcase(id = "MDCCheckbox")
+fun MDCCheckbox() = InteractiveShowcase(
+  viewModel = { MDCCheckboxVM() },
   controls = {
-    BooleanChoice("Disabled", disabled) { disabled = it }
-    BooleanChoice("Indeterminate", indeterminate) { indeterminate = it }
-    BooleanChoice("Touch", touch) { touch = it }
+    BooleanChoice("Disabled", ::disabled)
+    BooleanChoice("Indeterminate", ::indeterminate)
+    BooleanChoice("Touch", ::touch)
+    BooleanChoice("Checked", ::checked)
     TextInput("Label", label) { label = it }
   },
 ) {

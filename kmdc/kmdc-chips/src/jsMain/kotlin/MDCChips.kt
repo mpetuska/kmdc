@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.attributes.AttrsScope
@@ -33,9 +33,9 @@ internal fun MDCChips(
   Span(attrs = {
     classes("mdc-evolution-chip-set")
     if (overflow) classes("mdc-evolution-chip-set--overflow")
-    initialiseMDC(MDCChipsModule::MDCChipSet)
     applyAttrs(attrs)
   }, content = {
+    MDCInitEffect(MDCChipsModule::MDCChipSet)
     Span(
       attrs = {
         classes("mdc-evolution-chip-set__chips")

@@ -3,7 +3,7 @@ package dev.petuska.kmdc.radio
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
@@ -73,8 +73,8 @@ private fun MDCRadioBody(
     classes("mdc-radio")
     if (options.disabled) classes("mdc-radio--disabled")
     if (touch) classes("mdc-radio--touch")
-    initialiseMDC(MDCRadioModule.MDCRadio::attachTo)
   }) {
+    MDCInitEffect(MDCRadioModule.MDCRadio::attachTo)
     Input(type = InputType.Radio, attrs = {
       classes("mdc-radio__native-control") // This must precede `checked()`
       checked(checked) // This must follow `classes(...)`

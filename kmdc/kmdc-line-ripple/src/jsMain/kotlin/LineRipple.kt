@@ -4,10 +4,9 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLSpanElement
 
@@ -28,13 +27,10 @@ public fun MDCLineRipple(
   Span(
     attrs = {
       classes("mdc-line-ripple")
-      initialiseMDC(::MDCLineRipple) {
-        if (active) activate() else deactivate()
-      }
       applyAttrs(attrs)
     },
     content = {
-      MDCSideEffect<MDCLineRipple>(active) {
+      MDCInitEffect(::MDCLineRipple, keys = arrayOf(active)) {
         if (active) activate() else deactivate()
       }
       applyContent(content)

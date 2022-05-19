@@ -44,16 +44,16 @@ public fun <E : Element, T : MDCBaseModule.MDCComponent<*>> AttrsScope<E>.initia
  *
  * @receiver element scope providing access to native DOM element
  * @param mdcInit component provider
- * @param setup to configure the created component
- * @param keys to control the component lifecycle
  * @param onDispose to further cleanup the removed component
+ * @param keys to control the component lifecycle
+ * @param setup to configure the created component
  */
 @Composable
 @KMDCInternalAPI
 public fun <E : Element, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<E>.MDCInitEffect(
   mdcInit: (E) -> MDC,
-  keys: Array<Any?> = arrayOf(Unit),
   onDispose: (MDC.(E) -> Unit)? = null,
+  keys: Array<Any?> = arrayOf(Unit),
   setup: (MDC.(E) -> Unit)? = null,
 ) {
   DisposableEffect(keys = keys) {
