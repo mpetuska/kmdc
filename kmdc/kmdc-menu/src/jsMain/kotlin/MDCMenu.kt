@@ -5,6 +5,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.reinterpret
@@ -51,11 +52,11 @@ public fun MDCMenu(
     initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
     applyAttrs(attrs)
   }) {
-    MDCSideEffect(options.open, MDCMenuModule.MDCMenu::open)
-    MDCSideEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
-    MDCSideEffect(options.selectedIndex, MDCMenuModule.MDCMenu::setSelectedIndex)
-    MDCSideEffect(options.fixed, MDCMenuModule.MDCMenu::setFixedPosition)
-    MDCSideEffect(options.anchorCorner, MDCMenuModule.MDCMenu::setAnchorCorner)
+    MDCStateEffect(options.open, MDCMenuModule.MDCMenu::open)
+    MDCStateEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
+    MDCStateEffect(options.selectedIndex, MDCMenuModule.MDCMenu::setSelectedIndex)
+    MDCStateEffect(options.fixed, MDCMenuModule.MDCMenu::setFixedPosition)
+    MDCStateEffect(options.anchorCorner, MDCMenuModule.MDCMenu::setAnchorCorner)
     MDCSideEffect<MDCMenuModule.MDCMenu>(options.absolutePosition) {
       options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
     }

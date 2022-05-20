@@ -10,6 +10,7 @@ import dev.petuska.kmdc.circular.progress.MDCCircularProgress
 import sandbox.control.BooleanControl
 import sandbox.control.RangeControl
 import sandbox.control.TextControl
+import sandbox.util.requireModule
 
 private class MDCCircularProgressVM {
   var determinate by mutableStateOf(false)
@@ -45,7 +46,7 @@ fun MDCCircularProgress() = InteractiveShowcase(
     )
   },
 ) {
-  require("./MDCCircularProgress.scss")
+  requireModule("./MDCCircularProgress.scss")
   MDCCircularProgress(
     determinate = determinate,
     closed = closed,

@@ -3,8 +3,8 @@ package dev.petuska.kmdc.slider
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -39,39 +39,68 @@ public data class MDCSliderOpts(
 @MDCDsl
 @Composable
 public fun MDCSlider(
-  opts: Builder<MDCSliderOpts>? = null,
+  value: Number = 0,
+  value2: Number? = null,
+  disabled: Boolean = false,
+  discrete: Boolean = false,
+  tickMarks: Boolean = false,
+  label: String? = null,
+  label2: String? = null,
+  min: Number = 0,
+  max: Number = 100,
+  step: Number = 1,
   attrs: Builder<MDCSliderAttrsScope>? = null,
 ) {
   MDCSliderCSS
-  val options = MDCSliderOpts().apply { opts?.invoke(this) }
+  val range: Boolean = value2 != null
   Div(
     attrs = {
       classes("mdc-slider")
-      if (options.range) classes("mdc-slider--range")
-      if (options.discrete) classes("mdc-slider--discrete")
-      if (options.tickMarks) classes("mdc-slider--tick-marks")
-      if (options.disabled) classes("mdc-slider--disabled")
-      initialiseMDC(MDCSliderModule.MDCSlider::attachTo) {
-        setDisabled(options.disabled)
-      }
+      if (range) classes("mdc-slider--range")
+      if (discrete) classes("mdc-slider--discrete")
+      if (tickMarks) classes("mdc-slider--tick-marks")
+      if (disabled) classes("mdc-slider--disabled")
       attrs?.invoke(MDCSliderAttrsScope(this))
     }
   ) {
-    MDCSideEffect(options.disabled, MDCSliderModule.MDCSlider::setDisabled)
-    with(options) {
-      if (range) {
-        MDCSliderInput(value = value, min = min, max = value2!!, label = label, rangeStart = true)
-        MDCSliderInput(value = value2!!, min = value, max = max, label = label2, rangeStart = false)
-      } else {
-        MDCSliderInput(value = value, min = min, max = max, label = label, rangeStart = null)
-      }
-      MDCSliderTrack()
-      if (range) {
-        MDCSliderThumb(value)
-        MDCSliderThumb(value2)
-      } else {
-        MDCSliderThumb(value)
-      }
+    if (range) {
+      MDCSliderInput(
+        value = value,
+        min = min,
+        max = value2!!,
+        label = label,
+        rangeStart = true,
+        disabled = disabled,
+        step = step,
+      )
+      MDCSliderInput(
+        value = value2,
+        min = value,
+        max = max,
+        label = label2,
+        rangeStart = false,
+        disabled = disabled,
+        step = step,
+      )
+    } else {
+      MDCSliderInput(
+        value = value,
+        min = min,
+        max = max,
+        label = label,
+        rangeStart = null,
+        disabled = disabled,
+        step = step,
+      )
     }
+    MDCSliderTrack(tickMarks = tickMarks)
+    if (range) {
+      MDCSliderThumb(value = value, discrete = discrete)
+      MDCSliderThumb(value = value2, discrete = discrete)
+    } else {
+      MDCSliderThumb(value = value, discrete = discrete)
+    }
+    MDCInitEffect(MDCSliderModule::MDCSlider, discrete, tickMarks, range, step, min, max)
+    MDCStateEffect(disabled, MDCSliderModule.MDCSlider::setDisabled)
   }
 }

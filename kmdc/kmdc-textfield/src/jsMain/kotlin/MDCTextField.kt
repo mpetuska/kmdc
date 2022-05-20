@@ -62,11 +62,7 @@ public fun MDCTextField(
       trailingIcon?.let { classes("mdc-text-field--with-trailing-icon") }
     }
   ) {
-    MDCInitEffect(
-      MDCTextFieldModule::MDCTextField,
-      rebuildOnChange = true,
-      keys = arrayOf(label, prefix, suffix, leadingIcon == null, trailingIcon == null)
-    )
+    MDCInitEffect(MDCTextFieldModule::MDCTextField, label, prefix, suffix, leadingIcon == null, trailingIcon == null)
     when (type) {
       MDCTextFieldType.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })

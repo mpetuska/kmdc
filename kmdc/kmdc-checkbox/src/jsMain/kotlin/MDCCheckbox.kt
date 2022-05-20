@@ -6,7 +6,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.mdc
@@ -47,8 +47,8 @@ public fun MDCCheckbox(
     applyAttrs(attrs)
   }) {
     MDCInitEffect(MDCCheckboxModule::MDCCheckbox)
-    MDCSideEffect(indeterminate, MDCCheckboxModule.MDCCheckbox::indeterminate)
-    MDCSideEffect(disabled, MDCCheckboxModule.MDCCheckbox::disabled)
+    MDCStateEffect(indeterminate, MDCCheckboxModule.MDCCheckbox::indeterminate)
+    MDCStateEffect(disabled, MDCCheckboxModule.MDCCheckbox::disabled)
     applyContent(content)
   }
 }

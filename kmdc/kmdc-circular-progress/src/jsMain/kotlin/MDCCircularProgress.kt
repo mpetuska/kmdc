@@ -3,7 +3,7 @@ package dev.petuska.kmdc.circular.progress
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.role
@@ -50,16 +50,9 @@ public fun MDCCircularProgress(
     }
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(
-      MDCCircularProgressModule::MDCCircularProgress,
-      rebuildOnChange = true,
-      keys = arrayOf(size, fourColor)
-    ) {
-      this.progress = progress.coerceIn(0.0, 1.0)
-      this.determinate = determinate
-    }
-    MDCSideEffect(determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
-    MDCSideEffect(progress, MDCCircularProgressModule.MDCCircularProgress::progress)
+    MDCInitEffect(MDCCircularProgressModule::MDCCircularProgress, size, fourColor)
+    MDCStateEffect(determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
+    MDCStateEffect(progress.coerceIn(0.0, 1.0), MDCCircularProgressModule.MDCCircularProgress::progress)
     MDCCircularProgressDeterminateContainer(size)
     MDCCircularProgressIndeterminateContainer(size, fourColor)
   }

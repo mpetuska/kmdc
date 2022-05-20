@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.reinterpret
@@ -47,13 +48,9 @@ public fun MDCSnackbar(
     classes(type.classes)
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCSnackbarModule::MDCSnackbar, rebuildOnChange = true, keys = arrayOf(type)) {
-      if (open) open() else close()
-      this.timeoutMs = timeoutMs?.coerceIn(4000, 10000) ?: -1
-      this.closeOnEscape = closeOnEscape
-    }
-    MDCSideEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbarModule.MDCSnackbar::timeoutMs)
-    MDCSideEffect(closeOnEscape, MDCSnackbarModule.MDCSnackbar::closeOnEscape)
+    MDCInitEffect(MDCSnackbarModule::MDCSnackbar, type)
+    MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbarModule.MDCSnackbar::timeoutMs)
+    MDCStateEffect(closeOnEscape, MDCSnackbarModule.MDCSnackbar::closeOnEscape)
     MDCSideEffect<MDCSnackbarModule.MDCSnackbar>(open) {
       if (open) open() else close()
     }

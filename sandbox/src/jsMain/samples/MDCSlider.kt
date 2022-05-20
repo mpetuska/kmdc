@@ -1,147 +1,105 @@
 package samples
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.slider.MDCSlider
 import dev.petuska.kmdc.slider.MDCSliderAttrsScope
 import dev.petuska.kmdc.slider.onChange
 import dev.petuska.kmdc.slider.onInput
-import dev.petuska.kmdc.typography.MDCBody1
+import sandbox.control.BooleanControl
+import sandbox.control.RangeControl
+import sandbox.control.TextControl
+import kotlin.math.max
+import kotlin.math.min
 
-object MDCSlider : Samples() {
-  override val content: SamplesRender = {
-    Sample("Continuous") { name ->
-      var v1 by remember { mutableStateOf(50) }
-      MDCBody1("Value: $v1")
-      MDCSlider(
-        opts = {
-          value = v1
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            v1 = it.detail.value.toInt()
-          }
-        }
-      )
-    }
-    Sample("Continuous Range") { name ->
-      var v1 by remember { mutableStateOf(25) }
-      var v2 by remember { mutableStateOf(75) }
-      MDCBody1("Values: $v1:$v2")
-      MDCSlider(
-        opts = {
-          value = v1
-          value2 = v2
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            it.detail.run {
-              if (thumb == 1) {
-                v1 = value.toInt()
-              } else {
-                v2 = value.toInt()
-              }
-            }
-          }
-        }
-      )
-    }
-    Sample("Discrete") { name ->
-      var v1 by remember { mutableStateOf(50) }
-      MDCBody1("Value: $v1")
-      MDCSlider(
-        opts = {
-          discrete = true
-          value = v1
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            it.detail.let { detail ->
-              v1 = detail.value.toInt()
-            }
-          }
-        }
-      )
-    }
-    Sample("Discrete Range") { name ->
-      var v1 by remember { mutableStateOf(25) }
-      var v2 by remember { mutableStateOf(75) }
-      MDCBody1("Values: $v1:$v2")
-      MDCSlider(
-        opts = {
-          discrete = true
-          value = v1
-          value2 = v2
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            it.detail.let { detail ->
-              if (detail.thumb == 1) {
-                v1 = detail.value.toInt()
-              } else {
-                v2 = detail.value.toInt()
-              }
-            }
-          }
-        }
-      )
-    }
-    Sample("Discrete with Ticks") { name ->
-      var v1 by remember { mutableStateOf(50) }
-      MDCBody1("Value: $v1")
-      MDCSlider(
-        opts = {
-          discrete = true
-          tickMarks = true
-          value = v1
-          step = 10
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            it.detail.let { detail ->
-              v1 = detail.value.toInt()
-            }
-          }
-        }
-      )
-    }
-    Sample("Discrete Range with Ticks") { name ->
-      var v1 by remember { mutableStateOf(20) }
-      var v2 by remember { mutableStateOf(80) }
-      MDCBody1("Values: $v1:$v2")
-      MDCSlider(
-        opts = {
-          discrete = true
-          tickMarks = true
-          value = v1
-          value2 = v2
-          step = 10
-        },
-        attrs = {
-          registerEvents(name)
-          onInput {
-            it.detail.let { detail ->
-              if (detail.thumb == 1) {
-                v1 = detail.value.toInt()
-              } else {
-                v2 = detail.value.toInt()
-              }
-            }
-          }
-        }
-      )
+private class MDCSliderVM {
+  var disabled by mutableStateOf(false)
+  var discrete by mutableStateOf(false)
+  var tickMarks by mutableStateOf(false)
+  var range by mutableStateOf(false)
+  var step by mutableStateOf(1)
+  var min by mutableStateOf(0)
+  var max by mutableStateOf(100)
+  var label by mutableStateOf("My Label")
+
+  var value1 by mutableStateOf(50)
+  var value2 by mutableStateOf<Int?>(null)
+
+  fun setValues(
+    value1: Int = this.value1,
+    value2: Int? = this.value2,
+    min: Int = this.min,
+    max: Int = this.max,
+    step: Int = this.step,
+  ) {
+    this.step = step
+    this.max -= max % step
+    this.min += min(this.max, step - min % step)
+    this.value1 -= min(value1 % step, value2 ?: Int.MAX_VALUE)
+    this.value2 = value2?.let {
+      it - max(it % step, value1)
     }
   }
+}
 
-  private fun MDCSliderAttrsScope.registerEvents(name: String) {
-    onInput { console.log("$name#onInput", it.detail) }
-    onChange { console.log("$name#onChange", it.detail) }
-  }
+@Composable
+@Showcase(id = "MDCSlider")
+fun MDCSlider() = InteractiveShowcase(
+  viewModel = { MDCSliderVM() },
+  controls = {
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Discrete", ::discrete)
+    BooleanControl("Tick Marks", ::tickMarks)
+    BooleanControl("Range", range) {
+      range = it
+      setValues(
+        value2 = if (it) max(value2 ?: value1, value1) else null,
+        value1 = min(value1, value2 ?: Int.MAX_VALUE),
+      )
+    }
+    RangeControl("Step", step, min = 1, max = 10) {
+      setValues(step = it.toInt())
+    }
+    RangeControl("Min", min, min = 0, max = 100) {
+      setValues(min = it.toInt())
+    }
+    RangeControl("Max", max, min = 0, max = 100) {
+      setValues(max = it.toInt())
+    }
+    TextControl("Label", ::label)
+  },
+) {
+  MDCSlider(
+    disabled = disabled,
+    discrete = discrete,
+    tickMarks = tickMarks,
+    step = step,
+    min = min,
+    max = max,
+    label = label,
+    label2 = label,
+    value = value1,
+    value2 = value2,
+    attrs = {
+      registerEvents()
+      onInput {
+        it.detail.run {
+          if (thumb == 1) {
+            value1 = value.toInt()
+          } else {
+            value2 = value.toInt()
+          }
+        }
+      }
+    }
+  )
+}
+
+private fun MDCSliderAttrsScope.registerEvents() {
+  onInput { console.log("MDCSlider#onInput", it.detail) }
+  onChange { console.log("MDCSlider#onChange", it.detail) }
 }

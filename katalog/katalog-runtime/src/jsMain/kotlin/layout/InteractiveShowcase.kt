@@ -33,7 +33,7 @@ public object InteractiveShowcaseStyle : StyleSheet() {
   public val preview: String by style {
     width(100.percent)
   }
-  public val previewGlue: String by style {
+  public val stickyBox: String by style {
     position(Position.Sticky)
     top(0.em)
   }
@@ -61,14 +61,16 @@ public inline fun <VM : Any> InteractiveShowcase(
     H4 { Text("Playground") }
     Div(attrs = { classes(InteractiveShowcaseStyle.content) }) {
       Div(attrs = { classes(InteractiveShowcaseStyle.preview, UtilStyle.roundedBoxShadow) }) {
-        Div(attrs = { classes(InteractiveShowcaseStyle.previewGlue) }) {
+        Div(attrs = { classes(InteractiveShowcaseStyle.stickyBox) }) {
           vm.preview()
         }
       }
       if (controls != null) {
         Div(attrs = { classes(InteractiveShowcaseStyle.controls, UtilStyle.roundedBoxShadow) }) {
-          Div(attrs = { classes(InteractiveShowcaseStyle.controlsSpacer) })
-          vm.controls()
+          Div(attrs = { classes(InteractiveShowcaseStyle.stickyBox) }) {
+            Div(attrs = { classes(InteractiveShowcaseStyle.controlsSpacer) })
+            vm.controls()
+          }
         }
       }
     }

@@ -17,7 +17,6 @@ typealias Sample = @Composable SamplesScope.() -> Unit
 typealias SampleScope = MDCLayoutGridScope
 typealias SampleRender = @Composable SampleScope.(name: String) -> Unit
 
-external fun require(module: String): dynamic
 
 abstract class Samples(
   private val description: String? = null,

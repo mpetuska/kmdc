@@ -5,6 +5,7 @@ import androidx.compose.runtime.DisposableEffect
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
@@ -104,8 +105,8 @@ public fun <T> MDCSelect(
         scopeElement.mdc<MDCSelectModule.MDCSelect<T>> { destroy() }
       }
     }
-    MDCSideEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
-    MDCSideEffect(options.disabled, MDCSelectModule.MDCSelect<T>::disabled)
+    MDCStateEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
+    MDCStateEffect(options.disabled, MDCSelectModule.MDCSelect<T>::disabled)
     MDCSideEffect<MDCSelectModule.MDCSelect<T>>(options.value) {
       value = options.value?.itemValue()
     }

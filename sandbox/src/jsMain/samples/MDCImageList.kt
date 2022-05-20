@@ -2,76 +2,46 @@ package samples
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.form.field.MDCFormField
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.image.list.Image
 import dev.petuska.kmdc.image.list.Item
 import dev.petuska.kmdc.image.list.Label
 import dev.petuska.kmdc.image.list.MDCImageList
 import dev.petuska.kmdc.image.list.MDCImageListType
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Hr
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.util.randomImageUrl
+import sandbox.util.requireModule
 
-object MDCImageList : Samples() {
-  override val content: SamplesRender = {
-    Standard()
-    Masonry()
-  }
+private class MDCImageListVM {
+  var type by mutableStateOf(MDCImageListType.Standard)
+  var withTextProtection by mutableStateOf(false)
+}
 
-  @Composable
-  private fun Layout(
-    content: @Composable (withTextProtection: Boolean) -> Unit
+@Composable
+@Showcase(id = "MDCImageList")
+fun MDCImageList() = InteractiveShowcase(
+  viewModel = { MDCImageListVM() },
+  controls = {
+    ChoiceControl("Type", MDCImageListType.values().associateBy(MDCImageListType::name), ::type)
+    BooleanControl("With Text Protection", ::withTextProtection)
+  },
+) {
+  requireModule("./MDCImageList.scss")
+  MDCImageList(
+    type = type,
+    withTextProtection = withTextProtection,
+    attrs = {
+      classes("kmdc-image-list")
+    }
   ) {
-    require("./MDCImageList.scss")
-    var withTextProtection by rememberMutableStateOf(false)
-    Div {
-      MDCFormField {
-        MDCCheckbox(
-          checked = withTextProtection, attrs = {
-            onInput { withTextProtection = !withTextProtection }
-          }, label = "With text protection"
-        )
-      }
-    }
-    Hr()
-    Div {
-      content(withTextProtection)
-    }
-  }
-
-  private val Standard = Sample("Standard") {
-    Layout { withTextProtection ->
-      MDCImageList(
-        withTextProtection = withTextProtection,
-        attrs = {
-          classes("kmdc-image-list-standard")
-        }
-      ) {
-        repeat(7) {
-          Item {
-            Image(src = randomImageUrl("kmdc-$it"))
-            Label("Image #$it")
-          }
-        }
-      }
-    }
-  }
-
-  private val Masonry = Sample("Masonry") {
-    Layout { withTextProtection ->
-      MDCImageList(
-        type = MDCImageListType.Masonry, withTextProtection = withTextProtection,
-        attrs = {
-          classes("kmdc-image-list-masonry")
-        }
-      ) {
-        repeat(7) {
-          Item {
-            Image(src = randomImageUrl("kmdc-$it"))
-            Label("Image #$it")
-          }
-        }
+    repeat(7) {
+      Item {
+        Image(src = randomImageUrl("kmdc-$it"))
+        Label("Image #$it")
       }
     }
   }

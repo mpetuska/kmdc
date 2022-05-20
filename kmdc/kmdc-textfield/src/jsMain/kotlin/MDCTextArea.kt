@@ -43,7 +43,7 @@ public fun MDCTextArea(
       if (disabled) classes("mdc-text-field--disabled")
     }
   ) {
-    MDCInitEffect(MDCTextFieldModule::MDCTextField, rebuildOnChange = true, keys = arrayOf(label))
+    MDCInitEffect(MDCTextFieldModule::MDCTextField, label)
     maxLength?.let {
       Div(attrs = {
         classes("mdc-text-field-character-counter")

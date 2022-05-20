@@ -8,13 +8,10 @@ import org.w3c.dom.HTMLElement
 @MDCExternalAPI
 @JsModule("@material/slider")
 public external object MDCSliderModule {
-  public class MDCSlider(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+  public class MDCSlider(element: Element, options: MDCSliderOptions = definedExternally) :
+    MDCBaseModule.MDCComponent<dynamic> {
     public interface MDCSliderOptions {
       public var skipInitialUIUpdate: Boolean?
-    }
-
-    public companion object {
-      public fun attachTo(element: Element, options: MDCSliderOptions = definedExternally): MDCSlider
     }
 
     public var root: HTMLElement

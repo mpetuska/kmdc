@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.initialiseMDC
@@ -64,7 +64,7 @@ public fun MDCList(
     }
     attrs?.invoke(this)
   }) {
-    MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
+    MDCStateEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     applyContent(content)
   }
 }
@@ -92,7 +92,7 @@ public fun MDCNavList(
     }
     attrs?.invoke(this)
   }) {
-    MDCSideEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
+    MDCStateEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     applyContent(content)
   }
 }

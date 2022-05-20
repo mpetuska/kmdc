@@ -11,7 +11,8 @@ import org.w3c.dom.HTMLDivElement
  */
 @MDCDsl
 @Composable
-internal fun MDCSliderOpts.MDCSliderTrack(
+internal fun MDCSliderTrack(
+  tickMarks: Boolean,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
 ) {
   Div(attrs = {

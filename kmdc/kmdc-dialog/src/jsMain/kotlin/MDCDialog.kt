@@ -6,7 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import org.jetbrains.compose.web.attributes.AttrsScope
@@ -59,9 +59,9 @@ public fun MDCDialog(
     MDCInitEffect(MDCDialogModule.MDCDialog::attachTo, keys = arrayOf(options.open)) {
       if (options.open) open() else close("")
     }
-    MDCSideEffect(options.scrimClickAction, MDCDialogModule.MDCDialog::scrimClickAction)
-    MDCSideEffect(options.escapeKeyAction, MDCDialogModule.MDCDialog::escapeKeyAction)
-    MDCSideEffect(options.autoStackButtons, MDCDialogModule.MDCDialog::autoStackButtons)
+    MDCStateEffect(options.scrimClickAction, MDCDialogModule.MDCDialog::scrimClickAction)
+    MDCStateEffect(options.escapeKeyAction, MDCDialogModule.MDCDialog::escapeKeyAction)
+    MDCStateEffect(options.autoStackButtons, MDCDialogModule.MDCDialog::autoStackButtons)
 
     Div(attrs = { classes("mdc-dialog__container") }) {
       Div(

@@ -13,8 +13,9 @@ import org.w3c.dom.HTMLDivElement
  */
 @MDCDsl
 @Composable
-internal fun MDCSliderOpts.MDCSliderThumb(
-  value: Number? = null,
+internal fun MDCSliderThumb(
+  value: Number?,
+  discrete: Boolean,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
 ) {
   Div(attrs = {

@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
@@ -59,9 +60,8 @@ public fun MDCDrawer(
       attrs?.invoke(this)
     },
   ) {
-    MDCInitEffect(MDCDrawerModule.MDCDrawer::attachTo, keys = arrayOf(options.isOpen)) {
-      open = options.isOpen
-    }
+    MDCInitEffect(MDCDrawerModule::MDCDrawer)
+    MDCStateEffect(options.isOpen, MDCDrawerModule.MDCDrawer::open)
     content?.let { MDCDrawerScope(this).it() }
   }
 }

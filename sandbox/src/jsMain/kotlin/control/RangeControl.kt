@@ -18,19 +18,19 @@ fun RangeControl(
   onInput: (Number) -> Unit,
 ) {
   NamedBlock(name, description) {
-    MDCSlider(opts = {
-      this.value = value
-      label = "Size"
-      discrete = true
-      this.min = min
-      this.max = max
-      this.step = step
-    }, attrs = {
-      onInput {
-        onInput(it.detail.value)
-      }
-      style { margin(0.em) }
-    })
+    MDCSlider(
+      value = value,
+      label = "Size",
+      discrete = true,
+      min = min,
+      max = max,
+      step = step,
+      attrs = {
+        onInput {
+          onInput(it.detail.value)
+        }
+        style { margin(0.em) }
+      })
   }
 }
 

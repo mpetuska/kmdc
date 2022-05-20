@@ -6,6 +6,7 @@ import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -53,9 +54,9 @@ public fun MDCLinearProgress(
     }
     attrs?.invoke(this)
   }) {
-    MDCSideEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
-    MDCSideEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
-    MDCSideEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)
+    MDCStateEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
+    MDCStateEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
+    MDCStateEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)
     MDCSideEffect<MDCLinearProgressModule.MDCLinearProgress>(options.closed) {
       if (options.closed) close() else open()
     }

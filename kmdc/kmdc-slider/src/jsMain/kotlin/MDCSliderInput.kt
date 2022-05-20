@@ -18,12 +18,14 @@ import org.jetbrains.compose.web.dom.Input
  */
 @MDCDsl
 @Composable
-internal fun MDCSliderOpts.MDCSliderInput(
+internal fun MDCSliderInput(
   value: Number,
   min: Number,
   max: Number,
   label: String?,
   rangeStart: Boolean?,
+  disabled: Boolean,
+  step: Number,
   attrs: Builder<InputAttrsScope<Number?>>? = null,
 ) {
   Input(

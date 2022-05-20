@@ -5,6 +5,7 @@ import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
 import org.jetbrains.compose.web.dom.Span
@@ -30,7 +31,8 @@ public fun MDCLineRipple(
       applyAttrs(attrs)
     },
     content = {
-      MDCInitEffect(::MDCLineRipple, keys = arrayOf(active)) {
+      MDCInitEffect(::MDCLineRipple)
+      MDCSideEffect<MDCLineRipple>(active) {
         if (active) activate() else deactivate()
       }
       applyContent(content)

@@ -45,7 +45,7 @@ public fun MDCTooltip(
       applyAttrs(attrs)
     }
   ) {
-    MDCInitEffect(MDCTooltipModule::MDCTooltip, keys = arrayOf(persistent), rebuildOnChange = true)
+    MDCInitEffect(MDCTooltipModule::MDCTooltip, persistent)
     Div(
       attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
       content = content.reinterpret()
