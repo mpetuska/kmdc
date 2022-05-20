@@ -6,7 +6,7 @@ import dev.petuska.kmdc.button.MDCButtonType
 import org.jetbrains.compose.web.dom.Div
 
 @Composable
-fun ActionInput(
+fun ActionControl(
   name: String,
   description: String? = null,
   onAction: () -> Unit,

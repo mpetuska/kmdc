@@ -7,7 +7,7 @@ import kotlin.reflect.KMutableProperty0
 
 
 @Composable
-fun BooleanChoice(
+fun BooleanControl(
   title: String,
   selected: Boolean,
   description: String? = null,
@@ -26,10 +26,10 @@ fun BooleanChoice(
 }
 
 @Composable
-fun BooleanChoice(
+fun BooleanControl(
   title: String,
   property: KMutableProperty0<Boolean>,
   description: String? = null
 ) {
-  BooleanChoice(title, property.get(), description, onSelect = { property.set(it) })
+  BooleanControl(title, property.get(), description, onSelect = { property.set(it) })
 }

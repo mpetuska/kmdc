@@ -5,7 +5,7 @@ import dev.petuska.kmdc.textfield.MDCTextField
 import kotlin.reflect.KMutableProperty0
 
 @Composable
-fun TextInput(
+fun TextControl(
   name: String,
   text: String,
   description: String? = null,
@@ -22,10 +22,10 @@ fun TextInput(
 }
 
 @Composable
-fun TextInput(
+fun TextControl(
   name: String,
   text: KMutableProperty0<String>,
   description: String? = null,
 ) {
-  TextInput(name, text.get(), description, text::set)
+  TextControl(name, text.get(), description, text::set)
 }

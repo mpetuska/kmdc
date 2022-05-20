@@ -18,11 +18,6 @@ import org.jetbrains.compose.web.dom.Text
 @JsModule("@material/radio/mdc-radio.scss")
 public external val MDCRadioStyle: dynamic
 
-public data class MDCRadioOpts(
-  public var disabled: Boolean = false,
-  public var label: String? = null,
-)
-
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
@@ -31,10 +26,11 @@ public data class MDCRadioOpts(
 public fun MDCRadio(
   checked: Boolean,
   touch: Boolean = false,
-  opts: Builder<MDCRadioOpts>? = null,
+  disabled: Boolean = false,
+  label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  MDCRadioBody(checked = checked, touch = touch, opts, attrs)
+  MDCRadioBody(checked = checked, touch = touch, label = label, disabled = disabled, attrs = attrs)
 }
 
 /**
@@ -45,10 +41,11 @@ public fun MDCRadio(
 public fun MDCFormFieldScope.MDCRadio(
   checked: Boolean,
   touch: Boolean = false,
-  opts: Builder<MDCRadioOpts>? = null,
+  disabled: Boolean = false,
+  label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
-  MDCRadioBody(checked = checked, touch = touch, opts, attrs = {
+  MDCRadioBody(checked = checked, touch = touch, disabled = disabled, label = label, attrs = {
     ref {
       it.mdc<MDCRadioModule.MDCRadio> { setInput(it, this) }
       onDispose { }
@@ -62,16 +59,16 @@ public fun MDCFormFieldScope.MDCRadio(
 private fun MDCRadioBody(
   checked: Boolean,
   touch: Boolean,
-  opts: Builder<MDCRadioOpts>? = null,
+  disabled: Boolean = false,
+  label: String? = null,
   attrs: Builder<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioStyle
-  val options = MDCRadioOpts().apply { opts?.invoke(this) }
   val radioId = rememberUniqueDomElementId()
 
   Div(attrs = {
     classes("mdc-radio")
-    if (options.disabled) classes("mdc-radio--disabled")
+    if (disabled) classes("mdc-radio--disabled")
     if (touch) classes("mdc-radio--touch")
   }) {
     MDCInitEffect(MDCRadioModule.MDCRadio::attachTo)
@@ -79,7 +76,7 @@ private fun MDCRadioBody(
       classes("mdc-radio__native-control") // This must precede `checked()`
       checked(checked) // This must follow `classes(...)`
       id(radioId)
-      if (options.disabled) disabled()
+      if (disabled) disabled()
       attrs?.invoke(this)
     })
     Div(attrs = {
@@ -90,7 +87,7 @@ private fun MDCRadioBody(
     }
     Div(attrs = { classes("mdc-radio__ripple") })
   }
-  options.label?.let {
+  label?.let {
     Label(forId = radioId, attrs = { id("$radioId-label") }) { Text(it) }
   }
 }

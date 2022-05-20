@@ -13,9 +13,9 @@ import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonType
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanChoice
-import sandbox.control.RadioChoice
-import sandbox.control.TextInput
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.TextControl
 
 private class MDCButtonVM {
   var type by mutableStateOf(MDCButtonType.Text)
@@ -30,11 +30,11 @@ private class MDCButtonVM {
 fun MDCButton() = InteractiveShowcase(
   viewModel = { MDCButtonVM() },
   controls = {
-    RadioChoice("Type", MDCButtonType.values().associateBy(MDCButtonType::name), type) { type = it }
-    RadioChoice("Icon", MDCButtonIconType.values().associateBy(MDCButtonIconType::name), icon) { icon = it }
-    BooleanChoice("Disabled", ::disabled)
-    BooleanChoice("Touch", ::touch)
-    TextInput("Label", label) { label = it }
+    ChoiceControl("Type", MDCButtonType.values().associateBy(MDCButtonType::name), ::type)
+    ChoiceControl("Icon", MDCButtonIconType.values().associateBy(MDCButtonIconType::name), ::icon)
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Touch", ::touch)
+    TextControl("Label", label) { label = it }
   },
 ) {
   MDCButton(type = type, icon = icon, touch = touch, attrs = {

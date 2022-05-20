@@ -8,8 +8,8 @@ import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.form.field.MDCFormField
-import sandbox.control.BooleanChoice
-import sandbox.control.TextInput
+import sandbox.control.BooleanControl
+import sandbox.control.TextControl
 
 private class MDCCheckboxVM {
   var disabled by mutableStateOf(false)
@@ -24,11 +24,11 @@ private class MDCCheckboxVM {
 fun MDCCheckbox() = InteractiveShowcase(
   viewModel = { MDCCheckboxVM() },
   controls = {
-    BooleanChoice("Disabled", ::disabled)
-    BooleanChoice("Indeterminate", ::indeterminate)
-    BooleanChoice("Touch", ::touch)
-    BooleanChoice("Checked", ::checked)
-    TextInput("Label", label) { label = it }
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Indeterminate", ::indeterminate)
+    BooleanControl("Touch", ::touch)
+    BooleanControl("Checked", ::checked)
+    TextControl("Label", label) { label = it }
   },
 ) {
   MDCFormField {

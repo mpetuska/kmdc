@@ -1,10 +1,10 @@
 package dev.petuska.kmdc.circular.progress
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
@@ -17,20 +17,8 @@ import org.jetbrains.compose.web.svg.Circle
 import org.jetbrains.compose.web.svg.Svg
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/circular-progress/dist/mdc.circular-progress.css")
+@JsModule("@material/circular-progress/mdc-circular-progress.scss")
 private external val MDCCircularProgressCSS: dynamic
-
-public data class MDCCircularProgressOpts(
-  /**
-   * Value capped between 0.0 and 1.0
-   */
-  var progress: Double = 0.0,
-  var determinate: Boolean = false,
-  var closed: Boolean = false,
-  var label: String? = null,
-  var size: Int = 48,
-  var fourColor: Boolean = false,
-)
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-circular-progress)
@@ -38,39 +26,42 @@ public data class MDCCircularProgressOpts(
 @MDCDsl
 @Composable
 public fun MDCCircularProgress(
-  opts: Builder<MDCCircularProgressOpts>? = null,
+  progress: Double = 0.0,
+  determinate: Boolean = false,
+  closed: Boolean = false,
+  label: String? = null,
+  size: Int = 48,
+  fourColor: Boolean = false,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
 ) {
   MDCCircularProgressCSS
-  val options = MDCCircularProgressOpts().apply {
-    opts?.invoke(this)
-    progress = progress.coerceIn(0.0, 1.0)
-  }
   Div(attrs = {
     classes("mdc-circular-progress")
     role("progressbar")
     aria("valuemin", 0)
     aria("valuemax", 1)
-    aria("valuenow", options.progress)
-    options.label?.let { attr("aria-label", it) }
-    if (!options.determinate) classes("mdc-circular-progress--indeterminate")
-    if (options.closed) classes("mdc-circular-progress--closed")
-
+    aria("valuenow", progress)
+    label?.let { aria("label", it) }
+    if (!determinate) classes("mdc-circular-progress--indeterminate")
+    if (closed) classes("mdc-circular-progress--closed")
     style {
-      width(options.size.px)
-      height(options.size.px)
+      width(size.px)
+      height(size.px)
     }
-
-    attrs?.invoke(this)
+    applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCCircularProgressModule::MDCCircularProgress) {
-      progress = options.progress
-      determinate = options.determinate
+    MDCInitEffect(
+      MDCCircularProgressModule::MDCCircularProgress,
+      rebuildOnChange = true,
+      keys = arrayOf(size, fourColor)
+    ) {
+      this.progress = progress.coerceIn(0.0, 1.0)
+      this.determinate = determinate
     }
-    MDCSideEffect(options.determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
-    MDCSideEffect(options.progress, MDCCircularProgressModule.MDCCircularProgress::progress)
-    MDCCircularProgressDeterminateContainer(options.size)
-    MDCCircularProgressIndeterminateContainer(options.size, options.fourColor)
+    MDCSideEffect(determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
+    MDCSideEffect(progress, MDCCircularProgressModule.MDCCircularProgress::progress)
+    MDCCircularProgressDeterminateContainer(size)
+    MDCCircularProgressIndeterminateContainer(size, fourColor)
   }
 }
 

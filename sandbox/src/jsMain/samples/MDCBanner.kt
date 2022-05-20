@@ -19,7 +19,7 @@ import dev.petuska.kmdc.banner.onClosed
 import dev.petuska.kmdc.banner.onClosing
 import dev.petuska.kmdc.banner.onOpened
 import dev.petuska.kmdc.banner.onOpening
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
 private class MDCBannerVM {
@@ -33,9 +33,9 @@ private class MDCBannerVM {
 fun MDCBanner() = InteractiveShowcase(
   viewModel = { MDCBannerVM() },
   controls = {
-    BooleanChoice("Centered", ::centered)
-    BooleanChoice("Mobile Stacked", ::mobileStacked)
-    BooleanChoice("Open", ::open)
+    BooleanControl("Centered", ::centered)
+    BooleanControl("Mobile Stacked", ::mobileStacked)
+    BooleanControl("Open", ::open)
   },
 ) {
   MDCBanner(open = open, centered = centered, mobileStacked = mobileStacked, attrs = {

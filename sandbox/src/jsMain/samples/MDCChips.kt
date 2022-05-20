@@ -24,7 +24,7 @@ import dev.petuska.kmdc.chips.onInteraction
 import dev.petuska.kmdc.chips.onRemoval
 import dev.petuska.kmdc.chips.onSelection
 import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
 import sandbox.control.NamedBlock
 
 private class MDCChipsVM {
@@ -39,10 +39,10 @@ private class MDCChipsVM {
 fun MDCChips() = InteractiveShowcase(
   viewModel = { MDCChipsVM() },
   controls = {
-    BooleanChoice("Disabled", ::disabled)
-    BooleanChoice("Multiselectable", ::multiselectable)
-    BooleanChoice("Overflow", ::overflow)
-    BooleanChoice("Touch", ::touch)
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Multiselectable", ::multiselectable)
+    BooleanControl("Overflow", ::overflow)
+    BooleanControl("Touch", ::touch)
   },
 ) {
   NamedBlock("Grid") {

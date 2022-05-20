@@ -9,6 +9,8 @@ import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.applyAttrs
+import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.icon.button.MDCIconButtonOpts
 import dev.petuska.kmdc.icon.button.MDCIconButtonScope
@@ -20,7 +22,7 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLDivElement
 
-public class MDCSnackbarActionsScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
+public interface MDCSnackbarActionsScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
@@ -35,9 +37,9 @@ public fun MDCSnackbarScope.MDCSnackbarActions(
     attrs = {
       classes("mdc-snackbar__actions")
       attr("aria-atomic", "true")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
-    content = content?.let { { MDCSnackbarActionsScope(this).it() } }
+    content = content.reinterpret()
   )
 }
 

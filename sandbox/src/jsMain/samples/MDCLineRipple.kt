@@ -13,7 +13,7 @@ import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.display
 import org.jetbrains.compose.web.css.position
 import org.jetbrains.compose.web.dom.Div
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
 
 
 private class MDCLineRippleVM {
@@ -25,7 +25,7 @@ private class MDCLineRippleVM {
 fun MDCLineRipple() = InteractiveShowcase(
   viewModel = { MDCLineRippleVM() },
   controls = {
-    BooleanChoice("Active", ::active)
+    BooleanControl("Active", ::active)
   },
 ) {
   Div(attrs = {

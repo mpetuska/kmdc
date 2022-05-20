@@ -5,13 +5,17 @@ import androidx.compose.runtime.remember
 import dev.petuska.katalog.runtime.UtilStyle
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.FlexDirection
+import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.css.StyleSheet
 import org.jetbrains.compose.web.css.display
 import org.jetbrains.compose.web.css.em
 import org.jetbrains.compose.web.css.flexDirection
 import org.jetbrains.compose.web.css.marginLeft
+import org.jetbrains.compose.web.css.minWidth
 import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.position
+import org.jetbrains.compose.web.css.top
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H4
@@ -29,11 +33,18 @@ public object InteractiveShowcaseStyle : StyleSheet() {
   public val preview: String by style {
     width(100.percent)
   }
+  public val previewGlue: String by style {
+    position(Position.Sticky)
+    top(0.em)
+  }
   public val controls: String by style {
     property("width", "fit-content")
     display(DisplayStyle.Flex)
     flexDirection(FlexDirection.Column)
     marginLeft(1.em)
+  }
+  public val controlsSpacer: String by style {
+    minWidth(20.em)
   }
 }
 
@@ -50,10 +61,13 @@ public inline fun <VM : Any> InteractiveShowcase(
     H4 { Text("Playground") }
     Div(attrs = { classes(InteractiveShowcaseStyle.content) }) {
       Div(attrs = { classes(InteractiveShowcaseStyle.preview, UtilStyle.roundedBoxShadow) }) {
-        vm.preview()
+        Div(attrs = { classes(InteractiveShowcaseStyle.previewGlue) }) {
+          vm.preview()
+        }
       }
       if (controls != null) {
         Div(attrs = { classes(InteractiveShowcaseStyle.controls, UtilStyle.roundedBoxShadow) }) {
+          Div(attrs = { classes(InteractiveShowcaseStyle.controlsSpacer) })
           vm.controls()
         }
       }

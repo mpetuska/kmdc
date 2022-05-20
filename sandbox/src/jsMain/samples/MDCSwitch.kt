@@ -8,7 +8,7 @@ import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.switch.MDCSwitch
 import org.jetbrains.compose.web.attributes.disabled
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
 
 
 private class MDCSwitchVM {
@@ -21,8 +21,8 @@ private class MDCSwitchVM {
 fun MDCSwitch() = InteractiveShowcase(
   viewModel = { MDCSwitchVM() },
   controls = {
-    BooleanChoice("Disabled", ::disabled)
-    BooleanChoice("Selected", ::selected)
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Selected", ::selected)
   },
 ) {
   MDCSwitch(

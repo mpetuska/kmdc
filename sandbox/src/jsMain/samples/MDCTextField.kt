@@ -13,26 +13,27 @@ import dev.petuska.kmdc.textfield.MDCTextFieldLeadingIcon
 import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
 import dev.petuska.kmdc.textfield.MDCTextFieldType
 import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
 import sandbox.control.NamedBlock
 import sandbox.control.NamedGroup
-import sandbox.control.RadioChoice
-import sandbox.control.TextInput
+import sandbox.control.RangeControl
+import sandbox.control.TextControl
 
 private class MDCTextFieldVM {
   var type by mutableStateOf(MDCTextFieldType.Filled)
   var disabled by mutableStateOf(false)
   var label by mutableStateOf("")
   var helperText by mutableStateOf("")
-  var maxLength by mutableStateOf("")
+  var maxLength by mutableStateOf(50)
   var leadingIcon by mutableStateOf(false)
   var trailingIcon by mutableStateOf(false)
 
   var prefix by mutableStateOf("")
   var suffix by mutableStateOf("")
 
-  var rows by mutableStateOf("8")
-  var columns by mutableStateOf("40")
+  var rows by mutableStateOf(8)
+  var columns by mutableStateOf(40)
 }
 
 @Composable
@@ -40,34 +41,34 @@ private class MDCTextFieldVM {
 fun MDCTextField() = InteractiveShowcase(
   viewModel = { MDCTextFieldVM() },
   controls = {
-    RadioChoice("Type", MDCTextFieldType.values().associateBy(MDCTextFieldType::name), ::type)
-    BooleanChoice("Disabled", ::disabled)
-    TextInput("Label", ::label)
-    TextInput("Helper Text", ::helperText)
-    TextInput("Max Length", ::maxLength)
+    ChoiceControl("Type", MDCTextFieldType.values().associateBy(MDCTextFieldType::name), ::type)
+    BooleanControl("Disabled", ::disabled)
+    TextControl("Label", ::label)
+    TextControl("Helper Text", ::helperText)
+    RangeControl("Max Length", ::maxLength, converter = Number::toInt)
 
     NamedGroup("Field") {
-      TextInput("Prefix", ::prefix)
-      TextInput("Suffix", ::suffix)
-      BooleanChoice("Leading Icon", ::leadingIcon)
-      BooleanChoice("Trailing Icon", ::trailingIcon)
+      TextControl("Prefix", ::prefix)
+      TextControl("Suffix", ::suffix)
+      BooleanControl("Leading Icon", ::leadingIcon)
+      BooleanControl("Trailing Icon", ::trailingIcon)
     }
 
     NamedGroup("Area") {
-      TextInput("Rows", ::rows)
-      TextInput("Columns", ::columns)
+      RangeControl("Rows", ::rows, min = 1, max = 16, converter = Number::toInt)
+      RangeControl("Columns", ::columns, min = 1, max = 80, converter = Number::toInt)
     }
   },
 ) {
   var text by remember { mutableStateOf("") }
-  NamedBlock("Field") {
+  NamedBlock("Field", attrs = { style { property("width", "fit-content") } }) {
     MDCTextField(
       value = text,
       type = type,
       disabled = disabled,
       label = label.takeIf(String::isNotBlank),
       helperText = helperText.takeIf(String::isNotBlank),
-      maxLength = maxLength.takeIf(String::isNotBlank)?.toUInt(),
+      maxLength = maxLength.toUInt(),
       prefix = prefix.takeIf(String::isNotBlank),
       suffix = suffix.takeIf(String::isNotBlank),
       attrs = {
@@ -85,14 +86,14 @@ fun MDCTextField() = InteractiveShowcase(
       } else null
     )
   }
-  NamedBlock("Area") {
+  NamedBlock("Area", attrs = { style { property("width", "fit-content") } }) {
     MDCTextArea(
       value = text,
       type = type,
       disabled = disabled,
       label = label.takeIf(String::isNotBlank),
       helperText = helperText.takeIf(String::isNotBlank),
-      maxLength = maxLength.takeIf(String::isNotBlank)?.toUInt(),
+      maxLength = maxLength.toUInt(),
       rows = rows.toUInt(),
       columns = columns.toUInt(),
       attrs = {

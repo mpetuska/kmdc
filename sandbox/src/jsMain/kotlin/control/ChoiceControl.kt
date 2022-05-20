@@ -7,7 +7,7 @@ import kotlin.reflect.KMutableProperty0
 
 
 @Composable
-fun <T> RadioChoice(
+fun <T> ChoiceControl(
   title: String,
   options: Map<String, T>,
   selected: T?,
@@ -17,22 +17,24 @@ fun <T> RadioChoice(
   NamedBlock(title, description) {
     MDCFormField {
       options.forEach { (text, value) ->
-        MDCRadio(checked = selected == value, opts = {
-          label = text
-        }, attrs = {
-          onInput { onSelect(value) }
-        })
+        MDCRadio(
+          checked = selected == value,
+          label = text,
+          attrs = {
+            onInput { onSelect(value) }
+          }
+        )
       }
     }
   }
 }
 
 @Composable
-fun <T> RadioChoice(
+fun <T> ChoiceControl(
   title: String,
   options: Map<String, T>,
   selected: KMutableProperty0<T>,
   description: String? = null,
 ) {
-  RadioChoice(title, options, selected.get(), description, selected::set)
+  ChoiceControl(title, options, selected.get(), description, selected::set)
 }

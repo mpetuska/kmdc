@@ -12,8 +12,8 @@ import dev.petuska.kmdc.fab.MDCFab
 import dev.petuska.kmdc.fab.MDCFabType
 import dev.petuska.kmdc.touch.target.MDCTouchTarget
 import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanChoice
-import sandbox.control.RadioChoice
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
 
 private class MDCFabVM {
   var exited by mutableStateOf(false)
@@ -26,9 +26,9 @@ private class MDCFabVM {
 fun MDCFab() = InteractiveShowcase(
   viewModel = { MDCFabVM() },
   controls = {
-    RadioChoice("Type", MDCFabType.values().associateBy(MDCFabType::name), type) { type = it }
-    BooleanChoice("Exited", ::exited)
-    BooleanChoice("Touch", ::touch)
+    ChoiceControl("Type", MDCFabType.values().associateBy(MDCFabType::name), type) { type = it }
+    BooleanControl("Exited", ::exited)
+    BooleanControl("Touch", ::touch)
   },
 ) {
   val content = @Composable {

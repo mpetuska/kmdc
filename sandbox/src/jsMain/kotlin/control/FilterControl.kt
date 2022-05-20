@@ -6,7 +6,7 @@ import dev.petuska.kmdc.form.field.MDCFormField
 
 
 @Composable
-fun <T> MultiChoice(
+fun <T> FilterControl(
   title: String,
   options: Map<String, Boolean>,
   description: String? = null,

@@ -18,7 +18,7 @@ import dev.petuska.kmdc.tooltip.MDCTooltipLink
 import dev.petuska.kmdc.tooltip.MDCTooltipTitle
 import dev.petuska.kmdc.tooltip.tooltipId
 import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanChoice
+import sandbox.control.BooleanControl
 import sandbox.control.NamedBlock
 
 private class MDCTooltipVM {
@@ -27,9 +27,9 @@ private class MDCTooltipVM {
   val baseTooltipId = "kmdc-tooltip-id-"
 
   @Composable
-  fun AnchorButton(tid: String) {
+  fun AnchorButton(tid: String, text: String) {
     MDCButton(
-      text = "Hover over me",
+      text = text,
       type = MDCButtonType.Raised,
       attrs = {
         tooltipId(tid)
@@ -43,13 +43,13 @@ private class MDCTooltipVM {
 fun MDCTooltip() = InteractiveShowcase(
   viewModel = { MDCTooltipVM() },
   controls = {
-    BooleanChoice("Interactive", ::interactive)
-    BooleanChoice("Persistent", ::persistent)
+    BooleanControl("Interactive", ::interactive)
+    BooleanControl("Persistent", ::persistent)
   },
 ) {
   NamedBlock("Simple") {
     val tid = "$baseTooltipId-simple"
-    AnchorButton(tid)
+    AnchorButton(tid, "Hover over me")
     MDCTooltip(
       id = tid,
       persistent = persistent,
@@ -63,7 +63,7 @@ fun MDCTooltip() = InteractiveShowcase(
       interactive = interactive,
       persistent = persistent,
       anchorContent = {
-        AnchorButton(tid)
+        AnchorButton(tid, if (persistent) "Click me" else "Hover over me")
       }
     ) {
       MDCTooltipTitle("Lorem Ipsum")

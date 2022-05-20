@@ -146,14 +146,14 @@ object MDCSelect : Samples() {
         MDCFormField {
           MDCRadio(
             checked = fruitList,
-            opts = { label = "Fruits" },
+            label = "Fruits",
             attrs = {
               onInput { fruitList = true }
             }
           )
           MDCRadio(
             checked = !fruitList,
-            opts = { label = "Vegetables" },
+            label = "Vegetables",
             attrs = {
               onInput { fruitList = false }
             }
