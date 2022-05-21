@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.ripple.MDCRipple
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -40,10 +40,10 @@ public fun MDCIconButton(
     attrs = {
       classes("mdc-icon-button")
       if (options.on) classes("mdc-icon-button--on")
-      initialiseMDC(MDCIconButtonModule.MDCIconButtonToggle::attachTo)
       applyAttrs(attrs)
     },
   ) {
+    MDCInitEffect(MDCIconButtonModule::MDCIconButtonToggle)
     MDCRipple(opts = { isUnbounded = true })
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconButtonScope(this).it() }
@@ -66,10 +66,10 @@ public fun MDCIconLink(
     attrs = {
       classes("mdc-icon-button")
       if (options.on) classes("mdc-icon-button--on")
-      initialiseMDC(MDCIconButtonModule.MDCIconButtonToggle::attachTo)
       attrs?.invoke(this)
     },
   ) {
+    MDCInitEffect(MDCIconButtonModule::MDCIconButtonToggle)
     MDCRipple(opts = { isUnbounded = true })
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconLinkScope(this).it() }

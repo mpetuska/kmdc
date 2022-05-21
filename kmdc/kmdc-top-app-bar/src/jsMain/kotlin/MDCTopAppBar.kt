@@ -7,8 +7,9 @@ import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -37,8 +38,7 @@ public val MDCTopAppBarType: ProvidableCompositionLocal<MDCTopAppBarContextOpts.
 
 public class MDCTopAppBarContextScope
 
-public class MDCTopAppBarScope(scope: ElementScope<HTMLElement>) :
-  ElementScope<HTMLElement> by scope
+public interface MDCTopAppBarScope : ElementScope<HTMLElement>
 
 /**
  * If using this [MDCTopAppBar] component, all the page content must be placed into [MDCTopAppBarMain] container.
@@ -72,11 +72,11 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
     attrs = {
       classes("mdc-top-app-bar")
       classes(type.classes)
-      initialiseMDC(MDCTopAppBarModule.MDCTopAppBar::attachTo)
       attrs?.invoke(this)
     },
   ) {
-    content?.let { MDCTopAppBarScope(this).it() }
+    MDCInitEffect(MDCTopAppBarModule::MDCTopAppBar)
+    applyContent(content)
   }
 }
 

@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.tab.scroller.MDCTabScrollerScope
 import org.jetbrains.compose.web.attributes.AttrsScope
@@ -36,6 +36,7 @@ public fun MDCTabScrollerScope.Tab(
   content: ComposableBuilder<MDCTabScope>? = null
 ) {
   MDCTabCSS
+  context.tabs++
   Button(
     attrs = {
       classes("mdc-tab")
@@ -45,10 +46,10 @@ public fun MDCTabScrollerScope.Tab(
       tabIndex(if (active) 0 else -1)
       if (stacked) classes("mdc-tab--stacked")
       if (minWidth) classes("mdc-tab--min-width")
-      initialiseMDC(MDCTabModule::MDCTab)
       applyAttrs(attrs)
     },
     content = {
+      MDCInitEffect(MDCTabModule::MDCTab, stacked, minWidth)
       applyContent(content)
       Span(attrs = { classes("mdc-tab__ripple") })
     }

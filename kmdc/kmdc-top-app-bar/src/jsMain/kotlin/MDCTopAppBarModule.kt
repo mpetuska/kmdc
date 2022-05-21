@@ -5,9 +5,5 @@ import org.w3c.dom.Element
 
 @JsModule("@material/top-app-bar")
 public external object MDCTopAppBarModule {
-  public class MDCTopAppBar(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCTopAppBar
-    }
-  }
+  public class MDCTopAppBar(element: Element) : MDCBaseModule.MDCComponent<dynamic>
 }

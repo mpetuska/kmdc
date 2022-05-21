@@ -6,10 +6,6 @@ import org.w3c.dom.Element
 @JsModule("@material/linear-progress")
 public external object MDCLinearProgressModule {
   public class MDCLinearProgress(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCLinearProgress
-    }
-
     public var determinate: Boolean
     public var progress: Number
     public var buffer: Number

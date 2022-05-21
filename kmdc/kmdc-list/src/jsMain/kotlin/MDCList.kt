@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Nav
@@ -59,11 +59,9 @@ public fun MDCList(
     classes(options.size.classes)
     classes(options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    initialiseMDC(MDCListModule.MDCList::attachTo) {
-      singleSelection = options.singleSelection
-    }
     attrs?.invoke(this)
   }) {
+    MDCInitEffect(MDCListModule::MDCList)
     MDCStateEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     applyContent(content)
   }
@@ -87,11 +85,9 @@ public fun MDCNavList(
     classes(options.size.classes)
     classes(options.type.classes)
     if (options.singleSelection) attr("role", "listbox")
-    initialiseMDC(MDCListModule.MDCList::attachTo) {
-      singleSelection = options.singleSelection
-    }
     attrs?.invoke(this)
   }) {
+    MDCInitEffect(MDCListModule::MDCList)
     MDCStateEffect(options.singleSelection, MDCListModule.MDCList::singleSelection)
     applyContent(content)
   }

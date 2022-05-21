@@ -5,9 +5,9 @@ import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.initialiseMDC
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
@@ -47,13 +47,9 @@ public fun MDCLinearProgress(
     attr("aria-valuemax", "1")
     attr("aria-valuenow", "0")
     options.label?.let { attr("aria-label", it) }
-    initialiseMDC(MDCLinearProgressModule.MDCLinearProgress::attachTo) {
-      determinate = options.determinate
-      progress = options.progress
-      buffer = options.buffer
-    }
     attrs?.invoke(this)
   }) {
+    MDCInitEffect(MDCLinearProgressModule::MDCLinearProgress)
     MDCStateEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
     MDCStateEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
     MDCStateEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.MDCInitEffect
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -45,9 +45,11 @@ public fun MDCSegmentedButton(
       } else {
         attr("role", "group")
       }
-      initialiseMDC(MDCSegmentedButtonModule::MDCSegmentedButton)
       attrs?.invoke(MDCSegmentedButtonAttrsScope(this))
     },
-    content = content?.let { { MDCSegmentedButtonScope(this, options).it() } }
+    content = {
+      MDCInitEffect(MDCSegmentedButtonModule::MDCSegmentedButton)
+      content?.let { MDCSegmentedButtonScope(this, options).it() }
+    }
   )
 }

@@ -30,18 +30,36 @@ private class MDCSliderVM {
   var value2 by mutableStateOf<Int?>(null)
 
   fun setValues(
-    value1: Int = this.value1,
-    value2: Int? = this.value2,
+    step: Int = this.step,
     min: Int = this.min,
     max: Int = this.max,
-    step: Int = this.step,
+    value1: Int = this.value1,
+    value2: Int? = this.value2,
   ) {
     this.step = step
-    this.max -= max % step
-    this.min += min(this.max, step - min % step)
-    this.value1 -= min(value1 % step, value2 ?: Int.MAX_VALUE)
+    val mi = max(0, min - min % step)
+    val ma = min(100 - 100 % step, max - max % step)
+    when {
+      mi == ma && mi != 0 -> {
+        this.min = mi - step
+        this.max = ma
+      }
+      mi == ma && mi == 0 -> {
+        this.min = mi
+        this.max = ma + step
+      }
+      mi > ma -> {
+        this.min = ma
+        this.max = mi
+      }
+      else -> {
+        this.min = mi
+        this.max = ma
+      }
+    }
+    this.value1 = min(value1 - value1 % step, value2 ?: Int.MAX_VALUE).coerceIn(this.min, this.max)
     this.value2 = value2?.let {
-      it - max(it % step, value1)
+      max(value2 - value2 % step, this.value1).coerceIn(this.min, this.max)
     }
   }
 }
@@ -57,17 +75,17 @@ fun MDCSlider() = InteractiveShowcase(
     BooleanControl("Range", range) {
       range = it
       setValues(
-        value2 = if (it) max(value2 ?: value1, value1) else null,
         value1 = min(value1, value2 ?: Int.MAX_VALUE),
+        value2 = if (it) max(value2 ?: value1, value1) else null,
       )
     }
     RangeControl("Step", step, min = 1, max = 10) {
       setValues(step = it.toInt())
     }
-    RangeControl("Min", min, min = 0, max = 100) {
+    RangeControl("Min", min, min = 0, max = 99) {
       setValues(min = it.toInt())
     }
-    RangeControl("Max", max, min = 0, max = 100) {
+    RangeControl("Max", max, min = 1, max = 100) {
       setValues(max = it.toInt())
     }
     TextControl("Label", ::label)
@@ -88,7 +106,7 @@ fun MDCSlider() = InteractiveShowcase(
       registerEvents()
       onInput {
         it.detail.run {
-          if (thumb == 1) {
+          if (thumb == 1 || !range) {
             value1 = value.toInt()
           } else {
             value2 = value.toInt()

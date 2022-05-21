@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
@@ -49,9 +49,9 @@ public fun MDCMenu(
   val options = MDCMenuOpts().apply { opts?.invoke(this) }
   MDCMenuSurface(attrs = {
     classes("mdc-menu")
-    initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
     applyAttrs(attrs)
   }) {
+    MDCInitEffect(MDCMenuModule::MDCMenu)
     MDCStateEffect(options.open, MDCMenuModule.MDCMenu::open)
     MDCStateEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
     MDCStateEffect(options.selectedIndex, MDCMenuModule.MDCMenu::setSelectedIndex)

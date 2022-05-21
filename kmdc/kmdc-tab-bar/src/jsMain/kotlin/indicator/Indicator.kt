@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
 import dev.petuska.kmdc.tab.MDCTabBaseScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
@@ -37,9 +38,11 @@ public fun MDCTabBaseScope.Indicator(
       classes("mdc-tab-indicator")
       if (active) classes("mdc-tab-indicator--active")
       classes(transition.classes)
-      initialiseMDC(MDCTabIndicatorModule::MDCTabIndicator)
       attrs?.invoke(this)
     },
-    content = content?.let { { unsafeCast<MDCTabIndicatorScope>().it() } }
+    content = {
+      MDCInitEffect(MDCTabIndicatorModule::MDCTabIndicator)
+      applyContent(content)
+    }
   )
 }

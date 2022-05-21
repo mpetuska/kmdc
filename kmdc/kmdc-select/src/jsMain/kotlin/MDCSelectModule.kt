@@ -21,11 +21,7 @@ public external object MDCSelectModule {
     public var items: List<T>
   }
 
-  public class MDCSelectHelperText(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCSelectHelperText
-    }
-  }
+  public class MDCSelectHelperText(element: Element) : MDCBaseModule.MDCComponent<dynamic>
 
   @Suppress("ClassName")
   public object strings {

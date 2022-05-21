@@ -10,10 +10,6 @@ import org.w3c.dom.HTMLElement
 @JsModule("@material/menu")
 public external object MDCMenuModule {
   public class MDCMenu(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCMenu
-    }
-
     public var open: Boolean
     public var wrapFocus: Boolean
 

@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package dev.petuska.kmdc.core
 
 import androidx.compose.runtime.Composable
@@ -24,8 +22,21 @@ public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilde
  * @return reinterpreted lambda that implies [S] on invocation
  */
 @KMDCInternalAPI
-public inline fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(): ContentBuilder<E>? {
+public fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(): ContentBuilder<E>? {
   return this?.let { { unsafeCast<S>().it() } }
+}
+
+/**
+ * Reinterprets [ComposableBuilder] lambda as a parent [ContentBuilder] lambda,
+ * converting implicit [ElementScope]<[E]> to [S] via [scope] provider.
+ * This is safe and can be used for uncontrolled scope types which have member properties or functions.
+ * @receiver lambda to reinterpret
+ * @param scope provider
+ * @return reinterpreted lambda that implies [S] on invocation
+ */
+@KMDCInternalAPI
+public inline fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(crossinline scope: (ElementScope<E>) -> S): ContentBuilder<E>? {
+  return this?.let { { scope(this).it() } }
 }
 
 /**
@@ -35,7 +46,7 @@ public inline fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reint
  * @param block to imply and apply
  */
 @KMDCInternalAPI
-public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noinline block: Builder<T>?) {
+public fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(block: Builder<T>?) {
   block?.invoke(unsafeCast<T>())
 }
 
@@ -47,8 +58,24 @@ public inline fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(noin
  */
 @Composable
 @KMDCInternalAPI
-public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(noinline block: ComposableBuilder<T>?) {
+public fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(block: ComposableBuilder<T>?) {
   block?.invoke(unsafeCast<T>())
+}
+
+/**
+ * Applies [ComposableBuilder]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [scope] builder.
+ * This is safe and can be used for uncontrolled scope types which have member properties or functions.
+ * @receiver scope to apply [block] to
+ * @param scope builder
+ * @param block to imply and apply
+ */
+@Composable
+@KMDCInternalAPI
+public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(
+  scope: (ElementScope<E>) -> T,
+  noinline block: ComposableBuilder<T>?
+) {
+  block?.let { scope(this).it() }
 }
 
 @KMDCInternalAPI
@@ -83,9 +110,9 @@ public fun uniqueDomElementId(): String = "kmdc-$nextDomElementId"
  */
 @Composable
 @KMDCInternalAPI
-public inline fun rememberUniqueDomElementId(suffix: String? = null): String =
+public fun rememberUniqueDomElementId(suffix: String? = null): String =
   remember { uniqueDomElementId() + (suffix?.let { "-$it" } ?: "") }
 
 @Composable
 @KMDCInternalAPI
-public inline fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
+public fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }

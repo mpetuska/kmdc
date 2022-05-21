@@ -3,7 +3,8 @@ package dev.petuska.kmdc.textfield
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -20,7 +21,6 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
 ) {
   I(
     attrs = {
-      initialiseMDC(MDCTextFieldIconModule.MDCTextFieldIcon::attachTo)
       classes("mdc-text-field__icon")
       if (leading) {
         classes("mdc-text-field__icon--leading")
@@ -33,7 +33,10 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
       }
       attrs?.invoke(this)
     },
-    content = content
+    content = {
+      MDCInitEffect(MDCTextFieldIconModule::MDCTextFieldIcon)
+      applyContent(content)
+    }
   )
 }
 

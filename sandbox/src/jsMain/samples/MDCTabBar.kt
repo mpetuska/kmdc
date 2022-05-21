@@ -2,9 +2,10 @@ package samples
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.form.field.MDCFormField
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.tab.Content
 import dev.petuska.kmdc.tab.Icon
 import dev.petuska.kmdc.tab.Label
@@ -20,79 +21,71 @@ import dev.petuska.kmdc.tab.indicator.MDCTabIndicatorTransition
 import dev.petuska.kmdc.tab.indicator.Underline
 import dev.petuska.kmdc.tab.onInteracted
 import dev.petuska.kmdc.tab.scroller.Scroller
-import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldType
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.min
-import org.jetbrains.compose.web.attributes.step
-import org.jetbrains.compose.web.attributes.type
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Hr
+import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.RangeControl
 
-object MDCTabBar : Samples() {
-  override val content: SamplesRender = {
-    MDCTabIndicatorTransition.values().flatMap { t -> MDCTabIndicator.values().map { t to it } }
-      .forEach { (transition, indicator) ->
-        Sample("$transition - $indicator", "Play with controls to see different variations") {
-          render(transition, indicator)
-        }
-      }
-  }
+private class MDCTabBarVM {
+  var transition by mutableStateOf(MDCTabIndicatorTransition.Slide)
+  var indicator by mutableStateOf(MDCTabIndicator.Underline)
+  var disabled by mutableStateOf(false)
+  var stacked by mutableStateOf(false)
+  var minWidth by mutableStateOf(false)
+  var tabs by mutableStateOf(5)
 
-  @Composable
-  private fun render(transition: MDCTabIndicatorTransition, indicator: MDCTabIndicator) {
-    var tabs by rememberMutableStateOf(5)
-    var stacked by rememberMutableStateOf(false)
-    var minnWidth by rememberMutableStateOf(false)
-    Div {
-      MDCTextField("$tabs",
-        type = MDCTextFieldType.Outlined,
-        label = "Tabs",
-        attrs = {
-          type(InputType.Number)
-          value(tabs)
-          step(1)
-          min("0")
-          onInput { it.value.toInt().let { v -> tabs = v } }
-        })
-      MDCFormField { MDCCheckbox(stacked, label = "Stacked", attrs = { onInput { stacked = it.value } }) }
-      MDCFormField { MDCCheckbox(minnWidth, label = "Min Width", attrs = { onInput { minnWidth = it.value } }) }
+  var active by mutableStateOf<String?>(null)
+}
 
-    }
-    Hr()
-    var active by rememberMutableStateOf<String?>(null)
-    MDCTabBar(attrs = {
-      registerEvents()
-      onActivated { active = it.detail.tabId }
-    }) {
-      Scroller {
-        repeat(tabs) {
-          val id = it + 1
-          Tab(active = active == "mdc-tab-$id", stacked = stacked, minWidth = minnWidth, attrs = {
-            registerEvents()
-          }) {
-            Content {
-              Icon(attrs = { classes("material-icons") }) { Text("dark_mode") }
-              Label("Tab $id")
-            }
-            Indicator(active = active == "mdc-tab-$id", transition = transition) {
-              when (indicator) {
-                MDCTabIndicator.Underline -> Underline()
-                MDCTabIndicator.Icon -> Icon(attrs = { classes("material-icons") }) { Text("star") }
-              }
+@Composable
+@Showcase(id = "MDCTabBar")
+fun MDCTabBar() = InteractiveShowcase(
+  viewModel = { MDCTabBarVM() },
+  controls = {
+    ChoiceControl(
+      title = "Transition",
+      options = MDCTabIndicatorTransition.values().associateBy(MDCTabIndicatorTransition::name),
+      selected = ::transition
+    )
+    ChoiceControl("Indicator", MDCTabIndicator.values().associateBy(MDCTabIndicator::name), ::indicator)
+    BooleanControl("Disabled", ::disabled)
+    BooleanControl("Stacked", ::stacked)
+    BooleanControl("Min Width", ::minWidth)
+    RangeControl("Tabs", ::tabs, converter = Number::toInt, min = 1, max = 20)
+  },
+) {
+  MDCTabBar(attrs = {
+    registerEvents()
+    onActivated { active = it.detail.tabId }
+  }) {
+    Scroller {
+      repeat(tabs) {
+        val id = it + 1
+        Tab(active = active == "kmdc-tab-$id", stacked = stacked, minWidth = minWidth, attrs = {
+          registerEvents()
+          if (disabled) disabled()
+        }) {
+          Content {
+            Icon(attrs = { classes("material-icons") }) { Text("dark_mode") }
+            Label("Tab $id")
+          }
+          Indicator(active = active == "mdc-tab-$id", transition = transition) {
+            when (indicator) {
+              MDCTabIndicator.Underline -> Underline()
+              MDCTabIndicator.Icon -> Icon(attrs = { classes("material-icons") }) { Text("star") }
             }
           }
         }
       }
     }
   }
+}
 
-  private fun MDCTabBarAttrsScope.registerEvents() {
-    onActivated { console.log("MDCTabBar::onActivated", it.detail) }
-  }
+private fun MDCTabBarAttrsScope.registerEvents() {
+  onActivated { console.log("MDCTabBar::onActivated", it.detail) }
+}
 
-  private fun MDCTabAttrsScope.registerEvents() {
-    onInteracted { console.log("MDCTab::onInteracted", it.detail) }
-  }
+private fun MDCTabAttrsScope.registerEvents() {
+  onInteracted { console.log("MDCTab::onInteracted", it.detail) }
 }
