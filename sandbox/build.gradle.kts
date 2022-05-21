@@ -33,8 +33,9 @@ kotlin {
         implementation("app.softwork:routing-compose:_")
       }
     }
-    all {
+    configureEach {
       languageSettings {
+        optIn("kotlin.OptIn")
         optIn("kotlin.ExperimentalStdlibApi")
       }
     }

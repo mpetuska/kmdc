@@ -54,7 +54,7 @@ public fun MDCTabBar(
       applyAttrs(attrs)
     },
     content = {
-      applyContent({ MDCTabBarScope(it, context) }, content)
+      applyContent(content) { MDCTabBarScope(it, context) }
       MDCInitEffect(MDCTabBarModule::MDCTabBar, context.tabs)
     },
   )

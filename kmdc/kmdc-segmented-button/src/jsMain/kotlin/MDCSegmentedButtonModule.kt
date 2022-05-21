@@ -22,10 +22,6 @@ public external object MDCSegmentedButtonModule {
   }
 
   public class MDCSegmentedButtonSegment(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
-    public companion object {
-      public fun attachTo(element: Element): MDCSegmentedButtonSegment
-    }
-
     public var ripple: MDCRippleModule.MDCRipple
     public fun initialize(rippleFactory: (el: Element, foundation: dynamic) -> MDCRippleModule.MDCRipple)
     public fun setIndex(index: Number)
@@ -33,6 +29,6 @@ public external object MDCSegmentedButtonModule {
     public fun isSelected(): Boolean
     public fun setSelected()
     public fun setUnselected()
-    public fun getSegmentId(): dynamic
+    public fun getSegmentId(): String?
   }
 }

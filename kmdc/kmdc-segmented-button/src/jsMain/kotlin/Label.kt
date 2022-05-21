@@ -13,7 +13,7 @@ import org.w3c.dom.HTMLDivElement
  */
 @MDCDsl
 @Composable
-public fun MDCSegmentedButtonSegmentScope.MDCSegmentedButtonLabel(
+public fun MDCSegmentedButtonSegmentScope.Label(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
@@ -31,11 +31,11 @@ public fun MDCSegmentedButtonSegmentScope.MDCSegmentedButtonLabel(
  */
 @MDCDsl
 @Composable
-public fun MDCSegmentedButtonSegmentScope.MDCSegmentedButtonLabel(
+public fun MDCSegmentedButtonSegmentScope.Label(
   text: String,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
 ) {
-  MDCSegmentedButtonLabel(attrs) {
+  Label(attrs) {
     Text(text)
   }
 }

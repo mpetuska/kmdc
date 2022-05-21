@@ -4,16 +4,14 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.Builder
 import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.aria
+import dev.petuska.kmdc.core.data
+import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLButtonElement
-
-public data class MDCSegmentedButtonSegmentOpts(
-  var selected: Boolean = false,
-  var touch: Boolean = false
-)
 
 public class MDCSegmentedButtonSegmentAttrsScope(scope: AttrsScope<HTMLButtonElement>) :
   AttrsScope<HTMLButtonElement> by scope
@@ -26,31 +24,33 @@ public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElemen
  */
 @MDCDsl
 @Composable
-public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
-  opts: Builder<MDCSegmentedButtonSegmentOpts>? = null,
+public fun MDCSegmentedButtonScope.Segment(
+  selected: Boolean = false,
+  touch: Boolean = false,
+  segmentId: String? = null,
   attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
   content: ComposableBuilder<MDCSegmentedButtonSegmentScope>? = null,
 ) {
-  val options = MDCSegmentedButtonSegmentOpts().apply { opts?.invoke(this) }
   Button(
     attrs = {
       classes("mdc-segmented-button__segment")
-      if (options.touch) {
+      if (touch) {
         classes("mdc-segmented-button--touch")
       }
-      if (options.selected) {
+      if (selected) {
         classes("mdc-segmented-button__segment--selected")
       }
-      if (this@MDCSegmentedButtonSegment.options.singleSelect) {
-        attr("aria-checked", "${options.selected}")
-        attr("role", "radio")
+      segmentId?.let { data("segment-id", it) }
+      if (this@Segment.singleSelect) {
+        aria("checked", "$selected")
+        role("radio")
       } else {
-        attr("aria-pressed", "${options.selected}")
+        aria("pressed", "$selected")
       }
       attrs?.invoke(MDCSegmentedButtonSegmentAttrsScope(this))
     }
   ) {
-    if (options.touch) {
+    if (touch) {
       Div(attrs = {
         classes("mdc-segmented-button__touch")
       })
@@ -65,12 +65,14 @@ public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
  */
 @MDCDsl
 @Composable
-public fun MDCSegmentedButtonScope.MDCSegmentedButtonSegment(
+public fun MDCSegmentedButtonScope.Segment(
   text: String,
-  opts: Builder<MDCSegmentedButtonSegmentOpts>? = null,
+  selected: Boolean = false,
+  touch: Boolean = false,
+  segmentId: String? = null,
   attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
 ) {
-  MDCSegmentedButtonSegment(opts, attrs) {
-    MDCSegmentedButtonLabel(text)
+  Segment(selected = selected, touch = touch, segmentId = segmentId, attrs = attrs) {
+    Label(text)
   }
 }

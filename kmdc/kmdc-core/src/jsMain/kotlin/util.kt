@@ -63,17 +63,17 @@ public fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(block
 }
 
 /**
- * Applies [ComposableBuilder]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [scope] builder.
+ * Applies [ComposableBuilder]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [scope] provider.
  * This is safe and can be used for uncontrolled scope types which have member properties or functions.
  * @receiver scope to apply [block] to
- * @param scope builder
  * @param block to imply and apply
+ * @param scope provider
  */
 @Composable
 @KMDCInternalAPI
 public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(
-  scope: (ElementScope<E>) -> T,
-  noinline block: ComposableBuilder<T>?
+  noinline block: ComposableBuilder<T>?,
+  scope: (ElementScope<E>) -> T
 ) {
   block?.let { scope(this).it() }
 }

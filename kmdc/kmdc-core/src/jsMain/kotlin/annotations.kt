@@ -17,7 +17,6 @@ public annotation class MDCAttrsDsl
 public annotation class KMDCInternalAPI
 
 @DslMarker
-@KMDCInternalAPI
 @RequiresOptIn(
   message = "This API is linking to the external MDC APIs and does not provide any stability guarantees.",
   level = RequiresOptIn.Level.WARNING,

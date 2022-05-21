@@ -57,7 +57,8 @@ public fun MDCDataTable(
   MDCDataTable(attrs = {
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCDataTableModule::MDCDataTable, keys = arrayOf(loading)) {
+    MDCInitEffect(MDCDataTableModule::MDCDataTable)
+    MDCSideEffect<MDCDataTableModule.MDCDataTable>(loading) {
       if (loading) showProgress() else hideProgress()
     }
     applyContent(content)
