@@ -2,14 +2,9 @@
 
 package dev.petuska.kmdc.core
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.Element
+import androidx.compose.runtime.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @KMDCInternalAPI
 internal var Element.mdc: dynamic
@@ -39,6 +34,7 @@ public fun <MDC : MDCBaseModule.MDCComponent<*>, E : Element> ElementScope<E>.MD
   DisposableEffect(keys = keys) {
     mdc?.run { destroy() }
     mdc = init(scopeElement)
+    scopeElement.mdc = mdc
     onDispose {
       mdc?.run {
         onDispose?.invoke(this, scopeElement)

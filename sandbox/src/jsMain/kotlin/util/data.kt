@@ -1,6 +1,6 @@
 package sandbox.util
 
-import kotlin.random.Random
+import kotlin.random.*
 
 fun randomImageUrl(
   seed: String = "kmdc",
@@ -13,3 +13,5 @@ fun randomImageUrl(
   val height: Int = Random.nextInt(maxHeight.toInt()) + minHeight.toInt()
   return "https://picsum.photos/seed/$seed/$width/$height"
 }
+
+val rickRollUrl: String = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"

@@ -1,9 +1,9 @@
 package sandbox.control
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.form.field.MDCFormField
-import dev.petuska.kmdc.radio.MDCRadio
-import kotlin.reflect.KMutableProperty0
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.radio.*
+import sandbox.util.*
+import kotlin.reflect.*
 
 
 @Composable
@@ -15,16 +15,14 @@ fun <T> ChoiceControl(
   onSelect: (selected: T) -> Unit
 ) {
   NamedBlock(title, description) {
-    MDCFormField {
-      options.forEach { (text, value) ->
-        MDCRadio(
-          checked = selected == value,
-          label = text,
-          attrs = {
-            onInput { onSelect(value) }
-          }
-        )
-      }
+    ChunkedFormFields(options.entries) { (text, value) ->
+      MDCRadio(
+        checked = selected == value,
+        label = text,
+        attrs = {
+          onInput { onSelect(value) }
+        }
+      )
     }
   }
 }

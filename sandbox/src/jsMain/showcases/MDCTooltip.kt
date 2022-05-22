@@ -1,41 +1,20 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.katalog.runtime.util.loremIpsum
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.tooltip.MDCRichTooltip
-import dev.petuska.kmdc.tooltip.MDCTooltip
-import dev.petuska.kmdc.tooltip.MDCTooltipAction
-import dev.petuska.kmdc.tooltip.MDCTooltipActions
-import dev.petuska.kmdc.tooltip.MDCTooltipContent
-import dev.petuska.kmdc.tooltip.MDCTooltipLink
-import dev.petuska.kmdc.tooltip.MDCTooltipTitle
-import dev.petuska.kmdc.tooltip.tooltipId
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.NamedBlock
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.katalog.runtime.util.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.tooltip.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
+import sandbox.util.*
 
 private class MDCTooltipVM {
   var interactive by mutableStateOf(false)
   var persistent by mutableStateOf(false)
   val baseTooltipId = "kmdc-tooltip-id-"
-
-  @Composable
-  fun AnchorButton(tid: String, text: String) {
-    MDCButton(
-      text = text,
-      type = MDCButtonType.Raised,
-      attrs = {
-        tooltipId(tid)
-      }
-    )
-  }
 }
 
 @Composable
@@ -69,11 +48,24 @@ fun MDCTooltip() = InteractiveShowcase(
       MDCTooltipTitle("Lorem Ipsum")
       MDCTooltipContent {
         Text(loremIpsum)
-        MDCTooltipLink("link", "https://google.com")
+        MDCTooltipLink("link", rickRollUrl, attrs = {
+          target(ATarget.Blank)
+        })
       }
       MDCTooltipActions {
         MDCTooltipAction("action")
       }
     }
   }
+}
+
+@Composable
+private fun AnchorButton(tid: String, text: String) {
+  MDCButton(
+    text = text,
+    type = MDCButtonType.Raised,
+    attrs = {
+      tooltipId(tid)
+    }
+  )
 }

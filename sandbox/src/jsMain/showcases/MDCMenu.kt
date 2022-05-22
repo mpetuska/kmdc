@@ -1,37 +1,17 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.domain.Point
-import dev.petuska.kmdc.core.rememberMutableStateOf
-import dev.petuska.kmdc.list.item.CheckboxGraphic
-import dev.petuska.kmdc.list.item.Text
-import dev.petuska.kmdc.menu.DefaultFocusState
-import dev.petuska.kmdc.menu.MDCMenu
-import dev.petuska.kmdc.menu.MDCMenuAttrsScope
-import dev.petuska.kmdc.menu.MenuItem
-import dev.petuska.kmdc.menu.SelectionGroup
-import dev.petuska.kmdc.menu.onSelected
-import dev.petuska.kmdc.menu.surface.Corner
-import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAnchor
-import dev.petuska.kmdc.menu.surface.onClosed
-import dev.petuska.kmdc.menu.surface.onClosing
-import dev.petuska.kmdc.menu.surface.onOpened
-import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
-import dev.petuska.kmdc.textfield.MDCTextFieldType
-import dev.petuska.kmdcx.icons.MDCIconOpts
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.ChoiceControl
-import sandbox.control.NamedBlock
-import sandbox.control.NamedGroup
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.domain.*
+import dev.petuska.kmdc.list.item.*
+import dev.petuska.kmdc.menu.*
+import dev.petuska.kmdc.menu.surface.*
+import dev.petuska.kmdc.textfield.*
+import dev.petuska.kmdcx.icons.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 private class MDCMenuVM {
   var anchorCorner by mutableStateOf(Corner.BOTTOM_START)
@@ -126,21 +106,33 @@ fun MDCMenu() = InteractiveShowcase(
       }
     }
   }
+  @OptIn(KMDCInternalAPI::class)
   NamedBlock("Anchored | single-select") {
-    @OptIn(KMDCInternalAPI::class)
     var open by rememberMutableStateOf(false)
+    var input by rememberMutableStateOf("")
     MDCMenuSurfaceAnchor(attrs = {
       style {
         property("width", "fit-content")
       }
     }) {
       MDCTextField(
-        value = selectedId?.let(menuItems::get) ?: "",
+        value = input,
         label = "Favourite Language",
         type = MDCTextFieldType.Outlined,
         attrs = {
-          onClick {
+          onFocus { open = true }
+          onClick { open = true }
+          onInput {
+            input = it.value
             open = true
+          }
+          onChange { e ->
+            val candidate = menuItems.firstOrNull { it.equals(e.value, true) }
+              ?: menuItems.filter { it.contains(e.value, true) }.takeIf { it.size == 1 }?.first()
+            selectedId = candidate?.let(menuItems::indexOf) ?: selectedId
+            input = selectedId?.let(menuItems::get) ?: ""
+            e.target.blur()
+            open = false
           }
         },
         trailingIcon = {
@@ -166,6 +158,7 @@ fun MDCMenu() = InteractiveShowcase(
           registerEvents()
           onSelected {
             selectedId = it.detail.index
+            input = menuItems[it.detail.index]
             open = false
           }
           onClosed { open = false }
@@ -173,6 +166,7 @@ fun MDCMenu() = InteractiveShowcase(
         menuItems.forEach { it ->
           MenuItem(
             disabled = disabled,
+            activated = input.isNotBlank() && it.contains(input, ignoreCase = true)
           ) {
             Text(it)
           }

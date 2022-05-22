@@ -1,12 +1,9 @@
 package dev.petuska.kmdc.core
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.Element
-import kotlin.reflect.KMutableProperty1
+import androidx.compose.runtime.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
+import kotlin.reflect.*
 
 /**
  * A side effect based on [DisposableEffect] that uses [mdcInit] to initialise the [MDCBaseModule.MDCComponent]
@@ -77,7 +74,6 @@ public fun <MDC : MDCBaseModule.MDCComponent<*>> MDCSideEffectNew(
   val mdc = localMDC<MDC>()
   DisposableEffect(keys = keys + mdc) {
     mdc?.effect()
-    console.log("new mdc", mdc)
     onDispose {
       if (onDispose != null) {
         mdc?.onDispose()

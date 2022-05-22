@@ -1,20 +1,10 @@
 package dev.petuska.kmdc.textfield
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
-import org.jetbrains.compose.web.attributes.cols
-import org.jetbrains.compose.web.attributes.maxLength
-import org.jetbrains.compose.web.attributes.rows
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.TextArea
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
@@ -32,7 +22,7 @@ public fun MDCTextArea(
   columns: UInt = 40u,
   attrs: MDCAttrs<TextAreaAttrsScope>? = null,
 ) {
-  MDCTextFieldStyle
+  Style
   val labelId = rememberUniqueDomElementId()
   val helperId = rememberUniqueDomElementId()
   Label(

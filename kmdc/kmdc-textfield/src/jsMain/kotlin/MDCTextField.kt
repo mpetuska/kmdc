@@ -1,29 +1,17 @@
 package dev.petuska.kmdc.textfield
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.line.ripple.MDCLineRipple
-import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.attributes.maxLength
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.line.ripple.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.TextInput
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLLabelElement
+import org.w3c.dom.*
 
-@JsModule("@material/textfield/dist/mdc.textfield.css")
-public external val MDCTextFieldStyle: dynamic
+@JsModule("@material/textfield/mdc-text-field.scss")
+public external val Style: dynamic
 
 public enum class MDCTextFieldType(public vararg val classes: String) {
   Filled("mdc-text-field--filled"), Outlined("mdc-text-field--outlined")
@@ -49,7 +37,7 @@ public fun MDCTextField(
   trailingIcon: MDCContent<MDCTextFieldScope>? = null,
   attrs: MDCAttrs<InputAttrsScope<String>>? = null,
 ) {
-  MDCTextFieldStyle
+  Style
   val labelId = rememberUniqueDomElementId()
   val helperId = "$labelId-helper"
   Label(
@@ -181,8 +169,7 @@ internal fun MDCTextFieldNotch(
       label?.let {
         Span(attrs = {
           classes("mdc-floating-label")
-          if (inputIsNotEmpty)
-            classes("mdc-floating-label--float-above")
+          if (inputIsNotEmpty) classes("mdc-floating-label--float-above")
           id(labelId)
         }) { Text(it) }
       }
