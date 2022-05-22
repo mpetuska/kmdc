@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.segmented.button
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.applyContent
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/segmented-button/dist/mdc.segmented-button.css")
 private external val MDCSegmentedButtonStyle: dynamic

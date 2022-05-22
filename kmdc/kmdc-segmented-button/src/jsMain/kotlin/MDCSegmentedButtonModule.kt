@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.segmented.button
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.ripple.MDCRipple
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.ripple.*
+import org.w3c.dom.*
 
 @JsModule("@material/segmented-button")
 public external object MDCSegmentedButtonModule {

@@ -1,18 +1,11 @@
 package dev.petuska.kmdc.dialog
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public class MDCDialogActionsScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 

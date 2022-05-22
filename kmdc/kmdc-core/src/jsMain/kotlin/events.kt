@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.core
 
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.w3c.dom.events.Event
+import org.jetbrains.compose.web.attributes.*
+import org.w3c.dom.events.*
 
 public external class MDCEvent<T> internal constructor() : Event {
   public val detail: T

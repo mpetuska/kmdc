@@ -1,13 +1,10 @@
 package dev.petuska.kmdc.core
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import kotlinx.browser.window
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.Element
+import androidx.compose.runtime.*
+import kotlinx.browser.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public typealias AttrsBuilder<T> = org.jetbrains.compose.web.dom.AttrBuilderContext<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>

@@ -1,20 +1,10 @@
 package dev.petuska.kmdc.tab
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.tab.scroller.MDCTabScrollerScope
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLButtonElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/tab/dist/mdc.tab.css")
 private external val MDCTabCSS: dynamic

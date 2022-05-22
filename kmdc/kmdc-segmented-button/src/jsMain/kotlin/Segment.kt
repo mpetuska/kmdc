@@ -1,17 +1,10 @@
 package dev.petuska.kmdc.segmented.button
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.data
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLButtonElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public class MDCSegmentedButtonSegmentAttrsScope(scope: AttrsScope<HTMLButtonElement>) :
   AttrsScope<HTMLButtonElement> by scope

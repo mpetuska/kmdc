@@ -1,15 +1,11 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonOpts
-import dev.petuska.kmdc.icon.button.MDCIconLink
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.icon.button.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.w3c.dom.HTMLAnchorElement
-import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)

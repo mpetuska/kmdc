@@ -1,15 +1,12 @@
 package dev.petuska.kmdc.list.item
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCAttrsRaw
-import dev.petuska.kmdc.core.MDCContentRaw
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.radio.MDCRadio
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLSpanElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.radio.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)

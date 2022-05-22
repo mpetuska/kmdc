@@ -1,24 +1,14 @@
 package showcases
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.form.field.MDCFormField
-import dev.petuska.kmdc.radio.MDCRadio
-import dev.petuska.kmdc.select.MDCSelect
-import dev.petuska.kmdc.select.MDCSelectOpts
-import dev.petuska.kmdc.select.onChange
-import dev.petuska.kmdcx.icons.MDCIconOpts
-import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.width
-import org.jetbrains.compose.web.dom.Br
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
-import samples.Samples
-import samples.SamplesRender
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.form.field.*
+import dev.petuska.kmdc.radio.*
+import dev.petuska.kmdc.select.*
+import dev.petuska.kmdcx.icons.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
+import samples.*
 
 object MDCSelect : Samples() {
   private val fruits = listOf("", "Apple", "Orange", "Banana")

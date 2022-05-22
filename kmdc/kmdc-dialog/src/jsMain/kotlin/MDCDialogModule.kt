@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.dialog
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 @JsModule("@material/dialog")
 public external object MDCDialogModule {

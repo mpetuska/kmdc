@@ -1,6 +1,6 @@
 package dev.petuska.katalog.runtime.domain
 
-import dev.petuska.katalog.runtime.theme.KatalogTheme
+import dev.petuska.katalog.runtime.theme.*
 
 public data class Katalog internal constructor(
   val id: String,

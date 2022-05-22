@@ -2,33 +2,16 @@
 
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
-import dev.petuska.kmdc.checkbox.MDCCheckboxInput
-import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.AttrsBuilder
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonScope
-import org.jetbrains.compose.web.attributes.Scope
-import org.jetbrains.compose.web.attributes.scope
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
+import dev.petuska.kmdc.icon.button.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.Th
-import org.jetbrains.compose.web.dom.Thead
-import org.jetbrains.compose.web.dom.Tr
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLTableCellElement
-import org.w3c.dom.HTMLTableRowElement
+import org.w3c.dom.*
 
 public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowElement>
 

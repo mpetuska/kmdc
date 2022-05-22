@@ -12,6 +12,7 @@ import dev.petuska.kmdc.textfield.*
 import dev.petuska.kmdcx.icons.*
 import org.jetbrains.compose.web.dom.*
 import sandbox.control.*
+import sandbox.util.*
 
 private class MDCMenuVM {
   var anchorCorner by mutableStateOf(Corner.BOTTOM_START)
@@ -107,7 +108,7 @@ fun MDCMenu() = InteractiveShowcase(
     }
   }
   @OptIn(KMDCInternalAPI::class)
-  NamedBlock("Anchored | single-select") {
+  (NamedBlock("Anchored | single-select") {
     var open by rememberMutableStateOf(false)
     var input by rememberMutableStateOf("")
     MDCMenuSurfaceAnchor(attrs = {
@@ -173,7 +174,7 @@ fun MDCMenu() = InteractiveShowcase(
         }
       }
     }
-  }
+  })
 }
 
 private fun MDCMenuAttrsScope.registerEvents() {

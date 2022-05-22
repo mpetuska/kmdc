@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.line.ripple
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLSpanElement
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/line-ripple/mdc-line-ripple.scss")
 private external val MDCLineRippleStyles: dynamic

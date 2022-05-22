@@ -1,21 +1,12 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.button.Icon
-import dev.petuska.kmdc.button.Label
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonType
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.ChoiceControl
-import sandbox.control.TextControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.button.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 private class MDCButtonVM {
   var type by mutableStateOf(MDCButtonType.Text)

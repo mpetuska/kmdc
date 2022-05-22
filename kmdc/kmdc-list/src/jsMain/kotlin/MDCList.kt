@@ -1,25 +1,10 @@
 package dev.petuska.kmdc.list
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Nav
-import org.jetbrains.compose.web.dom.Ul
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.HTMLUListElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/list/mdc-list.scss")
 public external val Style: dynamic

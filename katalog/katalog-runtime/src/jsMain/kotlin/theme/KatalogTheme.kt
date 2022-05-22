@@ -1,12 +1,8 @@
 package dev.petuska.katalog.runtime.theme
 
-import androidx.compose.runtime.Composable
-import org.jetbrains.compose.web.css.CSSColorValue
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.dom.H3
-import org.jetbrains.compose.web.dom.H4
-import org.jetbrains.compose.web.dom.P
-import org.jetbrains.compose.web.dom.Text
+import androidx.compose.runtime.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
 
 public data class KatalogTheme(
   public val highlightColor: CSSColorValue = Color("#F2BB05"),

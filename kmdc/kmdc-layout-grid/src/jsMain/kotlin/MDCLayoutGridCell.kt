@@ -1,13 +1,9 @@
 package dev.petuska.kmdc.layout.grid
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public data class MDCLayoutGridCellOpts(
   var span: UInt? = null,

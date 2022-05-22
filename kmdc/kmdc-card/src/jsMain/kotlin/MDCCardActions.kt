@@ -1,22 +1,11 @@
 package dev.petuska.kmdc.card
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonScope
-import dev.petuska.kmdc.icon.button.MDCIconLink
-import dev.petuska.kmdc.icon.button.MDCIconLinkScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLAnchorElement
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.icon.button.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public data class MDCCardActionsOpts(var type: Type = Type.Normal) {
   public enum class Type(public vararg val classes: String) {

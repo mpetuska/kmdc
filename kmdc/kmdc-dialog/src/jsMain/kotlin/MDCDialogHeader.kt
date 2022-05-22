@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.dialog
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.H2
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLHeadingElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public class MDCDialogHeaderScope(scope: ElementScope<HTMLHeadingElement>, internal val titleId: String) :
   ElementScope<HTMLHeadingElement> by scope

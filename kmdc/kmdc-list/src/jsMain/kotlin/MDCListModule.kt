@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.list
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import org.w3c.dom.Element
-import org.w3c.dom.events.Event
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
+import org.w3c.dom.events.*
 
 @JsModule("@material/list")
 public external object MDCListModule {

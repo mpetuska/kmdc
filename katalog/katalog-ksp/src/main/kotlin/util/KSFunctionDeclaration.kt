@@ -1,10 +1,8 @@
 package dev.petuska.katalog.plugin.util
 
-import com.google.devtools.ksp.symbol.ClassKind
-import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.MemberName
-import com.squareup.kotlinpoet.ksp.toClassName
+import com.google.devtools.ksp.symbol.*
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ksp.*
 
 fun KSFunctionDeclaration.ref(logger: KatalogLogger): MemberName {
   val isExtension = extensionReceiver != null

@@ -1,6 +1,6 @@
 package showcases
 
-import samples.Samples
+import samples.*
 
 val allSamples: Array<Samples> = arrayOf(
 //  MDCDialog,

@@ -1,19 +1,12 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
 
 @JsModule("@material/tooltip/dist/mdc.tooltip.css")
 private external val MDCTooltipStyle: dynamic

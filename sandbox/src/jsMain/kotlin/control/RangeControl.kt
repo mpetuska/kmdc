@@ -1,11 +1,10 @@
 package sandbox.control
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.slider.MDCSlider
-import dev.petuska.kmdc.slider.onInput
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.margin
-import kotlin.reflect.KMutableProperty0
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.slider.*
+import org.jetbrains.compose.web.css.*
+import sandbox.util.*
+import kotlin.reflect.*
 
 @Composable
 fun RangeControl(

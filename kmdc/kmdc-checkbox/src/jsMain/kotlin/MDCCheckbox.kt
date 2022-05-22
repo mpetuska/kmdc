@@ -1,29 +1,16 @@
 package dev.petuska.kmdc.checkbox
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.form.field.MDCFormFieldScope
-import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.Label
+import dev.petuska.kmdc.form.field.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.svg.Path
-import org.jetbrains.compose.web.svg.Svg
-import org.w3c.dom.HTMLDivElement
+import org.jetbrains.compose.web.svg.*
+import org.w3c.dom.*
 
 @JsModule("@material/checkbox/mdc-checkbox.scss")
 public external val MDCCheckboxStyles: dynamic

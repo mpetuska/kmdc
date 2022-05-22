@@ -1,9 +1,6 @@
 package dev.petuska.kmdc.segmented.button
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.MDCExternalAPI
-import dev.petuska.kmdc.core.addMdcEventListener
+import dev.petuska.kmdc.core.*
 
 @MDCExternalAPI
 @JsModule("@material/segmented-button/segmented-button/constants")

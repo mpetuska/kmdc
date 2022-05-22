@@ -1,8 +1,6 @@
 package dev.petuska.kmdc.chips
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
+import dev.petuska.kmdc.core.*
 
 public external interface MDCChipSetInteractionEventDetail {
   public val chipID: String

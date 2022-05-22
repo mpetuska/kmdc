@@ -1,17 +1,9 @@
 package dev.petuska.kmdc.banner
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrsRaw
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.I
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
 public interface MDCBannerContentScope : ElementScope<HTMLDivElement>

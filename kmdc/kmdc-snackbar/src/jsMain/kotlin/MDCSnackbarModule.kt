@@ -1,8 +1,7 @@
 package dev.petuska.kmdc.snackbar
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCExternalAPI
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 @JsModule("@material/snackbar")
 @MDCExternalAPI

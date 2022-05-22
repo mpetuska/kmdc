@@ -1,13 +1,10 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-import de.fayard.refreshVersions.core.versionFor
-import org.gradle.api.NamedDomainObjectContainer
-import org.gradle.api.NamedDomainObjectProvider
-import org.gradle.api.provider.Property
-import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.named
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import de.fayard.refreshVersions.core.*
+import org.gradle.api.*
+import org.gradle.api.provider.*
+import org.gradle.kotlin.dsl.*
+import org.jetbrains.kotlin.gradle.plugin.*
 
 val NamedDomainObjectContainer<KotlinSourceSet>.jsMain: NamedDomainObjectProvider<KotlinSourceSet>
   get() = named<KotlinSourceSet>("jsMain")

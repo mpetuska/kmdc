@@ -2,10 +2,9 @@
 
 package dev.petuska.kmdc.switch
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCExternalAPI
-import dev.petuska.kmdc.ripple.MDCRipple
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.ripple.*
+import org.w3c.dom.*
 
 @MDCExternalAPI
 public external class MDCSwitch(element: Element) : MDCBaseModule.MDCComponent<dynamic> {

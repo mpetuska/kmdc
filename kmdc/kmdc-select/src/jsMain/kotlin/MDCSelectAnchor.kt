@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.select
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.I
-import org.jetbrains.compose.web.dom.Span
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 @Composable
 internal fun <T> MDCSelectAnchor(

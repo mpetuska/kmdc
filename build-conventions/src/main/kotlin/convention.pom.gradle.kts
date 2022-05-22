@@ -1,5 +1,5 @@
-import ext.PomExtension
-import util.Git
+import ext.*
+import util.*
 
 plugins {
   `maven-publish`

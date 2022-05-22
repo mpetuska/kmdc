@@ -1,12 +1,10 @@
 package dev.petuska.kmdc.touch.target
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/touch-target/mdc-touch-target.scss")
 private external val MDCTouchTargetStyles: dynamic

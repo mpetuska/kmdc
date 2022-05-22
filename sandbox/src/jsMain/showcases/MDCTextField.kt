@@ -1,24 +1,12 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.textfield.MDCTextArea
-import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldLeadingIcon
-import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
-import dev.petuska.kmdc.textfield.MDCTextFieldType
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.ChoiceControl
-import sandbox.control.NamedBlock
-import sandbox.control.NamedGroup
-import sandbox.control.RangeControl
-import sandbox.control.TextControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.textfield.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
+import sandbox.util.*
 
 private class MDCTextFieldVM {
   var type by mutableStateOf(MDCTextFieldType.Filled)

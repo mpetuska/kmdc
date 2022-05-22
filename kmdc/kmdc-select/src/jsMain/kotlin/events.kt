@@ -1,9 +1,7 @@
 package dev.petuska.kmdc.select
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEvent
-import dev.petuska.kmdc.core.mdc
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)

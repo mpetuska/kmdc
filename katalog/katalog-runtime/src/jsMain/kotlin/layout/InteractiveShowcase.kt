@@ -1,25 +1,9 @@
 package dev.petuska.katalog.runtime.layout
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import dev.petuska.katalog.runtime.UtilStyle
-import org.jetbrains.compose.web.css.DisplayStyle
-import org.jetbrains.compose.web.css.FlexDirection
-import org.jetbrains.compose.web.css.Position
-import org.jetbrains.compose.web.css.Style
-import org.jetbrains.compose.web.css.StyleSheet
-import org.jetbrains.compose.web.css.display
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.flexDirection
-import org.jetbrains.compose.web.css.marginLeft
-import org.jetbrains.compose.web.css.minWidth
-import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.css.position
-import org.jetbrains.compose.web.css.top
-import org.jetbrains.compose.web.css.width
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.H4
-import org.jetbrains.compose.web.dom.Text
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
 
 public object InteractiveShowcaseStyle : StyleSheet() {
   public val container: String by style {

@@ -1,15 +1,10 @@
 package samples
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import dev.petuska.kmdc.layout.grid.MDCLayoutGridCell
-import dev.petuska.kmdc.layout.grid.MDCLayoutGridCellsScope
-import dev.petuska.kmdc.layout.grid.MDCLayoutGridScope
-import dev.petuska.kmdc.typography.MDCH5
-import engine.NamedCell
-import kotlin.random.Random
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.layout.grid.*
+import dev.petuska.kmdc.typography.*
+import engine.*
+import kotlin.random.*
 
 typealias SamplesScope = MDCLayoutGridCellsScope
 typealias SamplesRender = @Composable SamplesScope.(name: String) -> Unit

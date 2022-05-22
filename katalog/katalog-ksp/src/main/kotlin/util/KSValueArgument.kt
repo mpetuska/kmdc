@@ -1,7 +1,6 @@
 package dev.petuska.katalog.plugin.util
 
-import com.google.devtools.ksp.symbol.KSValueArgument
-import com.google.devtools.ksp.symbol.KSValueParameter
+import com.google.devtools.ksp.symbol.*
 
 operator fun Collection<KSValueArgument>.get(name: String) = firstOrNull { it.name?.asString() == name }
 operator fun Collection<KSValueParameter>.get(name: String) = firstOrNull { it.name?.asString() == name }

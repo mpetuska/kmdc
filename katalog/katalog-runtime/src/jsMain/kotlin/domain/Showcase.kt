@@ -1,6 +1,6 @@
 package dev.petuska.katalog.runtime.domain
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 
 public typealias ShowcaseContent = @Composable () -> Unit
 

@@ -1,21 +1,12 @@
 package dev.petuska.kmdc.circular.progress
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
-import org.jetbrains.compose.web.css.height
-import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.width
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.svg.Circle
-import org.jetbrains.compose.web.svg.Svg
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.svg.*
+import org.w3c.dom.*
 
 @JsModule("@material/circular-progress/mdc-circular-progress.scss")
 private external val MDCCircularProgressCSS: dynamic

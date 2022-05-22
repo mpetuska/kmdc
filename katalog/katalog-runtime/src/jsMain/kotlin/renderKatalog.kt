@@ -1,15 +1,13 @@
 package dev.petuska.katalog.runtime
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
-import dev.petuska.katalog.runtime.domain.Katalog
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.domain.*
 import dev.petuska.katalog.runtime.domain.Showcase
-import dev.petuska.katalog.runtime.ui.Katalog
-import kotlinx.browser.document
-import kotlinx.dom.appendElement
-import org.jetbrains.compose.web.css.Style
-import org.jetbrains.compose.web.renderComposable
+import dev.petuska.katalog.runtime.ui.*
+import kotlinx.browser.*
+import kotlinx.dom.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.css.*
 
 internal val KatalogLocal = staticCompositionLocalOf<Katalog> { error("undefined") }
 

@@ -1,19 +1,13 @@
 package sandbox
 
-import dev.petuska.katalog.runtime.KatalogConfig
-import dev.petuska.katalog.runtime.domain.Katalog
-import dev.petuska.katalog.runtime.theme.KatalogTheme
-import dev.petuska.kmdc.typography.MDCH4
-import dev.petuska.kmdc.typography.MDCH5
-import dev.petuska.kmdc.typography.MDCH6
-import dev.petuska.kmdc.typography.MDCSubtitle2
-import kotlinx.browser.document
-import kotlinx.dom.addClass
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.color
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.marginBottom
-import sandbox.util.requireModule
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.domain.*
+import dev.petuska.katalog.runtime.theme.*
+import dev.petuska.kmdc.typography.*
+import kotlinx.browser.*
+import kotlinx.dom.*
+import org.jetbrains.compose.web.css.*
+import sandbox.util.*
 
 @KatalogConfig
 fun Katalog.Builder.config() {

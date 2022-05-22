@@ -1,22 +1,11 @@
 package dev.petuska.katalog.runtime.ui
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
 import dev.petuska.katalog.runtime.domain.Showcase
-import dev.petuska.katalog.runtime.katalog
-import org.jetbrains.compose.web.attributes.ATarget
-import org.jetbrains.compose.web.attributes.target
-import org.jetbrains.compose.web.css.Position
-import org.jetbrains.compose.web.css.StyleSheet
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.left
-import org.jetbrains.compose.web.css.opacity
-import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.css.position
-import org.jetbrains.compose.web.css.width
-import org.jetbrains.compose.web.dom.A
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Hr
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
 
 private object ShowcaseBoxStyle : StyleSheet() {
   val header by style {

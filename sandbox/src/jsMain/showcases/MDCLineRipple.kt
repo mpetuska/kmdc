@@ -1,19 +1,13 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.line.ripple.MDCLineRipple
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.css.DisplayStyle
-import org.jetbrains.compose.web.css.Position
-import org.jetbrains.compose.web.css.display
-import org.jetbrains.compose.web.css.position
-import org.jetbrains.compose.web.dom.Div
-import sandbox.control.BooleanControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.line.ripple.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 
 private class MDCLineRippleVM {
@@ -34,7 +28,7 @@ fun MDCLineRipple() = InteractiveShowcase(
       position(Position.Relative)
     }
   }) {
-    org.jetbrains.compose.web.dom.TextInput("Notice the thick line bellow", attrs = {
+    TextInput("Notice the thick line bellow", attrs = {
       disabled()
     })
     MDCLineRipple(active)

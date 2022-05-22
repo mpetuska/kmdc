@@ -1,6 +1,5 @@
-import ext.KmdcExtension
-import ext.PomExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import ext.*
+import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
   id("convention.library")

@@ -1,9 +1,6 @@
 package dev.petuska.katalog.runtime
 
-import org.jetbrains.compose.web.css.StyleSheet
-import org.jetbrains.compose.web.css.borderRadius
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.padding
+import org.jetbrains.compose.web.css.*
 
 public object UtilStyle : StyleSheet() {
   public val roundedBoxShadow: String by style {

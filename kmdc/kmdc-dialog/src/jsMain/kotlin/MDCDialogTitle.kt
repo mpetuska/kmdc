@@ -1,13 +1,10 @@
 package dev.petuska.kmdc.dialog
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.H3
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLHeadingElement
+import org.w3c.dom.*
 
 public class MDCDialogTitleScope(scope: ElementScope<HTMLHeadingElement>) : ElementScope<HTMLHeadingElement> by scope
 

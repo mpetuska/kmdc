@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.list
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContentRaw
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Hr
-import org.jetbrains.compose.web.dom.Li
-import org.w3c.dom.HTMLHRElement
-import org.w3c.dom.HTMLLIElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public enum class MDCListDividerInset(public vararg var classes: String) {
   None,

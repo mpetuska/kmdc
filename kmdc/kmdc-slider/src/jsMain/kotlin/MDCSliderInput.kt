@@ -1,17 +1,10 @@
 package dev.petuska.kmdc.slider
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.aria
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.attributes.max
-import org.jetbrains.compose.web.attributes.min
-import org.jetbrains.compose.web.attributes.name
-import org.jetbrains.compose.web.attributes.step
-import org.jetbrains.compose.web.dom.Input
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)

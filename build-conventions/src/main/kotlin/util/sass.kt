@@ -2,10 +2,10 @@ package util
 
 import jsMain
 import jsTest
-import org.gradle.api.NamedDomainObjectProvider
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
+import org.gradle.api.*
+import org.jetbrains.kotlin.gradle.dsl.*
+import org.jetbrains.kotlin.gradle.plugin.*
+import org.jetbrains.kotlin.gradle.targets.js.dsl.*
 
 fun KotlinJsTargetDsl.enableSass(main: Boolean, test: Boolean) {
   browser {

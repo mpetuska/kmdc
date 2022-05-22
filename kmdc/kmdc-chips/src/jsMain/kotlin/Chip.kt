@@ -1,16 +1,9 @@
 package dev.petuska.kmdc.chips
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLSpanElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public interface MDCChipScope : ElementScope<HTMLSpanElement>
 

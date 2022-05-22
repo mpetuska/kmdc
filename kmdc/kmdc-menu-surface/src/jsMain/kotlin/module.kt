@@ -2,10 +2,8 @@
 
 package dev.petuska.kmdc.menu.surface
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import dev.petuska.kmdc.core.MDCExternalAPI
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 @MDCExternalAPI
 public external class MDCMenuSurface(element: Element) : MDCBaseModule.MDCComponent<dynamic> {

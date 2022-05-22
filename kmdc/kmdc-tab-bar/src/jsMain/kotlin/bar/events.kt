@@ -1,8 +1,6 @@
 package dev.petuska.kmdc.tab.bar
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
+import dev.petuska.kmdc.core.*
 
 public external interface MDCTabBarActivatedEventDetail {
   public val index: Int

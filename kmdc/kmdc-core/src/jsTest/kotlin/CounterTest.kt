@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.core
 
-import io.kotest.matchers.shouldBe
-import kotlin.test.Test
+import io.kotest.matchers.*
+import kotlin.test.*
 
 class CounterTest {
   @Test

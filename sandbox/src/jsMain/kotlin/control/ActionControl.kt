@@ -1,9 +1,8 @@
 package sandbox.control
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonType
-import org.jetbrains.compose.web.dom.Div
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import org.jetbrains.compose.web.dom.*
 
 @Composable
 fun ActionControl(

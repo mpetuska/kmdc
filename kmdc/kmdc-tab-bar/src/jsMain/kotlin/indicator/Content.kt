@@ -1,13 +1,10 @@
 package dev.petuska.kmdc.tab.indicator
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLSpanElement
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public enum class MDCTabIndicator(public vararg val classes: String) {
   Underline("mdc-tab-indicator__content--underline"),

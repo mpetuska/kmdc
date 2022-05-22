@@ -1,31 +1,15 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.tab.Content
-import dev.petuska.kmdc.tab.Icon
-import dev.petuska.kmdc.tab.Label
-import dev.petuska.kmdc.tab.MDCTabAttrsScope
-import dev.petuska.kmdc.tab.Tab
-import dev.petuska.kmdc.tab.bar.MDCTabBar
-import dev.petuska.kmdc.tab.bar.MDCTabBarAttrsScope
-import dev.petuska.kmdc.tab.bar.onActivated
-import dev.petuska.kmdc.tab.indicator.Icon
-import dev.petuska.kmdc.tab.indicator.Indicator
-import dev.petuska.kmdc.tab.indicator.MDCTabIndicator
-import dev.petuska.kmdc.tab.indicator.MDCTabIndicatorTransition
-import dev.petuska.kmdc.tab.indicator.Underline
-import dev.petuska.kmdc.tab.onInteracted
-import dev.petuska.kmdc.tab.scroller.Scroller
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.ChoiceControl
-import sandbox.control.RangeControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.tab.*
+import dev.petuska.kmdc.tab.bar.*
+import dev.petuska.kmdc.tab.indicator.*
+import dev.petuska.kmdc.tab.scroller.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 private class MDCTabBarVM {
   var transition by mutableStateOf(MDCTabIndicatorTransition.Slide)

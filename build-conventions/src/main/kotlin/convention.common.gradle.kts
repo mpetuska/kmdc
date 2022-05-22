@@ -1,7 +1,6 @@
-import de.fayard.refreshVersions.core.versionFor
-import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinTest
-import java.util.Properties
+import de.fayard.refreshVersions.core.*
+import org.jetbrains.kotlin.gradle.tasks.*
+import java.util.*
 
 plugins {
   id("com.diffplug.spotless")

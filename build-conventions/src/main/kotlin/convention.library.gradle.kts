@@ -1,7 +1,6 @@
-import gradle.kotlin.dsl.accessors._b1fd2989f539727f21a36273f4d9ae23.dokkaHtml
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import util.enableSass
+import gradle.kotlin.dsl.accessors._b1fd2989f539727f21a36273f4d9ae23.*
+import org.jetbrains.dokka.gradle.*
+import util.*
 
 plugins {
   id("convention.common")

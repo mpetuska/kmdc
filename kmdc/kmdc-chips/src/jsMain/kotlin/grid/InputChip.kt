@@ -1,24 +1,10 @@
 package dev.petuska.kmdc.chips.grid
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.chips.Chip
-import dev.petuska.kmdc.chips.MDCChipScope
-import dev.petuska.kmdc.chips.action.MDCChipActionIconScope
-import dev.petuska.kmdc.chips.action.MDCChipActionScope
-import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.data
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLSpanElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.chips.*
+import dev.petuska.kmdc.chips.action.*
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 public interface MDCInputChipScope : MDCChipScope
 

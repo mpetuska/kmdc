@@ -1,33 +1,14 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.typography.MDCBody1
-import dev.petuska.kmdc.typography.MDCBody2
-import dev.petuska.kmdc.typography.MDCButtonText
-import dev.petuska.kmdc.typography.MDCCaption
-import dev.petuska.kmdc.typography.MDCH1
-import dev.petuska.kmdc.typography.MDCH2
-import dev.petuska.kmdc.typography.MDCH3
-import dev.petuska.kmdc.typography.MDCH4
-import dev.petuska.kmdc.typography.MDCH5
-import dev.petuska.kmdc.typography.MDCH6
-import dev.petuska.kmdc.typography.MDCOverline
-import dev.petuska.kmdc.typography.MDCSubtitle1
-import dev.petuska.kmdc.typography.MDCSubtitle2
-import org.jetbrains.compose.web.css.CSSKeywordValue
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.LineStyle
-import org.jetbrains.compose.web.css.border
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.keywords.CSSAutoKeyword
-import org.jetbrains.compose.web.css.marginTop
-import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.width
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import dev.petuska.kmdc.typography.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.keywords.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @Composable
 @Showcase(id = "MDCTypography")

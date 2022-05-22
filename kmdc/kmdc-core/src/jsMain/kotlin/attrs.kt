@@ -2,9 +2,8 @@
 
 package dev.petuska.kmdc.core
 
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
+import org.jetbrains.compose.web.attributes.*
+import org.w3c.dom.*
 
 @KMDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {

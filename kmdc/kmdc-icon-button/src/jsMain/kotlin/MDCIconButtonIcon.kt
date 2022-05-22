@@ -1,12 +1,10 @@
 package dev.petuska.kmdc.icon.button
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.I
-import org.w3c.dom.HTMLElement
+import org.w3c.dom.*
 
 @Composable
 private fun render(

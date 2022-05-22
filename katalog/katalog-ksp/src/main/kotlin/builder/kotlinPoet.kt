@@ -1,9 +1,7 @@
 package dev.petuska.katalog.plugin.builder
 
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import dev.petuska.katalog.plugin.util.Builder
+import com.squareup.kotlinpoet.*
+import dev.petuska.katalog.plugin.util.*
 
 @Target(AnnotationTarget.TYPE)
 @DslMarker

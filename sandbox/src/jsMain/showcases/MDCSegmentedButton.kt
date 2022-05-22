@@ -1,25 +1,13 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.segmented.button.Icon
-import dev.petuska.kmdc.segmented.button.Label
-import dev.petuska.kmdc.segmented.button.MDCSegmentedButton
-import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonAttrsScope
-import dev.petuska.kmdc.segmented.button.MDCSegmentedButtonSegmentAttrsScope
-import dev.petuska.kmdc.segmented.button.Segment
-import dev.petuska.kmdc.segmented.button.onChange
-import dev.petuska.kmdc.segmented.button.onClicked
-import dev.petuska.kmdc.segmented.button.onSelected
-import dev.petuska.kmdc.touch.target.MDCTouchTarget
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.segmented.button.*
+import dev.petuska.kmdc.touch.target.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 private class MDCSegmentedButtonVM {
   var disabled by mutableStateOf(false)

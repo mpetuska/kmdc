@@ -1,26 +1,13 @@
 package dev.petuska.kmdc.list.item
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.list.MDCListScope
-import dev.petuska.kmdc.list.MDCListSelectionLocal
-import dev.petuska.kmdc.ripple.MDCRipple
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.A
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.list.*
+import dev.petuska.kmdc.ripple.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Li
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLAnchorElement
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.HTMLLIElement
-import org.w3c.dom.HTMLSpanElement
-import org.w3c.dom.HTMLUListElement
+import org.w3c.dom.*
 
 public interface MDCListItemScope<T : HTMLElement> : ElementScope<T>
 

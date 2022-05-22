@@ -1,26 +1,12 @@
 package dev.petuska.kmdc.snackbar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.Label
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonOpts
-import dev.petuska.kmdc.icon.button.MDCIconButtonScope
-import org.jetbrains.compose.web.attributes.ButtonType
-import org.jetbrains.compose.web.attributes.type
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.icon.button.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public interface MDCSnackbarActionsScope : ElementScope<HTMLDivElement>
 

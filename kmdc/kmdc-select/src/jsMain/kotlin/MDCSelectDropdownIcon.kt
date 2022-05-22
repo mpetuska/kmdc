@@ -1,10 +1,9 @@
 package dev.petuska.kmdc.select
 
-import androidx.compose.runtime.Composable
-import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.svg.Polygon
-import org.jetbrains.compose.web.svg.Svg
+import androidx.compose.runtime.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.svg.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)

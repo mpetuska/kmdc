@@ -1,10 +1,8 @@
 package dev.petuska.kmdc.data.table
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
-import org.w3c.dom.HTMLElement
-import kotlin.js.Json
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
+import kotlin.js.*
 
 public external interface MDCDataTableRowSelectionChangedEventDetail {
   public val rowNumber: Number

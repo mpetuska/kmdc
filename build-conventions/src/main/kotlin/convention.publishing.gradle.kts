@@ -1,4 +1,4 @@
-import util.Git
+import util.*
 
 plugins {
   id("convention.common")

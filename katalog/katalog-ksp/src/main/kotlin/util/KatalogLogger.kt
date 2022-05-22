@@ -1,7 +1,7 @@
 package dev.petuska.katalog.plugin.util
 
-import com.google.devtools.ksp.processing.KSPLogger
-import com.google.devtools.ksp.symbol.KSNode
+import com.google.devtools.ksp.processing.*
+import com.google.devtools.ksp.symbol.*
 
 interface KatalogLogger {
   val logger: KSPLogger

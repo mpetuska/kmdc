@@ -1,20 +1,10 @@
 package dev.petuska.kmdc.snackbar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.Aside
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/snackbar/mdc-snackbar.scss")
 private external val MDCStyle: dynamic

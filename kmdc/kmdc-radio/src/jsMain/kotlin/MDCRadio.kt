@@ -1,19 +1,11 @@
 package dev.petuska.kmdc.radio
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.form.field.MDCFormFieldScope
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
-import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Text
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.form.field.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.dom.*
 
 @JsModule("@material/radio/mdc-radio.scss")
 public external val MDCRadioStyle: dynamic

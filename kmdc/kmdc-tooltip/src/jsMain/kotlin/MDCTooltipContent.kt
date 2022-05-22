@@ -1,13 +1,10 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.P
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLParagraphElement
+import org.w3c.dom.*
 
 public class MDCTooltipRichContentScope(scope: ElementScope<HTMLParagraphElement>) :
   ElementScope<HTMLParagraphElement> by scope

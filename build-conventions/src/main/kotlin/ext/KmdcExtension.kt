@@ -1,7 +1,7 @@
 package ext
 
-import org.gradle.api.Project
-import org.gradle.api.provider.Property
+import org.gradle.api.*
+import org.gradle.api.provider.*
 
 @Suppress("LeakingThis")
 abstract class KmdcExtension(project: Project) : NpmWrapperExtension(project) {

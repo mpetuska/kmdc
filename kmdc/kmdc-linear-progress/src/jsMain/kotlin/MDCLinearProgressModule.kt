@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.linear.progress
 
-import dev.petuska.kmdc.core.MDCBaseModule
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 @JsModule("@material/linear-progress")
 public external object MDCLinearProgressModule {

@@ -1,15 +1,11 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.form.field.MDCFormField
-import sandbox.control.BooleanControl
-import sandbox.control.TextControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.form.field.*
+import sandbox.control.*
 
 private class MDCCheckboxVM {
   var disabled by mutableStateOf(false)

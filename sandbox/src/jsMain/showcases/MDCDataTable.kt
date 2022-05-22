@@ -1,34 +1,13 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.MDCExternalAPI
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.data.table.MDCDataTable
-import dev.petuska.kmdc.data.table.MDCDataTableAttrsScope
-import dev.petuska.kmdc.data.table.MDCDataTableBody
-import dev.petuska.kmdc.data.table.MDCDataTableCell
-import dev.petuska.kmdc.data.table.MDCDataTableCheckCell
-import dev.petuska.kmdc.data.table.MDCDataTableContainer
-import dev.petuska.kmdc.data.table.MDCDataTableHeader
-import dev.petuska.kmdc.data.table.MDCDataTableHeaderCell
-import dev.petuska.kmdc.data.table.MDCDataTableModule
-import dev.petuska.kmdc.data.table.MDCDataTableRow
-import dev.petuska.kmdc.data.table.MDCDataTableSortCell
-import dev.petuska.kmdc.data.table.onRowClick
-import dev.petuska.kmdc.data.table.onRowSelectionChanged
-import dev.petuska.kmdc.data.table.onSelectedAll
-import dev.petuska.kmdc.data.table.onSorted
-import dev.petuska.kmdc.data.table.onUnselectedAll
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.NamedBlock
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.data.table.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
+import sandbox.util.*
 
 private class MDCDataTableVM {
   var loading by mutableStateOf(false)

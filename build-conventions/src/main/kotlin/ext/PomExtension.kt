@@ -1,8 +1,8 @@
 package ext
 
-import org.gradle.api.Project
-import org.gradle.api.provider.Property
-import org.gradle.api.tasks.Nested
+import org.gradle.api.*
+import org.gradle.api.provider.*
+import org.gradle.api.tasks.*
 
 @Suppress("LeakingThis")
 abstract class PomExtension(private val project: Project) {

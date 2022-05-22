@@ -1,35 +1,15 @@
 package showcases
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import dev.petuska.kmdc.button.Label
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.dialog.MDCDialog
-import dev.petuska.kmdc.dialog.MDCDialogActionButton
-import dev.petuska.kmdc.dialog.MDCDialogActions
-import dev.petuska.kmdc.dialog.MDCDialogAttrsScope
-import dev.petuska.kmdc.dialog.MDCDialogCloseIconButton
-import dev.petuska.kmdc.dialog.MDCDialogContent
-import dev.petuska.kmdc.dialog.MDCDialogHeader
-import dev.petuska.kmdc.dialog.MDCDialogTitle
-import dev.petuska.kmdc.dialog.mdcDialogAction
-import dev.petuska.kmdc.dialog.mdcDialogButtonDefault
-import dev.petuska.kmdc.dialog.mdcDialogInitialFocus
-import dev.petuska.kmdc.dialog.onClosed
-import dev.petuska.kmdc.dialog.onClosing
-import dev.petuska.kmdc.dialog.onOpened
-import dev.petuska.kmdc.dialog.onOpening
-import dev.petuska.kmdc.list.MDCList
-import dev.petuska.kmdc.list.MDCListType
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.dialog.*
+import dev.petuska.kmdc.list.*
 import dev.petuska.kmdc.list.item.Graphic
 import dev.petuska.kmdc.list.item.Label
 import dev.petuska.kmdc.list.item.ListItem
-import dev.petuska.kmdc.radio.MDCRadio
+import dev.petuska.kmdc.radio.*
 import org.jetbrains.compose.web.dom.Text
-import samples.Samples
-import samples.SamplesRender
+import samples.*
 
 object MDCDialog : Samples() {
   override val content: SamplesRender = {

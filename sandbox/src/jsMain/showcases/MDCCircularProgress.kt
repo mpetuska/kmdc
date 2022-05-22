@@ -1,16 +1,11 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.circular.progress.MDCCircularProgress
-import sandbox.control.BooleanControl
-import sandbox.control.RangeControl
-import sandbox.control.TextControl
-import sandbox.util.requireModule
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.circular.progress.*
+import sandbox.control.*
+import sandbox.util.*
 
 private class MDCCircularProgressVM {
   var determinate by mutableStateOf(false)

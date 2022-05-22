@@ -1,31 +1,15 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.chips.MDCChipsAttrsScope
-import dev.petuska.kmdc.chips.action.Checkmark
-import dev.petuska.kmdc.chips.action.Graphic
-import dev.petuska.kmdc.chips.action.Icon
-import dev.petuska.kmdc.chips.action.Label
-import dev.petuska.kmdc.chips.grid.ActionChip
-import dev.petuska.kmdc.chips.grid.InputChip
-import dev.petuska.kmdc.chips.grid.MDCChipsGrid
-import dev.petuska.kmdc.chips.grid.PrimaryAction
-import dev.petuska.kmdc.chips.grid.TrailingAction
-import dev.petuska.kmdc.chips.listbox.FilterChip
-import dev.petuska.kmdc.chips.listbox.MDCChipsListbox
-import dev.petuska.kmdc.chips.onInteraction
-import dev.petuska.kmdc.chips.onRemoval
-import dev.petuska.kmdc.chips.onSelection
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.NamedBlock
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.chips.*
+import dev.petuska.kmdc.chips.action.*
+import dev.petuska.kmdc.chips.grid.*
+import dev.petuska.kmdc.chips.listbox.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
+import sandbox.util.*
 
 private class MDCChipsVM {
   var disabled by mutableStateOf(false)

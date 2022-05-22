@@ -1,26 +1,11 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.snackbar.MDCSnackbar
-import dev.petuska.kmdc.snackbar.MDCSnackbarAction
-import dev.petuska.kmdc.snackbar.MDCSnackbarActions
-import dev.petuska.kmdc.snackbar.MDCSnackbarAttrsScope
-import dev.petuska.kmdc.snackbar.MDCSnackbarDismiss
-import dev.petuska.kmdc.snackbar.MDCSnackbarLabel
-import dev.petuska.kmdc.snackbar.MDCSnackbarType
-import dev.petuska.kmdc.snackbar.onClosed
-import dev.petuska.kmdc.snackbar.onClosing
-import dev.petuska.kmdc.snackbar.onOpened
-import dev.petuska.kmdc.snackbar.onOpening
-import org.jetbrains.compose.web.dom.Text
-import sandbox.control.BooleanControl
-import sandbox.control.ChoiceControl
-import sandbox.control.RangeControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.snackbar.*
+import org.jetbrains.compose.web.dom.*
+import sandbox.control.*
 
 private class MDCSnackbarVM {
   var type by mutableStateOf(MDCSnackbarType.Default)

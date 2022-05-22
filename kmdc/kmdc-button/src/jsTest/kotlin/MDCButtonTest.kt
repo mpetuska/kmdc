@@ -1,13 +1,9 @@
 package dev.petuska.kmdc.button
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import org.jetbrains.compose.web.testutils.runTest
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLElement
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import androidx.compose.runtime.*
+import org.jetbrains.compose.web.testutils.*
+import org.w3c.dom.*
+import kotlin.test.*
 
 class MDCButtonTest {
   @Test

@@ -1,14 +1,11 @@
 package showcases
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import dev.petuska.katalog.runtime.Showcase
-import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.form.field.MDCFormField
-import dev.petuska.kmdc.radio.MDCRadio
-import sandbox.control.BooleanControl
+import androidx.compose.runtime.*
+import dev.petuska.katalog.runtime.*
+import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.kmdc.form.field.*
+import dev.petuska.kmdc.radio.*
+import sandbox.control.*
 
 private class MDCRadioVM {
   val options = listOf("A", "B", "C", "D")

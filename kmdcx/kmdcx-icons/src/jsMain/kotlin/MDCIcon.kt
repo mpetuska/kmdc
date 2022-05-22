@@ -1,15 +1,10 @@
 package dev.petuska.kmdcx.icons
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.I
-import org.jetbrains.compose.web.dom.Span
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 @JsModule("material-icons/iconfont/material-icons.css")
 private external val MDCIconStyle: dynamic

@@ -1,15 +1,11 @@
-package sandbox.control
+package sandbox.util
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.typography.MDCButtonText
-import dev.petuska.kmdc.typography.MDCOverline
-import org.jetbrains.compose.web.css.DisplayStyle
-import org.jetbrains.compose.web.css.display
-import org.jetbrains.compose.web.css.em
-import org.jetbrains.compose.web.css.paddingLeft
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.typography.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @Composable
 fun NamedBlock(

@@ -1,24 +1,10 @@
 package dev.petuska.kmdc.menu
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCInitEffect
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.MDCStateEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.domain.Point
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.list.MDCListLayout
-import dev.petuska.kmdc.list.MDCListScope
-import dev.petuska.kmdc.list.MDCListSelection
-import dev.petuska.kmdc.menu.surface.Corner
-import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
-import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceLayout
-import org.w3c.dom.HTMLUListElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.domain.*
+import dev.petuska.kmdc.list.*
+import org.w3c.dom.*
 
 @JsModule("@material/menu/mdc-menu.scss")
 private external val Style: dynamic

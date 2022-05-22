@@ -1,16 +1,12 @@
 package dev.petuska.kmdc.list.item
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.attributes.AttrsScope
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 public interface MDCListItemTextScope : ElementScope<HTMLSpanElement>
 

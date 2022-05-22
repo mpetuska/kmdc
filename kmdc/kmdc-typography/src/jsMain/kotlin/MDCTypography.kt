@@ -1,24 +1,12 @@
 package dev.petuska.kmdc.typography
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.H1
-import org.jetbrains.compose.web.dom.H2
-import org.jetbrains.compose.web.dom.H3
-import org.jetbrains.compose.web.dom.H4
-import org.jetbrains.compose.web.dom.H5
-import org.jetbrains.compose.web.dom.H6
-import org.jetbrains.compose.web.dom.P
-import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.HTMLHeadingElement
-import org.w3c.dom.HTMLParagraphElement
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 @JsModule("@material/typography/dist/mdc.typography.css")
 private external val MDCTypographyCSS: dynamic

@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.card
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
 
 public data class MDCCardMediaOpts(var type: Type = Type.Free) {
   public enum class Type(public vararg val classes: String) {
