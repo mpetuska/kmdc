@@ -20,9 +20,7 @@ import dev.petuska.katalog.plugin.util.asString
 import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
 import dev.petuska.katalog.plugin.visitor.ShowcaseVisitor
-import dev.petuska.katalog.runtime.KatalogConfig
 import java.io.File
-import dev.petuska.katalog.runtime.Showcase as ShowcaseAnnotation
 
 class KatalogSymbolProcessor(
   private val codeGenerator: CodeGenerator,
@@ -33,13 +31,14 @@ class KatalogSymbolProcessor(
   private val configs = mutableMapOf<Int, List<KSFunctionDeclaration>>()
 
   override fun process(resolver: Resolver): List<KSAnnotated> {
-    resolver.getSymbolsWithAnnotation(KatalogConfig::class.qualifiedName!!).filterIsInstance<KSFunctionDeclaration>()
+    resolver.getSymbolsWithAnnotation("dev.petuska.katalog.runtime.KatalogConfig")
+      .filterIsInstance<KSFunctionDeclaration>()
       .groupBy {
         val ann = it.annotations.first { a -> a.shortName.getShortName() == "KatalogConfig" }
         (ann.arguments["priority"]?.value as Int?) ?: 0
       }.let(configs::putAll)
 
-    val showcases = resolver.getSymbolsWithAnnotation(ShowcaseAnnotation::class.qualifiedName!!)
+    val showcases = resolver.getSymbolsWithAnnotation("dev.petuska.katalog.runtime.Showcase")
     val visitor = ShowcaseVisitor(resolver.builtIns, codeGenerator, logger, contentRoot)
     showcases.mapNotNull {
       if (it.annotations.any { a -> a.shortName.asString() == "Composable" }) {
@@ -78,7 +77,7 @@ class KatalogSymbolProcessor(
               postfix = "), config = { %config:L })",
               separator = ", "
             ) { "%${it}:M" }, arguments = mapOf(
-              "katalog" to MemberName(ShowcaseAnnotation::class.java.packageName, "renderKatalog"),
+              "katalog" to MemberName("dev.petuska.katalog.runtime", "renderKatalog"),
               "config" to config,
             ) + showcaseFns
           )

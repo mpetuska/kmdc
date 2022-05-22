@@ -6,7 +6,6 @@ plugins {
 
 dependencies {
   compileOnly("com.google.devtools.ksp:symbol-processing-api:_")
-  implementation(project(":katalog-runtime"))
   implementation("com.squareup:kotlinpoet-ksp:_")
 
   testImplementation(kotlin("reflect"))

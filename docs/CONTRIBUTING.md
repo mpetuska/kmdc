@@ -60,13 +60,13 @@ in `~/.sdkman/etc/config`.
 
 ### Development Loop
 
-To work on UI component library such as KMDC, you obviously need to somehow render your changes to see if they are
+To work on UI ui library such as KMDC, you obviously need to somehow render your changes to see if they are
 correct and work properly. This is achieved with the help of a [sandbox](../sandbox) module. In most of the caxses, the
 development loop for KMDC looks as follows:
 
 1. Implement your changes or new features
 2. Add a new [Sample](../sandbox/src/jsMain/samples/MDCButton.kt) to either one of the existing samples for a
-   component or an entirely new samples bundle.
+   ui or an entirely new samples bundle.
 3. Boot up the sandbox in continuous mode `./gradlew jsBrowserRun -t`
 4. Inspect your sample in the browser [http://localhost:3000](http://localhost:3000)
 5. Make further changes and save the file
@@ -176,7 +176,7 @@ enhancement suggestion is related to, create an issue and provide the following 
   Linux.
 * **Explain why this enhancement would be useful** to most KMDC users and isn't something that can or should be
   implemented as a separate library.
-* **List some other JS or Kotlin component libraries where this enhancement exists.**
+* **List some other JS or Kotlin ui libraries where this enhancement exists.**
 * **Specify which version of KMDC you're using.**
 * **Specify the name and version of the OS you're using.**
 * **Specify the name and version of the Browser you're using.**
@@ -255,7 +255,7 @@ All JavaScript code is linted with [ktlint][ktlint] via `./gradlew spotlessApply
 on commit and push git hooks respectively.
 
 In general, KMDC uses [Official Kotlin Coding Conventions][kotlin-coding-conventions] with few minor deviations.
-Furthermore, all formatting is automated with ktlint, so you can code in whatever style you wish, as long as you
+Furthermore, all formatting is automated with ktlint, so you can code in whatever theme you wish, as long as you
 remember to run `./gradlew spotlessApply` before committing your changes. To make it even
 easier, [Ktlint IDEA Plugin][ktlint-idea] is highly recommended.
 
@@ -269,7 +269,7 @@ easier, [Ktlint IDEA Plugin][ktlint-idea] is highly recommended.
 Since sandbox is used as a main way to "test" changes in development as well as to showcase the implemented components,
 some structure is imposed on its usage to keep everything tidy and easy to navigate.
 
-* Each use-case or component should have its own dedicated samples file
+* Each use-case or ui should have its own dedicated samples file
   in [sandbox/src/jsMain/samples](../sandbox/src/jsMain/samples)
 * No changes should be made in the sandbox outside of `samples` package as the ad-hock samples framework is configured
   to register and render all samples in a proper layout automagically.

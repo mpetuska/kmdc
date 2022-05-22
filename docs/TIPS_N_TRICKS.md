@@ -11,21 +11,22 @@ Bellow are the key concepts required to work with KMDC efficiently:
 
 ## How to create a KMDC wrapper
 
-> _MDC component_ refers to the [material-components-web] framework component.
-> A _KMDC component_ is a Kotlin wrapper for an MDC component.
+> _MDC component_ refers to the [material-components-web] framework ui.
+> A _KMDC component_ is a Kotlin wrapper for an MDC ui.
 
 Before starting, here are some general pointers about MDC & KMDC architecture:
 
-* Each MDC component lives in a separate KMDC [module](../lib).
+* Each MDC ui lives in a separate KMDC [module](../lib).
 * Some MDC components depend on CSS, which needs to be imported for it to function properly.
 * Inlining CSS imports does not prevent end-users from using SCSS if they so choose.
 * Most MDC components have a companion JS adaptor, which needs to be initialised and disposed together with wrapping
   a composable.
-* Each KMDC component has (in the following order)
-    1. a custom dedicated primitive argument (e.g. `checked` argument for [MDCCheckbox.kt]) – only if absolutely required,
-    2. a KMDC component options builder (`opts`),
+* Each KMDC ui has (in the following order)
+    1. a custom dedicated primitive argument (e.g. `checked` argument for [MDCCheckbox.kt]) – only if absolutely
+       required,
+    2. a KMDC ui options builder (`opts`),
     3. the usual [compose-web] attribute builders (`attrs` & `content`).
-* KMDC component options feature the same builder-style design as attributes.
+* KMDC ui options feature the same builder-theme design as attributes.
 
 ### Basics
 
@@ -38,10 +39,11 @@ First, you need to create a reference to appropriate CSS module.
 
 ```kotlin
 @JsModule("@material/checkbox/dist/mdc.checkbox.css") // 1
-public external val MDCCheckboxStyle: dynamic // 2
+external val MDCCheckboxStyle: dynamic // 2
 ```
 
-1. Tells the Kotlin compiler that the following declaration refers to a JS module and should use the JS native module resolver.
+1. Tells the Kotlin compiler that the following declaration refers to a JS module and should use the JS native module
+   resolver.
    This is further picked up by webpack CSS loader to eventually inline the CSS module into the final JS executable.
 2. Declares the Kotlin reference to it as `external` value with `dynamic` type, since we only need to know the reference
    and not the type.
@@ -50,8 +52,7 @@ Once you have a reference to it, you need to make sure that DCE does not remove 
 reference in a top-level composable.
 
 ```kotlin
-@Composable
-public fun MDCCheckbox() {
+@Composable fun MDCCheckbox() {
   MDCCheckboxStyle
   // Rest of the composition logic
 }
@@ -60,27 +61,29 @@ public fun MDCCheckbox() {
 #### Initialising and Disposing a JS Adapter
 
 Most of the MDC components also depend on JS adaptors that need to be initialised and disposed together with the
-underlying HTML component's lifecycle. In such cases, Kotlin needs to know about its MDC JS interface and types to be able
+underlying HTML ui's lifecycle. In such cases, Kotlin needs to know about its MDC JS interface and types to be
+able
 to use them from compose context.
 
 Firstly, declare the external JS module
 
 ```kotlin
 @JsModule("@material/checkbox") // 1
-public external object MDCCheckboxModule { // 2
-  public class MDCCheckbox(element: Element) : MDCFormFieldModule.MDCFormFieldInput { // 3
-    public companion object {
-      public fun attachTo(element: Element): MDCCheckbox // 4
+external object MDCCheckboxModule { // 2
+  class MDCCheckbox(element: Element) : MDCFormFieldModule.MDCFormFieldInput { // 3
+    companion object {
+      fun attachTo(element: Element): MDCCheckbox // 4
     }
     
-    public fun destroy() // 5
-    public var checked: Boolean // 6
+    fun destroy() // 5
+    var checked: Boolean // 6
     override val ripple: MDCRippleModule.MDCRipple? // 7
   }
 }
 ```
 
-1. Tells Kotlin compiler that the following declaration refers to a JS module and should use the JS native module resolver.
+1. Tells Kotlin compiler that the following declaration refers to a JS module and should use the JS native module
+   resolver.
 2. Declares a container for the entire JS module as an `external` object. All declarations inside will be mapped 1:1 to
    the JS module's `module.exports` or cumulative list of es6 `export` statements. The declarations are read from the
    entry file declared in npm package's `package.json#main`field, since we do not specify further path from base module
@@ -92,12 +95,13 @@ public external object MDCCheckboxModule { // 2
 7. Declares a `method override` that this class has, which comes from its super class.
 
 When you have the external declarations ready, you can start using them to implement an adapter lifecycle into your
-composables. This is done via the `ref` and `ref::onDispose` helper functions inside the `attrs` builder. These give you direct
-access to the underlying HTML component.
+composables. This is done via the `ref` and `ref::onDispose` helper functions inside the `attrs` builder. These give you
+direct
+access to the underlying HTML ui.
 
 ```kotlin
 @Composable
-public fun MDCCheckbox() {
+fun MDCCheckbox() {
   Div(attrs = {
     ref { // 1
       val mdc = MDCCheckboxModule.MDCCheckbox.attachTo(it) // 2
@@ -113,7 +117,8 @@ public fun MDCCheckbox() {
 ```
 
 1. Invokes the `ref` block, which gives us access to the underlying HTML element as an `it` implicit argument.
-2. Uses the reference to the HTML element to initialise the appropriate MDC adapter using its static `attachTo` method. This can
+2. Uses the reference to the HTML element to initialise the appropriate MDC adapter using its static `attachTo` method.
+   This can
    also be done by invoking the constructor. Both ways return a reference to the initialised adaptor which you need to
    store.
 3. Uses KMDC utility extensions to store the adaptor reference as a new `mdc` property under HTML element.
@@ -123,14 +128,14 @@ public fun MDCCheckbox() {
 
 ### Flow
 
-1. Pick an MDC component to wrap and familiarize yourself with its interface.
-    * Read the MDC component's README (e.g.: [mdc-checkbox]) to understand how its HTML works.
-    * Check out the MDC component's Typescript/JavaScript interface to understand how its underlying JS control works.
-2. Create the KMDC component. See [MDCCheckbox.kt] for an example.
+1. Pick an MDC ui to wrap and familiarize yourself with its interface.
+    * Read the MDC ui's README (e.g.: [mdc-checkbox]) to understand how its HTML works.
+    * Check out the MDC ui's Typescript/JavaScript interface to understand how its underlying JS control works.
+2. Create the KMDC ui. See [MDCCheckbox.kt] for an example.
     1. Create new `kmdc-` module in [../lib]
-    2. Create a wrapper for top-level MDC component
-        1. If needed, declare the MDC component's CSS module and reference it in KMDC's main composable function.
-        2. If needed, declare a JS external module for the MDC component adapter and use it to initialise and dispose
+    2. Create a wrapper for top-level MDC ui
+        1. If needed, declare the MDC ui's CSS module and reference it in KMDC's main composable function.
+        2. If needed, declare a JS external module for the MDC ui adapter and use it to initialise and dispose
            composable HTML ref.
         3. If needed, create wrappers for your chosen module's MDC subcomponents.
     3. Create a new `Samples` file in [../sandbox/src/jsMain/kotlin/samples] to render and test your composable in

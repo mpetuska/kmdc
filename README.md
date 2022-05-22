@@ -64,7 +64,7 @@ the [sandbox](./sandbox/src/jsMain/samples))
 fun Sample() {
   var checked by remember { mutableStateOf(false) } // Declaring controlled state
 
-  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField component as recommended by MDC docs
+  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField ui as recommended by MDC docs
     MDCCheckbox(
       checked = checked, // MDCCheckbox breaks regular args schema in favour of more convenient usage
       label = "MDCCheckbox",
@@ -147,7 +147,7 @@ KMDC project modules can be categorised into three groups:
 * Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
     * `./gradlew jsBrowserRun -t` to start development server
     * Visit [http://localhost:3000](http://localhost:3000) to see your content
-    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/samples/MDCButton.kt)
+    * If you're adding a new ui, render it by creating [Samples](./sandbox/src/jsMain/samples/MDCButton.kt)
       object for it
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.

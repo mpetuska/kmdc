@@ -24,7 +24,7 @@ kotlin {
   }
   sourceSets {
     jsMain {
-      kotlin.srcDir("src/jsMain/samples")
+      kotlin.srcDir("src/jsMain/showcases")
       kotlin.srcDir(buildDir.resolve("generated/ksp/js/jsMain/kotlin"))
       dependencies {
         implementation("dev.petuska:kmdc")
@@ -35,7 +35,7 @@ kotlin {
     }
     configureEach {
       languageSettings {
-        optIn("kotlin.OptIn")
+        optIn("kotlin.RequiresOptIn")
         optIn("kotlin.ExperimentalStdlibApi")
       }
     }

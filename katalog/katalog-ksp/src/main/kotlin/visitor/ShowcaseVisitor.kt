@@ -19,7 +19,6 @@ import dev.petuska.katalog.plugin.domain.ShowcaseName
 import dev.petuska.katalog.plugin.util.KatalogLogger
 import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
-import dev.petuska.katalog.runtime.domain.Showcase
 import java.io.File
 
 
@@ -35,7 +34,7 @@ class ShowcaseVisitor(
     val name = function.simpleName.getShortName()
     val propName = name + "KatalogShowcase"
     val title = data.title ?: function.simpleName.asString()
-    val type = Showcase::class.java.run { ClassName(packageName, simpleName) }
+    val type = ClassName("dev.petuska.katalog.runtime.domain", "Showcase")
 
     val funRef = function.ref(this)
     val prop = PropertySpec.builder(propName, type).apply {

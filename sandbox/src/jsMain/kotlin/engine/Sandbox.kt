@@ -36,7 +36,7 @@ import org.jetbrains.compose.web.css.textAlign
 import org.jetbrains.compose.web.dom.Div
 import samples.Samples
 import samples.SamplesScope
-import samples.allSamples
+import showcases.allSamples
 
 @Composable
 fun Sandbox() {
