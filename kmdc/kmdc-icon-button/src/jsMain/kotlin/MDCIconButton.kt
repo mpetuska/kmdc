@@ -44,7 +44,7 @@ public fun MDCIconButton(
     },
   ) {
     MDCInitEffect(MDCIconButtonModule::MDCIconButtonToggle)
-    MDCRipple(opts = { isUnbounded = true })
+    MDCRipple(unbounded = true)
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconButtonScope(this).it() }
   }
@@ -70,7 +70,7 @@ public fun MDCIconLink(
     },
   ) {
     MDCInitEffect(MDCIconButtonModule::MDCIconButtonToggle)
-    MDCRipple(opts = { isUnbounded = true })
+    MDCRipple(unbounded = true)
     Span(attrs = { classes("mdc-icon-button__ripple") })
     content?.let { MDCIconLinkScope(this).it() }
   }

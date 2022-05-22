@@ -40,8 +40,8 @@ public fun <E : Element, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<E>.MD
 @KMDCInternalAPI
 public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
-  onDispose: MDCAttrs<MDC>? = null,
-  effect: MDCAttrs<MDC>
+  onDispose: Builder<MDC>? = null,
+  effect: Builder<MDC>
 ) {
   var mdc by rememberMutableStateOf<MDC?>(null)
   DisposableEffect(keys = keys + mdc) {
@@ -66,3 +66,36 @@ public fun <V, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCStateEffe
   value: V,
   property: KMutableProperty1<MDC, V>
 ): Unit = MDCStateEffect(value, property::set)
+
+@Composable
+@KMDCInternalAPI
+public fun <MDC : MDCBaseModule.MDCComponent<*>> MDCSideEffectNew(
+  vararg keys: Any?,
+  onDispose: Builder<MDC>? = null,
+  effect: Builder<MDC>
+) {
+  val mdc = localMDC<MDC>()
+  DisposableEffect(keys = keys + mdc) {
+    mdc?.effect()
+    console.log("new mdc", mdc)
+    onDispose {
+      if (onDispose != null) {
+        mdc?.onDispose()
+      }
+    }
+  }
+}
+
+@Composable
+@KMDCInternalAPI
+public inline fun <V, MDC : MDCBaseModule.MDCComponent<*>> MDCStateEffectNew(
+  value: V,
+  crossinline setter: MDC.(V) -> Unit
+): Unit = MDCSideEffectNew<MDC>(value) { setter(value) }
+
+@Composable
+@KMDCInternalAPI
+public fun <V, MDC : MDCBaseModule.MDCComponent<*>> MDCStateEffectNew(
+  value: V,
+  property: KMutableProperty1<MDC, V>
+): Unit = MDCStateEffectNew(value, property::set)

@@ -2,7 +2,7 @@ package dev.petuska.kmdc.form.field
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCExternalAPI
-import dev.petuska.kmdc.ripple.MDCRippleModule
+import dev.petuska.kmdc.ripple.MDCRipple
 import org.w3c.dom.Element
 
 @MDCExternalAPI
@@ -13,6 +13,6 @@ public external object MDCFormFieldModule {
   }
 
   public interface MDCFormFieldInput {
-    public val ripple: MDCRippleModule.MDCRipple?
+    public val ripple: MDCRipple?
   }
 }

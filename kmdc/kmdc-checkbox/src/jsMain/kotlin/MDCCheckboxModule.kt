@@ -3,7 +3,7 @@ package dev.petuska.kmdc.checkbox
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
-import dev.petuska.kmdc.ripple.MDCRippleModule
+import dev.petuska.kmdc.ripple.MDCRipple
 import org.w3c.dom.Element
 
 @MDCExternalAPI
@@ -16,6 +16,6 @@ public external object MDCCheckboxModule {
     public var indeterminate: Boolean
     public var disabled: Boolean
     public var value: String
-    override val ripple: MDCRippleModule.MDCRipple?
+    override val ripple: MDCRipple?
   }
 }

@@ -6,7 +6,7 @@ import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.AttrsBuilder
+import dev.petuska.kmdc.core.MDCAttrsRaw
 import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
@@ -26,7 +26,7 @@ public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCBannerScope.Actions(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCBannerActionsScope>? = null,
 ) {
   Div(
@@ -49,7 +49,7 @@ private fun MDCBannerActionsScope.Action(
   primary: Boolean,
   type: MDCButtonType,
   icon: MDCButtonIconType,
-  attrs: AttrsBuilder<HTMLButtonElement>?,
+  attrs: MDCAttrsRaw<HTMLButtonElement>?,
   content: MDCContent<MDCButtonScope>?,
 ) {
   MDCButton(
@@ -72,7 +72,7 @@ private fun MDCBannerActionsScope.Action(
 public fun MDCBannerActionsScope.PrimaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(true, type, icon, attrs, content)
@@ -87,7 +87,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
   Action(true, type, icon, attrs) {
     Label(text)
@@ -102,7 +102,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
 public fun MDCBannerActionsScope.SecondaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(false, type, icon, attrs, content)
@@ -117,7 +117,7 @@ public fun MDCBannerActionsScope.SecondaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
   Action(false, type, icon, attrs) {
     Label(text)

@@ -33,7 +33,7 @@ spotless {
   val ktlintSettings = mapOf(
     "indent_size" to "2",
     "continuation_indent_size" to "4",
-    "disabled_rules" to "no-wildcard-imports"
+    "disabled_rules" to "no-wildcard-imports,filename"
   )
   kotlin {
     target("src/**/*.kt")

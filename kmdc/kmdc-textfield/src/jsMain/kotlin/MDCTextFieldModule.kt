@@ -2,7 +2,7 @@ package dev.petuska.kmdc.textfield
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.core.MDCExternalAPI
-import dev.petuska.kmdc.ripple.MDCRippleModule
+import dev.petuska.kmdc.ripple.MDCRipple
 import org.w3c.dom.Element
 
 @JsModule("@material/textfield")
@@ -27,7 +27,7 @@ public external object MDCTextFieldModule {
     // Write-only
     public var useNativeValidation: Boolean
     public var helperTextContent: String
-    public var ripple: MDCRippleModule.MDCRipple
+    public var ripple: MDCRipple
     public var leadingIconAriaLabel: String
     public var trailingIconAriaLabel: String
     public var leadingIconContent: String

@@ -2,7 +2,7 @@ package dev.petuska.kmdc.radio
 
 import dev.petuska.kmdc.core.MDCBaseModule
 import dev.petuska.kmdc.form.field.MDCFormFieldModule
-import dev.petuska.kmdc.ripple.MDCRippleModule
+import dev.petuska.kmdc.ripple.MDCRipple
 import org.w3c.dom.Element
 
 @JsModule("@material/radio")
@@ -15,6 +15,6 @@ public external object MDCRadioModule {
     public var checked: Boolean
     public var disabled: Boolean
     public var value: String
-    override val ripple: MDCRippleModule.MDCRipple?
+    override val ripple: MDCRipple?
   }
 }

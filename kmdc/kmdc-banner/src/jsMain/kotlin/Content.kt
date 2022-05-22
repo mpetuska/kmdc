@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.banner
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import dev.petuska.kmdc.core.MDCAttrsRaw
 import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
@@ -22,7 +22,7 @@ public interface MDCBannerContentScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCBannerScope.Content(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCBannerContentScope>? = null,
 ) {
   Div(
@@ -40,7 +40,7 @@ public fun MDCBannerScope.Content(
 @MDCDsl
 @Composable
 public fun MDCBannerContentScope.Text(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCBannerContentScope>? = null,
 ) {
   Div(
@@ -59,7 +59,7 @@ public fun MDCBannerContentScope.Text(
 @Composable
 public fun MDCBannerContentScope.Text(
   text: String,
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   Text(attrs) { ComposeText(text) }
 }
@@ -72,7 +72,7 @@ public interface MDCBannerGraphicScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCBannerContentScope.Graphic(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCBannerGraphicScope>? = null,
 ) {
   Div(
@@ -92,7 +92,7 @@ public fun MDCBannerContentScope.Graphic(
 @MDCDsl
 @Composable
 public fun MDCBannerGraphicScope.Icon(
-  attrs: AttrsBuilder<HTMLElement>? = null,
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
   content: MDCContent<HTMLElement>? = null,
 ) {
   I(
