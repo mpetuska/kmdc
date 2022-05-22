@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.radio
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.mdc
@@ -28,7 +28,7 @@ public fun MDCRadio(
   touch: Boolean = false,
   disabled: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioBody(checked = checked, touch = touch, label = label, disabled = disabled, attrs = attrs)
 }
@@ -43,7 +43,7 @@ public fun MDCFormFieldScope.MDCRadio(
   touch: Boolean = false,
   disabled: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioBody(checked = checked, touch = touch, disabled = disabled, label = label, attrs = {
     ref {
@@ -61,7 +61,7 @@ private fun MDCRadioBody(
   touch: Boolean,
   disabled: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   MDCRadioStyle
   val radioId = rememberUniqueDomElementId()

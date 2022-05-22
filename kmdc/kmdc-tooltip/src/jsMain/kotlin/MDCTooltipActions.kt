@@ -5,7 +5,7 @@ import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
@@ -24,7 +24,7 @@ public class MDCTooltipRichActionsScope(scope: ElementScope<HTMLDivElement>) :
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCTooltipRichActionsScope>? = null,
+  content: MDCContent<MDCTooltipRichActionsScope>? = null,
 ) {
   Div(
     attrs = {
@@ -44,7 +44,7 @@ public fun MDCTooltipRichActionsScope.MDCTooltipAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   MDCButton(type = type, icon = icon, attrs = attrs, content = content)
 }

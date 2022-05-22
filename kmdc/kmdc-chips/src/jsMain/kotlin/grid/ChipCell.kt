@@ -5,7 +5,7 @@ import dev.petuska.kmdc.chips.MDCChipScope
 import dev.petuska.kmdc.chips.action.MDCChipActionScope
 import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.role
 import org.jetbrains.compose.web.dom.Span
@@ -18,7 +18,7 @@ import org.w3c.dom.HTMLButtonElement
 @Composable
 internal fun MDCChipScope.ChipCell(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>? = null
+  content: MDCContent<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
   val type = MDCChipActionTypeLocal.current
   Span(

@@ -15,5 +15,5 @@ public external interface MDCMenuSelectedEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCMenuAttrsScope.onSelected(listener: MDCEventListener<MDCMenuSelectedEventDetail>) {
-  addMdcEventListener(MDCMenuModule.strings.SELECTED_EVENT, listener)
+  addMdcEventListener("MDCMenu:selected", listener)
 }

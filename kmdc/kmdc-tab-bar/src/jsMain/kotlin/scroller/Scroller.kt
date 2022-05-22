@@ -3,7 +3,7 @@ package dev.petuska.kmdc.tab.scroller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
@@ -29,7 +29,7 @@ public class MDCTabScrollerScope internal constructor(
 @Composable
 public fun MDCTabBarScope.Scroller(
   attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCTabScrollerScope>? = null
+  content: MDCContent<MDCTabScrollerScope>? = null
 ) {
   MDCTabScrollerCSS
   val context = remember { MDCTabBarContext() }

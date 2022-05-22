@@ -1,7 +1,7 @@
 package dev.petuska.kmdcx.icons
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -20,7 +20,7 @@ private external val MDCIconStyle: dynamic
 @MDCDsl
 @Composable
 public fun MDCIconSpan(
-  opts: Builder<MDCIconOpts>? = null,
+  opts: MDCAttrs<MDCIconOpts>? = null,
   attrs: AttrBuilderContext<HTMLSpanElement>? = null
 ) {
   MDCIconStyle
@@ -40,7 +40,7 @@ public fun MDCIconSpan(
 @MDCDsl
 @Composable
 public fun MDCIconI(
-  opts: Builder<MDCIconOpts>? = null,
+  opts: MDCAttrs<MDCIconOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null
 ) {
   MDCIconStyle
@@ -59,7 +59,7 @@ public fun MDCIconI(
  */
 @MDCDsl
 @Composable
-public fun MDCIcon(opts: Builder<MDCIconOpts>? = null, attrs: AttrBuilderContext<out HTMLElement>? = null) {
+public fun MDCIcon(opts: MDCAttrs<MDCIconOpts>? = null, attrs: AttrBuilderContext<out HTMLElement>? = null) {
   val options = MDCIconOpts().apply { opts?.invoke(this) }
   when (options.base) {
     MDCIconOpts.MDCIconBase.Span -> MDCIconSpan(opts, attrs)

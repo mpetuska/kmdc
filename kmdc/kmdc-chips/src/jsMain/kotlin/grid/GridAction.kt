@@ -6,7 +6,7 @@ import dev.petuska.kmdc.chips.action.MDCChipActionScope
 import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.chips.action.Ripple
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
@@ -20,7 +20,7 @@ import org.w3c.dom.HTMLButtonElement
 @Composable
 internal fun GridAction(
   attrs: AttrsBuilder<HTMLButtonElement>?,
-  content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>?
+  content: MDCContent<MDCChipActionScope<HTMLButtonElement>>?
 ) {
   val type = MDCChipActionTypeLocal.current
   val disabled = MDCChipDisabledLocal.current

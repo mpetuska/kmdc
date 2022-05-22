@@ -3,8 +3,8 @@ package dev.petuska.kmdc.dialog
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -24,7 +24,7 @@ public class MDCDialogActionsScope(scope: ElementScope<HTMLDivElement>) : Elemen
 @Composable
 public fun MDCDialogScope.MDCDialogActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCDialogActionsScope>? = null
+  content: MDCContent<MDCDialogActionsScope>? = null
 ) {
   Div(
     attrs = {
@@ -45,7 +45,7 @@ public fun MDCDialogActionsScope.MDCDialogActionButton(
   action: String,
   default: Boolean = false,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope>? = null
 ) {
   MDCButton(
     attrs = {

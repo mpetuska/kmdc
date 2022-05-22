@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.segmented.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.aria
 import dev.petuska.kmdc.core.data
@@ -28,8 +28,8 @@ public fun MDCSegmentedButtonScope.Segment(
   selected: Boolean = false,
   touch: Boolean = false,
   segmentId: String? = null,
-  attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
-  content: ComposableBuilder<MDCSegmentedButtonSegmentScope>? = null,
+  attrs: MDCAttrs<MDCSegmentedButtonSegmentAttrsScope>? = null,
+  content: MDCContent<MDCSegmentedButtonSegmentScope>? = null,
 ) {
   Button(
     attrs = {
@@ -70,7 +70,7 @@ public fun MDCSegmentedButtonScope.Segment(
   selected: Boolean = false,
   touch: Boolean = false,
   segmentId: String? = null,
-  attrs: Builder<MDCSegmentedButtonSegmentAttrsScope>? = null,
+  attrs: MDCAttrs<MDCSegmentedButtonSegmentAttrsScope>? = null,
 ) {
   Segment(selected = selected, touch = touch, segmentId = segmentId, attrs = attrs) {
     Label(text)

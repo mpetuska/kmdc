@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.dialog
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
@@ -17,7 +17,7 @@ public class MDCDialogContentScope(scope: ElementScope<HTMLDivElement>) : Elemen
 @Composable
 public fun MDCDialogScope.MDCDialogContent(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCDialogContentScope>? = null
+  content: MDCContent<MDCDialogContentScope>? = null
 ) {
   Div(
     attrs = {

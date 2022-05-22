@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.segmented.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyContent
@@ -28,8 +28,8 @@ public class MDCSegmentedButtonScope(
 @Composable
 public fun MDCSegmentedButton(
   singleSelect: Boolean = false,
-  attrs: Builder<MDCSegmentedButtonAttrsScope>? = null,
-  content: ComposableBuilder<MDCSegmentedButtonScope>? = null
+  attrs: MDCAttrs<MDCSegmentedButtonAttrsScope>? = null,
+  content: MDCContent<MDCSegmentedButtonScope>? = null
 ) {
   MDCSegmentedButtonStyle
   Div(

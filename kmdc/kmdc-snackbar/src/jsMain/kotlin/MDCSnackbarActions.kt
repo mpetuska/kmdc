@@ -6,8 +6,8 @@ import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.reinterpret
@@ -31,7 +31,7 @@ public interface MDCSnackbarActionsScope : ElementScope<HTMLDivElement>
 @Composable
 public fun MDCSnackbarScope.MDCSnackbarActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCSnackbarActionsScope>? = null,
+  content: MDCContent<MDCSnackbarActionsScope>? = null,
 ) {
   Div(
     attrs = {
@@ -52,7 +52,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   MDCButton(
     type = type,
@@ -86,9 +86,9 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 @MDCDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarDismiss(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCIconButtonScope>? = null,
+  content: MDCContent<MDCIconButtonScope>? = null,
 ) {
   MDCIconButton(
     opts = opts,

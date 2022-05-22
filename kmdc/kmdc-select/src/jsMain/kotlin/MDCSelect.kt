@@ -2,7 +2,7 @@ package dev.petuska.kmdc.select
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCSideEffect
 import dev.petuska.kmdc.core.MDCStateEffect
@@ -11,9 +11,9 @@ import dev.petuska.kmdc.core.mdc
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.core.role
 import dev.petuska.kmdc.list.MDCList
-import dev.petuska.kmdc.list.MDCListItem
-import dev.petuska.kmdc.list.MDCListItemGraphic
-import dev.petuska.kmdc.list.MDCListItemText
+import dev.petuska.kmdc.list.item.Graphic
+import dev.petuska.kmdc.list.item.ListItem
+import dev.petuska.kmdc.list.item.Text
 import dev.petuska.kmdc.menu.surface.MDCMenuSurface
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.attributes.name
@@ -63,8 +63,8 @@ public class MDCSelectAttrsScope<T>(scope: AttrsScope<HTMLDivElement>) : AttrsSc
 @Composable
 public fun <T> MDCSelect(
   items: List<T>,
-  opts: Builder<MDCSelectOpts<T>>? = null,
-  attrs: Builder<MDCSelectAttrsScope<T>>? = null,
+  opts: MDCAttrs<MDCSelectOpts<T>>? = null,
+  attrs: MDCAttrs<MDCSelectAttrsScope<T>>? = null,
   renderItem: @Composable ElementScope<HTMLSpanElement>.(T) -> Unit = { Text(it.toString()) }
 ) {
   MDCSelectCSS
@@ -118,23 +118,20 @@ public fun <T> MDCSelect(
     MDCSelectAnchor(labelId, options, selectedTextId, items, renderItem)
 
     MDCMenuSurface(
-      opts = { fullwidth = true },
+      fullWidth = true,
       attrs = {
         classes("mdc-select__menu", "mdc-menu")
       }
     ) {
       MDCList(
-        opts = { singleSelection = true },
         attrs = {
           options.label?.let { aria("label", it) }
         }
       ) {
         items.forEach { item ->
-          MDCListItem(
-            opts = {
-              this.selected = item == options.value
-              this.disabled = item.itemDisabled()
-            },
+          ListItem(
+            selected = item == options.value,
+            disabled = item.itemDisabled(),
             attrs = {
               attr("data-value", item.itemValue())
               aria("selected", (item == options.value).toString())
@@ -143,9 +140,9 @@ public fun <T> MDCSelect(
             }
           ) {
             if (hasLeadingIcon) {
-              MDCListItemGraphic()
+              Graphic()
             }
-            MDCListItemText {
+            Text {
               renderItem(item)
             }
           }

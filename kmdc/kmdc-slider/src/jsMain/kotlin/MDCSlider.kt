@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.slider
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCStateEffect
@@ -49,7 +49,7 @@ public fun MDCSlider(
   min: Number = 0,
   max: Number = 100,
   step: Number = 1,
-  attrs: Builder<MDCSliderAttrsScope>? = null,
+  attrs: MDCAttrs<MDCSliderAttrsScope>? = null,
 ) {
   MDCSliderCSS
   val range: Boolean = value2 != null

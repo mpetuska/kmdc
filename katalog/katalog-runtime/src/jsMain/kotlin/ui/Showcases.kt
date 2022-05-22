@@ -102,7 +102,7 @@ private fun SideBar(selected: Showcase?) {
         }
         if (selected == showcase) classes(ShowcasesStyle.navLinkSelected)
       }) {
-        theme.navTitleRender(showcase.title)
+        theme.navTitleRender(showcase.title, selected == showcase)
       }
     }
   }

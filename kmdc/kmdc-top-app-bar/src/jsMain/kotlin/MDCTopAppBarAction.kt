@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.top.app.bar
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.icon.button.MDCIconButtonOpts
@@ -17,7 +17,7 @@ import org.w3c.dom.HTMLButtonElement
 @MDCDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
   content: ContentBuilder<HTMLButtonElement>? = null,
 ) {
@@ -37,7 +37,7 @@ public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
 @MDCDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionLink(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
   content: ContentBuilder<HTMLAnchorElement>? = null
 ) {

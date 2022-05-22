@@ -2,9 +2,9 @@ package dev.petuska.kmdc.form.field
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.KMDCInternalAPI
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.classes
@@ -47,9 +47,9 @@ public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<
 @MDCDsl
 @Composable
 public fun MDCFormField(
-  opts: Builder<MDCFormFieldOpts>? = null,
-  attrs: Builder<AttrsScope<HTMLDivElement>>? = null,
-  content: ComposableBuilder<MDCFormFieldScope>? = null,
+  opts: MDCAttrs<MDCFormFieldOpts>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLDivElement>>? = null,
+  content: MDCContent<MDCFormFieldScope>? = null,
 ) {
   MDCFormFieldStyle
   val options = MDCFormFieldOpts().apply { opts?.invoke(this) }

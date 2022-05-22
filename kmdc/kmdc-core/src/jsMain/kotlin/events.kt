@@ -7,7 +7,7 @@ public external class MDCEvent<T> internal constructor() : Event {
   public val detail: T
 }
 
-public typealias MDCEventListener<D> = (event: MDCEvent<D>) -> Unit
+public typealias MDCEventListener<D> = @MDCAttrsDsl (event: MDCEvent<D>) -> Unit
 
 @KMDCInternalAPI
 @Suppress("FunctionName")

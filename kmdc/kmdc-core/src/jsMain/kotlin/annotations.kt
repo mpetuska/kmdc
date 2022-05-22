@@ -1,9 +1,11 @@
 package dev.petuska.kmdc.core
 
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @DslMarker
 @KMDCInternalAPI
 public annotation class MDCDsl
 
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @DslMarker
 @KMDCInternalAPI
 public annotation class MDCAttrsDsl

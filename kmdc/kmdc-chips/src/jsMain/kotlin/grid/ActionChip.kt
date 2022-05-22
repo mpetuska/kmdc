@@ -6,7 +6,7 @@ import dev.petuska.kmdc.chips.Chip
 import dev.petuska.kmdc.chips.action.MDCChipActionScope
 import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.role
@@ -24,7 +24,7 @@ public fun MDCChipsGridScope.ActionChip(
   withPrimaryIcon: Boolean = false,
   touch: Boolean = false,
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>? = null
+  content: MDCContent<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
   Chip(
     id = id,

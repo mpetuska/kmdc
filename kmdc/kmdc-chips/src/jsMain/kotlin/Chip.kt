@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
@@ -28,7 +28,7 @@ internal fun MDCChipsScope.Chip(
   withPrimaryIcon: Boolean,
   touch: Boolean,
   attrs: AttrsBuilder<HTMLSpanElement>?,
-  content: ComposableBuilder<MDCChipScope>?
+  content: MDCContent<MDCChipScope>?
 ) {
   Span(attrs = {
     classes("mdc-evolution-chip")

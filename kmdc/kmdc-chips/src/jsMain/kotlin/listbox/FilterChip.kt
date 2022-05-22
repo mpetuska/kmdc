@@ -7,7 +7,7 @@ import dev.petuska.kmdc.chips.action.MDCChipActionScope
 import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.chips.action.Ripple
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
@@ -31,7 +31,7 @@ public fun MDCChipsListboxScope.FilterChip(
   withPrimaryIcon: Boolean = false,
   touch: Boolean = false,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCFilterChipScope>? = null
+  content: MDCContent<MDCFilterChipScope>? = null
 ) {
   CompositionLocalProvider(MDCChipActionTypeLocal provides "primary") {
     val type = MDCChipActionTypeLocal.current

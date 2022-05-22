@@ -1,24 +1,25 @@
 package dev.petuska.kmdc.menu.surface
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.KMDCInternalAPI
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
+import dev.petuska.kmdc.core.MDCSideEffect
+import dev.petuska.kmdc.core.MDCStateEffect
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
+import dev.petuska.kmdc.core.domain.Point
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/menu-surface/dist/mdc.menu-surface.css")
-private external val MDCMenuSurfaceStyle: dynamic
+@JsModule("@material/menu-surface/mdc-menu-surface.scss")
+private external val Style: dynamic
 
-public data class MDCMenuSurfaceOpts(
-  public var fixed: Boolean = false,
-  public var fullwidth: Boolean = false
-)
-
+@MDCAttrsDsl
 public interface MDCMenuSurfaceAttrsScope : AttrsScope<HTMLDivElement>
 
 /**
@@ -27,21 +28,50 @@ public interface MDCMenuSurfaceAttrsScope : AttrsScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCMenuSurface(
-  opts: Builder<MDCMenuSurfaceOpts>? = null,
-  attrs: Builder<MDCMenuSurfaceAttrsScope>? = null,
+  open: Boolean = false,
+  fixed: Boolean = false,
+  fullWidth: Boolean = false,
+  anchorCorner: Corner = Corner.TOP_LEFT,
+  quickOpen: Boolean = false,
+  hoisted: Boolean = false,
+  absolutePosition: Point? = null,
+  restoreFocusOnClose: Boolean = true,
+  attrs: MDCAttrs<MDCMenuSurfaceAttrsScope>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
-  MDCMenuSurfaceStyle
-  val options = MDCMenuSurfaceOpts().apply { opts?.invoke(this) }
+  MDCMenuSurfaceLayout(fixed = fixed, fullWidth = fullWidth, attrs = attrs) {
+    MDCInitEffect(::MDCMenuSurface)
+    MDCStateEffect(fixed, MDCMenuSurface::setFixedPosition)
+    MDCStateEffect(quickOpen, MDCMenuSurface::quickOpen)
+    MDCStateEffect(anchorCorner, MDCMenuSurface::setAnchorCorner)
+    MDCStateEffect(hoisted, MDCMenuSurface::setIsHoisted)
+    MDCSideEffect<MDCMenuSurface>(absolutePosition) {
+      absolutePosition?.let { (x, y) -> setAbsolutePosition(x, y) }
+    }
+    MDCSideEffect<MDCMenuSurface>(open) {
+      if (open) open() else close(!restoreFocusOnClose)
+    }
+    applyContent(content)
+  }
+}
+
+@KMDCInternalAPI
+@Composable
+public fun MDCMenuSurfaceLayout(
+  fixed: Boolean = false,
+  fullWidth: Boolean = false,
+  attrs: MDCAttrs<MDCMenuSurfaceAttrsScope>? = null,
+  content: ContentBuilder<HTMLDivElement>? = null,
+) {
+  Style
   Div(
     attrs = {
       classes("mdc-menu-surface")
-      if (options.fixed) classes("mdc-menu-surface--fixed")
-      if (options.fullwidth) classes("mdc-menu-surface--fullwidth")
+      if (fixed) classes("mdc-menu-surface--fixed")
+      if (fullWidth) classes("mdc-menu-surface--fullwidth")
       applyAttrs(attrs)
     },
     content = {
-      MDCInitEffect(MDCMenuSurfaceModule::MDCMenuSurface)
       applyContent(content)
     }
   )

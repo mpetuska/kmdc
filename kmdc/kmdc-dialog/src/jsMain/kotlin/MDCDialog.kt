@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.dialog
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCStateEffect
@@ -40,9 +40,9 @@ public class MDCDialogScope(
 @MDCDsl
 @Composable
 public fun MDCDialog(
-  opts: Builder<MDCDialogOpts>? = null,
-  attrs: Builder<MDCDialogAttrsScope>? = null,
-  content: ComposableBuilder<MDCDialogScope>? = null
+  opts: MDCAttrs<MDCDialogOpts>? = null,
+  attrs: MDCAttrs<MDCDialogAttrsScope>? = null,
+  content: MDCContent<MDCDialogScope>? = null
 ) {
   MDCDialogCSS
   val options = MDCDialogOpts().apply { opts?.invoke(this) }

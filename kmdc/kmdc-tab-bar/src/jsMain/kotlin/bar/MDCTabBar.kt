@@ -5,8 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
@@ -42,8 +42,8 @@ public class MDCTabBarScope internal constructor(
 @MDCDsl
 @Composable
 public fun MDCTabBar(
-  attrs: Builder<MDCTabBarAttrsScope>? = null,
-  content: ComposableBuilder<MDCTabBarScope>? = null
+  attrs: MDCAttrs<MDCTabBarAttrsScope>? = null,
+  content: MDCContent<MDCTabBarScope>? = null
 ) {
   MDCTabBarCSS
   val context = remember { MDCTabBarContext() }

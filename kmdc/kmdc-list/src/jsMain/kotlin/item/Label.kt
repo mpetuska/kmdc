@@ -1,14 +1,14 @@
-package dev.petuska.kmdc.list
+package dev.petuska.kmdc.list.item
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.applyAttrs
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.attributes.forId
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Label
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLLabelElement
@@ -21,11 +21,11 @@ public class MDCListItemLabelScope(scope: ElementScope<HTMLLabelElement>) : Elem
  */
 @MDCDsl
 @Composable
-public fun MDCListItemScope<*>.MDCListItemLabel(
-  attrs: Builder<AttrsScope<HTMLLabelElement>>? = null,
-  content: ComposableBuilder<MDCListItemLabelScope>? = null,
+public fun MDCListItemScope<*>.Label(
+  attrs: MDCAttrs<AttrsScope<HTMLLabelElement>>? = null,
+  content: MDCContent<MDCListItemLabelScope>? = null,
 ) {
-  Label(attrs = {
+  org.jetbrains.compose.web.dom.Label(attrs = {
     classes("mdc-deprecated-list-item__text")
     attrs?.invoke(this)
   }, content = content?.let { { MDCListItemLabelScope(this).it() } })
@@ -36,15 +36,18 @@ public fun MDCListItemScope<*>.MDCListItemLabel(
  */
 @MDCDsl
 @Composable
-public fun MDCListItemScope<*>.MDCListItemLabel(
+public fun MDCListItemScope<*>.Label(
   text: String,
   forId: String,
-  attrs: Builder<AttrsScope<HTMLLabelElement>>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLLabelElement>>? = null,
 ) {
-  MDCListItemLabel(attrs = {
-    forId(forId)
-    attrs?.invoke(this)
-  }) { Text(text) }
+  this@Label.Label(
+    attrs = {
+      forId(forId)
+      applyAttrs(attrs)
+    },
+    content = { Text(text) }
+  )
 }
 
 /**
@@ -52,8 +55,8 @@ public fun MDCListItemScope<*>.MDCListItemLabel(
  */
 @MDCDsl
 @Composable
-public fun MDCListItemLabelScope.MDCListItemPrimaryText(
-  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
+public fun MDCListItemLabelScope.Primary(
+  attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {
@@ -67,11 +70,11 @@ public fun MDCListItemLabelScope.MDCListItemPrimaryText(
  */
 @MDCDsl
 @Composable
-public fun MDCListItemLabelScope.MDCListItemPrimaryText(
+public fun MDCListItemLabelScope.Primary(
   text: String,
-  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
 ) {
-  MDCListItemPrimaryText(attrs = attrs) { Text(text) }
+  Primary(attrs = attrs) { Text(text) }
 }
 
 /**
@@ -79,8 +82,8 @@ public fun MDCListItemLabelScope.MDCListItemPrimaryText(
  */
 @MDCDsl
 @Composable
-public fun MDCListItemLabelScope.MDCListItemSecondaryText(
-  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
+public fun MDCListItemLabelScope.Secondary(
+  attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {
@@ -94,9 +97,9 @@ public fun MDCListItemLabelScope.MDCListItemSecondaryText(
  */
 @MDCDsl
 @Composable
-public fun MDCListItemLabelScope.MDCListItemSecondaryText(
+public fun MDCListItemLabelScope.Secondary(
   text: String,
-  attrs: Builder<AttrsScope<HTMLSpanElement>>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
 ) {
-  MDCListItemSecondaryText(attrs = attrs) { Text(text) }
+  Secondary(attrs = attrs) { Text(text) }
 }

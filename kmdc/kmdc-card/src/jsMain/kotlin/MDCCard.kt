@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -28,9 +28,9 @@ public class MDCCardScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HT
 @MDCDsl
 @Composable
 public fun MDCCard(
-  opts: Builder<MDCCardOpts>? = null,
+  opts: MDCAttrs<MDCCardOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardScope>? = null
+  content: MDCContent<MDCCardScope>? = null
 ) {
   MDCCardCSS
   val options = MDCCardOpts().apply { opts?.invoke(this) }

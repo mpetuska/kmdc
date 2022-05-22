@@ -2,8 +2,8 @@ package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCStateEffect
@@ -37,7 +37,7 @@ public fun MDCCheckbox(
   indeterminate: Boolean = false,
   touch: Boolean = false,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCheckboxScope>? = null,
+  content: MDCContent<MDCCheckboxScope>? = null,
 ) {
   MDCCheckboxStyles
 
@@ -63,7 +63,7 @@ public fun MDCCheckbox(
   disabled: Boolean = false,
   touch: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
@@ -97,7 +97,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
   disabled: Boolean = false,
   touch: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
@@ -130,7 +130,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
 public fun MDCCheckboxScope.MDCCheckboxInput(
   checked: Boolean?,
   disabled: Boolean = false,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   // WORKAROUND https://github.com/JetBrains/compose-jb/issues/1528
   //     We cannot use the controlled CheckboxInput directly, but the workaround is functionally equivalent.

@@ -2,7 +2,7 @@ package dev.petuska.kmdc.chips.action
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.reinterpret
@@ -21,7 +21,7 @@ public interface MDCFilterChipGraphicScope : MDCChipActionIconScope<HTMLSpanElem
 @Composable
 public fun MDCChipActionScope<*>.Graphic(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCFilterChipGraphicScope>? = null
+  content: MDCContent<MDCFilterChipGraphicScope>? = null
 ) {
   Span(
     attrs = {

@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.snackbar
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
@@ -39,8 +39,8 @@ public fun MDCSnackbar(
   dismissible: Boolean = false,
   timeoutMs: Int? = 5000,
   closeOnEscape: Boolean = true,
-  attrs: Builder<MDCSnackbarAttrsScope>? = null,
-  content: ComposableBuilder<MDCSnackbarScope>? = null,
+  attrs: MDCAttrs<MDCSnackbarAttrsScope>? = null,
+  content: MDCContent<MDCSnackbarScope>? = null,
 ) {
   MDCStyle
   Aside(attrs = {

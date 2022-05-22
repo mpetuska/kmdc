@@ -22,13 +22,11 @@ import dev.petuska.kmdc.dialog.onClosing
 import dev.petuska.kmdc.dialog.onOpened
 import dev.petuska.kmdc.dialog.onOpening
 import dev.petuska.kmdc.list.MDCList
-import dev.petuska.kmdc.list.MDCListItem
-import dev.petuska.kmdc.list.MDCListItemGraphic
-import dev.petuska.kmdc.list.MDCListItemLabel
-import dev.petuska.kmdc.list.MDCListItemText
-import dev.petuska.kmdc.list.MDCListOpts
+import dev.petuska.kmdc.list.MDCListType
+import dev.petuska.kmdc.list.item.Graphic
+import dev.petuska.kmdc.list.item.Label
+import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.radio.MDCRadio
-import org.jetbrains.compose.web.attributes.forId
 import org.jetbrains.compose.web.dom.Text
 import samples.Samples
 import samples.SamplesRender
@@ -90,12 +88,10 @@ object MDCDialog : Samples() {
       MDCDialogTitle("Choose a Ringtone")
       MDCDialogContent {
         MDCList(
-          opts = {
-            type = MDCListOpts.Type.Avatar
-          }
+          type = MDCListType.Avatar
         ) {
           listOf("None", "Callisto", "Ganymede", "Luna", "Oberon", "Phobos").forEachIndexed { index, item ->
-            MDCListItem(
+            ListItem(
               attrs = {
                 mdcDialogAction(item.lowercase())
                 if (index == 0) {
@@ -104,7 +100,7 @@ object MDCDialog : Samples() {
                 }
               }
             ) {
-              MDCListItemText(item)
+              Text(item)
             }
           }
         }
@@ -132,7 +128,7 @@ object MDCDialog : Samples() {
       MDCDialogContent {
         MDCList {
           listOf("None", "Callisto", "Ganymede", "Luna", "Oberon", "Phobos").forEachIndexed { index, item ->
-            MDCListItem(
+            ListItem(
               attrs = {
                 if (index == 0) {
                   tabIndex(0)
@@ -140,7 +136,7 @@ object MDCDialog : Samples() {
                 }
               }
             ) {
-              MDCListItemGraphic {
+              Graphic {
                 MDCRadio(checked = choice == item) {
                   id(item.lowercase())
                   attr("name", "test-dialog-baseline-confirmation-radio-group")
@@ -149,13 +145,10 @@ object MDCDialog : Samples() {
                   }
                 }
               }
-              MDCListItemLabel(
-                attrs = {
-                  forId(item.lowercase())
-                }
-              ) {
-                Text(item)
-              }
+              Label(
+                text = item,
+                forId = item.lowercase(),
+              )
             }
           }
         }

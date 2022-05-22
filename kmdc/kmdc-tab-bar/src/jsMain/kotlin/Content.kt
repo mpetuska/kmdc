@@ -2,8 +2,8 @@ package dev.petuska.kmdc.tab
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.ContentBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
@@ -22,7 +22,7 @@ public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseS
 @Composable
 public fun MDCTabScope.Content(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCTabContentScope>? = null
+  content: MDCContent<MDCTabContentScope>? = null
 ) {
   Span(
     attrs = {

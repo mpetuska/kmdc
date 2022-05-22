@@ -40,8 +40,8 @@ public fun <E : Element, MDC : MDCBaseModule.MDCComponent<*>> ElementScope<E>.MD
 @KMDCInternalAPI
 public fun <MDC : MDCBaseModule.MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
-  onDispose: Builder<MDC>? = null,
-  effect: Builder<MDC>
+  onDispose: MDCAttrs<MDC>? = null,
+  effect: MDCAttrs<MDC>
 ) {
   var mdc by rememberMutableStateOf<MDC?>(null)
   DisposableEffect(keys = keys + mdc) {

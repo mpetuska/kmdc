@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.tab
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
@@ -32,8 +32,8 @@ public fun MDCTabScrollerScope.Tab(
   active: Boolean = false,
   stacked: Boolean = false,
   minWidth: Boolean = false,
-  attrs: Builder<MDCTabAttrsScope>? = null,
-  content: ComposableBuilder<MDCTabScope>? = null
+  attrs: MDCAttrs<MDCTabAttrsScope>? = null,
+  content: MDCContent<MDCTabScope>? = null
 ) {
   MDCTabCSS
   context.tabs++

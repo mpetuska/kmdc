@@ -2,8 +2,8 @@ package dev.petuska.kmdc.data.table
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
@@ -29,8 +29,8 @@ public sealed interface MDCDataTableScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCDataTable(
-  attrs: Builder<MDCDataTableAttrsScope>? = null,
-  content: ComposableBuilder<MDCDataTableScope>? = null,
+  attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
+  content: MDCContent<MDCDataTableScope>? = null,
 ) {
   MDCDataTableCSS
   Div(
@@ -51,8 +51,8 @@ public fun MDCDataTable(
 @Composable
 public fun MDCDataTable(
   loading: Boolean,
-  attrs: Builder<MDCDataTableAttrsScope>? = null,
-  content: ComposableBuilder<MDCDataTableScope>? = null,
+  attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
+  content: MDCContent<MDCDataTableScope>? = null,
 ) {
   MDCDataTable(attrs = {
     applyAttrs(attrs)
@@ -75,7 +75,7 @@ public sealed interface MDCDataTableContainerScope : ElementScope<HTMLTableEleme
 @Composable
 public fun MDCDataTableScope.MDCDataTableContainer(
   attrs: AttrsBuilder<HTMLTableElement>? = null,
-  content: ComposableBuilder<MDCDataTableContainerScope>? = null,
+  content: MDCContent<MDCDataTableContainerScope>? = null,
 ) {
   Div(
     attrs = {

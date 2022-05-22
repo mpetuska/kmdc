@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.chips.MDCChips
 import dev.petuska.kmdc.chips.MDCChipsAttrsScope
 import dev.petuska.kmdc.chips.MDCChipsScope
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
@@ -22,8 +22,8 @@ public interface MDCChipsListboxScope : MDCChipsScope
 public fun MDCChipsListbox(
   overflow: Boolean = false,
   multiselectable: Boolean = false,
-  attrs: Builder<MDCChipsAttrsScope>? = null,
-  content: ComposableBuilder<MDCChipsListboxScope>? = null
+  attrs: MDCAttrs<MDCChipsAttrsScope>? = null,
+  content: MDCContent<MDCChipsListboxScope>? = null
 ) {
   MDCChips(
     overflow = overflow,

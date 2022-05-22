@@ -12,5 +12,5 @@ internal var Element.mdc: dynamic
   }
 
 @KMDCInternalAPI
-public fun <MDC : MDCBaseModule.MDCComponent<*>> Element.mdc(action: Builder<MDC>? = null): MDC? =
+public fun <MDC : MDCBaseModule.MDCComponent<*>> Element.mdc(action: MDCAttrs<MDC>? = null): MDC? =
   mdc.unsafeCast<MDC?>()?.also { action?.invoke(it) }

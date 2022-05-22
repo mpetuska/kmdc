@@ -14,7 +14,7 @@ public data class KatalogTheme(
 
   public val katalogTitleRender: @Composable (title: String) -> Unit = { H3 { Text(it) } },
   public val katalogSubtitleRender: @Composable (title: String) -> Unit = { H4 { Text(it) } },
-  public val navTitleRender: @Composable (title: String) -> Unit = { H4 { Text(it) } },
+  public val navTitleRender: @Composable (title: String, selected: Boolean) -> Unit = { it, _ -> H4 { Text(it) } },
   public val showcaseTitleRender: @Composable (title: String) -> Unit = { H3 { Text(it) } },
   public val showcaseDescriptionRender: @Composable (title: String) -> Unit = { P { Text(it) } },
 )

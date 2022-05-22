@@ -2,7 +2,7 @@ package dev.petuska.kmdc.tab.indicator
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyContent
@@ -30,7 +30,7 @@ public fun MDCTabBaseScope.Indicator(
   active: Boolean = false,
   transition: MDCTabIndicatorTransition = MDCTabIndicatorTransition.Slide,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCTabIndicatorScope>? = null
+  content: MDCContent<MDCTabIndicatorScope>? = null
 ) {
   MDCTabIndicatorCSS
   Span(

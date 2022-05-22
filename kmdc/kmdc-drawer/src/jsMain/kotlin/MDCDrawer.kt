@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.drawer
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCStateEffect
@@ -46,9 +46,9 @@ public class MDCDrawerScope(scope: ElementScope<HTMLElement>) : ElementScope<HTM
 @MDCDsl
 @Composable
 public fun MDCDrawer(
-  opts: Builder<MDCDrawerOpts>? = null,
+  opts: MDCAttrs<MDCDrawerOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ComposableBuilder<MDCDrawerScope>? = null
+  content: MDCContent<MDCDrawerScope>? = null
 ) {
   MDCDrawerCSS
   val options = MDCDrawerOpts().apply { opts?.invoke(this) }

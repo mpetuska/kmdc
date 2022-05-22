@@ -3,8 +3,8 @@ package dev.petuska.kmdc.card
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.icon.button.MDCIconButton
@@ -33,9 +33,9 @@ public class MDCCardActionsScope(scope: ElementScope<HTMLDivElement>) : ElementS
 @MDCDsl
 @Composable
 public fun MDCCardScope.MDCCardActions(
-  opts: Builder<MDCCardActionsOpts>? = null,
+  opts: MDCAttrs<MDCCardActionsOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardActionsScope>? = null
+  content: MDCContent<MDCCardActionsScope>? = null
 ) {
   val options = MDCCardActionsOpts().apply { opts?.invoke(this) }
   Div(
@@ -55,7 +55,7 @@ public fun MDCCardScope.MDCCardActions(
 @Composable
 public fun MDCCardActionsScope.MDCCardActionButtons(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardActionsScope>? = null
+  content: MDCContent<MDCCardActionsScope>? = null
 ) {
   Div(
     attrs = {
@@ -73,7 +73,7 @@ public fun MDCCardActionsScope.MDCCardActionButtons(
 @Composable
 public fun MDCCardActionsScope.MDCCardActionButton(
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope>? = null
 ) {
   MDCButton(
     attrs = {
@@ -91,7 +91,7 @@ public fun MDCCardActionsScope.MDCCardActionButton(
 @Composable
 public fun MDCCardActionsScope.MDCCardActionIcons(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardActionsScope>? = null
+  content: MDCContent<MDCCardActionsScope>? = null
 ) {
   Div(
     attrs = {
@@ -109,7 +109,7 @@ public fun MDCCardActionsScope.MDCCardActionIcons(
 @Composable
 public fun MDCCardActionsScope.MDCCardActionIconButton(
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCIconButtonScope>? = null
+  content: MDCContent<MDCIconButtonScope>? = null
 ) {
   MDCIconButton(
     attrs = {
@@ -127,7 +127,7 @@ public fun MDCCardActionsScope.MDCCardActionIconButton(
 @Composable
 public fun MDCCardActionsScope.MDCCardActionIconLink(
   attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
-  content: ComposableBuilder<MDCIconLinkScope>? = null
+  content: MDCContent<MDCIconLinkScope>? = null
 ) {
   MDCIconLink(
     attrs = {

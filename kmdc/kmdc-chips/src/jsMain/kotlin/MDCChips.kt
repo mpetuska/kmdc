@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.chips
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
@@ -26,8 +26,8 @@ public interface MDCChipsScope : ElementScope<HTMLSpanElement>
 @Composable
 internal fun MDCChips(
   overflow: Boolean = false,
-  attrs: Builder<MDCChipsAttrsScope>? = null,
-  content: ComposableBuilder<MDCChipsScope>? = null
+  attrs: MDCAttrs<MDCChipsAttrsScope>? = null,
+  content: MDCContent<MDCChipsScope>? = null
 ) {
   MDCChipsStyle
   Span(attrs = {

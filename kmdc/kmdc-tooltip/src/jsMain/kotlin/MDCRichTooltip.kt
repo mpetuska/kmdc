@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -46,8 +46,8 @@ public fun MDCRichTooltip(
   persistent: Boolean = false,
   interactive: Boolean = false,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  anchorContent: ComposableBuilder<MDCRichTooltipAnchorScope>? = null,
-  tooltipContent: ComposableBuilder<MDCRichTooltipScope>? = null,
+  anchorContent: MDCContent<MDCRichTooltipAnchorScope>? = null,
+  tooltipContent: MDCContent<MDCRichTooltipScope>? = null,
 ) {
   Div(
     attrs = {

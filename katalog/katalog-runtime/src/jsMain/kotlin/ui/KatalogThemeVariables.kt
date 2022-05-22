@@ -14,5 +14,5 @@ internal object KatalogThemeVariables {
 
 internal fun AttrsScope<HTMLDivElement>.applyTheme(theme: KatalogTheme) = style {
   setVariable(KatalogThemeVariables.highlightColor, theme.highlightColor)
-  fontFamily(*theme.fontFamily.toTypedArray())
+  fontFamily(value = theme.fontFamily.toTypedArray())
 }

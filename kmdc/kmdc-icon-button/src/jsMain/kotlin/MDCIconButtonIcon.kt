@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.icon.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLElement
 
 @Composable
 private fun render(
-  opts: Builder<MDCIconButtonOpts>?,
+  opts: MDCAttrs<MDCIconButtonOpts>?,
   attrs: AttrBuilderContext<HTMLElement>?,
   content: ContentBuilder<HTMLElement>?,
 ) {
@@ -35,7 +35,7 @@ private fun render(
 @MDCDsl
 @Composable
 public fun MDCIconButtonScope.MDCIconButtonIcon(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null,
   content: ContentBuilder<HTMLElement>? = null,
 ): Unit = render(opts, attrs, content)
@@ -46,7 +46,7 @@ public fun MDCIconButtonScope.MDCIconButtonIcon(
 @MDCDsl
 @Composable
 public fun MDCIconLinkScope.MDCIconButtonIcon(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null,
   content: ContentBuilder<HTMLElement>? = null,
 ): Unit = render(opts, attrs, content)

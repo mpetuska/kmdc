@@ -3,7 +3,7 @@ package dev.petuska.kmdc.dialog
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ElementScope
@@ -21,7 +21,7 @@ public class MDCDialogHeaderScope(scope: ElementScope<HTMLHeadingElement>, inter
 @Composable
 public fun MDCDialogScope.MDCDialogHeader(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
-  content: ComposableBuilder<MDCDialogHeaderScope>? = null
+  content: MDCContent<MDCDialogHeaderScope>? = null
 ) {
   H2(
     attrs = {
@@ -40,7 +40,7 @@ public fun MDCDialogScope.MDCDialogHeader(
 @Composable
 public fun MDCDialogHeaderScope.MDCDialogCloseIconButton(
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope>? = null
 ) {
   MDCButton(
     attrs = {

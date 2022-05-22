@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.slider
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.aria
 import org.jetbrains.compose.web.attributes.InputType
@@ -26,7 +26,7 @@ internal fun MDCSliderInput(
   rangeStart: Boolean?,
   disabled: Boolean,
   step: Number,
-  attrs: Builder<InputAttrsScope<Number?>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Number?>>? = null,
 ) {
   Input(
     type = InputType.Range,

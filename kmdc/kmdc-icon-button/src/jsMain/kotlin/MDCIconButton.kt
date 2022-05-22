@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.icon.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyAttrs
@@ -30,9 +30,9 @@ public class MDCIconLinkScope(scope: ElementScope<HTMLAnchorElement>) : ElementS
 @MDCDsl
 @Composable
 public fun MDCIconButton(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCIconButtonScope>? = null
+  content: MDCContent<MDCIconButtonScope>? = null
 ) {
   MDCIconButtonStyle
   val options = MDCIconButtonOpts().apply { opts?.invoke(this) }
@@ -56,9 +56,9 @@ public fun MDCIconButton(
 @MDCDsl
 @Composable
 public fun MDCIconLink(
-  opts: Builder<MDCIconButtonOpts>? = null,
+  opts: MDCAttrs<MDCIconButtonOpts>? = null,
   attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
-  content: ComposableBuilder<MDCIconLinkScope>? = null
+  content: MDCContent<MDCIconLinkScope>? = null
 ) {
   MDCIconButtonStyle
   val options = MDCIconButtonOpts().apply { opts?.invoke(this) }

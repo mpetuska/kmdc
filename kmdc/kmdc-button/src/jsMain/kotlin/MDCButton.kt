@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.button
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyContent
 import dev.petuska.kmdc.core.classes
@@ -36,7 +36,7 @@ public fun MDCButton(
   icon: MDCButtonIconType = MDCButtonIconType.None,
   touch: Boolean = false,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope>? = null
 ) {
   MDCButtonStyles
   Button(

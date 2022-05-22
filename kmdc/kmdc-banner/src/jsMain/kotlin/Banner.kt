@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.banner
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
@@ -31,8 +31,8 @@ public fun MDCBanner(
   centered: Boolean = false,
   fixed: Boolean = false,
   mobileStacked: Boolean = false,
-  attrs: Builder<MDCBannerAttrsScope>? = null,
-  content: ComposableBuilder<MDCBannerScope>? = null,
+  attrs: MDCAttrs<MDCBannerAttrsScope>? = null,
+  content: MDCContent<MDCBannerScope>? = null,
 ) {
   MDCBannerStyles
   Div(attrs = {
@@ -58,7 +58,7 @@ public fun MDCBanner(
 
 @Composable
 private fun InnerContent(
-  content: ComposableBuilder<MDCBannerScope>? = null,
+  content: MDCContent<MDCBannerScope>? = null,
 ) {
   Div(
     attrs = {

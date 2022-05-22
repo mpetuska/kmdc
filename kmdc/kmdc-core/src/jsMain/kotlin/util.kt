@@ -9,25 +9,28 @@ import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 
-public typealias Builder<T> = T.() -> Unit
 public typealias AttrsBuilder<T> = org.jetbrains.compose.web.dom.AttrBuilderContext<T>
-public typealias ComposableBuilder<T> = @Composable Builder<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
+public typealias MDCAttrsRaw<T> = @MDCAttrsDsl AttrsBuilder<T>
+public typealias MDCContentRaw<T> = @MDCDsl ContentBuilder<T>
+public typealias Builder<T> = T.() -> Unit
+public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
+public typealias MDCContent<T> = @Composable @MDCDsl Builder<T>
 
 /**
- * Reinterprets [ComposableBuilder] lambda as a parent [ContentBuilder] lambda,
+ * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
  * converting implicit [ElementScope]<[E]> to [S] via [unsafeCast].
  * This should only be used for controlled scope types which do not have any member properties or functions.
  * @receiver lambda to reinterpret
  * @return reinterpreted lambda that implies [S] on invocation
  */
 @KMDCInternalAPI
-public fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(): ContentBuilder<E>? {
+public fun <S : ElementScope<E>, E : Element> MDCContent<S>?.reinterpret(): ContentBuilder<E>? {
   return this?.let { { unsafeCast<S>().it() } }
 }
 
 /**
- * Reinterprets [ComposableBuilder] lambda as a parent [ContentBuilder] lambda,
+ * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
  * converting implicit [ElementScope]<[E]> to [S] via [scope] provider.
  * This is safe and can be used for uncontrolled scope types which have member properties or functions.
  * @receiver lambda to reinterpret
@@ -35,35 +38,35 @@ public fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(
  * @return reinterpreted lambda that implies [S] on invocation
  */
 @KMDCInternalAPI
-public inline fun <S : ElementScope<E>, E : Element> ComposableBuilder<S>?.reinterpret(crossinline scope: (ElementScope<E>) -> S): ContentBuilder<E>? {
+public inline fun <S : ElementScope<E>, E : Element> MDCContent<S>?.reinterpret(crossinline scope: (ElementScope<E>) -> S): ContentBuilder<E>? {
   return this?.let { { scope(this).it() } }
 }
 
 /**
- * Applies [Builder]<[T]> to [AttrsBuilder]<[E]>, converting implicit [AttrsScope]<[E]> to [T] via [unsafeCast].
+ * Applies [MDCAttrs]<[T]> to [AttrsBuilder]<[E]>, converting implicit [AttrsScope]<[E]> to [T] via [unsafeCast].
  * This should only be used for controlled scope types which do not have any member properties or functions.
  * @receiver scope to apply [block] to
  * @param block to imply and apply
  */
 @KMDCInternalAPI
-public fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(block: Builder<T>?) {
+public fun <E : Element, T : AttrsScope<E>> AttrsScope<E>.applyAttrs(block: MDCAttrs<T>?) {
   block?.invoke(unsafeCast<T>())
 }
 
 /**
- * Applies [ComposableBuilder]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [unsafeCast].
+ * Applies [MDCContent]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [unsafeCast].
  * This should only be used for controlled scope types which do not have any member properties or functions.
  * @receiver scope to apply [block] to
  * @param block to imply and apply
  */
 @Composable
 @KMDCInternalAPI
-public fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(block: ComposableBuilder<T>?) {
+public fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(block: MDCContent<T>?) {
   block?.invoke(unsafeCast<T>())
 }
 
 /**
- * Applies [ComposableBuilder]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [scope] provider.
+ * Applies [MDCContent]<[T]> to [ContentBuilder]<[E]>, converting implicit [ElementScope]<[E]> to [T] via [scope] provider.
  * This is safe and can be used for uncontrolled scope types which have member properties or functions.
  * @receiver scope to apply [block] to
  * @param block to imply and apply
@@ -72,14 +75,14 @@ public fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(block
 @Composable
 @KMDCInternalAPI
 public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyContent(
-  noinline block: ComposableBuilder<T>?,
+  noinline block: MDCContent<T>?,
   scope: (ElementScope<E>) -> T
 ) {
   block?.let { scope(this).it() }
 }
 
 @KMDCInternalAPI
-public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
+public inline fun <T : Any> jsObject(builder: MDCAttrs<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
 
 internal val kmdcCounterKey = "_kmdcCounter" // NEVER EVER CHANGE THIS
 

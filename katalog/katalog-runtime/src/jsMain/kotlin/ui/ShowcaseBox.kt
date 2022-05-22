@@ -1,6 +1,7 @@
 package dev.petuska.katalog.runtime.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import dev.petuska.katalog.runtime.domain.Showcase
 import dev.petuska.katalog.runtime.katalog
 import org.jetbrains.compose.web.attributes.ATarget
@@ -28,6 +29,9 @@ private object ShowcaseBoxStyle : StyleSheet() {
 
 @Composable
 internal fun ShowcaseBox(showcase: Showcase) = with(showcase) {
+  LaunchedEffect(showcase) {
+    console.asDynamic().clear(); Unit
+  }
   val contentRootUrl = katalog.contentRootUrl
   val location = contentRootUrl?.let {
     showcase.location?.let {

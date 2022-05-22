@@ -8,8 +8,8 @@ import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
 import dev.petuska.kmdc.checkbox.MDCCheckboxInput
 import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.ContentBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
@@ -36,7 +36,7 @@ public sealed interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionEle
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableBody(
   attrs: AttrsBuilder<HTMLTableSectionElement>? = null,
-  content: ComposableBuilder<MDCDataTableBodyScope>? = null,
+  content: MDCContent<MDCDataTableBodyScope>? = null,
 ) {
   Tbody(
     attrs = {
@@ -57,7 +57,7 @@ public sealed interface MDCDataTableRowScope : ElementScope<HTMLTableRowElement>
 public fun MDCDataTableBodyScope.MDCDataTableRow(
   attrs: AttrsBuilder<HTMLTableRowElement>? = null,
   selected: Boolean = false,
-  content: ComposableBuilder<MDCDataTableRowScope>? = null,
+  content: MDCContent<MDCDataTableRowScope>? = null,
 ) {
   Tr(
     attrs = {

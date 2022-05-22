@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.KMDCInternalAPI
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.classes
@@ -45,9 +45,9 @@ public fun MDCTextField(
   maxLength: UInt? = null,
   prefix: String? = null,
   suffix: String? = null,
-  attrs: Builder<InputAttrsScope<String>>? = null,
-  leadingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
-  trailingIcon: ComposableBuilder<MDCTextFieldScope>? = null,
+  leadingIcon: MDCContent<MDCTextFieldScope>? = null,
+  trailingIcon: MDCContent<MDCTextFieldScope>? = null,
+  attrs: MDCAttrs<InputAttrsScope<String>>? = null,
 ) {
   MDCTextFieldStyle
   val labelId = rememberUniqueDomElementId()
@@ -131,9 +131,9 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   disabled: Boolean,
   maxLength: UInt?,
   helperText: String?,
-  attrs: Builder<InputAttrsScope<String>>?,
-  leadingIcon: ComposableBuilder<MDCTextFieldScope>?,
-  trailingIcon: ComposableBuilder<MDCTextFieldScope>?
+  attrs: MDCAttrs<InputAttrsScope<String>>?,
+  leadingIcon: MDCContent<MDCTextFieldScope>?,
+  trailingIcon: MDCContent<MDCTextFieldScope>?
 ) {
   leadingIcon?.invoke(MDCTextFieldScope(this))
   prefix?.let {
@@ -224,7 +224,7 @@ private fun MDCTextFieldInput(
   helperText: String?,
   helperId: String,
   labelId: String,
-  attrs: Builder<InputAttrsScope<String>>?,
+  attrs: MDCAttrs<InputAttrsScope<String>>?,
 ) {
   TextInput(value, attrs = {
     classes("mdc-text-field__input")

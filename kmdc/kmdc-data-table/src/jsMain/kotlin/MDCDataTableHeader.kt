@@ -8,8 +8,8 @@ import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
 import dev.petuska.kmdc.checkbox.MDCCheckboxInput
 import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.ContentBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.aria
@@ -39,7 +39,7 @@ public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowEleme
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableHeader(
   attrs: AttrsBuilder<HTMLTableRowElement>? = null,
-  content: ComposableBuilder<MDCDataTableHeaderScope>? = null,
+  content: MDCContent<MDCDataTableHeaderScope>? = null,
 ) {
   Thead {
     Tr(
@@ -131,7 +131,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableSortCell(
   label: String? = null,
   attrs: AttrsBuilder<HTMLTableCellElement>? = null,
   buttonAttrs: AttrsBuilder<HTMLButtonElement>? = null,
-  buttonContent: ComposableBuilder<MDCIconButtonScope>? = null,
+  buttonContent: MDCContent<MDCIconButtonScope>? = null,
 ) {
   val id = rememberUniqueDomElementId()
   MDCDataTableCell(

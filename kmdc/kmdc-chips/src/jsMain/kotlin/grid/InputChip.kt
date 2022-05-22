@@ -9,7 +9,7 @@ import dev.petuska.kmdc.chips.action.MDCChipActionIconScope
 import dev.petuska.kmdc.chips.action.MDCChipActionScope
 import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
@@ -38,7 +38,7 @@ public fun MDCChipsGridScope.InputChip(
   withTrailingAction: Boolean = false,
   navigableTrailingAction: Boolean = true,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCInputChipScope>? = null
+  content: MDCContent<MDCInputChipScope>? = null
 ) {
   Chip(
     id = id,
@@ -66,7 +66,7 @@ public fun MDCChipsGridScope.InputChip(
 @Composable
 public fun MDCInputChipScope.PrimaryAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>? = null
+  content: MDCContent<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
   val navigableTrail = NavigableTrailLocal.current
   CompositionLocalProvider(MDCChipActionTypeLocal provides "primary") {
@@ -89,7 +89,7 @@ public fun MDCInputChipScope.PrimaryAction(
 @Composable
 public fun MDCInputChipScope.TrailingAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCChipActionIconScope<HTMLButtonElement>>? = null
+  content: MDCContent<MDCChipActionIconScope<HTMLButtonElement>>? = null
 ) {
   val navigableTrail = NavigableTrailLocal.current
   CompositionLocalProvider(MDCChipActionTypeLocal provides "trailing") {

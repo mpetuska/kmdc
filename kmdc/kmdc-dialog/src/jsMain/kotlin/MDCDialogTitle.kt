@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.dialog
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ElementScope
@@ -18,7 +18,7 @@ public class MDCDialogTitleScope(scope: ElementScope<HTMLHeadingElement>) : Elem
 @Composable
 public fun MDCDialogScope.MDCDialogTitle(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
-  content: ComposableBuilder<MDCDialogTitleScope>? = null
+  content: MDCContent<MDCDialogTitleScope>? = null
 ) {
   MDCDialogTitleImpl(titleId, attrs, content)
 }
@@ -42,7 +42,7 @@ public fun MDCDialogScope.MDCDialogTitle(
 @Composable
 public fun MDCDialogHeaderScope.MDCDialogTitle(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
-  content: ComposableBuilder<MDCDialogTitleScope>? = null
+  content: MDCContent<MDCDialogTitleScope>? = null
 ) {
   MDCDialogTitleImpl(titleId, attrs, content)
 }
@@ -63,7 +63,7 @@ public fun MDCDialogHeaderScope.MDCDialogTitle(
 private fun MDCDialogTitleImpl(
   titleId: String,
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
-  content: ComposableBuilder<MDCDialogTitleScope>? = null
+  content: MDCContent<MDCDialogTitleScope>? = null
 ) {
   H3(
     attrs = {

@@ -2,8 +2,8 @@ package dev.petuska.kmdc.linear.progress
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.MDCSideEffect
@@ -32,9 +32,9 @@ public class MDCLinearProgressScope(scope: ElementScope<HTMLDivElement>) : Eleme
 @MDCDsl
 @Composable
 public fun MDCLinearProgress(
-  opts: Builder<MDCLinearProgressOpts>? = null,
+  opts: MDCAttrs<MDCLinearProgressOpts>? = null,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCLinearProgressScope>? = null
+  content: MDCContent<MDCLinearProgressScope>? = null
 ) {
   MDCLinearProgressCSS
   val options = MDCLinearProgressOpts().apply { opts?.invoke(this) }

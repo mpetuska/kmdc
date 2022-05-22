@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.layout.grid
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.classes
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -30,9 +30,9 @@ public data class MDCLayoutGridCellOpts(
 @MDCDsl
 @Composable
 public fun MDCLayoutGridCellsScope.MDCLayoutGridCell(
-  opts: Builder<MDCLayoutGridCellOpts>? = null,
+  opts: MDCAttrs<MDCLayoutGridCellOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCLayoutGridScope>? = null
+  content: MDCContent<MDCLayoutGridScope>? = null
 ) {
   val options = MDCLayoutGridCellOpts().apply { opts?.invoke(this) }
   Div(

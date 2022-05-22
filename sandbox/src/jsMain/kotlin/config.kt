@@ -10,6 +10,7 @@ import dev.petuska.kmdc.typography.MDCSubtitle2
 import kotlinx.browser.document
 import kotlinx.dom.addClass
 import org.jetbrains.compose.web.css.Color
+import org.jetbrains.compose.web.css.color
 import org.jetbrains.compose.web.css.em
 import org.jetbrains.compose.web.css.marginBottom
 import sandbox.util.requireModule
@@ -23,7 +24,7 @@ fun Katalog.Builder.config() {
   subtitle = "Play around with various KMDC components"
   contentRootUrl = "https://github.com/mpetuska/kmdc/blob/master"
   theme = KatalogTheme(
-    highlightColor = Color("#AD26EAF2"),
+    highlightColor = Color("#6200ee"),
     katalogTitleRender = {
       MDCH4(it, attrs = {
         style {
@@ -31,12 +32,14 @@ fun Katalog.Builder.config() {
         }
       })
     },
-    katalogSubtitleRender = {
-      MDCSubtitle2(it, attrs = {
-        style { }
+    katalogSubtitleRender = { MDCSubtitle2(it) },
+    navTitleRender = { it, selected ->
+      MDCH6(it, attrs = {
+        style {
+          if (selected) color(Color.white)
+        }
       })
     },
-    navTitleRender = { MDCH6(it) },
     showcaseTitleRender = { MDCH5(it) },
     showcaseDescriptionRender = { MDCSubtitle2(it) },
   )

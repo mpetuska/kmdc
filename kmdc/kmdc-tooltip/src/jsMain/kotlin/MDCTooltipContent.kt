@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ElementScope
@@ -19,7 +19,7 @@ public class MDCTooltipRichContentScope(scope: ElementScope<HTMLParagraphElement
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipContent(
   attrs: AttrBuilderContext<HTMLParagraphElement>? = null,
-  content: ComposableBuilder<MDCTooltipRichContentScope>? = null,
+  content: MDCContent<MDCTooltipRichContentScope>? = null,
 ) {
   P(
     attrs = {

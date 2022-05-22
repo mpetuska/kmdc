@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.fab
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.ContentBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.applyContent
@@ -36,7 +36,7 @@ public fun MDCFab(
   exited: Boolean = false,
   touch: Boolean = false,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCFabScope>? = null
+  content: MDCContent<MDCFabScope>? = null
 ) {
   MDCFabStyles
   Button(

@@ -1,9 +1,10 @@
 package dev.petuska.kmdc.list
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.reinterpret
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
@@ -13,7 +14,8 @@ import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLHeadingElement
 
-public class MDCListGroupScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
+@MDCDsl
+public interface MDCListGroupScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
@@ -25,13 +27,15 @@ public class MDCListGroupScope(scope: ElementScope<HTMLDivElement>) : ElementSco
   level = DeprecationLevel.WARNING
 )
 public fun MDCListGroup(
-  attrs: Builder<AttrsScope<HTMLDivElement>>? = null,
-  content: ComposableBuilder<MDCListGroupScope>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLDivElement>>? = null,
+  content: MDCContent<MDCListGroupScope>? = null,
 ) {
-  Div(attrs = {
-    classes("mdc-deprecated-list-group")
-    attrs?.invoke(this)
-  }, content = content?.let { { MDCListGroupScope(this).it() } })
+  Div(
+    attrs = {
+      classes("mdc-deprecated-list-group")
+      attrs?.invoke(this)
+    }, content = content.reinterpret()
+  )
 }
 
 /**
@@ -39,8 +43,8 @@ public fun MDCListGroup(
  */
 @MDCDsl
 @Composable
-public fun MDCListGroupScope.MDCListGroupSubheader(
-  attrs: Builder<AttrsScope<HTMLHeadingElement>>? = null,
+public fun MDCListGroupScope.Subheader(
+  attrs: MDCAttrs<AttrsScope<HTMLHeadingElement>>? = null,
   content: ContentBuilder<HTMLHeadingElement>? = null,
 ) {
   H3(attrs = {
@@ -54,9 +58,9 @@ public fun MDCListGroupScope.MDCListGroupSubheader(
  */
 @MDCDsl
 @Composable
-public fun MDCListGroupScope.MDCListGroupSubheader(
+public fun MDCListGroupScope.Subheader(
   text: String,
-  attrs: Builder<AttrsScope<HTMLHeadingElement>>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLHeadingElement>>? = null,
 ) {
-  MDCListGroupSubheader(attrs) { Text(text) }
+  Subheader(attrs) { Text(text) }
 }

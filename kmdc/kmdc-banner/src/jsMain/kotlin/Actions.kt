@@ -7,7 +7,7 @@ import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.applyAttrs
 import dev.petuska.kmdc.core.reinterpret
@@ -27,7 +27,7 @@ public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 @Composable
 public fun MDCBannerScope.Actions(
   attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCBannerActionsScope>? = null,
+  content: MDCContent<MDCBannerActionsScope>? = null,
 ) {
   Div(
     attrs = {
@@ -50,7 +50,7 @@ private fun MDCBannerActionsScope.Action(
   type: MDCButtonType,
   icon: MDCButtonIconType,
   attrs: AttrsBuilder<HTMLButtonElement>?,
-  content: ComposableBuilder<MDCButtonScope>?,
+  content: MDCContent<MDCButtonScope>?,
 ) {
   MDCButton(
     type = type,
@@ -73,7 +73,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(true, type, icon, attrs, content)
 }
@@ -103,7 +103,7 @@ public fun MDCBannerActionsScope.SecondaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(false, type, icon, attrs, content)
 }

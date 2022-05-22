@@ -1,7 +1,7 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
+import dev.petuska.kmdc.core.MDCAttrs
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.classes
@@ -30,7 +30,7 @@ public fun MDCTextArea(
   maxLength: UInt? = null,
   rows: UInt = 8u,
   columns: UInt = 40u,
-  attrs: Builder<TextAreaAttrsScope>? = null,
+  attrs: MDCAttrs<TextAreaAttrsScope>? = null,
 ) {
   MDCTextFieldStyle
   val labelId = rememberUniqueDomElementId()
@@ -101,7 +101,7 @@ private fun MDCTextAreaInput(
   helperText: String?,
   rows: UInt,
   columns: UInt,
-  attrs: Builder<TextAreaAttrsScope>?,
+  attrs: MDCAttrs<TextAreaAttrsScope>?,
   labelId: String,
   helperId: String,
 ) {

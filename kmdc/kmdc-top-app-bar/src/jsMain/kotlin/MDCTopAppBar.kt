@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
+import dev.petuska.kmdc.core.MDCAttrs
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCDsl
 import dev.petuska.kmdc.core.MDCInitEffect
 import dev.petuska.kmdc.core.applyContent
@@ -48,8 +48,8 @@ public interface MDCTopAppBarScope : ElementScope<HTMLElement>
 @MDCDsl
 @Composable
 public fun MDCTopAppBarContext(
-  opts: Builder<MDCTopAppBarContextOpts>? = null,
-  content: ComposableBuilder<MDCTopAppBarContextScope>? = null
+  opts: MDCAttrs<MDCTopAppBarContextOpts>? = null,
+  content: MDCContent<MDCTopAppBarContextScope>? = null
 ) {
   MDCTopAppBarStyle
   val options = MDCTopAppBarContextOpts().apply { opts?.invoke(this) }
@@ -65,7 +65,7 @@ public fun MDCTopAppBarContext(
 @Composable
 public fun MDCTopAppBarContextScope.MDCTopAppBar(
   attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ComposableBuilder<MDCTopAppBarScope>? = null
+  content: MDCContent<MDCTopAppBarScope>? = null
 ) {
   val type = MDCTopAppBarType.current
   Header(

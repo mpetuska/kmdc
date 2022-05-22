@@ -7,6 +7,8 @@ kmdc {
   dependencies {
     main {
       api(kmdc("ripple"))
+      api(kmdc("radio"))
+      api(kmdc("checkbox"))
     }
   }
 }
