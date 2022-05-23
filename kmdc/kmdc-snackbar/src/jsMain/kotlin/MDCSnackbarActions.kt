@@ -72,12 +72,12 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 @MDCDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarDismiss(
-  opts: MDCAttrs<MDCIconButtonOpts>? = null,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: MDCContent<MDCIconButtonScope>? = null,
+  on: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  content: MDCContent<MDCIconButtonScope<HTMLButtonElement>>? = null,
 ) {
   MDCIconButton(
-    opts = opts,
+    on = on,
     attrs = {
       classes("mdc-snackbar__dismiss")
       attrs?.invoke(this)

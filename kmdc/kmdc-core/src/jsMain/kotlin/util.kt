@@ -6,7 +6,7 @@ import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.*
 
-public typealias AttrsBuilder<T> = org.jetbrains.compose.web.dom.AttrBuilderContext<T>
+public typealias AttrsBuilder<T> = AttrBuilderContext<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
 public typealias MDCAttrsRaw<T> = @MDCAttrsDsl AttrsBuilder<T>
 public typealias MDCContentRaw<T> = @MDCDsl ContentBuilder<T>
@@ -116,3 +116,5 @@ public fun rememberUniqueDomElementId(suffix: String? = null): String =
 @Composable
 @KMDCInternalAPI
 public fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
+
+public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> = compositionLocalOf { error("undefined") }

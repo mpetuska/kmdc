@@ -8,7 +8,7 @@ import kotlin.js.*
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onOpening(listener: MDCEventListener<Json>) {
-  addMdcEventListener(MDCDialogModule.strings.OPENING_EVENT, listener)
+  addMdcEventListener("MDCDialog:opening", listener)
 }
 
 /**
@@ -16,7 +16,7 @@ public fun MDCDialogAttrsScope.onOpening(listener: MDCEventListener<Json>) {
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onOpened(listener: MDCEventListener<Json>) {
-  addMdcEventListener(MDCDialogModule.strings.OPENED_EVENT, listener)
+  addMdcEventListener("MDCDialog:opened", listener)
 }
 
 public external interface MDCDialogCloseEventDetail {
@@ -28,7 +28,7 @@ public external interface MDCDialogCloseEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onClosing(listener: MDCEventListener<MDCDialogCloseEventDetail>) {
-  addMdcEventListener(MDCDialogModule.strings.CLOSING_EVENT, listener)
+  addMdcEventListener("MDCDialog:closing", listener)
 }
 
 /**
@@ -36,5 +36,5 @@ public fun MDCDialogAttrsScope.onClosing(listener: MDCEventListener<MDCDialogClo
  */
 @MDCAttrsDsl
 public fun MDCDialogAttrsScope.onClosed(listener: MDCEventListener<MDCDialogCloseEventDetail>) {
-  addMdcEventListener(MDCDialogModule.strings.CLOSED_EVENT, listener)
+  addMdcEventListener("MDCDialog:closed", listener)
 }

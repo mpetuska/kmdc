@@ -6,24 +6,16 @@ import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.*
 
-@JsModule("@material/dialog/dist/mdc.dialog.css")
-private external val MDCDialogCSS: dynamic
+@JsModule("@material/dialog/mdc-dialog.scss")
+private external val Style: dynamic
 
-public class MDCDialogAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
+public interface MDCDialogAttrsScope : AttrsScope<HTMLDivElement>
 
-public data class MDCDialogOpts(
-  var open: Boolean = false,
-  var fullscreen: Boolean = false,
-  var scrimClickAction: String? = null,
-  var escapeKeyAction: String? = null,
-  var autoStackButtons: Boolean = true
-)
+public interface MDCDialogScope : ElementScope<HTMLDivElement>, MDCDialogTitleScope<HTMLDivElement>
 
-public class MDCDialogScope(
-  scope: ElementScope<HTMLDivElement>,
-  internal val titleId: String,
-  internal val contentId: String
-) : ElementScope<HTMLDivElement> by scope
+internal val TitleIdLocal = strictCompositionLocalOf<String>()
+internal val ContentIdLocal = strictCompositionLocalOf<String>()
+internal val OpenLocal = strictCompositionLocalOf<Boolean>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
@@ -31,49 +23,52 @@ public class MDCDialogScope(
 @MDCDsl
 @Composable
 public fun MDCDialog(
-  opts: MDCAttrs<MDCDialogOpts>? = null,
+  open: Boolean,
+  fullscreen: Boolean = false,
+  stacked: Boolean = true,
+  scrimClickAction: String = "close",
+  escapeKeyAction: String = "close",
   attrs: MDCAttrs<MDCDialogAttrsScope>? = null,
   content: MDCContent<MDCDialogScope>? = null
 ) {
-  MDCDialogCSS
-  val options = MDCDialogOpts().apply { opts?.invoke(this) }
+  Style
   val titleId = rememberUniqueDomElementId()
   val contentId = rememberUniqueDomElementId()
-  Div(
-    attrs = {
-      classes("mdc-dialog")
-      if (options.fullscreen) classes(MDCDialogModule.cssClasses.FULLSCREEN)
-      if (!options.autoStackButtons) classes(MDCDialogModule.cssClasses.STACKED)
-      attrs?.invoke(MDCDialogAttrsScope(this))
-    }
+  CompositionLocalProvider(
+    TitleIdLocal provides titleId,
+    ContentIdLocal provides contentId,
+    OpenLocal provides open,
   ) {
-    MDCInitEffect(MDCDialogModule.MDCDialog::attachTo, keys = arrayOf(options.open)) {
-      if (options.open) open() else close("")
-    }
-    MDCStateEffect(options.scrimClickAction, MDCDialogModule.MDCDialog::scrimClickAction)
-    MDCStateEffect(options.escapeKeyAction, MDCDialogModule.MDCDialog::escapeKeyAction)
-    MDCStateEffect(options.autoStackButtons, MDCDialogModule.MDCDialog::autoStackButtons)
+    Div(
+      attrs = {
+        classes("mdc-dialog")
+        if (fullscreen) classes("mdc-dialog--fullscreen")
+        if (stacked) classes("mdc-dialog--stacked")
+        applyAttrs(attrs)
+      }
+    ) {
+      MDCProvider(::MDCDialog) {
+        MDCSideEffectNew(open) {
+          if (open) open() else close()
+        }
+        MDCStateEffectNew(scrimClickAction, MDCDialog::scrimClickAction)
+        MDCStateEffectNew(escapeKeyAction, MDCDialog::escapeKeyAction)
+        MDCStateEffectNew(!stacked, MDCDialog::autoStackButtons)
+      }
 
-    Div(attrs = { classes("mdc-dialog__container") }) {
-      Div(
-        attrs = {
-          classes("mdc-dialog__surface")
-          attr("role", if (options.fullscreen) "dialog" else "alertdialog")
-          aria("modal", "true")
-          aria("labelledby", titleId)
-          aria("describedby", contentId)
-        },
-        content = content?.let { { MDCDialogScope(this, titleId, contentId).it() } }
-      )
+      Div(attrs = { classes("mdc-dialog__container") }) {
+        Div(
+          attrs = {
+            classes("mdc-dialog__surface")
+            role(if (fullscreen) "dialog" else "alertdialog")
+            aria("modal", "true")
+            aria("labelledby", titleId)
+            aria("describedby", contentId)
+          },
+          content = content.reinterpret(),
+        )
+      }
+      Div(attrs = { classes("mdc-dialog__scrim") })
     }
-    Div(attrs = { classes("mdc-dialog__scrim") })
   }
-}
-
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
- */
-@MDCAttrsDsl
-public fun AttrsScope<out HTMLElement>.mdcDialogInitialFocus() {
-  attr(MDCDialogModule.strings.INITIAL_FOCUS_ATTRIBUTE, "true")
 }

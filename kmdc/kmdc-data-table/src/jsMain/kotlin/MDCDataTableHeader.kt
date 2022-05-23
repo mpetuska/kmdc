@@ -5,8 +5,6 @@ package dev.petuska.kmdc.data.table
 import androidx.compose.runtime.*
 import dev.petuska.kmdc.checkbox.*
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.icon.button.*
 import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.*
@@ -21,7 +19,7 @@ public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowEleme
 @MDCDsl
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableHeader(
-  attrs: AttrsBuilder<HTMLTableRowElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableRowElement>? = null,
   content: MDCContent<MDCDataTableHeaderScope>? = null,
 ) {
   Thead {
@@ -42,8 +40,8 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
 @Composable
 public fun MDCDataTableHeaderScope.MDCDataTableCell(
   numeric: Boolean = false,
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
-  content: ContentBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  content: MDCContentRaw<HTMLTableCellElement>? = null,
 ) {
   Th(
     attrs = {
@@ -65,7 +63,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
 public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
   text: String,
   numeric: Boolean = false,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
   MDCDataTableCell(numeric, attrs) { Text(text) }
 }
@@ -79,7 +77,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
   selected: Boolean?,
   numeric: Boolean = false,
   label: String? = null,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
   MDCDataTableCell(
     numeric = numeric,
@@ -112,9 +110,9 @@ public fun MDCDataTableHeaderScope.MDCDataTableSortCell(
   columnId: String,
   numeric: Boolean = false,
   label: String? = null,
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
-  buttonAttrs: AttrsBuilder<HTMLButtonElement>? = null,
-  buttonContent: MDCContent<MDCIconButtonScope>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  buttonAttrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  buttonContent: MDCContent<MDCIconButtonScope<HTMLButtonElement>>? = null,
 ) {
   val id = rememberUniqueDomElementId()
   MDCDataTableCell(

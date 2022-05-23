@@ -16,6 +16,7 @@ public object InteractiveShowcaseStyle : StyleSheet() {
   }
   public val preview: String by style {
     width(100.percent)
+    property("z-index", "1")
   }
   public val stickyBox: String by style {
     position(Position.Sticky)

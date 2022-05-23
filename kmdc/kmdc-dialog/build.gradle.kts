@@ -7,6 +7,7 @@ kmdc {
   dependencies {
     main {
       api(kmdc("button"))
+      api(kmdc("icon-button"))
     }
   }
 }
