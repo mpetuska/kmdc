@@ -80,13 +80,17 @@ fun MDCDialog() = InteractiveShowcase(
       attrs = {
         registerEvents()
         onOpening { simpleOpen = false }
-        onClosed { interactiveOpen = false }
+        onClosed {
+          interactiveOpen = false
+          selected = it.detail.action?.takeIf { a -> a in ringtones } ?: selected
+        }
       }
     ) {
       Title("Choose a Ringtone")
       Content {
         MDCList(
-          type = MDCListType.Avatar
+          type = MDCListType.Avatar,
+          selection = MDCListSelection.SingleRadio,
         ) {
           ringtones.forEachIndexed { index, item ->
             ListItem(
@@ -97,10 +101,14 @@ fun MDCDialog() = InteractiveShowcase(
                 }
               }
             ) {
-              Text(item)
+              RadioGraphic(checked = selected == item, label = item)
             }
           }
         }
+      }
+      Actions {
+        Action(action = "close", text = "Cancel")
+        Action(action = "accept", text = "OK")
       }
     }
   }
@@ -110,5 +118,5 @@ private fun MDCDialogAttrsScope.registerEvents() {
   onOpening { console.log("MDCDialog#onOpening", it.detail) }
   onOpened { console.log("MDCDialog#onOpened", it.detail) }
   onClosing { console.log("MDCDialog#onClosing", it.detail) }
-  onClosed { console.log("MDCDialog#onClosing", it.detail) }
+  onClosed { console.log("MDCDialog#onClosed", it.detail) }
 }

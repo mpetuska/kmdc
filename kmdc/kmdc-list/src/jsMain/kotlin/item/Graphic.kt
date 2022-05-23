@@ -5,6 +5,7 @@ import dev.petuska.kmdc.checkbox.*
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.radio.*
 import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.builders.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.*
 
@@ -30,10 +31,23 @@ public fun MDCListItemScope<*>.Graphic(
 @Composable
 public fun MDCListItemScope<*>.RadioGraphic(
   checked: Boolean,
-  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  touch: Boolean = false,
+  disabled: Boolean = false,
+  label: String? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
-  Graphic(attrs) {
-    MDCRadio(checked = checked)
+  val radioId = rememberUniqueDomElementId()
+  Graphic {
+    MDCRadioLayout(
+      id = radioId,
+      checked = checked,
+      touch = touch,
+      disabled = disabled,
+      attrs = attrs,
+    )
+  }
+  if (label != null) {
+    Label(label, radioId)
   }
 }
 
