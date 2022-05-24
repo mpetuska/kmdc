@@ -38,7 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-
 
       - name: Gradle Check
-        run: ./gradlew detektAll check --scan
+        run: ./gradlew detektAll check -x detekt --scan
 
       - name: Make artifact location URIs relative
         if: ${{ always() }}
@@ -61,13 +61,6 @@ jobs:
       - name: Gradle Assemble
         run: ./gradlew assemble --scan
 
-      - uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: reports-${{ runner.os }}
-          path: |
-            **/build/reports
-
       - name: Gradle Check Sandbox
         working-directory: sandbox
         run: ./gradlew check --scan
@@ -79,7 +72,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: sandbox-${{ runner.os }}
+          name: reports-${{ runner.os }}
           path: |
-            sandbox/**/build/reports
-            sandbox/**/build/publications
+            **/build/reports
+            detekt.sarif.json
