@@ -1,19 +1,19 @@
 package dev.petuska.kmdc.checkbox
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.form.field.*
-import org.jetbrains.compose.web.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.attributes.builders.*
+import dev.petuska.kmdc.form.field.MDCFormFieldScope
+import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
+import org.jetbrains.compose.web.attributes.InputType
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
+import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.svg.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.svg.Path
+import org.jetbrains.compose.web.svg.Svg
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/checkbox/mdc-checkbox.scss")
-public external val MDCCheckboxStyles: dynamic
+public external val Style: dynamic
 
 public interface MDCCheckboxScope : ElementScope<HTMLDivElement>
 
@@ -23,19 +23,18 @@ public fun MDCCheckbox(
   disabled: Boolean = false,
   indeterminate: Boolean = false,
   touch: Boolean = false,
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCCheckboxScope>? = null,
 ) {
-  MDCCheckboxStyles
-
+  Style
   Div(attrs = {
     classes("mdc-checkbox")
     if (touch) classes("mdc-checkbox--touch")
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCCheckboxModule::MDCCheckbox)
-    MDCStateEffect(indeterminate, MDCCheckboxModule.MDCCheckbox::indeterminate)
-    MDCStateEffect(disabled, MDCCheckboxModule.MDCCheckbox::disabled)
+    MDCInitEffect(::MDCCheckbox)
+    MDCStateEffect(indeterminate, MDCCheckbox::indeterminate)
+    MDCStateEffect(disabled, MDCCheckbox::disabled)
     applyContent(content)
   }
 }
@@ -97,7 +96,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
       disabled = disabled,
       attrs = {
         ref {
-          it.mdc<MDCCheckboxModule.MDCCheckbox> { setInput(it, this) }
+          it.mdc<MDCCheckbox> { setInput(it, this) }
           onDispose { }
         }
         id(checkboxId)
@@ -134,7 +133,7 @@ public fun MDCCheckboxScope.MDCCheckboxInput(
 @MDCDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxBackground(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   Div(attrs = {
     classes("mdc-checkbox__background")
@@ -159,7 +158,7 @@ public fun MDCCheckboxScope.MDCCheckboxBackground(
 @MDCDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxRipple(
-  attrs: AttrsBuilder<HTMLDivElement>? = null
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null
 ) {
   Div(attrs = {
     classes("mdc-checkbox__ripple")

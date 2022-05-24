@@ -1,12 +1,15 @@
 package dev.petuska.kmdc.list.item
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.list.*
-import dev.petuska.kmdc.ripple.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
+import dev.petuska.kmdc.list.MDCListScope
+import dev.petuska.kmdc.list.MDCListSelectionLocal
+import dev.petuska.kmdc.ripple.MDCRipple
+import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.ContentBuilder
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Li
+import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.*
 
 public interface MDCListItemScope<T : HTMLElement> : ElementScope<T>
@@ -20,7 +23,7 @@ public fun MDCListScope<HTMLUListElement>.ListItem(
   disabled: Boolean = false,
   selected: Boolean = false,
   activated: Boolean = false,
-  attrs: MDCAttrs<AttrsScope<HTMLLIElement>>? = null,
+  attrs: MDCAttrsRaw<HTMLLIElement>? = null,
   content: MDCContent<MDCListItemScope<HTMLLIElement>>? = null,
 ) {
   val selection = MDCListSelectionLocal.current
@@ -48,11 +51,33 @@ public fun MDCListScope<HTMLUListElement>.ListItem(
  */
 @MDCDsl
 @Composable
+public fun MDCListScope<HTMLUListElement>.ListItem(
+  text: String,
+  disabled: Boolean = false,
+  selected: Boolean = false,
+  activated: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLLIElement>? = null,
+) {
+  ListItem(
+    disabled = disabled,
+    selected = selected,
+    activated = activated,
+    attrs = attrs,
+  ) {
+    Text(text)
+  }
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
+ */
+@MDCDsl
+@Composable
 public fun MDCListScope<HTMLElement>.ListItem(
   disabled: Boolean = false,
   selected: Boolean = false,
   activated: Boolean = false,
-  attrs: MDCAttrs<AttrsScope<HTMLAnchorElement>>? = null,
+  attrs: MDCAttrsRaw<HTMLAnchorElement>? = null,
   content: MDCContent<MDCListItemScope<HTMLAnchorElement>>? = null,
 ) {
   val selection = MDCListSelectionLocal.current
@@ -83,8 +108,30 @@ public fun MDCListScope<HTMLElement>.ListItem(
  */
 @MDCDsl
 @Composable
+public fun MDCListScope<HTMLElement>.ListItem(
+  text: String,
+  disabled: Boolean = false,
+  selected: Boolean = false,
+  activated: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLAnchorElement>? = null,
+) {
+  ListItem(
+    disabled = disabled,
+    selected = selected,
+    activated = activated,
+    attrs = attrs,
+  ) {
+    Text(text)
+  }
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
+ */
+@MDCDsl
+@Composable
 public fun MDCListItemScope<*>.Meta(
-  attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null,
 ) {
   Span(attrs = {

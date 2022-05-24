@@ -1,181 +1,81 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.checkbox.*
-import dev.petuska.kmdc.form.field.*
-import dev.petuska.kmdc.radio.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.select.*
-import dev.petuska.kmdcx.icons.*
-import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.*
-import samples.*
+import dev.petuska.kmdc.select.anchor.Anchor
+import dev.petuska.kmdc.select.menu.Menu
+import dev.petuska.kmdc.select.menu.SelectItem
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.TextControl
+import sandbox.util.NamedGroup
 
-object MDCSelect : Samples() {
-  private val fruits = listOf("", "Apple", "Orange", "Banana")
-  private val vegetables = listOf("", "Lettuce", "Celery")
+private class MDCSelectVM {
+  var type by mutableStateOf(MDCSelectType.Filled)
+  var required by mutableStateOf(false)
+  var disabled by mutableStateOf(false)
+  var label by mutableStateOf("Select Fruit")
 
-  override val content: SamplesRender = {
-    var selectedValue by remember { mutableStateOf(fruits[1]) }
-    var isRequired by remember { mutableStateOf(false) }
-    var isDisabled by remember { mutableStateOf(false) }
+  var helperText by mutableStateOf("")
+  var helperTextType by mutableStateOf(MDCSelectHelperTextType.Default)
 
-    Sample("Filled") {
-      Div {
-        MDCSelect(
-          fruits + "Potato",
-          opts = {
-            type = MDCSelectOpts.Type.Filled
-            value = selectedValue
-            required = isRequired
-            disabled = isDisabled
-            itemDisabled = { this == "Potato" }
-            hiddenInputName = "filledSelect"
-            label = "Fruit"
-          },
+  var selected by mutableStateOf("")
+
+  val fruits = listOf("", "Apple", "Orange", "Banana")
+}
+
+@Composable
+@Showcase(id = "MDCSelect")
+fun MDCSelect() = InteractiveShowcase(
+  viewModel = { MDCSelectVM() },
+  controls = {
+    ChoiceControl("Type", MDCSelectType.values().associateBy(MDCSelectType::name), ::type)
+    BooleanControl("Required", ::required)
+    BooleanControl("Disabled", ::disabled)
+    TextControl("Label", ::label)
+    NamedGroup("Helper Text") {
+      TextControl("Text", ::helperText)
+      ChoiceControl(
+        title = "Type",
+        options = MDCSelectHelperTextType.values().associateBy(MDCSelectHelperTextType::name),
+        selected = ::helperTextType
+      )
+    }
+  },
+) {
+  MDCSelect(
+    type = type,
+    required = required,
+    disabled = disabled,
+    helperText = helperText.takeIf(String::isNotBlank),
+    helperTextType = helperTextType,
+    attrs = {
+      registerEvents()
+      onChange {
+        selected = fruits[it.detail.index]
+      }
+    }
+  ) {
+    Anchor(label)
+    Menu {
+      fruits.forEach {
+        SelectItem(
+          text = it,
+          selected = selected == it,
           attrs = {
-            onChange { selectedValue = it }
+            attr("data-value", it)
           }
         )
       }
-      Div {
-        MDCFormField {
-          MDCCheckbox(isRequired, label = "Required", attrs = { onChange { isRequired = it.value } })
-        }
-      }
-      Div {
-        MDCFormField {
-          MDCCheckbox(isDisabled, label = "Disabled", attrs = { onChange { isDisabled = it.value } })
-        }
-      }
-    }
-
-    Sample("Outlined") {
-      MDCSelect(
-        fruits + "Potato",
-        opts = {
-          type = MDCSelectOpts.Type.Outlined
-          value = selectedValue
-          label = "Fruit"
-          itemDisabled = { this == "Potato" }
-        },
-        attrs = {
-          onChange { selectedValue = it }
-        }
-      )
-    }
-
-    Sample("Helper text") {
-      var helperTextType by remember { mutableStateOf(MDCSelectOpts.HelperTextType.Default) }
-      Div {
-        MDCSelect(
-          MDCSelectOpts.HelperTextType.values().toList(),
-          opts = {
-            type = MDCSelectOpts.Type.Filled
-            value = helperTextType
-          },
-          attrs = {
-            onChange { helperTextType = it }
-          }
-        ) {
-          Text(it.name)
-        }
-      }
-      Br()
-      Div {
-        MDCSelect(
-          fruits,
-          opts = {
-            type = MDCSelectOpts.Type.Outlined
-            value = selectedValue
-            label = "Fruit"
-            required = true
-            helperText = "Please pick up your favorite fruit"
-            this.helperTextType = helperTextType
-          },
-          attrs = {
-            onChange { selectedValue = it }
-          }
-        )
-      }
-    }
-
-    Sample("With leading icon") {
-      MDCSelect(
-        fruits,
-        opts = {
-          type = MDCSelectOpts.Type.Filled
-          value = selectedValue
-          leadingIcon = MDCIconOpts.MDCIconType.FoodBank.iconType
-          leadingIconClickable = true
-        },
-        attrs = {
-          onChange { selectedValue = it }
-        }
-      )
-
-      Span(attrs = { style { width(10.px) } })
-
-      MDCSelect(
-        fruits,
-        opts = {
-          type = MDCSelectOpts.Type.Outlined
-          value = selectedValue
-          leadingIcon = MDCIconOpts.MDCIconType.FoodBank.iconType
-          leadingIconClickable = false
-        },
-        attrs = {
-          onChange { selectedValue = it }
-        }
-      )
-    }
-
-    Sample("With changing list") {
-      var fruitList by remember { mutableStateOf(true) }
-      var selectedFruit by remember { mutableStateOf(fruits[0]) }
-      var selectedVegetable by remember { mutableStateOf(vegetables[0]) }
-
-      Div {
-        MDCFormField {
-          MDCRadio(
-            checked = fruitList,
-            label = "Fruits",
-            attrs = {
-              onInput { fruitList = true }
-            }
-          )
-          MDCRadio(
-            checked = !fruitList,
-            label = "Vegetables",
-            attrs = {
-              onInput { fruitList = false }
-            }
-          )
-        }
-      }
-
-      MDCSelect(
-        if (fruitList) {
-          fruits
-        } else {
-          vegetables
-        },
-        opts = {
-          value = if (fruitList) {
-            selectedFruit
-          } else {
-            selectedVegetable
-          }
-        },
-        attrs = {
-          onChange {
-            if (fruitList) {
-              selectedFruit = it
-            } else {
-              selectedVegetable = it
-            }
-          }
-        }
-      )
     }
   }
+}
+
+private fun MDCSelectAttrsScope.registerEvents() {
+  onChange { console.log("MDCSelect#onChange", it.detail) }
 }

@@ -1,142 +1,80 @@
 package dev.petuska.kmdc.select
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.list.*
-import dev.petuska.kmdc.list.item.*
-import dev.petuska.kmdc.menu.surface.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/select/dist/mdc.select.css")
-private external val MDCSelectCSS: dynamic
+@JsModule("@material/select/mdc-select.scss")
+private external val Style: dynamic
 
-public data class MDCSelectOpts<T>(
-  var type: Type = Type.Filled,
-  var value: T? = null,
-  var itemValue: T.() -> String = { toString() },
-  var itemDisabled: T.() -> Boolean = { false },
-  var label: String? = null,
-  var required: Boolean = false,
-  var disabled: Boolean = false,
-  var hiddenInputName: String? = null,
-  var helperText: String? = null,
-  var helperTextType: HelperTextType = HelperTextType.Default,
-  var leadingIcon: String? = null,
-  var leadingIconClickable: Boolean = false,
-  var leadingIconClasses: List<String> = listOf("material-icons")
-) {
-  public enum class Type(public val klass: String) {
-    Outlined("mdc-select--outlined"),
-    Filled("mdc-select--filled")
-  }
-
-  public enum class HelperTextType(public vararg val classes: String) {
-    Default,
-    Validation("mdc-select-helper-text--validation-msg"),
-    PersistentValidation("mdc-select-helper-text--validation-msg", "mdc-select-helper-text--validation-msg-persistent")
-  }
+public enum class MDCSelectType(public vararg val classes: String) {
+  Filled("mdc-select--filled"),
+  Outlined("mdc-select--outlined")
 }
 
-public class MDCSelectAttrsScope<T>(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
+public enum class MDCSelectHelperTextType(public vararg val classes: String) {
+  Default,
+  Validation("mdc-select-helper-text--validation-msg"),
+  PersistentValidation("mdc-select-helper-text--validation-msg", "mdc-select-helper-text--validation-msg-persistent")
+}
+
+public interface MDCSelectScope : ElementScope<HTMLDivElement>
+public interface MDCSelectAttrsScope : AttrsScope<HTMLDivElement>
+
+internal val MDCSelectTypeLocal = strictCompositionLocalOf<MDCSelectType>()
+internal val MDCSelectHelperTextIdLocal = strictCompositionLocalOf<String?>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
 @MDCDsl
 @Composable
-public fun <T> MDCSelect(
-  items: List<T>,
-  opts: MDCAttrs<MDCSelectOpts<T>>? = null,
-  attrs: MDCAttrs<MDCSelectAttrsScope<T>>? = null,
-  renderItem: @Composable ElementScope<HTMLSpanElement>.(T) -> Unit = { Text(it.toString()) }
+public fun MDCSelect(
+  type: MDCSelectType = MDCSelectType.Filled,
+  required: Boolean = false,
+  disabled: Boolean = false,
+  helperText: String? = null,
+  helperTextType: MDCSelectHelperTextType = MDCSelectHelperTextType.Default,
+  attrs: MDCAttrs<MDCSelectAttrsScope>? = null,
+  content: MDCContent<MDCSelectScope>? = null,
 ) {
-  MDCSelectCSS
-  val labelId = rememberUniqueDomElementId()
-  val selectedTextId = rememberUniqueDomElementId()
-  val helperTextId = rememberUniqueDomElementId()
-  val options = MDCSelectOpts<T>().apply { opts?.invoke(this) }
-  val hasLeadingIcon = options.leadingIcon != null
-
-  fun T.itemValue() = with(options) { itemValue() }
-  fun T.itemDisabled() = with(options) { itemDisabled() }
-
+  Style
+  val helperTextId = rememberUniqueDomElementId("helper")
   Div(
     attrs = {
-      with(options) {
-        classes("mdc-select", type.klass)
-        if (label == null) classes("mdc-select--no-label")
-        if (required) classes("mdc-select--required")
-        if (disabled) classes("mdc-select--disabled")
-        if (required && value?.itemValue().isNullOrBlank()) classes("mdc-select--invalid")
-        if (hasLeadingIcon) classes("mdc-select--with-leading-icon")
-        if (helperText != null) {
-          aria("controls", helperTextId)
-          aria("describedby", helperTextId)
-        }
-      }
-      attrs?.invoke(MDCSelectAttrsScope(this))
+      classes("mdc-select")
+      classes(type.classes)
+      if (required) classes("mdc-select--required")
+      if (disabled) classes("mdc-select--disabled")
+      applyAttrs(attrs)
     }
   ) {
-    DisposableEffect(items) {
-      scopeElement.asDynamic().mdc = MDCSelectModule.MDCSelect.attachTo<T>(scopeElement)
-      scopeElement.mdc<MDCSelectModule.MDCSelect<T>> {
-        this.items = items
-        required = options.required
-        disabled = options.disabled
-      }
-      onDispose {
-        scopeElement.mdc<MDCSelectModule.MDCSelect<T>> { destroy() }
-      }
-    }
-    MDCStateEffect(options.required, MDCSelectModule.MDCSelect<T>::required)
-    MDCStateEffect(options.disabled, MDCSelectModule.MDCSelect<T>::disabled)
-    MDCSideEffect<MDCSelectModule.MDCSelect<T>>(options.value) {
-      value = options.value?.itemValue()
-    }
-
-    options.hiddenInputName?.let {
-      HiddenInput { name(it) }
-    }
-
-    MDCSelectAnchor(labelId, options, selectedTextId, items, renderItem)
-
-    MDCMenuSurface(
-      fullWidth = true,
-      attrs = {
-        classes("mdc-select__menu", "mdc-menu")
-      }
+    CompositionLocalProvider(
+      MDCSelectTypeLocal provides type,
+      MDCSelectHelperTextIdLocal provides helperTextId.takeIf { helperText != null }
     ) {
-      MDCList(
-        attrs = {
-          options.label?.let { aria("label", it) }
-        }
-      ) {
-        items.forEach { item ->
-          ListItem(
-            selected = item == options.value,
-            disabled = item.itemDisabled(),
-            attrs = {
-              attr("data-value", item.itemValue())
-              aria("selected", (item == options.value).toString())
-              if (item.itemDisabled()) aria("disabled", "true")
-              role("option")
-            }
-          ) {
-            if (hasLeadingIcon) {
-              Graphic()
-            }
-            Text {
-              renderItem(item)
-            }
-          }
-        }
+      MDCProvider(::MDCSelect, type) {
+        MDCStateEffectNew(required, MDCSelect::required)
+        MDCStateEffectNew(disabled, MDCSelect::disabled)
+        applyContent(content)
       }
     }
   }
-  options.helperText?.let { helperText ->
-    MDCSelectHelperText(helperTextId, helperText, options.helperTextType)
+  if (helperText != null) {
+    P(attrs = {
+      id(helperTextId)
+      classes("mdc-select-helper-text")
+      classes(helperTextType.classes)
+    }) {
+      MDCProvider(::MDCSelectHelperText) {
+        Text(helperText)
+      }
+    }
   }
 }

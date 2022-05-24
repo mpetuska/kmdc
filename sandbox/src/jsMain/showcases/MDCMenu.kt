@@ -1,18 +1,24 @@
 package showcases
 
 import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
-import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.domain.*
-import dev.petuska.kmdc.list.item.*
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import dev.petuska.kmdc.core.KMDCInternalAPI
+import dev.petuska.kmdc.core.domain.Point
+import dev.petuska.kmdc.core.rememberMutableStateOf
+import dev.petuska.kmdc.list.item.CheckboxGraphic
+import dev.petuska.kmdc.list.item.Text
 import dev.petuska.kmdc.menu.*
 import dev.petuska.kmdc.menu.surface.*
-import dev.petuska.kmdc.textfield.*
-import dev.petuska.kmdcx.icons.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
-import sandbox.util.*
+import dev.petuska.kmdc.textfield.MDCTextField
+import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
+import dev.petuska.kmdc.textfield.MDCTextFieldType
+import dev.petuska.kmdcx.icons.MDCIconOpts
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.util.NamedBlock
+import sandbox.util.NamedGroup
 
 private class MDCMenuVM {
   var anchorCorner by mutableStateOf(Corner.BOTTOM_START)
@@ -164,7 +170,7 @@ fun MDCMenu() = InteractiveShowcase(
           }
           onClosed { open = false }
         }) {
-        menuItems.forEach { it ->
+        menuItems.forEach {
           MenuItem(
             disabled = disabled,
             activated = input.isNotBlank() && it.contains(input, ignoreCase = true)
