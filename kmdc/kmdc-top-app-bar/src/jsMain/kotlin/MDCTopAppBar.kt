@@ -1,10 +1,16 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Header
+import org.jetbrains.compose.web.dom.Main
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/top-app-bar/dist/mdc.top-app-bar.css")
 private external val MDCTopAppBarStyle: dynamic
@@ -64,7 +70,7 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
       attrs?.invoke(this)
     },
   ) {
-    MDCInitEffect(MDCTopAppBarModule::MDCTopAppBar)
+    MDCInitEffect(::MDCTopAppBar)
     applyContent(content)
   }
 }

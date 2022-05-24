@@ -9,7 +9,6 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 import sandbox.control.*
 
-
 private class MDCLineRippleVM {
   var active by mutableStateOf(false)
 }

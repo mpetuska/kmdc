@@ -38,13 +38,13 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-
 
       - name: Gradle Check
-        run: ./gradlew detekt check --scan
+        run: ./gradlew detektAll check --scan
 
       - name: Make artifact location URIs relative
         if: ${{ always() }}
         continue-on-error: true
         run: |
-          cp ${{ github.workspace }}/npm-publish-gradle-plugin/build/reports/detekt/detekt.sarif ${{ github.workspace }}/detekt.sarif.json
+          cp ${{ github.workspace }}/build/reports/detekt/detekt.sarif ${{ github.workspace }}/detekt.sarif.json
           echo "$(
             jq \
               --arg github_workspace ${{ github.workspace }} \

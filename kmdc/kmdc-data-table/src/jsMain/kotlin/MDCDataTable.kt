@@ -1,11 +1,13 @@
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.AttrsBuilder
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Table
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLTableElement
 
 @JsModule("@material/data-table/dist/mdc.data-table.css")
 private external val MDCDataTableCSS: dynamic
@@ -29,7 +31,7 @@ public fun MDCDataTable(
       applyAttrs(attrs)
     },
   ) {
-    MDCSideEffect(effect = MDCDataTableModule.MDCDataTable::layout)
+    MDCSideEffect(effect = MDCDataTable::layout)
     applyContent(content)
   }
 }
@@ -47,8 +49,8 @@ public fun MDCDataTable(
   MDCDataTable(attrs = {
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCDataTableModule::MDCDataTable)
-    MDCSideEffect<MDCDataTableModule.MDCDataTable>(loading) {
+    MDCInitEffect(::MDCDataTable)
+    MDCSideEffect<MDCDataTable>(loading) {
       if (loading) showProgress() else hideProgress()
     }
     applyContent(content)

@@ -47,9 +47,9 @@ public fun MDCChipsListboxScope.FilterChip(
           }
           applyAttrs(attrs)
         }, content = {
-          unsafeCast<MDCFilterChipScope>().Ripple()
-          applyContent(content)
-        })
+            unsafeCast<MDCFilterChipScope>().Ripple()
+            applyContent(content)
+          })
       }
     )
   }

@@ -1,6 +1,18 @@
 config:
   warningsAsErrors: true
 
+complexity:
+  LongMethod:
+    ignoreAnnotated:
+      - Showcase
+  TooManyFunctions:
+    ignoreAnnotated:
+      - MDCExternalAPI
+  LongParameterList:
+    ignoreAnnotated:
+      - MDCDsl
+      - Composable
+
 comments:
   active: true
   CommentOverPrivateFunction:
@@ -12,12 +24,21 @@ comments:
   OutdatedDocumentation:
     active: true
     allowParamOnConstructorProperties: false
-  UndocumentedPublicClass:
-    active: true
-  UndocumentedPublicFunction:
-    active: true
-  UndocumentedPublicProperty:
-    active: true
+#  UndocumentedPublicClass:
+#    active: true
+#  UndocumentedPublicFunction:
+#    active: true
+#  UndocumentedPublicProperty:
+#    active: true
+
+naming:
+  MatchingDeclarationName:
+    active: false
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][_a-zA-Z0-9]*'
+  FunctionNaming:
+    ignoreAnnotated:
+      - Composable
 
 style:
   WildcardImport:
@@ -26,8 +47,15 @@ style:
     active: false
   MaxLineLength:
     active: false
+  MagicNumber:
+    active: false
+  UnusedPrivateMember:
+    ignoreAnnotated:
+      - MDCExternalAPI
 
 formatting:
+  Filename:
+    active: false
   NoWildcardImports:
     active: false
   Indentation:

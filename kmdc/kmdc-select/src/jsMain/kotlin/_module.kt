@@ -2,12 +2,12 @@
 
 package dev.petuska.kmdc.select
 
-import dev.petuska.kmdc.core.MDCBaseModule
+import dev.petuska.kmdc.core.MDCComponent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import org.w3c.dom.Element
 
 @MDCExternalAPI
-public external class MDCSelect(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+public external class MDCSelect(element: Element) : MDCComponent<dynamic> {
   public var value: String
   public var selectedIndex: String
   public var disabled: Boolean
@@ -23,5 +23,8 @@ public external class MDCSelect(element: Element) : MDCBaseModule.MDCComponent<d
   public fun setSelectedIndex(selectedIndex: Int, skipNotify: Boolean = definedExternally)
 }
 
-public external class MDCSelectHelperText(element: Element) : MDCBaseModule.MDCComponent<dynamic>
-public external class MDCSelectIcon(element: Element) : MDCBaseModule.MDCComponent<dynamic>
+@MDCExternalAPI
+public external class MDCSelectHelperText(element: Element) : MDCComponent<dynamic>
+
+@MDCExternalAPI
+public external class MDCSelectIcon(element: Element) : MDCComponent<dynamic>

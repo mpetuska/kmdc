@@ -1,7 +1,9 @@
 package dev.petuska.katalog.plugin.builder
 
-import com.squareup.kotlinpoet.*
-import dev.petuska.katalog.plugin.util.*
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import dev.petuska.katalog.plugin.util.Builder
 
 @Target(AnnotationTarget.TYPE)
 @DslMarker
@@ -17,6 +19,7 @@ inline fun funOf(
 ): FunSpec = FunSpec.builder(name).apply(builder).build()
 
 inline fun fileOf(
-  packageName: String, fileName: String,
+  packageName: String,
+  fileName: String,
   builder: Builder<@KotlinPoetBuilderDSL FileSpec.Builder>
 ): FileSpec = FileSpec.builder(packageName, fileName).apply(builder).build()

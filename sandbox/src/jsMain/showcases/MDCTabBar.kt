@@ -1,19 +1,26 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.tab.*
-import dev.petuska.kmdc.tab.bar.*
+import dev.petuska.kmdc.tab.bar.MDCTabBar
+import dev.petuska.kmdc.tab.bar.MDCTabBarAttrsScope
+import dev.petuska.kmdc.tab.bar.onActivated
 import dev.petuska.kmdc.tab.indicator.*
-import dev.petuska.kmdc.tab.scroller.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
+import dev.petuska.kmdc.tab.scroller.Scroller
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.RangeControl
 
 private class MDCTabBarVM {
   var transition by mutableStateOf(MDCTabIndicatorTransition.Slide)
-  var indicator by mutableStateOf(MDCTabIndicator.Underline)
+  var indicator by mutableStateOf(MDCTabIndicatorType.Underline)
   var disabled by mutableStateOf(false)
   var stacked by mutableStateOf(false)
   var minWidth by mutableStateOf(false)
@@ -32,7 +39,7 @@ fun MDCTabBar() = InteractiveShowcase(
       options = MDCTabIndicatorTransition.values().associateBy(MDCTabIndicatorTransition::name),
       selected = ::transition
     )
-    ChoiceControl("Indicator", MDCTabIndicator.values().associateBy(MDCTabIndicator::name), ::indicator)
+    ChoiceControl("Indicator", MDCTabIndicatorType.values().associateBy(MDCTabIndicatorType::name), ::indicator)
     BooleanControl("Disabled", ::disabled)
     BooleanControl("Stacked", ::stacked)
     BooleanControl("Min Width", ::minWidth)
@@ -56,8 +63,8 @@ fun MDCTabBar() = InteractiveShowcase(
           }
           Indicator(active = active == "mdc-tab-$id", transition = transition) {
             when (indicator) {
-              MDCTabIndicator.Underline -> Underline()
-              MDCTabIndicator.Icon -> Icon(attrs = { classes("material-icons") }) { Text("star") }
+              MDCTabIndicatorType.Underline -> Underline()
+              MDCTabIndicatorType.Icon -> Icon(attrs = { classes("material-icons") }) { Text("star") }
             }
           }
         }

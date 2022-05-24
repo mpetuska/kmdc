@@ -1,10 +1,11 @@
 package dev.petuska.kmdc.tab.indicator
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.tab.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.tab.MDCTabBaseScope
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLSpanElement
 
 @JsModule("@material/tab-indicator/dist/mdc.tab-indicator.css")
 private external val MDCTabIndicatorCSS: dynamic
@@ -35,7 +36,7 @@ public fun MDCTabBaseScope.Indicator(
       attrs?.invoke(this)
     },
     content = {
-      MDCInitEffect(MDCTabIndicatorModule::MDCTabIndicator)
+      MDCInitEffect(::MDCTabIndicator)
       applyContent(content)
     }
   )

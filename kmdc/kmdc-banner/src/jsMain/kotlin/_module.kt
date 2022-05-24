@@ -2,11 +2,12 @@
 
 package dev.petuska.kmdc.banner
 
-import dev.petuska.kmdc.core.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.core.MDCComponent
+import dev.petuska.kmdc.core.MDCExternalAPI
+import org.w3c.dom.Element
 
 @MDCExternalAPI
-public external class MDCBanner(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+public external class MDCBanner(element: Element) : MDCComponent<dynamic> {
   public val isOpen: Boolean
   public fun open()
   public fun close(closeReason: CloseReason)

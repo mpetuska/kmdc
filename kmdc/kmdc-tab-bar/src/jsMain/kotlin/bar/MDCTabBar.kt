@@ -2,9 +2,10 @@ package dev.petuska.kmdc.tab.bar
 
 import androidx.compose.runtime.*
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/tab-bar/dist/mdc.tab-bar.css")
 private external val MDCTabBarCSS: dynamic
@@ -44,7 +45,7 @@ public fun MDCTabBar(
     },
     content = {
       applyContent(content) { MDCTabBarScope(it, context) }
-      MDCInitEffect(MDCTabBarModule::MDCTabBar, context.tabs)
+      MDCInitEffect(::MDCTabBar, context.tabs)
     },
   )
 }

@@ -1,12 +1,15 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/tooltip/dist/mdc.tooltip.css")
 private external val MDCTooltipStyle: dynamic
@@ -38,7 +41,7 @@ public fun MDCTooltip(
       applyAttrs(attrs)
     }
   ) {
-    MDCInitEffect(MDCTooltipModule::MDCTooltip, persistent)
+    MDCInitEffect(::MDCTooltip, persistent)
     Div(
       attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
       content = content.reinterpret()
@@ -68,6 +71,7 @@ public fun MDCTooltip(
 
 /**
  * Attaches tooltip to this element
+ * @param T
  * @param id tooltip ID
  * @param hidden whether this element should be hidden from screen-readers to avoid duplication with tooltip content
  */

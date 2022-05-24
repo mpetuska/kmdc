@@ -42,7 +42,7 @@ public fun MDCTabScrollerScope.Tab(
       applyAttrs(attrs)
     },
     content = {
-      MDCInitEffect(MDCTabModule::MDCTab, stacked, minWidth)
+      MDCInitEffect(::MDCTab, stacked, minWidth)
       applyContent(content)
       Span(attrs = { classes("mdc-tab__ripple") })
     }

@@ -4,7 +4,6 @@ import androidx.compose.runtime.*
 import dev.petuska.kmdc.checkbox.*
 import sandbox.util.*
 
-
 @Composable
 fun FilterControl(
   title: String,
@@ -19,7 +18,8 @@ fun FilterControl(
         label = text,
         attrs = {
           onInput { onSelect(text, !selected) }
-        })
+        }
+      )
     }
   }
 }

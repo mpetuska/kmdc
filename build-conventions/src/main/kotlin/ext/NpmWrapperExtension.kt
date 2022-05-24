@@ -1,13 +1,14 @@
 package ext
 
-import de.fayard.refreshVersions.core.*
+import de.fayard.refreshVersions.core.versionFor
 import jsMain
-import org.gradle.api.*
-import org.gradle.api.plugins.*
-import org.gradle.api.provider.*
-import org.jetbrains.compose.*
-import org.jetbrains.kotlin.gradle.dsl.*
-import org.jetbrains.kotlin.gradle.plugin.*
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.provider.Property
+import org.jetbrains.compose.ComposePlugin
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 @Suppress("LeakingThis")
 abstract class NpmWrapperExtension(private val project: Project) {
@@ -26,7 +27,6 @@ abstract class NpmWrapperExtension(private val project: Project) {
       )
     )
   }
-
 
   class Dependencies(private val kotlin: KotlinMultiplatformExtension) {
     val compose: ComposePlugin.Dependencies =

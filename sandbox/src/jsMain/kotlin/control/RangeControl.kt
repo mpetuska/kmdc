@@ -29,7 +29,8 @@ fun RangeControl(
           onInput(it.detail.value)
         }
         style { margin(0.em) }
-      })
+      }
+    )
   }
 }
 

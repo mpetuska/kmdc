@@ -1,9 +1,11 @@
 package dev.petuska.kmdc.linear.progress
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/linear-progress/dist/mdc.linear-progress.css")
 private external val MDCLinearProgressCSS: dynamic
@@ -41,11 +43,11 @@ public fun MDCLinearProgress(
     options.label?.let { attr("aria-label", it) }
     attrs?.invoke(this)
   }) {
-    MDCInitEffect(MDCLinearProgressModule::MDCLinearProgress)
-    MDCStateEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
-    MDCStateEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
-    MDCStateEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)
-    MDCSideEffect<MDCLinearProgressModule.MDCLinearProgress>(options.closed) {
+    MDCInitEffect(::MDCLinearProgress)
+    MDCStateEffect(options.determinate, MDCLinearProgress::determinate)
+    MDCStateEffect(options.progress, MDCLinearProgress::progress)
+    MDCStateEffect(options.buffer, MDCLinearProgress::buffer)
+    MDCSideEffect<MDCLinearProgress>(options.closed) {
       if (options.closed) close() else open()
     }
     Div({ classes("mdc-linear-progress__buffer") }) {

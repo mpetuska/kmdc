@@ -1,9 +1,13 @@
 package dev.petuska.kmdc.button
 
-import androidx.compose.runtime.*
-import org.jetbrains.compose.web.testutils.*
-import org.w3c.dom.*
-import kotlin.test.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import org.jetbrains.compose.web.testutils.runTest
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLElement
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class MDCButtonTest {
   @Test
@@ -12,7 +16,11 @@ class MDCButtonTest {
       assertEquals(
         expected = """<button class="mdc-button${
         if (upgraded) " mdc-ripple-upgraded" else ""
-        }">""" + """<div class="mdc-elevation-overlay"></div>""" + """<span class="mdc-button__ripple"></span>""" + """<span class="mdc-button__focus-ring"></span>""" + """<span class="mdc-button__label">Clicked $count times</span></button>""",
+        }">""" +
+          """<div class="mdc-elevation-overlay"></div>""" +
+          """<span class="mdc-button__ripple"></span>""" +
+          """<span class="mdc-button__focus-ring"></span>""" +
+          """<span class="mdc-button__label">Clicked $count times</span></button>""",
         actual = innerHTML
       )
     }

@@ -32,8 +32,8 @@ internal fun MDCChipsScope.Chip(
     id(id)
     applyAttrs(attrs)
   }, content = {
-    CompositionLocalProvider(MDCChipDisabledLocal provides disabled) {
-      applyContent(content)
-    }
-  })
+      CompositionLocalProvider(MDCChipDisabledLocal provides disabled) {
+        applyContent(content)
+      }
+    })
 }

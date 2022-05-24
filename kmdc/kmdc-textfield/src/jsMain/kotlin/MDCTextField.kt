@@ -1,14 +1,15 @@
 package dev.petuska.kmdc.textfield
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.line.ripple.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.attributes.builders.*
+import dev.petuska.kmdc.line.ripple.MDCLineRipple
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLLabelElement
 
 @JsModule("@material/textfield/mdc-text-field.scss")
 public external val Style: dynamic
@@ -24,6 +25,7 @@ public class MDCTextFieldScope(scope: ElementScope<HTMLLabelElement>) : ElementS
  */
 @MDCDsl
 @Composable
+@Suppress("LongMethod")
 public fun MDCTextField(
   value: String,
   type: MDCTextFieldType = MDCTextFieldType.Filled,
@@ -50,7 +52,7 @@ public fun MDCTextField(
       trailingIcon?.let { classes("mdc-text-field--with-trailing-icon") }
     }
   ) {
-    MDCInitEffect(MDCTextFieldModule::MDCTextField, label, prefix, suffix, leadingIcon == null, trailingIcon == null)
+    MDCInitEffect(::MDCTextField, label, prefix, suffix, leadingIcon == null, trailingIcon == null)
     when (type) {
       MDCTextFieldType.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })

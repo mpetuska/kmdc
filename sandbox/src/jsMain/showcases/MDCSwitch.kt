@@ -7,7 +7,6 @@ import dev.petuska.kmdc.switch.*
 import org.jetbrains.compose.web.attributes.*
 import sandbox.control.*
 
-
 private class MDCSwitchVM {
   var disabled by mutableStateOf(false)
   var selected by mutableStateOf(false)

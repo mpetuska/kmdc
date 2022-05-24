@@ -2,11 +2,13 @@
 
 package dev.petuska.kmdc.menu.surface
 
-import dev.petuska.kmdc.core.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.core.MDCComponent
+import dev.petuska.kmdc.core.MDCExternalAPI
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 
 @MDCExternalAPI
-public external class MDCMenuSurface(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+public external class MDCMenuSurface(element: Element) : MDCComponent<dynamic> {
   public var anchorElement: HTMLElement
 
   public fun isOpen(): Boolean

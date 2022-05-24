@@ -1,10 +1,15 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCContent
+import dev.petuska.kmdc.core.MDCDsl
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLDivElement
 
 public class MDCRichTooltipOpts(
   public val persistent: Boolean = false,
@@ -19,6 +24,7 @@ public class MDCRichTooltipAnchorScope(
 ) : ElementScope<HTMLDivElement> by scope {
   /**
    * Attaches tooltip to this element
+   * @param E
    * @param id tooltip ID
    */
   @MDCAttrsDsl

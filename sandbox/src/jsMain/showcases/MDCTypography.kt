@@ -1,14 +1,14 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import androidx.compose.runtime.Composable
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.core.ContentBuilder
 import dev.petuska.kmdc.typography.*
 import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.css.keywords.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.css.keywords.CSSAutoKeyword
+import org.jetbrains.compose.web.dom.Div
+import org.w3c.dom.HTMLDivElement
 
 @Composable
 @Showcase(id = "MDCTypography")

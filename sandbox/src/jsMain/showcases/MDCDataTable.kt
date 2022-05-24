@@ -1,13 +1,15 @@
 package showcases
 
 import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
-import dev.petuska.kmdc.core.*
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import dev.petuska.kmdc.core.KMDCInternalAPI
+import dev.petuska.kmdc.core.MDCExternalAPI
+import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.data.table.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
-import sandbox.util.*
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.util.NamedBlock
 
 private class MDCDataTableVM {
   var loading by mutableStateOf(false)
@@ -101,9 +103,9 @@ fun MDCDataTable() = InteractiveShowcase(
             else -> error("Unknown column sort index: $index")
           }
           @OptIn(MDCExternalAPI::class)
-          if (it.detail.sortValue == MDCDataTableModule.SortValue.ASCENDING) {
+          if (it.detail.sortValue == SortValue.ASCENDING) {
             items.sortBy(sortProp)
-          } else if (it.detail.sortValue == MDCDataTableModule.SortValue.DESCENDING) {
+          } else if (it.detail.sortValue == SortValue.DESCENDING) {
             items.sortByDescending(sortProp)
           }
         }

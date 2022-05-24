@@ -81,8 +81,8 @@ public fun MDCImageListItemScope.Image(
     Div(attrs = {
       classes("mdc-image-list__image-aspect-container")
     }, content = {
-      innerContent()
-    })
+        innerContent()
+      })
   } else {
     innerContent()
   }

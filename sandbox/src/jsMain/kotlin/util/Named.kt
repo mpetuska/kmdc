@@ -30,7 +30,8 @@ fun NamedBlock(
 
 @Composable
 fun NamedGroup(
-  name: String, description: String? = null,
+  name: String,
+  description: String? = null,
   topDivider: Boolean = true,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
   content: @Composable () -> Unit

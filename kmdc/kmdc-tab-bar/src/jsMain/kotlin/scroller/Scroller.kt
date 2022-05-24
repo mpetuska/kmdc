@@ -1,10 +1,13 @@
 package dev.petuska.kmdc.tab.scroller
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.tab.bar.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.tab.bar.MDCTabBarContext
+import dev.petuska.kmdc.tab.bar.MDCTabBarScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/tab-scroller/dist/mdc.tab-scroller.css")
 private external val MDCTabScrollerCSS: dynamic
@@ -40,6 +43,6 @@ public fun MDCTabBarScope.Scroller(
       )
     }
     this@Scroller.context.applyFrom(context)
-    MDCInitEffect(MDCTabScrollerModule::MDCTabScroller, context.tabs)
+    MDCInitEffect(::MDCTabScroller, context.tabs)
   }
 }

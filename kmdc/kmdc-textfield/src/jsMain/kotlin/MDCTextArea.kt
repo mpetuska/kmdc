@@ -1,9 +1,11 @@
 package dev.petuska.kmdc.textfield
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.attributes.builders.*
+import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
+import org.jetbrains.compose.web.attributes.cols
+import org.jetbrains.compose.web.attributes.maxLength
+import org.jetbrains.compose.web.attributes.rows
 import org.jetbrains.compose.web.dom.*
 
 /**
@@ -11,6 +13,7 @@ import org.jetbrains.compose.web.dom.*
  */
 @MDCDsl
 @Composable
+@Suppress("LongMethod")
 public fun MDCTextArea(
   value: String,
   type: MDCTextFieldType = MDCTextFieldType.Filled,
@@ -33,7 +36,7 @@ public fun MDCTextArea(
       if (disabled) classes("mdc-text-field--disabled")
     }
   ) {
-    MDCInitEffect(MDCTextFieldModule::MDCTextField, label)
+    MDCInitEffect(::MDCTextField, label)
     maxLength?.let {
       Div(attrs = {
         classes("mdc-text-field-character-counter")

@@ -1,12 +1,11 @@
 package dev.petuska.kmdc.tab.indicator
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.ContentBuilder
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLSpanElement
 
-public enum class MDCTabIndicator(public vararg val classes: String) {
+public enum class MDCTabIndicatorType(public vararg val classes: String) {
   Underline("mdc-tab-indicator__content--underline"),
   Icon("mdc-tab-indicator__content--icon")
 }
@@ -17,7 +16,7 @@ public enum class MDCTabIndicator(public vararg val classes: String) {
 @MDCDsl
 @Composable
 public fun MDCTabIndicatorScope.Content(
-  indicator: MDCTabIndicator,
+  indicator: MDCTabIndicatorType,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null
 ) {
@@ -25,7 +24,7 @@ public fun MDCTabIndicatorScope.Content(
     attrs = {
       classes("mdc-tab-indicator__content")
       classes(indicator.classes)
-      if (indicator == MDCTabIndicator.Icon) aria("hidden", true)
+      if (indicator == MDCTabIndicatorType.Icon) aria("hidden", true)
       attrs?.invoke(this)
     },
     content = content
@@ -41,7 +40,7 @@ public fun MDCTabIndicatorScope.Icon(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null
 ) {
-  Content(MDCTabIndicator.Icon, attrs, content)
+  Content(MDCTabIndicatorType.Icon, attrs, content)
 }
 
 /**
@@ -53,5 +52,5 @@ public fun MDCTabIndicatorScope.Underline(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
   content: ContentBuilder<HTMLSpanElement>? = null
 ) {
-  Content(MDCTabIndicator.Underline, attrs, content)
+  Content(MDCTabIndicatorType.Underline, attrs, content)
 }

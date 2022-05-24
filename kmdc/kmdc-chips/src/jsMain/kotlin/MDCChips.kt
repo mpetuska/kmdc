@@ -1,13 +1,14 @@
 package dev.petuska.kmdc.chips
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLSpanElement
 
 @JsModule("@material/chips/styles.scss")
-private external val MDCChipsStyle: dynamic
+private external val Style: dynamic
 
 public interface MDCChipsAttrsScope : AttrsScope<HTMLSpanElement>
 public interface MDCChipsScope : ElementScope<HTMLSpanElement>
@@ -22,18 +23,18 @@ internal fun MDCChips(
   attrs: MDCAttrs<MDCChipsAttrsScope>? = null,
   content: MDCContent<MDCChipsScope>? = null
 ) {
-  MDCChipsStyle
+  Style
   Span(attrs = {
     classes("mdc-evolution-chip-set")
     if (overflow) classes("mdc-evolution-chip-set--overflow")
     applyAttrs(attrs)
   }, content = {
-    MDCInitEffect(MDCChipsModule::MDCChipSet)
-    Span(
-      attrs = {
-        classes("mdc-evolution-chip-set__chips")
-        role("presentation")
-      }, content = content.reinterpret()
-    )
-  })
+      MDCInitEffect(::MDCChipSet)
+      Span(
+        attrs = {
+          classes("mdc-evolution-chip-set__chips")
+          role("presentation")
+        }, content = content.reinterpret()
+      )
+    })
 }

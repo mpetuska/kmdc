@@ -2,8 +2,9 @@
 
 package dev.petuska.kmdc.ripple
 
-import dev.petuska.kmdc.core.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.core.MDCComponent
+import dev.petuska.kmdc.core.MDCExternalAPI
+import org.w3c.dom.Element
 
 @MDCExternalAPI
 public external interface MDCRippleAttachOpts {
@@ -12,7 +13,7 @@ public external interface MDCRippleAttachOpts {
 
 @MDCExternalAPI
 public external class MDCRipple(element: Element, opts: MDCRippleAttachOpts = definedExternally) :
-  MDCBaseModule.MDCComponent<dynamic> {
+  MDCComponent<dynamic> {
   public var unbounded: Boolean
   public var disabled: Boolean
   public fun activate()

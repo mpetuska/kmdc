@@ -11,8 +11,8 @@ import dev.petuska.kmdc.list.item.Text
 import dev.petuska.kmdc.menu.*
 import dev.petuska.kmdc.menu.surface.*
 import dev.petuska.kmdc.textfield.MDCTextField
-import dev.petuska.kmdc.textfield.MDCTextFieldTrailingIcon
 import dev.petuska.kmdc.textfield.MDCTextFieldType
+import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
 import dev.petuska.kmdcx.icons.MDCIconOpts
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
@@ -114,7 +114,7 @@ fun MDCMenu() = InteractiveShowcase(
     }
   }
   @OptIn(KMDCInternalAPI::class)
-  (NamedBlock("Anchored | single-select") {
+  NamedBlock("Anchored | single-select") {
     var open by rememberMutableStateOf(false)
     var input by rememberMutableStateOf("")
     MDCMenuSurfaceAnchor(attrs = {
@@ -147,7 +147,13 @@ fun MDCMenu() = InteractiveShowcase(
             onClick { open = !open }
             classes("material-icons")
           }) {
-            Text(if (open) MDCIconOpts.MDCIconType.ArrowDropUp.iconType else MDCIconOpts.MDCIconType.ArrowDropDown.iconType)
+            Text(
+              if (open) {
+                MDCIconOpts.MDCIconType.ArrowDropUp.iconType
+              } else {
+                MDCIconOpts.MDCIconType.ArrowDropDown.iconType
+              }
+            )
           }
         }
       )
@@ -169,7 +175,8 @@ fun MDCMenu() = InteractiveShowcase(
             open = false
           }
           onClosed { open = false }
-        }) {
+        }
+      ) {
         menuItems.forEach {
           MenuItem(
             disabled = disabled,
@@ -180,7 +187,7 @@ fun MDCMenu() = InteractiveShowcase(
         }
       }
     }
-  })
+  }
 }
 
 private fun MDCMenuAttrsScope.registerEvents() {

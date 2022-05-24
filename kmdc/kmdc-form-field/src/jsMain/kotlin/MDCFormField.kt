@@ -1,10 +1,14 @@
 package dev.petuska.kmdc.form.field
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffectScope
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/form-field/dist/mdc.form-field.css")
 public external val MDCFormFieldStyle: dynamic
@@ -20,10 +24,10 @@ public data class MDCFormFieldOpts(
 
 public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope {
   @KMDCInternalAPI
-  public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldModule.MDCFormFieldInput) {
+  public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldInput) {
     htmlInput.parentElement?.let {
       if (it.classList.contains("mdc-form-field")) {
-        it.mdc<MDCFormFieldModule.MDCFormField> { input = mdcInput }
+        it.mdc<MDCFormField> { input = mdcInput }
       } else {
         setInput(it, mdcInput)
       }
@@ -50,7 +54,7 @@ public fun MDCFormField(
     if (options.nowrap) classes("mdc-form-field--nowrap")
     attrs?.invoke(this)
   }) {
-    MDCInitEffect(MDCFormFieldModule::MDCFormField)
+    MDCInitEffect(::MDCFormField)
     content?.let { MDCFormFieldScope(this).it() }
   }
 }

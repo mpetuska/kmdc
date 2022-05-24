@@ -64,7 +64,8 @@ class KatalogSymbolProcessor(
               prefix = "%katalog:M(showcases = listOf(",
               postfix = "), config = { %config:L })",
               separator = ", "
-            ) { "%${it}:M" }, arguments = mapOf(
+            ) { "%$it:M" },
+            arguments = mapOf(
               "katalog" to MemberName("dev.petuska.katalog.runtime", "renderKatalog"),
               "config" to config,
             ) + showcaseFns

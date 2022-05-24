@@ -2,10 +2,14 @@ package dev.petuska.kmdc.drawer
 
 import androidx.compose.runtime.*
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Aside
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/drawer/dist/mdc.drawer.css")
 private external val MDCDrawerCSS: dynamic
@@ -50,8 +54,8 @@ public fun MDCDrawer(
       attrs?.invoke(this)
     },
   ) {
-    MDCInitEffect(MDCDrawerModule::MDCDrawer)
-    MDCStateEffect(options.isOpen, MDCDrawerModule.MDCDrawer::open)
+    MDCInitEffect(::MDCDrawer)
+    MDCStateEffect(options.isOpen, MDCDrawer::open)
     content?.let { MDCDrawerScope(this).it() }
   }
 }

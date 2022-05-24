@@ -1,10 +1,12 @@
 package dev.petuska.kmdc.snackbar
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Aside
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/snackbar/mdc-snackbar.scss")
 private external val MDCStyle: dynamic
@@ -26,7 +28,7 @@ public interface MDCSnackbarScope : ElementScope<HTMLElement>
 public fun MDCSnackbar(
   type: MDCSnackbarType = MDCSnackbarType.Default,
   open: Boolean = false,
-  dismissible: Boolean = false,
+// TODO dismissible: Boolean = false,
   timeoutMs: Int? = 5000,
   closeOnEscape: Boolean = true,
   attrs: MDCAttrs<MDCSnackbarAttrsScope>? = null,
@@ -38,10 +40,10 @@ public fun MDCSnackbar(
     classes(type.classes)
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCSnackbarModule::MDCSnackbar, type)
-    MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbarModule.MDCSnackbar::timeoutMs)
-    MDCStateEffect(closeOnEscape, MDCSnackbarModule.MDCSnackbar::closeOnEscape)
-    MDCSideEffect<MDCSnackbarModule.MDCSnackbar>(open) {
+    MDCInitEffect(::MDCSnackbar, type)
+    MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
+    MDCStateEffect(closeOnEscape, MDCSnackbar::closeOnEscape)
+    MDCSideEffect<MDCSnackbar>(open) {
       if (open) open() else close()
     }
     Div(

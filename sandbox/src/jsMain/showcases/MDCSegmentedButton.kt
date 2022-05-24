@@ -40,7 +40,8 @@ fun MDCSegmentedButton() = InteractiveShowcase(
             selected.add(it.detail.segmentId)
           }
         }
-      }) {
+      }
+    ) {
       Segment(
         touch = touch,
         segmentId = "mdc-segmented-button-segment-0",

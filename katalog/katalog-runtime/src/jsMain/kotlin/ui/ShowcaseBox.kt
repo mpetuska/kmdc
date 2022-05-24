@@ -15,7 +15,6 @@ import org.jetbrains.compose.web.dom.Div
 
 private object ShowcaseBoxStyle : StyleSheet() {
   val header by style {
-
   }
   val content by style {
     width(100.percent)

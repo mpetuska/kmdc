@@ -1,11 +1,16 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.snackbar.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.RangeControl
 
 private class MDCSnackbarVM {
   var type by mutableStateOf(MDCSnackbarType.Default)
@@ -21,14 +26,14 @@ fun MDCSnackbar() = InteractiveShowcase(
   viewModel = { MDCSnackbarVM() },
   controls = {
     ChoiceControl("Type", MDCSnackbarType.values().associateBy(MDCSnackbarType::name), ::type)
-    BooleanControl("Dismissible", ::dismissible)
+//    BooleanControl("Dismissible", ::dismissible)
     BooleanControl("Close on Escape", ::closeOnEscape)
     RangeControl("Timeout MS", ::timeoutMs, min = 3999, max = 10000, converter = Number::toInt)
     BooleanControl("Open", ::open)
   },
 ) {
   MDCSnackbar(
-    dismissible = dismissible,
+//    dismissible = dismissible,
     closeOnEscape = closeOnEscape,
     timeoutMs = timeoutMs.takeIf { it >= 4000 },
     open = open,

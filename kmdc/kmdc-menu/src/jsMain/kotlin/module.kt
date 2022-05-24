@@ -2,14 +2,14 @@
 
 package dev.petuska.kmdc.menu
 
-import dev.petuska.kmdc.core.MDCBaseModule
+import dev.petuska.kmdc.core.MDCComponent
 import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.menu.surface.Corner
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 @MDCExternalAPI
-public external class MDCMenu(element: Element) : MDCBaseModule.MDCComponent<dynamic> {
+public external class MDCMenu(element: Element) : MDCComponent<dynamic> {
   public var open: Boolean
   public var wrapFocus: Boolean
   public var hasTypeahead: Boolean

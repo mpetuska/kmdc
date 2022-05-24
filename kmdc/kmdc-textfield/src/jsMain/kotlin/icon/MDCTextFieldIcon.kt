@@ -1,10 +1,12 @@
-package dev.petuska.kmdc.textfield
+package dev.petuska.kmdc.textfield.icon
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
+import dev.petuska.kmdc.textfield.MDCTextFieldScope
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.I
+import org.w3c.dom.HTMLElement
 
 @Composable
 @KMDCInternalAPI
@@ -29,7 +31,7 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
       attrs?.invoke(this)
     },
     content = {
-      MDCInitEffect(MDCTextFieldIconModule::MDCTextFieldIcon)
+      MDCInitEffect(::MDCTextFieldIcon)
       applyContent(content)
     }
   )

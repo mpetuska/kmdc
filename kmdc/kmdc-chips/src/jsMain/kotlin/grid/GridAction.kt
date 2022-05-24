@@ -25,7 +25,7 @@ internal fun GridAction(
     }
     applyAttrs(attrs)
   }, content = {
-    unsafeCast<MDCChipActionScope<HTMLButtonElement>>().Ripple()
-    applyContent(content)
-  })
+      unsafeCast<MDCChipActionScope<HTMLButtonElement>>().Ripple()
+      applyContent(content)
+    })
 }

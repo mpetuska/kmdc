@@ -1,10 +1,15 @@
 package dev.petuska.kmdc.list
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Nav
+import org.jetbrains.compose.web.dom.Ul
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/list/mdc-list.scss")
 public external val Style: dynamic
@@ -55,8 +60,8 @@ public fun MDCList(
     selection = selection,
     attrs = attrs
   ) {
-    MDCInitEffect(MDCListModule::MDCList)
-    MDCSideEffect<MDCListModule.MDCList>(selection) {
+    MDCInitEffect(::MDCList)
+    MDCSideEffect<MDCList>(selection) {
       singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
     }
     applyContent(content)
@@ -114,8 +119,8 @@ public fun MDCNavList(
     if (dense) classes("mdc-deprecated-list--dense")
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCListModule::MDCList)
-    MDCStateEffect(singleSelection, MDCListModule.MDCList::singleSelection)
+    MDCInitEffect(::MDCList)
+    MDCStateEffect(singleSelection, MDCList::singleSelection)
     applyContent(content)
   }
 }

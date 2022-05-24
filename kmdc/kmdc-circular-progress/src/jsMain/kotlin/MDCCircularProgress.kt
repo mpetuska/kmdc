@@ -1,12 +1,16 @@
 package dev.petuska.kmdc.circular.progress
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.*
-import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.svg.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
+import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.width
+import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.svg.Circle
+import org.jetbrains.compose.web.svg.Svg
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/circular-progress/mdc-circular-progress.scss")
 private external val MDCCircularProgressCSS: dynamic
@@ -41,9 +45,9 @@ public fun MDCCircularProgress(
     }
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(MDCCircularProgressModule::MDCCircularProgress, size, fourColor)
-    MDCStateEffect(determinate, MDCCircularProgressModule.MDCCircularProgress::determinate)
-    MDCStateEffect(progress.coerceIn(0.0, 1.0), MDCCircularProgressModule.MDCCircularProgress::progress)
+    MDCInitEffect(::MDCCircularProgress, size, fourColor)
+    MDCStateEffect(determinate, MDCCircularProgress::determinate)
+    MDCStateEffect(progress.coerceIn(0.0, 1.0), MDCCircularProgress::progress)
     MDCCircularProgressDeterminateContainer(size)
     MDCCircularProgressIndeterminateContainer(size, fourColor)
   }

@@ -1,11 +1,11 @@
 package dev.petuska.kmdc.core
 
-import io.kotest.matchers.*
-import kotlin.test.*
+import io.kotest.matchers.shouldBe
+import kotlin.test.Test
 
 class CounterTest {
   @Test
   fun keyNeverChanges() {
-    kmdcCounterKey shouldBe "_kmdcCounter"
+    KmdcCounterKey shouldBe "_kmdcCounter"
   }
 }

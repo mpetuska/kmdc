@@ -2,14 +2,16 @@
 
 package dev.petuska.kmdc.slider
 
-import dev.petuska.kmdc.core.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.core.MDCComponent
+import dev.petuska.kmdc.core.MDCExternalAPI
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 
 @MDCExternalAPI
 public external class MDCSlider(
   element: Element,
   options: MDCSliderOptions = definedExternally
-) : MDCBaseModule.MDCComponent<dynamic> {
+) : MDCComponent<dynamic> {
   public var root: HTMLElement
   public fun initialize(options: MDCSliderOptions = definedExternally): dynamic
   public fun layout()
