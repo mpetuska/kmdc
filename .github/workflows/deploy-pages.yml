@@ -1,0 +1,71 @@
+name: Deploy Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Deploy version"
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      version:
+        description: "Deploy version"
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve version
+        id: resolve
+        run: |
+          VERSION="${{ inputs.version }}"
+          VERSION="${VERSION:=${{ github.event.inputs.version }}}"
+          echo "::set-output name=version::${VERSION//v}"
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 11
+      - name: Restore Gradle cache
+        id: cache
+        uses: actions/cache@v2.1.7
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+      - uses: actions/checkout@v2
+      - run: ./gradlew build
+        working-directory: sandbox
+
+      - name: Build Dokka Pages
+        run: |
+          REPO_NAME=${{ github.repository }}
+          REPO_NAME=${REPO_NAME#${{ github.repository_owner }}/}
+          cp -avr sandbox/build/distributions/ public;
+          find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
+          # echo "/${REPO_NAME} /${REPO_NAME}/${REPO_NAME}/index.html 301" > public/_redirects;
+          # echo "/${REPO_NAME}/index.html /${REPO_NAME}/${REPO_NAME}/index.html 301" >> public/_redirects;
+      - uses: crazy-max/ghaction-github-pages@v2.6.0
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+#      - uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.x
+#      - run: |
+#          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#          git config --local user.name "github-actions[bot]"
+#          git fetch origin gh-pages --depth=1
+#      - run: |
+#          pip install mkdocs-material mike
+#      - run: ./gradlew :npm-publish-docs:mikeDeploy -Pversion='${{ steps.resolve.outputs.version }}'

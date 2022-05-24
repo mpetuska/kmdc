@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.*
 import java.util.*
 
 plugins {
-  id("com.diffplug.spotless")
+  id("io.gitlab.arturbosch.detekt")
   idea
 }
 
@@ -28,20 +28,13 @@ idea {
   }
 }
 
-spotless {
-  val ktlintSettings = mapOf(
-    "indent_size" to "2",
-    "continuation_indent_size" to "4",
-    "disabled_rules" to "no-wildcard-imports,filename"
-  )
-  kotlin {
-    target("src/**/*.kt")
-    ktlint(versionFor("version.ktlint")).userData(ktlintSettings)
-  }
-  kotlinGradle {
-    target("*.kts")
-    ktlint(versionFor("version.ktlint")).userData(ktlintSettings)
-  }
+dependencies {
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:_")
+}
+
+detekt {
+  config.from(rootDir.resolve("gradle/detekt.yml"))
+  buildUponDefaultConfig = true
 }
 
 tasks {

@@ -1,18 +1,20 @@
-import gradle.kotlin.dsl.accessors._b1fd2989f539727f21a36273f4d9ae23.*
-import org.jetbrains.dokka.gradle.*
-import util.*
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.kotlin.gradle.plugin.KotlinJsCompilerType
+import util.enableSCSS
 
 plugins {
   id("convention.common")
   kotlin("multiplatform")
+  id("convention.dokka")
   id("convention.compose")
 }
 
 kotlin {
   explicitApi()
-  js(IR) {
+  js(KotlinJsCompilerType.IR) {
     useCommonJs()
-    enableSass(main = false, test = true)
+    enableSCSS(main = false, test = true)
     browser {
       testTask {
         useKarma {

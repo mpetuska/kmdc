@@ -20,7 +20,7 @@ dependencies {
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:_")
   implementation("org.jetbrains.kotlin:kotlin-serialization:_")
   implementation("com.github.jakemarsden:git-hooks-gradle-plugin:_")
-  implementation("com.diffplug.spotless:spotless-plugin-gradle:_")
+  implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_")
   implementation("io.github.gradle-nexus:publish-plugin:_")
   implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:_")
   @OptIn(InternalRefreshVersionsApi::class)

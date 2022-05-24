@@ -20,6 +20,10 @@ is also available, which brings in all KMDC modules as transitive dependencies u
 
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
 
+Additionally, you need to enable SCSS support. This is done by adding required npm dev dependencies to your sourceSet
+and then
+enabling them via [`webpack.config.d/scss.js`](gradle/webpack.config.d/scss.js) file.
+
 ```kotlin
 plugins {
   kotlin("multiplatform")
@@ -37,6 +41,12 @@ kotlin {
         implementation("dev.petuska:kmdc-button:_")
         implementation("dev.petuska:kmdc-radio:_")
         implementation("dev.petuska:kmdcx-icons:_")
+
+        // SCSS dependencies
+        implementation(devNpm("style-loader", "^3.3.1"))
+        implementation(devNpm("css-loader", "^6.7.1"))
+        implementation(devNpm("sass-loader", "^13.0.0"))
+        implementation(devNpm("sass", "^1.52.1"))
       }
     }
   }

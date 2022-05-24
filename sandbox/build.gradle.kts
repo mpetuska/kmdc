@@ -1,4 +1,4 @@
-import util.enableSass
+import util.enableSCSS
 
 plugins {
   kotlin("multiplatform")
@@ -11,7 +11,7 @@ kotlin {
   js {
     binaries.executable()
     useCommonJs()
-    enableSass(main = true, test = true)
+    enableSCSS(main = true, test = true)
     browser {
       commonWebpackConfig {
         sourceMaps = true

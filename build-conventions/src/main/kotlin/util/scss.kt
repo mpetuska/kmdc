@@ -2,15 +2,14 @@ package util
 
 import jsMain
 import jsTest
-import org.gradle.api.*
-import org.jetbrains.kotlin.gradle.dsl.*
-import org.jetbrains.kotlin.gradle.plugin.*
-import org.jetbrains.kotlin.gradle.targets.js.dsl.*
+import org.gradle.api.NamedDomainObjectProvider
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 
-fun KotlinJsTargetDsl.enableSass(main: Boolean, test: Boolean) {
+fun KotlinJsTargetDsl.enableSCSS(main: Boolean, test: Boolean) {
   browser {
     commonWebpackConfig {
-      cssSupport.enabled = true
       configDirectory = project.rootDir.resolve("gradle/webpack.config.d")
     }
     project.extensions.configure(KotlinMultiplatformExtension::class.java) {
@@ -20,8 +19,10 @@ fun KotlinJsTargetDsl.enableSass(main: Boolean, test: Boolean) {
       targetSourceSets.forEach {
         it.configure {
           dependencies {
-            implementation(devNpm("sass", "^1.42.1"))
-            implementation(devNpm("sass-loader", "^12.3.0"))
+            implementation(devNpm("style-loader", "^3.3.1"))
+            implementation(devNpm("css-loader", "^6.7.1"))
+            implementation(devNpm("sass-loader", "^13.0.0"))
+            implementation(devNpm("sass", "^1.52.1"))
           }
         }
       }
