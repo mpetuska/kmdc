@@ -70,7 +70,7 @@ jobs:
         working-directory: sandbox
         run: ./gradlew assemble --scan
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: reports-${{ runner.os }}
