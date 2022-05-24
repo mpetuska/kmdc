@@ -29,6 +29,7 @@ public interface MDCSelectAttrsScope : AttrsScope<HTMLDivElement>
 
 internal val MDCSelectTypeLocal = strictCompositionLocalOf<MDCSelectType>()
 internal val MDCSelectHelperTextIdLocal = strictCompositionLocalOf<String?>()
+internal val MDCSelectLeadingIconLocal = strictCompositionLocalOf<Boolean>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
@@ -41,6 +42,7 @@ public fun MDCSelect(
   disabled: Boolean = false,
   helperText: String? = null,
   helperTextType: MDCSelectHelperTextType = MDCSelectHelperTextType.Default,
+  withLeadingIcon: Boolean = false,
   attrs: MDCAttrs<MDCSelectAttrsScope>? = null,
   content: MDCContent<MDCSelectScope>? = null,
 ) {
@@ -52,12 +54,14 @@ public fun MDCSelect(
       classes(type.classes)
       if (required) classes("mdc-select--required")
       if (disabled) classes("mdc-select--disabled")
+      if (withLeadingIcon) classes("mdc-select--with-leading-icon")
       applyAttrs(attrs)
     }
   ) {
     CompositionLocalProvider(
       MDCSelectTypeLocal provides type,
-      MDCSelectHelperTextIdLocal provides helperTextId.takeIf { helperText != null }
+      MDCSelectHelperTextIdLocal provides helperTextId.takeIf { helperText != null },
+      MDCSelectLeadingIconLocal provides withLeadingIcon,
     ) {
       MDCProvider(::MDCSelect, type) {
         MDCStateEffectNew(required, MDCSelect::required)

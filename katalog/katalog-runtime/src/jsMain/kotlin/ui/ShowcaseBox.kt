@@ -1,11 +1,17 @@
 package dev.petuska.katalog.runtime.ui
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import dev.petuska.katalog.runtime.domain.Showcase
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.*
+import dev.petuska.katalog.runtime.katalog
+import dev.petuska.katalog.runtime.layout.Divider
+import org.jetbrains.compose.web.attributes.ATarget
+import org.jetbrains.compose.web.attributes.target
+import org.jetbrains.compose.web.css.StyleSheet
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.width
+import org.jetbrains.compose.web.dom.A
+import org.jetbrains.compose.web.dom.Div
 
 private object ShowcaseBoxStyle : StyleSheet() {
   val header by style {
@@ -39,14 +45,7 @@ internal fun ShowcaseBox(showcase: Showcase) = with(showcase) {
     }
     description?.let { theme.showcaseDescriptionRender(it) }
   }
-  Hr(attrs = {
-    style {
-      width(100.percent)
-      opacity(0.5)
-      position(Position.Sticky)
-      left(0.em)
-    }
-  })
+  Divider()
   Div(attrs = {
     id("${id}__content")
     classes(ShowcaseBoxStyle.content)

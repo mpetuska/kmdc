@@ -3,15 +3,10 @@ package dev.petuska.kmdc.select.anchor
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.line.ripple.MDCLineRippleLayout
-import dev.petuska.kmdc.select.MDCSelectHelperTextIdLocal
-import dev.petuska.kmdc.select.MDCSelectScope
-import dev.petuska.kmdc.select.MDCSelectType
-import dev.petuska.kmdc.select.MDCSelectTypeLocal
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
+import dev.petuska.kmdc.select.*
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
 
 public interface MDCSelectAnchorScope : ElementScope<HTMLDivElement>
 
@@ -23,7 +18,7 @@ public interface MDCSelectAnchorScope : ElementScope<HTMLDivElement>
 public fun MDCSelectScope.Anchor(
   label: String,
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
-  content: MDCContent<MDCSelectAnchorScope>? = null,
+  leadingIcon: MDCContent<MDCSelectAnchorScope>? = null,
 ) {
   val id = rememberUniqueDomElementId("anchor")
   val labelId = "$id-label"
@@ -61,14 +56,40 @@ public fun MDCSelectScope.Anchor(
         Span(attrs = { classes("mdc-notched-outline__trailing") })
       }
     }
+    applyContent(leadingIcon)
     Span(attrs = { classes("mdc-select__selected-text-container") }) {
       Span(attrs = {
         id(selectedId)
         classes("mdc-select__selected-text")
       })
     }
-    applyContent(content)
     DownDownIcon()
     if (type == MDCSelectType.Filled) MDCLineRippleLayout()
+  }
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
+ */
+@MDCDsl
+@Composable
+public fun MDCSelectAnchorScope.LeadingIcon(
+  clickable: Boolean = true,
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
+  content: MDCContentRaw<HTMLElement>? = null,
+) {
+  I(
+    attrs = {
+      classes("mdc-select__icon")
+      if (clickable) {
+        tabIndex(0)
+        role("button")
+      }
+      applyAttrs(attrs)
+    },
+  ) {
+    MDCProvider(::MDCSelectIcon, clickable) {
+      applyContent(content)
+    }
   }
 }

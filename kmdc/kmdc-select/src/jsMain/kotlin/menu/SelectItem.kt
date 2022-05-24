@@ -2,9 +2,11 @@ package dev.petuska.kmdc.select.menu
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.list.item.Graphic
 import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.list.item.MDCListItemScope
 import dev.petuska.kmdc.list.item.Text
+import dev.petuska.kmdc.select.MDCSelectLeadingIconLocal
 import org.w3c.dom.HTMLLIElement
 
 /**
@@ -45,6 +47,7 @@ public fun MDCSelectMenuScope.SelectItem(
   activated: Boolean = false,
   attrs: MDCAttrsRaw<HTMLLIElement>? = null,
 ) {
+  val leadingIcon = MDCSelectLeadingIconLocal.current
   SelectItem(
     value = value,
     disabled = disabled,
@@ -52,6 +55,7 @@ public fun MDCSelectMenuScope.SelectItem(
     activated = activated,
     attrs = attrs,
   ) {
+    if (leadingIcon) Graphic()
     Text(text)
   }
 }

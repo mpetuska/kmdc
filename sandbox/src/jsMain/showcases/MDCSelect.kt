@@ -8,8 +8,11 @@ import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.select.*
 import dev.petuska.kmdc.select.anchor.Anchor
+import dev.petuska.kmdc.select.anchor.LeadingIcon
 import dev.petuska.kmdc.select.menu.Menu
 import dev.petuska.kmdc.select.menu.SelectItem
+import dev.petuska.kmdcx.icons.MDCIconOpts
+import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
 import sandbox.control.TextControl
@@ -20,6 +23,9 @@ private class MDCSelectVM {
   var required by mutableStateOf(false)
   var disabled by mutableStateOf(false)
   var label by mutableStateOf("Select Fruit")
+
+  var leadingIconEnabled by mutableStateOf(false)
+  var leadingIconClickable by mutableStateOf(false)
 
   var helperText by mutableStateOf("")
   var helperTextType by mutableStateOf(MDCSelectHelperTextType.Default)
@@ -38,6 +44,10 @@ fun MDCSelect() = InteractiveShowcase(
     BooleanControl("Required", ::required)
     BooleanControl("Disabled", ::disabled)
     TextControl("Label", ::label)
+    NamedGroup("Leading Icon") {
+      BooleanControl("Enabled", ::leadingIconEnabled)
+      BooleanControl("Clickable", ::leadingIconClickable)
+    }
     NamedGroup("Helper Text") {
       TextControl("Text", ::helperText)
       ChoiceControl(
@@ -54,6 +64,7 @@ fun MDCSelect() = InteractiveShowcase(
     disabled = disabled,
     helperText = helperText.takeIf(String::isNotBlank),
     helperTextType = helperTextType,
+    withLeadingIcon = leadingIconEnabled,
     attrs = {
       registerEvents()
       onChange {
@@ -61,7 +72,22 @@ fun MDCSelect() = InteractiveShowcase(
       }
     }
   ) {
-    Anchor(label)
+    Anchor(
+      label = label,
+      leadingIcon = if (leadingIconEnabled) {
+        {
+          LeadingIcon(
+            clickable = leadingIconClickable,
+            attrs = {
+              classes("material-icons")
+              onClick {
+                console.log("MDCSelectLeadingIcon#onClick")
+              }
+            }
+          ) { Text(MDCIconOpts.MDCIconType.Event.iconType) }
+        }
+      } else null
+    )
     Menu {
       fruits.forEach {
         SelectItem(
