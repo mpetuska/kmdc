@@ -1,9 +1,11 @@
+import de.fayard.refreshVersions.core.versionFor
+
 plugins {
   id("convention.library")
   id("convention.publishing")
 }
 
-description = "Core internal KMDC utilities"
+description = "Compose Multiplatform Kotlin/JS wrappers for @material/base"
 
 kotlin {
   sourceSets {
@@ -15,6 +17,7 @@ kotlin {
     }
     jsMain {
       dependencies {
+        api(npm("@material/base", versionFor("version.npm.material-components-web")))
         api(compose.runtime)
         api(compose.web.core)
       }

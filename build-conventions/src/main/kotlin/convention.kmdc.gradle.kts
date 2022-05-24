@@ -1,5 +1,6 @@
-import ext.*
-import org.jetbrains.kotlin.gradle.dsl.*
+import ext.KmdcExtension
+import ext.PomExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
   id("convention.library")
@@ -27,7 +28,7 @@ afterEvaluate {
   extensions.configure(KotlinMultiplatformExtension::class.java) {
     sourceSets.jsMain.configure {
       dependencies {
-        api(kmdc("core"))
+        api(kmdc("base"))
         api(npm(kmdc.module.get(), kmdc.version.get()))
       }
     }

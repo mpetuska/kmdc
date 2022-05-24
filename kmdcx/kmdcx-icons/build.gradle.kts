@@ -7,7 +7,7 @@ kmdcx {
   versionKey by "version.npm.material-icons"
   dependencies {
     main {
-      api(kmdc("core"))
+      api(kmdc("base"))
     }
   }
 }
