@@ -1,6 +1,6 @@
 package sandbox.util
 
-import kotlin.random.*
+import kotlin.random.Random
 
 fun randomImageUrl(
   seed: String = "kmdc",
@@ -14,4 +14,4 @@ fun randomImageUrl(
   return "https://picsum.photos/seed/$seed/$width/$height"
 }
 
-val rickRollUrl: String = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+const val rickRollUrl: String = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"

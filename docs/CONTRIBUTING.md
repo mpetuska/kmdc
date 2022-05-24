@@ -60,13 +60,13 @@ in `~/.sdkman/etc/config`.
 
 ### Development Loop
 
-To work on UI ui library such as KMDC, you obviously need to somehow render your changes to see if they are
-correct and work properly. This is achieved with the help of a [sandbox](../sandbox) module. In most of the caxses, the
+To work on UI library such as KMDC, you obviously need to somehow render your changes to see if they are
+correct and work properly. This is achieved with the help of a [sandbox](../sandbox) module. In most of the cases, the
 development loop for KMDC looks as follows:
 
 1. Implement your changes or new features
-2. Add a new [Sample](../sandbox/src/jsMain/samples/MDCButton.kt) to either one of the existing samples for a
-   ui or an entirely new samples bundle.
+2. Add a new [Showcase](../sandbox/src/jsMain/showcases/MDCButton.kt) to either one of the existing showcases for a
+   component or an entirely new showcases bundle.
 3. Boot up the sandbox in continuous mode `./gradlew jsBrowserRun -t`
 4. Inspect your sample in the browser [http://localhost:3000](http://localhost:3000)
 5. Make further changes and save the file
@@ -80,7 +80,7 @@ There are a few conventions that new modules should follow to maintain consisten
 * Module names should be prefixed with `kmdc-` and use `kebab-case`.
 * If a module is wrapping some npm module (such as `kmdc-button`, which wraps `mdc-button` npm module), the name should
   match npm module's name, replacing `mdc-` prefix with `kmdc-` if it has one.
-* No wrapper module should depend on more than one npm module
+* Each wrapper module should aim to wrap a single logical component
 * All modules should be placed in [kmdc](../kmdc) meta-module to be picked up as a dependency by root module shortcut
   artefact.
 
