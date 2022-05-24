@@ -1,16 +1,11 @@
 package dev.petuska.kmdc.chips.action
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.svg.Path
-import org.jetbrains.compose.web.svg.Svg
-import org.w3c.dom.HTMLSpanElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.svg.*
+import org.w3c.dom.*
 
 public interface MDCFilterChipGraphicScope : MDCChipActionIconScope<HTMLSpanElement>
 
@@ -21,7 +16,7 @@ public interface MDCFilterChipGraphicScope : MDCChipActionIconScope<HTMLSpanElem
 @Composable
 public fun MDCChipActionScope<*>.Graphic(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCFilterChipGraphicScope>? = null
+  content: MDCContent<MDCFilterChipGraphicScope>? = null
 ) {
   Span(
     attrs = {

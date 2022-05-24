@@ -1,18 +1,7 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/touch-target"
-
-kotlin {
-  sourceSets {
-    commonMain
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(mdc("touch-target"))
-      }
-    }
-  }
+kmdc {
+  mdc by "touch-target"
 }

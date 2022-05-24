@@ -1,9 +1,7 @@
 package dev.petuska.kmdc.snackbar
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
-import kotlin.js.Json
+import dev.petuska.kmdc.core.*
+import kotlin.js.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)

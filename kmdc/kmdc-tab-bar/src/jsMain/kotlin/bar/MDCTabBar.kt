@@ -1,13 +1,7 @@
 package dev.petuska.kmdc.tab.bar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -17,7 +11,20 @@ import org.w3c.dom.HTMLDivElement
 private external val MDCTabBarCSS: dynamic
 
 public interface MDCTabBarAttrsScope : AttrsScope<HTMLDivElement>
-public interface MDCTabBarScope : ElementScope<HTMLDivElement>
+
+internal class MDCTabBarContext {
+  internal var tabs: Int by mutableStateOf(0)
+
+  fun applyFrom(other: MDCTabBarContext) {
+    tabs = other.tabs
+  }
+}
+
+public class MDCTabBarScope internal constructor(
+  scope: ElementScope<HTMLDivElement>,
+  internal val context: MDCTabBarContext
+) :
+  ElementScope<HTMLDivElement> by scope
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-bar)
@@ -25,17 +32,20 @@ public interface MDCTabBarScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCTabBar(
-  attrs: Builder<MDCTabBarAttrsScope>? = null,
-  content: ComposableBuilder<MDCTabBarScope>? = null
+  attrs: MDCAttrs<MDCTabBarAttrsScope>? = null,
+  content: MDCContent<MDCTabBarScope>? = null
 ) {
   MDCTabBarCSS
+  val context = remember { MDCTabBarContext() }
   Div(
     attrs = {
       classes("mdc-tab-bar")
       role("tablist")
-      initialiseMDC(MDCTabBarModule::MDCTabBar)
       applyAttrs(attrs)
     },
-    content = content.reinterpret(),
+    content = {
+      applyContent(content) { MDCTabBarScope(it, context) }
+      MDCInitEffect(::MDCTabBar, context.tabs)
+    },
   )
 }

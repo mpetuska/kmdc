@@ -1,34 +1,20 @@
 package dev.petuska.kmdc.menu
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.list.MDCList
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.domain.Point
+import dev.petuska.kmdc.list.MDCListLayout
 import dev.petuska.kmdc.list.MDCListScope
-import dev.petuska.kmdc.menu.surface.MDCMenuSurface
+import dev.petuska.kmdc.list.MDCListSelection
+import dev.petuska.kmdc.menu.surface.Corner
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
-import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceModule
+import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceLayout
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLUListElement
 
-@JsModule("@material/menu/dist/mdc.menu.css")
-private external val MDCMenuStyle: dynamic
-
-public data class MDCMenuOpts(
-  var open: Boolean = false,
-  var fixed: Boolean = false,
-  var wrapFocus: Boolean = false,
-  var anchorCorner: MDCMenuSurfaceModule.Corner? = null,
-  var selectedIndex: Int? = null,
-  var absolutePosition: Point? = null
-) {
-  public data class Point(var x: Double = 0.0, var y: Double = 0.0)
-}
+@JsModule("@material/menu/mdc-menu.scss")
+private external val Style: dynamic
 
 public interface MDCMenuAttrsScope : MDCMenuSurfaceAttrsScope
 
@@ -40,33 +26,81 @@ public interface MDCMenuScope : MDCListScope<HTMLUListElement>
 @MDCDsl
 @Composable
 public fun MDCMenu(
-  opts: Builder<MDCMenuOpts>? = null,
-  attrs: Builder<MDCMenuAttrsScope>? = null,
-  content: ComposableBuilder<MDCMenuScope>? = null,
+  open: Boolean = false,
+  selectedId: Int? = null,
+  selectedIds: Collection<Int>? = null,
+  fullWidth: Boolean = false,
+  fixed: Boolean = false,
+  anchorCorner: Corner = Corner.BOTTOM_START,
+  quickOpen: Boolean = false,
+  hoisted: Boolean = false,
+  wrapFocus: Boolean = false,
+  defaultFocusState: DefaultFocusState = DefaultFocusState.NONE,
+  absolutePosition: Point? = null,
+  attrs: MDCAttrs<MDCMenuAttrsScope>? = null,
+  content: MDCContent<MDCMenuScope>? = null,
 ) {
-  MDCMenuStyle
-  val options = MDCMenuOpts().apply { opts?.invoke(this) }
-  MDCMenuSurface(attrs = {
-    classes("mdc-menu")
-    initialiseMDC(MDCMenuModule.MDCMenu::attachTo)
-    applyAttrs(attrs)
-  }) {
-    MDCSideEffect(options.open, MDCMenuModule.MDCMenu::open)
-    MDCSideEffect(options.wrapFocus, MDCMenuModule.MDCMenu::wrapFocus)
-    MDCSideEffect(options.selectedIndex, MDCMenuModule.MDCMenu::setSelectedIndex)
-    MDCSideEffect(options.fixed, MDCMenuModule.MDCMenu::setFixedPosition)
-    MDCSideEffect(options.anchorCorner, MDCMenuModule.MDCMenu::setAnchorCorner)
-    MDCSideEffect<MDCMenuModule.MDCMenu>(options.absolutePosition) {
-      options.absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
+  MDCMenuLayout(
+    singleSelect = selectedIds == null,
+    fullWidth = fullWidth,
+    fixed = fixed,
+    attrs = attrs,
+    init = {
+      MDCProvider(::MDCMenu) {
+        MDCStateEffectNew(open, MDCMenu::open)
+        MDCStateEffectNew(fixed, MDCMenu::setFixedPosition)
+        MDCStateEffectNew(wrapFocus, MDCMenu::wrapFocus)
+        MDCStateEffectNew(anchorCorner, MDCMenu::setAnchorCorner)
+        MDCStateEffectNew(quickOpen, MDCMenu::quickOpen)
+        MDCStateEffectNew(hoisted, MDCMenu::setIsHoisted)
+        MDCStateEffectNew(defaultFocusState, MDCMenu::setDefaultFocusState)
+        MDCSideEffectNew(absolutePosition) {
+          absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
+        }
+        MDCSideEffectNew(selectedId, selectedIds) {
+          singleSelection = selectedIds == null
+          selectedIndex = selectedIds?.toTypedArray() ?: selectedId
+        }
+        it()
+      }
+    },
+    content = content,
+  )
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu)
+ */
+@Composable
+@KMDCInternalAPI
+public fun MDCMenuLayout(
+  singleSelect: Boolean,
+  fullWidth: Boolean,
+  fixed: Boolean,
+  init: @Composable ElementScope<HTMLDivElement>.(MDCContentRaw<HTMLDivElement>) -> Unit = { it() },
+  attrs: MDCAttrs<MDCMenuAttrsScope>?,
+  content: MDCContent<MDCMenuScope>?,
+) {
+  Style
+  MDCMenuSurfaceLayout(
+    fixed = fixed,
+    fullWidth = fullWidth,
+    attrs = {
+      classes("mdc-menu")
+      applyAttrs(attrs)
     }
-    MDCList(
-      attrs = {
-        role("menu")
-        attr("aria-hidden", "true")
-        attr("aria-orientation", "vertical")
-        tabIndex(-1)
-      },
-      content = content.reinterpret()
-    )
+  ) {
+    init {
+      MDCListLayout(
+        attrs = {
+          role("menu")
+          attr("aria-hidden", "true")
+          attr("aria-orientation", "vertical")
+          tabIndex(-1)
+        },
+        selection = if (singleSelect) MDCListSelection.Single else MDCListSelection.MultiCheckbox,
+        content = content.reinterpret()
+      )
+    }
   }
 }

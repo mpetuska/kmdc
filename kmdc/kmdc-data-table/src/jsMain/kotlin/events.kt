@@ -17,8 +17,10 @@ public external interface MDCDataTableRowSelectionChangedEventDetail {
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
 @MDCAttrsDsl
-public fun MDCDataTableAttrsScope.onRowSelectionChanged(listener: MDCEventListener<MDCDataTableRowSelectionChangedEventDetail>) {
-  addMdcEventListener(MDCDataTableModule.events.ROW_SELECTION_CHANGED, listener)
+public fun MDCDataTableAttrsScope.onRowSelectionChanged(
+  listener: MDCEventListener<MDCDataTableRowSelectionChangedEventDetail>
+) {
+  addMdcEventListener("MDCDataTable:rowSelectionChanged", listener)
 }
 
 public external interface MDCDataTableRowClickEventDetail {
@@ -31,7 +33,7 @@ public external interface MDCDataTableRowClickEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onRowClick(listener: MDCEventListener<MDCDataTableRowClickEventDetail>) {
-  addMdcEventListener(MDCDataTableModule.events.ROW_CLICK, listener)
+  addMdcEventListener("MDCDataTable:rowClick", listener)
 }
 
 /**
@@ -39,7 +41,7 @@ public fun MDCDataTableAttrsScope.onRowClick(listener: MDCEventListener<MDCDataT
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onSelectedAll(listener: MDCEventListener<Json>) {
-  addMdcEventListener(MDCDataTableModule.events.SELECTED_ALL, listener)
+  addMdcEventListener("MDCDataTable:selectedAll", listener)
 }
 
 /**
@@ -47,14 +49,14 @@ public fun MDCDataTableAttrsScope.onSelectedAll(listener: MDCEventListener<Json>
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onUnselectedAll(listener: MDCEventListener<Json>) {
-  addMdcEventListener(MDCDataTableModule.events.UNSELECTED_ALL, listener)
+  addMdcEventListener("MDCDataTable:unselectedAll", listener)
 }
 
 public external interface MDCDataTableSortActionEventDetail {
   public val columnId: String?
   public val columnIndex: Number
   public val headerCell: HTMLElement
-  public val sortValue: MDCDataTableModule.SortValue
+  public val sortValue: SortValue
 }
 
 /**
@@ -62,5 +64,5 @@ public external interface MDCDataTableSortActionEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCDataTableAttrsScope.onSorted(listener: MDCEventListener<MDCDataTableSortActionEventDetail>) {
-  addMdcEventListener(MDCDataTableModule.events.SORTED, listener)
+  addMdcEventListener("MDCDataTable:sorted", listener)
 }

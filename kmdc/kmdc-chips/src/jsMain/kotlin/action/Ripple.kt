@@ -1,8 +1,8 @@
 package dev.petuska.kmdc.chips.action
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.Span
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 
 @MDCDsl
 @Composable

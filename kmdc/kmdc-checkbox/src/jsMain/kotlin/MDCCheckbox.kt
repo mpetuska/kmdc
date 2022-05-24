@@ -1,32 +1,19 @@
 package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.form.field.MDCFormFieldScope
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.svg.Path
 import org.jetbrains.compose.web.svg.Svg
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/checkbox/mdc-checkbox.scss")
-public external val MDCCheckboxStyles: dynamic
+public external val Style: dynamic
 
 public interface MDCCheckboxScope : ElementScope<HTMLDivElement>
 
@@ -36,19 +23,18 @@ public fun MDCCheckbox(
   disabled: Boolean = false,
   indeterminate: Boolean = false,
   touch: Boolean = false,
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCheckboxScope>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContent<MDCCheckboxScope>? = null,
 ) {
-  MDCCheckboxStyles
-
+  Style
   Div(attrs = {
     classes("mdc-checkbox")
     if (touch) classes("mdc-checkbox--touch")
-    initialiseMDC(MDCCheckboxModule.MDCCheckbox::attachTo)
     applyAttrs(attrs)
   }) {
-    MDCSideEffect(indeterminate, MDCCheckboxModule.MDCCheckbox::indeterminate)
-    MDCSideEffect(disabled, MDCCheckboxModule.MDCCheckbox::disabled)
+    MDCInitEffect(::MDCCheckbox)
+    MDCStateEffect(indeterminate, MDCCheckbox::indeterminate)
+    MDCStateEffect(disabled, MDCCheckbox::disabled)
     applyContent(content)
   }
 }
@@ -63,7 +49,7 @@ public fun MDCCheckbox(
   disabled: Boolean = false,
   touch: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
@@ -97,7 +83,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
   disabled: Boolean = false,
   touch: Boolean = false,
   label: String? = null,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   val checkboxId = rememberUniqueDomElementId()
   MDCCheckbox(
@@ -110,7 +96,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
       disabled = disabled,
       attrs = {
         ref {
-          it.mdc<MDCCheckboxModule.MDCCheckbox> { setInput(it, this) }
+          it.mdc<MDCCheckbox> { setInput(it, this) }
           onDispose { }
         }
         id(checkboxId)
@@ -130,7 +116,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
 public fun MDCCheckboxScope.MDCCheckboxInput(
   checked: Boolean?,
   disabled: Boolean = false,
-  attrs: Builder<InputAttrsScope<Boolean>>? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
 ) {
   // WORKAROUND https://github.com/JetBrains/compose-jb/issues/1528
   //     We cannot use the controlled CheckboxInput directly, but the workaround is functionally equivalent.
@@ -147,7 +133,7 @@ public fun MDCCheckboxScope.MDCCheckboxInput(
 @MDCDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxBackground(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   Div(attrs = {
     classes("mdc-checkbox__background")
@@ -172,7 +158,7 @@ public fun MDCCheckboxScope.MDCCheckboxBackground(
 @MDCDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxRipple(
-  attrs: AttrsBuilder<HTMLDivElement>? = null
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null
 ) {
   Div(attrs = {
     classes("mdc-checkbox__ripple")

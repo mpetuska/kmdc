@@ -1,19 +1,13 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/tooltip"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("ripple"))
-        api(kmdc("button"))
-        api(mdc("tooltip"))
-      }
+kmdc {
+  mdc by "tooltip"
+  dependencies {
+    main {
+      api(kmdc("ripple"))
+      api(kmdc("button"))
     }
   }
 }

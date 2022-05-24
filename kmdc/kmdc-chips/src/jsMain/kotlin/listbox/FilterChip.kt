@@ -1,20 +1,11 @@
 package dev.petuska.kmdc.chips.listbox
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import dev.petuska.kmdc.chips.Chip
-import dev.petuska.kmdc.chips.action.MDCChipActionScope
-import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
-import dev.petuska.kmdc.chips.action.Ripple
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.role
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLSpanElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.chips.*
+import dev.petuska.kmdc.chips.action.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public interface MDCFilterChipScope : MDCChipActionScope<HTMLSpanElement>
 
@@ -31,7 +22,7 @@ public fun MDCChipsListboxScope.FilterChip(
   withPrimaryIcon: Boolean = false,
   touch: Boolean = false,
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCFilterChipScope>? = null
+  content: MDCContent<MDCFilterChipScope>? = null
 ) {
   CompositionLocalProvider(MDCChipActionTypeLocal provides "primary") {
     val type = MDCChipActionTypeLocal.current
@@ -56,9 +47,9 @@ public fun MDCChipsListboxScope.FilterChip(
           }
           applyAttrs(attrs)
         }, content = {
-          unsafeCast<MDCFilterChipScope>().Ripple()
-          applyContent(content)
-        })
+            unsafeCast<MDCFilterChipScope>().Ripple()
+            applyContent(content)
+          })
       }
     )
   }

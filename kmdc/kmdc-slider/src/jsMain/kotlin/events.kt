@@ -1,8 +1,6 @@
 package dev.petuska.kmdc.slider
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
+import dev.petuska.kmdc.core.*
 
 public external interface MDCSliderChangeEventDetail {
   public val value: Number
@@ -14,7 +12,7 @@ public external interface MDCSliderChangeEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCSliderAttrsScope.onChange(listener: MDCEventListener<MDCSliderChangeEventDetail>) {
-  addMdcEventListener(MDCSliderModule.events.CHANGE, listener)
+  addMdcEventListener("MDCSlider:change", listener)
 }
 
 /**
@@ -22,5 +20,5 @@ public fun MDCSliderAttrsScope.onChange(listener: MDCEventListener<MDCSliderChan
  */
 @MDCAttrsDsl
 public fun MDCSliderAttrsScope.onInput(listener: MDCEventListener<MDCSliderChangeEventDetail>) {
-  addMdcEventListener(MDCSliderModule.events.INPUT, listener)
+  addMdcEventListener("MDCSlider:input", listener)
 }

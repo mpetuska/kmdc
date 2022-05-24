@@ -2,13 +2,7 @@ package dev.petuska.kmdc.form.field
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectScope
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.KMDCInternalAPI
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.mdc
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -30,10 +24,10 @@ public data class MDCFormFieldOpts(
 
 public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope {
   @KMDCInternalAPI
-  public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldModule.MDCFormFieldInput) {
+  public fun DisposableEffectScope.setInput(htmlInput: Element, mdcInput: MDCFormFieldInput) {
     htmlInput.parentElement?.let {
       if (it.classList.contains("mdc-form-field")) {
-        it.mdc<MDCFormFieldModule.MDCFormField> { input = mdcInput }
+        it.mdc<MDCFormField> { input = mdcInput }
       } else {
         setInput(it, mdcInput)
       }
@@ -47,9 +41,9 @@ public class MDCFormFieldScope(scope: ElementScope<HTMLElement>) : ElementScope<
 @MDCDsl
 @Composable
 public fun MDCFormField(
-  opts: Builder<MDCFormFieldOpts>? = null,
-  attrs: Builder<AttrsScope<HTMLDivElement>>? = null,
-  content: ComposableBuilder<MDCFormFieldScope>? = null,
+  opts: MDCAttrs<MDCFormFieldOpts>? = null,
+  attrs: MDCAttrs<AttrsScope<HTMLDivElement>>? = null,
+  content: MDCContent<MDCFormFieldScope>? = null,
 ) {
   MDCFormFieldStyle
   val options = MDCFormFieldOpts().apply { opts?.invoke(this) }
@@ -58,9 +52,9 @@ public fun MDCFormField(
     classes("mdc-form-field")
     classes(options.align.classes)
     if (options.nowrap) classes("mdc-form-field--nowrap")
-    initialiseMDC(MDCFormFieldModule.MDCFormField::attachTo)
     attrs?.invoke(this)
   }) {
+    MDCInitEffect(::MDCFormField)
     content?.let { MDCFormFieldScope(this).it() }
   }
 }

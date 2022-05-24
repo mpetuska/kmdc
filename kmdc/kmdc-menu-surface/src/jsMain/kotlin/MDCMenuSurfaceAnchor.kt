@@ -1,23 +1,21 @@
 package dev.petuska.kmdc.menu.surface
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.attributes.AttrsScope
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
 
 @MDCDsl
 @Composable
 public fun MDCMenuSurfaceAnchor(
-  attrs: Builder<AttrsScope<HTMLDivElement>>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
   Div(
     attrs = {
       classes("mdc-menu-surface--anchor")
-      attrs?.invoke(this.unsafeCast<AttrsScope<HTMLDivElement>>())
+      applyAttrs(attrs)
     },
     content = content
   )

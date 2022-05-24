@@ -1,18 +1,11 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
 
 public class MDCTooltipRichActionsScope(scope: ElementScope<HTMLDivElement>) :
   ElementScope<HTMLDivElement> by scope
@@ -24,7 +17,7 @@ public class MDCTooltipRichActionsScope(scope: ElementScope<HTMLDivElement>) :
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCTooltipRichActionsScope>? = null,
+  content: MDCContent<MDCTooltipRichActionsScope>? = null,
 ) {
   Div(
     attrs = {
@@ -44,7 +37,7 @@ public fun MDCTooltipRichActionsScope.MDCTooltipAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   MDCButton(type = type, icon = icon, attrs = attrs, content = content)
 }

@@ -2,33 +2,14 @@
 
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
-import dev.petuska.kmdc.checkbox.MDCCheckboxInput
-import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import dev.petuska.kmdc.core.role
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonScope
-import org.jetbrains.compose.web.attributes.Scope
-import org.jetbrains.compose.web.attributes.scope
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.icon.button.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.Th
-import org.jetbrains.compose.web.dom.Thead
-import org.jetbrains.compose.web.dom.Tr
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLTableCellElement
-import org.w3c.dom.HTMLTableRowElement
+import org.w3c.dom.*
 
 public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowElement>
 
@@ -38,8 +19,8 @@ public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowEleme
 @MDCDsl
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableHeader(
-  attrs: AttrsBuilder<HTMLTableRowElement>? = null,
-  content: ComposableBuilder<MDCDataTableHeaderScope>? = null,
+  attrs: MDCAttrsRaw<HTMLTableRowElement>? = null,
+  content: MDCContent<MDCDataTableHeaderScope>? = null,
 ) {
   Thead {
     Tr(
@@ -59,8 +40,8 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
 @Composable
 public fun MDCDataTableHeaderScope.MDCDataTableCell(
   numeric: Boolean = false,
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
-  content: ContentBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  content: MDCContentRaw<HTMLTableCellElement>? = null,
 ) {
   Th(
     attrs = {
@@ -82,7 +63,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
 public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
   text: String,
   numeric: Boolean = false,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
   MDCDataTableCell(numeric, attrs) { Text(text) }
 }
@@ -96,7 +77,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
   selected: Boolean?,
   numeric: Boolean = false,
   label: String? = null,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
   MDCDataTableCell(
     numeric = numeric,
@@ -129,9 +110,9 @@ public fun MDCDataTableHeaderScope.MDCDataTableSortCell(
   columnId: String,
   numeric: Boolean = false,
   label: String? = null,
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
-  buttonAttrs: AttrsBuilder<HTMLButtonElement>? = null,
-  buttonContent: ComposableBuilder<MDCIconButtonScope>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  buttonAttrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  buttonContent: MDCContent<MDCIconButtonScope<HTMLButtonElement>>? = null,
 ) {
   val id = rememberUniqueDomElementId()
   MDCDataTableCell(

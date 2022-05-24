@@ -1,12 +1,9 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public class MDCTopAppBarRowScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
@@ -17,7 +14,7 @@ public class MDCTopAppBarRowScope(scope: ElementScope<HTMLDivElement>) : Element
 @Composable
 public fun MDCTopAppBarScope.MDCTopAppBarRow(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCTopAppBarRowScope>? = null
+  content: MDCContent<MDCTopAppBarRowScope>? = null
 ) {
   Div(
     attrs = {

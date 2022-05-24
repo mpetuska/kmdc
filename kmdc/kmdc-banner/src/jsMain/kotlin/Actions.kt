@@ -1,22 +1,11 @@
 package dev.petuska.kmdc.banner
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.button.Label
-import dev.petuska.kmdc.button.MDCButton
-import dev.petuska.kmdc.button.MDCButtonIconType
-import dev.petuska.kmdc.button.MDCButtonScope
-import dev.petuska.kmdc.button.MDCButtonType
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.attributes.ButtonType
-import org.jetbrains.compose.web.attributes.type
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.button.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 
@@ -26,8 +15,8 @@ public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCBannerScope.Actions(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCBannerActionsScope>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContent<MDCBannerActionsScope>? = null,
 ) {
   Div(
     attrs = {
@@ -49,8 +38,8 @@ private fun MDCBannerActionsScope.Action(
   primary: Boolean,
   type: MDCButtonType,
   icon: MDCButtonIconType,
-  attrs: AttrsBuilder<HTMLButtonElement>?,
-  content: ComposableBuilder<MDCButtonScope>?,
+  attrs: MDCAttrsRaw<HTMLButtonElement>?,
+  content: MDCContent<MDCButtonScope>?,
 ) {
   MDCButton(
     type = type,
@@ -72,8 +61,8 @@ private fun MDCBannerActionsScope.Action(
 public fun MDCBannerActionsScope.PrimaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(true, type, icon, attrs, content)
 }
@@ -87,7 +76,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
   Action(true, type, icon, attrs) {
     Label(text)
@@ -102,8 +91,8 @@ public fun MDCBannerActionsScope.PrimaryAction(
 public fun MDCBannerActionsScope.SecondaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  content: MDCContent<MDCButtonScope>? = null,
 ) {
   Action(false, type, icon, attrs, content)
 }
@@ -117,7 +106,7 @@ public fun MDCBannerActionsScope.SecondaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
   Action(false, type, icon, attrs) {
     Label(text)

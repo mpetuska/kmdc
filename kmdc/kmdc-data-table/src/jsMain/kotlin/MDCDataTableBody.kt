@@ -2,30 +2,15 @@
 
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.checkbox.MDCCheckbox
-import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
-import dev.petuska.kmdc.checkbox.MDCCheckboxInput
-import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.checkbox.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
-import org.jetbrains.compose.web.attributes.Scope
-import org.jetbrains.compose.web.attributes.scope
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Tbody
-import org.jetbrains.compose.web.dom.Td
+import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.Th
-import org.jetbrains.compose.web.dom.Tr
-import org.w3c.dom.HTMLTableCellElement
-import org.w3c.dom.HTMLTableRowElement
-import org.w3c.dom.HTMLTableSectionElement
+import org.w3c.dom.*
 
 public sealed interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionElement>
 
@@ -36,7 +21,7 @@ public sealed interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionEle
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableBody(
   attrs: AttrsBuilder<HTMLTableSectionElement>? = null,
-  content: ComposableBuilder<MDCDataTableBodyScope>? = null,
+  content: MDCContent<MDCDataTableBodyScope>? = null,
 ) {
   Tbody(
     attrs = {
@@ -57,7 +42,7 @@ public sealed interface MDCDataTableRowScope : ElementScope<HTMLTableRowElement>
 public fun MDCDataTableBodyScope.MDCDataTableRow(
   attrs: AttrsBuilder<HTMLTableRowElement>? = null,
   selected: Boolean = false,
-  content: ComposableBuilder<MDCDataTableRowScope>? = null,
+  content: MDCContent<MDCDataTableRowScope>? = null,
 ) {
   Tr(
     attrs = {

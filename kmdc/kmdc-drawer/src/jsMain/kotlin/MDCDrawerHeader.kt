@@ -1,17 +1,11 @@
 package dev.petuska.kmdc.drawer
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.H3
-import org.jetbrains.compose.web.dom.H6
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLHeadingElement
+import org.w3c.dom.*
 
 public class MDCDrawerHeaderScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HTMLDivElement> by scope
 
@@ -22,7 +16,7 @@ public class MDCDrawerHeaderScope(scope: ElementScope<HTMLDivElement>) : Element
 @Composable
 public fun MDCDrawerScope.MDCDrawerHeader(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCDrawerHeaderScope>? = null,
+  content: MDCContent<MDCDrawerHeaderScope>? = null,
 ) {
   Div(
     attrs = {

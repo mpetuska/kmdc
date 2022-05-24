@@ -1,13 +1,7 @@
 package dev.petuska.kmdc.drawer
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Aside
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -46,9 +40,9 @@ public class MDCDrawerScope(scope: ElementScope<HTMLElement>) : ElementScope<HTM
 @MDCDsl
 @Composable
 public fun MDCDrawer(
-  opts: Builder<MDCDrawerOpts>? = null,
+  opts: MDCAttrs<MDCDrawerOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ComposableBuilder<MDCDrawerScope>? = null
+  content: MDCContent<MDCDrawerScope>? = null
 ) {
   MDCDrawerCSS
   val options = MDCDrawerOpts().apply { opts?.invoke(this) }
@@ -57,11 +51,11 @@ public fun MDCDrawer(
       classes("mdc-drawer")
       classes(options.type.classes)
       classes(options.state.classes)
-      initialiseMDC(MDCDrawerModule.MDCDrawer::attachTo)
       attrs?.invoke(this)
     },
   ) {
-    MDCSideEffect(options.isOpen, MDCDrawerModule.MDCDrawer::open)
+    MDCInitEffect(::MDCDrawer)
+    MDCStateEffect(options.isOpen, MDCDrawer::open)
     content?.let { MDCDrawerScope(this).it() }
   }
 }

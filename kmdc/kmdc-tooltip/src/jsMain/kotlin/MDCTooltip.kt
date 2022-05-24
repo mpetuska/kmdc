@@ -1,12 +1,7 @@
 package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.reinterpret
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
@@ -19,10 +14,6 @@ import org.w3c.dom.HTMLDivElement
 @JsModule("@material/tooltip/dist/mdc.tooltip.css")
 private external val MDCTooltipStyle: dynamic
 
-public open class MDCTooltipOpts(
-  public var persistent: Boolean = false,
-)
-
 public interface MDCTooltipScope : ElementScope<HTMLDivElement>
 
 /**
@@ -32,26 +23,25 @@ public interface MDCTooltipScope : ElementScope<HTMLDivElement>
 @Composable
 public fun MDCTooltip(
   id: String,
-  opts: Builder<MDCTooltipOpts>? = null,
+  persistent: Boolean = false,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
   content: ContentBuilder<HTMLDivElement>? = null,
 ) {
   MDCTooltipStyle
-  val options = MDCTooltipOpts().apply { opts?.invoke(this) }
   Div(
     attrs = {
       id(id)
       classes("mdc-tooltip")
       attr("role", "tooltip")
       attr("aria-hidden", "true")
-      if (options.persistent) {
+      if (persistent) {
         tabIndex(-1)
         attr("data-mdc-tooltip-persistent", "true")
       }
-      initialiseMDC(MDCTooltipModule::MDCTooltip)
       applyAttrs(attrs)
     }
   ) {
+    MDCInitEffect(::MDCTooltip, persistent)
     Div(
       attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
       content = content.reinterpret()
@@ -67,12 +57,12 @@ public fun MDCTooltip(
 public fun MDCTooltip(
   id: String,
   text: String,
-  opts: Builder<MDCTooltipOpts>? = null,
+  persistent: Boolean = false,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
 ) {
   MDCTooltip(
     id = id,
-    opts = opts,
+    persistent = persistent,
     attrs = attrs
   ) {
     Text(text)
@@ -81,6 +71,7 @@ public fun MDCTooltip(
 
 /**
  * Attaches tooltip to this element
+ * @param T
  * @param id tooltip ID
  * @param hidden whether this element should be hidden from screen-readers to avoid duplication with tooltip content
  */

@@ -1,12 +1,10 @@
 package dev.petuska.kmdc.elevation
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLDivElement
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/elevation/mdc-elevation.scss")
 private external val Styles: dynamic

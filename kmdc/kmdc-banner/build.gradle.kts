@@ -1,18 +1,12 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/banner"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("button"))
-        api(mdc("banner"))
-      }
+kmdc {
+  mdc by "banner"
+  dependencies {
+    main {
+      api(kmdc("button"))
     }
   }
 }

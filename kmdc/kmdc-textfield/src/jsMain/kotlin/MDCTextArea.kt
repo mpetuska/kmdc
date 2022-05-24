@@ -1,66 +1,63 @@
 package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.rememberUniqueDomElementId
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.attributes.rows
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.TextArea
-
-public class MDCTextAreaOpts(
-  type: Type = Type.Filled,
-  disabled: Boolean = false,
-  label: String? = null,
-  helperText: String? = null,
-  maxLength: UInt? = null,
-  public var rows: UInt = 8u,
-  public var columns: UInt = 40u,
-) : MDCTextFieldCommonOpts(type, disabled, label, helperText, maxLength)
+import org.jetbrains.compose.web.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
  */
 @MDCDsl
 @Composable
+@Suppress("LongMethod")
 public fun MDCTextArea(
   value: String,
-  opts: Builder<MDCTextAreaOpts>? = null,
-  attrs: Builder<TextAreaAttrsScope>? = null,
+  type: MDCTextFieldType = MDCTextFieldType.Filled,
+  disabled: Boolean = false,
+  label: String? = null,
+  helperText: String? = null,
+  maxLength: UInt? = null,
+  rows: UInt = 8u,
+  columns: UInt = 40u,
+  attrs: MDCAttrs<TextAreaAttrsScope>? = null,
 ) {
-  MDCTextFieldStyle
-  val options = MDCTextAreaOpts().apply { opts?.invoke(this) }
+  Style
   val labelId = rememberUniqueDomElementId()
   val helperId = rememberUniqueDomElementId()
   Label(
     attrs = {
       classes("mdc-text-field", "mdc-text-field--textarea")
-      classes(options.type.classes)
-      if (options.label == null) classes("mdc-text-field--no-label")
-      if (options.disabled) classes("mdc-text-field--disabled")
-      initialiseMDC(MDCTextFieldModule.MDCTextField::attachTo)
+      classes(type.classes)
+      if (label == null) classes("mdc-text-field--no-label")
+      if (disabled) classes("mdc-text-field--disabled")
     }
   ) {
-    options.maxLength?.let {
+    MDCInitEffect(::MDCTextField, label)
+    maxLength?.let {
       Div(attrs = {
         classes("mdc-text-field-character-counter")
       })
     }
-    when (options.type) {
-      MDCTextFieldCommonOpts.Type.Filled -> {
+    when (type) {
+      MDCTextFieldType.Filled -> {
         Span(attrs = { classes("mdc-text-field__ripple") })
         Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(value, options, attrs, labelId, helperId)
+          MDCTextAreaInput(
+            value = value,
+            rows = rows,
+            columns = columns,
+            helperText = helperText,
+            maxLength = maxLength,
+            attrs = attrs,
+            labelId = labelId,
+            helperId = helperId
+          )
         }
-        options.label?.let {
+        label?.let {
           Span(attrs = {
             classes("mdc-floating-label")
             if (value.isNotEmpty())
@@ -70,34 +67,46 @@ public fun MDCTextArea(
         }
         Span(attrs = { classes("mdc-line-ripple") })
       }
-      MDCTextFieldCommonOpts.Type.Outlined -> {
-        MDCTextFieldNotch(options, labelId, value.isNotEmpty())
+      MDCTextFieldType.Outlined -> {
+        MDCTextFieldNotch(label = label, labelId = labelId, inputIsNotEmpty = value.isNotEmpty())
         Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(value, options, attrs, labelId, helperId)
+          MDCTextAreaInput(
+            value = value,
+            rows = rows,
+            columns = columns,
+            helperText = helperText,
+            maxLength = maxLength,
+            attrs = attrs,
+            labelId = labelId,
+            helperId = helperId
+          )
         }
       }
     }
   }
-  MDCTextFieldHelperLine(options, helperId)
+  MDCTextFieldHelperLine(helperText = helperText, maxLength = maxLength, helperId = helperId)
 }
 
 @Composable
 private fun MDCTextAreaInput(
   value: String,
-  options: MDCTextAreaOpts,
-  attrs: Builder<TextAreaAttrsScope>?,
+  maxLength: UInt?,
+  helperText: String?,
+  rows: UInt,
+  columns: UInt,
+  attrs: MDCAttrs<TextAreaAttrsScope>?,
   labelId: String,
   helperId: String,
 ) {
   TextArea(value, attrs = {
     classes("mdc-text-field__input")
-    rows(options.rows.toInt())
-    cols(options.columns.toInt())
+    rows(rows.toInt())
+    cols(columns.toInt())
     attr("aria-labelledby", labelId)
-    options.maxLength?.let {
+    maxLength?.let {
       maxLength(it.toInt())
     }
-    options.helperText?.let {
+    helperText?.let {
       attr("aria-describedby", helperId)
       attr("aria-controls", helperId)
     }

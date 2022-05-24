@@ -8,11 +8,14 @@ pluginManagement {
 
 plugins {
   id("de.fayard.refreshVersions") version "0.40.1"
-  id("com.gradle.enterprise") version "3.8.1"
+  id("com.gradle.enterprise") version "3.10.1"
 }
 
 refreshVersions {
-  extraArtifactVersionKeyRules(file("versions.rules"))
+  versionsPropertiesFile = rootDir.resolve("gradle/versions.properties")
+  extraArtifactVersionKeyRules(rootDir.resolve("gradle/versions.rules"))
 }
 
+includeBuild("../build-conventions")
+includeBuild("../katalog")
 includeBuild("..")

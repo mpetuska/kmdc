@@ -1,9 +1,7 @@
 package dev.petuska.kmdc.menu.surface
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 public interface MDCMenuSurfaceEventDetail {
   public val item: Element

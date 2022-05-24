@@ -16,7 +16,11 @@ class MDCButtonTest {
       assertEquals(
         expected = """<button class="mdc-button${
         if (upgraded) " mdc-ripple-upgraded" else ""
-        }">""" + """<div class="mdc-elevation-overlay"></div>""" + """<span class="mdc-button__ripple"></span>""" + """<span class="mdc-button__focus-ring"></span>""" + """<span class="mdc-button__label">Clicked $count times</span></button>""",
+        }">""" +
+          """<div class="mdc-elevation-overlay"></div>""" +
+          """<span class="mdc-button__ripple"></span>""" +
+          """<span class="mdc-button__focus-ring"></span>""" +
+          """<span class="mdc-button__label">Clicked $count times</span></button>""",
         actual = innerHTML
       )
     }

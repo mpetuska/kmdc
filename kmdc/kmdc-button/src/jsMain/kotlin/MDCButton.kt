@@ -1,17 +1,11 @@
 package dev.petuska.kmdc.button
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.elevation.MDCElevationOverlay
-import dev.petuska.kmdc.ripple.MDCRipple
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
-import org.w3c.dom.HTMLButtonElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.elevation.*
+import dev.petuska.kmdc.ripple.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/button/styles.scss")
 private external val MDCButtonStyles: dynamic
@@ -36,7 +30,7 @@ public fun MDCButton(
   icon: MDCButtonIconType = MDCButtonIconType.None,
   touch: Boolean = false,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope>? = null
 ) {
   MDCButtonStyles
   Button(

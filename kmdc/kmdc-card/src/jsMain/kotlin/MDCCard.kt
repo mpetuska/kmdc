@@ -1,14 +1,9 @@
 package dev.petuska.kmdc.card
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/card/dist/mdc.card.css")
 private external val MDCCardCSS: dynamic
@@ -28,9 +23,9 @@ public class MDCCardScope(scope: ElementScope<HTMLDivElement>) : ElementScope<HT
 @MDCDsl
 @Composable
 public fun MDCCard(
-  opts: Builder<MDCCardOpts>? = null,
+  opts: MDCAttrs<MDCCardOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardScope>? = null
+  content: MDCContent<MDCCardScope>? = null
 ) {
   MDCCardCSS
   val options = MDCCardOpts().apply { opts?.invoke(this) }

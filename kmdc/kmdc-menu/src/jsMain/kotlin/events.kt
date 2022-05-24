@@ -1,9 +1,7 @@
 package dev.petuska.kmdc.menu
 
-import dev.petuska.kmdc.core.MDCAttrsDsl
-import dev.petuska.kmdc.core.MDCEventListener
-import dev.petuska.kmdc.core.addMdcEventListener
-import org.w3c.dom.Element
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 public external interface MDCMenuSelectedEventDetail {
   public val item: Element
@@ -15,5 +13,5 @@ public external interface MDCMenuSelectedEventDetail {
  */
 @MDCAttrsDsl
 public fun MDCMenuAttrsScope.onSelected(listener: MDCEventListener<MDCMenuSelectedEventDetail>) {
-  addMdcEventListener(MDCMenuModule.strings.SELECTED_EVENT, listener)
+  addMdcEventListener("MDCMenu:selected", listener)
 }

@@ -1,15 +1,9 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.icon.button.MDCIconButton
-import dev.petuska.kmdc.icon.button.MDCIconButtonOpts
-import dev.petuska.kmdc.icon.button.MDCIconLink
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
-import org.w3c.dom.HTMLAnchorElement
-import org.w3c.dom.HTMLButtonElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.icon.button.*
+import org.w3c.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
@@ -17,12 +11,12 @@ import org.w3c.dom.HTMLButtonElement
 @MDCDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
-  opts: Builder<MDCIconButtonOpts>? = null,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ContentBuilder<HTMLButtonElement>? = null,
+  on: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
+  content: MDCContentRaw<HTMLButtonElement>? = null,
 ) {
   MDCIconButton(
-    opts = opts,
+    on = on,
     attrs = {
       classes("mdc-top-app-bar__action-icon")
       attrs?.invoke(this)
@@ -37,12 +31,12 @@ public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
 @MDCDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionLink(
-  opts: Builder<MDCIconButtonOpts>? = null,
-  attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
-  content: ContentBuilder<HTMLAnchorElement>? = null
+  on: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLAnchorElement>? = null,
+  content: MDCContentRaw<HTMLAnchorElement>? = null
 ) {
   MDCIconLink(
-    opts = opts,
+    on = on,
     attrs = {
       classes("mdc-top-app-bar__action-icon")
       attrs?.invoke(this)

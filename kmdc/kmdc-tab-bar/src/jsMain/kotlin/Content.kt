@@ -1,17 +1,11 @@
 package dev.petuska.kmdc.tab
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.aria
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseScope
 
@@ -22,7 +16,7 @@ public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseS
 @Composable
 public fun MDCTabScope.Content(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ComposableBuilder<MDCTabContentScope>? = null
+  content: MDCContent<MDCTabContentScope>? = null
 ) {
   Span(
     attrs = {

@@ -1,9 +1,10 @@
 plugins {
   if (System.getenv("CI") == null) {
-    id("plugin.git-hooks")
+    id("convention.git-hooks")
   }
-  id("plugin.publishing-nexus")
-  id("org.jetbrains.dokka")
+  id("convention.publishing-nexus")
+  id("convention.dokka")
+  id("convention.common")
 }
 
 gradleEnterprise {
@@ -11,4 +12,13 @@ gradleEnterprise {
     termsOfServiceUrl = "https://gradle.com/terms-of-service"
     termsOfServiceAgree = "yes"
   }
+}
+
+tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
+  description = "Run Detekt for all modules"
+  config.from(detekt.config)
+  buildUponDefaultConfig = detekt.buildUponDefaultConfig
+  setSource(files(projectDir))
+  include("**/*.kt", "**/*.kts")
+  exclude("**/build", "scripts/")
 }

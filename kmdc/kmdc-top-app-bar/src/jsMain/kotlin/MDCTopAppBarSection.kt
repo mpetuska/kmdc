@@ -1,14 +1,9 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Section
-import org.w3c.dom.HTMLElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public class MDCTopAppBarSectionScope(scope: ElementScope<HTMLElement>) : ElementScope<HTMLElement> by scope
 
@@ -28,9 +23,9 @@ public data class MDCTopAppBarSectionOpts(
 @MDCDsl
 @Composable
 public fun MDCTopAppBarRowScope.MDCTopAppBarSection(
-  opts: Builder<MDCTopAppBarSectionOpts>? = null,
+  opts: MDCAttrs<MDCTopAppBarSectionOpts>? = null,
   attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ComposableBuilder<MDCTopAppBarSectionScope>? = null
+  content: MDCContent<MDCTopAppBarSectionScope>? = null
 ) {
   val options = MDCTopAppBarSectionOpts().apply { opts?.invoke(this) }
   Section(

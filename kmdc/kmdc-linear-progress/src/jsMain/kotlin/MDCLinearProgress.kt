@@ -1,12 +1,7 @@
 package dev.petuska.kmdc.linear.progress
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
@@ -31,9 +26,9 @@ public class MDCLinearProgressScope(scope: ElementScope<HTMLDivElement>) : Eleme
 @MDCDsl
 @Composable
 public fun MDCLinearProgress(
-  opts: Builder<MDCLinearProgressOpts>? = null,
+  opts: MDCAttrs<MDCLinearProgressOpts>? = null,
   attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCLinearProgressScope>? = null
+  content: MDCContent<MDCLinearProgressScope>? = null
 ) {
   MDCLinearProgressCSS
   val options = MDCLinearProgressOpts().apply { opts?.invoke(this) }
@@ -46,17 +41,13 @@ public fun MDCLinearProgress(
     attr("aria-valuemax", "1")
     attr("aria-valuenow", "0")
     options.label?.let { attr("aria-label", it) }
-    initialiseMDC(MDCLinearProgressModule.MDCLinearProgress::attachTo) {
-      determinate = options.determinate
-      progress = options.progress
-      buffer = options.buffer
-    }
     attrs?.invoke(this)
   }) {
-    MDCSideEffect(options.determinate, MDCLinearProgressModule.MDCLinearProgress::determinate)
-    MDCSideEffect(options.progress, MDCLinearProgressModule.MDCLinearProgress::progress)
-    MDCSideEffect(options.buffer, MDCLinearProgressModule.MDCLinearProgress::buffer)
-    MDCSideEffect<MDCLinearProgressModule.MDCLinearProgress>(options.closed) {
+    MDCInitEffect(::MDCLinearProgress)
+    MDCStateEffect(options.determinate, MDCLinearProgress::determinate)
+    MDCStateEffect(options.progress, MDCLinearProgress::progress)
+    MDCStateEffect(options.buffer, MDCLinearProgress::buffer)
+    MDCSideEffect<MDCLinearProgress>(options.closed) {
       if (options.closed) close() else open()
     }
     Div({ classes("mdc-linear-progress__buffer") }) {

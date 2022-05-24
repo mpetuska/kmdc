@@ -1,12 +1,10 @@
 package dev.petuska.kmdc.chips.action
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import org.jetbrains.compose.web.dom.I
-import org.w3c.dom.HTMLElement
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 public interface MDCChipActionIconScope<T : HTMLElement> : MDCChipActionScope<T>
 

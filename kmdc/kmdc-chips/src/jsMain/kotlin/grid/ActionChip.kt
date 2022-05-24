@@ -1,16 +1,10 @@
 package dev.petuska.kmdc.chips.grid
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import dev.petuska.kmdc.chips.Chip
-import dev.petuska.kmdc.chips.action.MDCChipActionScope
-import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.role
-import org.w3c.dom.HTMLButtonElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.chips.*
+import dev.petuska.kmdc.chips.action.*
+import dev.petuska.kmdc.core.*
+import org.w3c.dom.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
@@ -24,7 +18,7 @@ public fun MDCChipsGridScope.ActionChip(
   withPrimaryIcon: Boolean = false,
   touch: Boolean = false,
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCChipActionScope<HTMLButtonElement>>? = null
+  content: MDCContent<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
   Chip(
     id = id,

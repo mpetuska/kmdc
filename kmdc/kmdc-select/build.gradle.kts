@@ -1,21 +1,15 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/select"
-
-kotlin {
-  sourceSets {
-    commonMain
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("list"))
-        api(kmdc("menu-surface"))
-        api(mdc("select"))
-        api(compose.web.svg)
-      }
+kmdc {
+  mdc by "select"
+  dependencies {
+    main {
+      api(compose.web.svg)
+      api(kmdc("list"))
+      api(kmdc("menu"))
+      api(kmdc("line-ripple"))
     }
   }
 }

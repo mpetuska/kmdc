@@ -1,18 +1,12 @@
 plugins {
-  id("plugin.library-compose")
-  id("plugin.publishing-mpp")
+  id("convention.kmdc")
 }
 
-description = "Compose Multiplatform Kotlin/JS wrappers for @material/segmented-button"
-
-kotlin {
-  sourceSets {
-    jsMain {
-      dependencies {
-        api(kmdc("core"))
-        api(kmdc("ripple"))
-        api(mdc("segmented-button"))
-      }
+kmdc {
+  mdc by "segmented-button"
+  dependencies {
+    main {
+      api(kmdc("ripple"))
     }
   }
 }

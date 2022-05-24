@@ -1,15 +1,8 @@
 package dev.petuska.kmdc.chips.grid
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.chips.MDCChips
-import dev.petuska.kmdc.chips.MDCChipsAttrsScope
-import dev.petuska.kmdc.chips.MDCChipsScope
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.reinterpret
-import dev.petuska.kmdc.core.role
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.chips.*
+import dev.petuska.kmdc.core.*
 
 public interface MDCChipsGridScope : MDCChipsScope
 
@@ -20,8 +13,8 @@ public interface MDCChipsGridScope : MDCChipsScope
 @Composable
 public fun MDCChipsGrid(
   overflow: Boolean = false,
-  attrs: Builder<MDCChipsAttrsScope>? = null,
-  content: ComposableBuilder<MDCChipsGridScope>? = null
+  attrs: MDCAttrs<MDCChipsAttrsScope>? = null,
+  content: MDCContent<MDCChipsGridScope>? = null
 ) {
   MDCChips(
     overflow = overflow,

@@ -1,15 +1,10 @@
 package dev.petuska.kmdc.card
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
 
 public data class MDCCardMediaOpts(var type: Type = Type.Free) {
   public enum class Type(public vararg val classes: String) {
@@ -27,9 +22,9 @@ public class MDCCardMediaScope(scope: ElementScope<HTMLDivElement>) : ElementSco
 @MDCDsl
 @Composable
 public fun MDCCardScope.MDCCardMedia(
-  opts: Builder<MDCCardMediaOpts>? = null,
+  opts: MDCAttrs<MDCCardMediaOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCCardMediaScope>? = null
+  content: MDCContent<MDCCardMediaScope>? = null
 ) {
   val options = MDCCardMediaOpts().apply { opts?.invoke(this) }
   Div(

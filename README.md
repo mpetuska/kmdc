@@ -8,7 +8,7 @@
 > each release.
 
 A set of Kotlin wrappers
-over [material-components-web@13.0.0][material-components-web]
+over [material-components-web@14.0.0][material-components-web]
 library providing Jetbrains Compose DSL for building beautiful WEB UIs. The API surface is identical to JS version,
 except for few places where slight adjustments are made to make it more fluid for compose.
 
@@ -19,6 +19,10 @@ is recommended approach as it helps in reducing bundle size. However, for the la
 is also available, which brings in all KMDC modules as transitive dependencies under a single dependency.
 
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
+
+Additionally, you need to enable SCSS support. This is done by adding required npm dev dependencies to your sourceSet
+and then
+enabling them via [`webpack.config.d/scss.js`](gradle/webpack.config.d/scss.js) file.
 
 ```kotlin
 plugins {
@@ -37,6 +41,12 @@ kotlin {
         implementation("dev.petuska:kmdc-button:_")
         implementation("dev.petuska:kmdc-radio:_")
         implementation("dev.petuska:kmdcx-icons:_")
+
+        // SCSS dependencies
+        implementation(devNpm("style-loader", "^3.3.1"))
+        implementation(devNpm("css-loader", "^6.7.1"))
+        implementation(devNpm("sass-loader", "^13.0.0"))
+        implementation(devNpm("sass", "^1.52.1"))
       }
     }
   }
@@ -47,28 +57,33 @@ kotlin {
 
 Most of the API maps closely to MDC JS API, making all examples there semi-valid. KMDC components follow a specific
 naming convention to make its components more discoverable as well. The convention
-is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`). Most of the components also follow the same argument
-order schema:
+is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`) for the top-level component
+and `UpperCamelCaseLogicalName` for all subcomponents.
+Most of the components also follow the same argument order schema:
 
-1. `opts: (MDCComponentOpts.() -> Unit)? = null` - MDC-specific options overrides
-2. `attrs: (AttrsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
+1. `...requiredMdcOptions` - MDC-specific options with no default values
+2. `...optionalMdcOptions` - MDC-specific options with default values
+   3`attrs: (AttrsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
    element
-3. `content: (ComposableBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying
+   4`content: (ComposableBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the
+   underlying
    HTML element
 
-Here's a quick peek how these things come together (more samples can be found in
-the [sandbox](./sandbox/src/jsMain/samples))
+Here's a quick peek how these things come together (more showcases can be found in
+the [sandbox](./sandbox/src/jsMain/showcases))
 
 ```kotlin
 @Composable
-fun Sample() {
+fun Showcase() {
   var checked by remember { mutableStateOf(false) } // Declaring controlled state
 
-  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField component as recommended by MDC docs
+  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField UI as recommended by the MDC docs
     MDCCheckbox(
-      checked = checked, // MDCCheckbox breaks regular args schema in favour of more convenient usage
-      label = "MDCCheckbox",
-      attrs = { onClick { checked = !checked } } // Overriding underlying HTMLInput element attributes
+      checked = checked,
+      label = "Yes/No",
+      attrs = { // Overriding underlying HTMLInput element attributes
+        onInput { checked = !checked }
+      }
     ) // MDCCheckbox doesn't allow for additional inner content
   }
 }
@@ -92,7 +107,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-dialog
 - [x] mdc-dom (won't wrap)
 - [x] mdc-drawer
-- [ ] mdc-elevation
+- [x] mdc-elevation
 - [x] mdc-fab
 - [x] mdc-feature-targeting (won't wrap)
 - [ ] mdc-floating-label
@@ -100,7 +115,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-icon-button
 - [x] mdc-image-list
 - [x] mdc-layout-grid
-- [ ] mdc-line-ripple
+- [x] mdc-line-ripple
 - [x] mdc-linear-progress
 - [x] mdc-list
 - [x] mdc-menu-surface
@@ -138,7 +153,6 @@ KMDC project modules can be categorised into three groups:
 
 * Core MDC wrappers - grouped under [./kmdc](./kmdc) meta-module
 * Extensions of core wrappers or relevant non-kmdc wrappers - grouped under [./kmdcx](./kmdcx) meta-module
-* Local testing utilities - grouped under [./test](./test) meta-module
 
 ### Developer Setup
 
@@ -147,8 +161,8 @@ KMDC project modules can be categorised into three groups:
 * Use `./sandbox/` to render components in browser (needs to be linked separately in IDEA)
     * `./gradlew jsBrowserRun -t` to start development server
     * Visit [http://localhost:3000](http://localhost:3000) to see your content
-    * If you're adding a new component, render it by creating [Samples](./sandbox/src/jsMain/samples/MDCButton.kt)
-      object for it
+    * If you're adding a new component, render it by creating [Showcases](./sandbox/src/jsMain/showcases/MDCButton.kt)
+      file for it
     * Thanks to gradle continuous mode, any change in kmdc modules will trigger automatic refresh of sandbox and the
       browser. It takes a few seconds after you save your changes, so be patient.
 
@@ -170,4 +184,4 @@ Thanks to all the people who contributed to kmdc so far!
   <img src="https://contrib.rocks/image?repo=mpetuska/kmdc" />
 </a>
 
-[material-components-web]: https://github.com/material-components/material-components-web/tree/v13.0.0
+[material-components-web]: https://github.com/material-components/material-components-web/tree/v14.0.0

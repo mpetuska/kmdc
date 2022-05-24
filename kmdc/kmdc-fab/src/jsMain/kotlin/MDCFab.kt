@@ -1,21 +1,12 @@
 package dev.petuska.kmdc.fab
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.ComposableBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.ripple.MDCRipple
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Span
+import dev.petuska.kmdc.ripple.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.*
 
 @JsModule("@material/fab/mdc-fab.scss")
 private external val MDCFabStyles: dynamic
@@ -36,7 +27,7 @@ public fun MDCFab(
   exited: Boolean = false,
   touch: Boolean = false,
   attrs: AttrBuilderContext<HTMLButtonElement>? = null,
-  content: ComposableBuilder<MDCFabScope>? = null
+  content: MDCContent<MDCFabScope>? = null
 ) {
   MDCFabStyles
   Button(

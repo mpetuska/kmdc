@@ -1,9 +1,6 @@
 @use "@material/image-list";
 
-.kmdc-image-list-standard {
+.kmdc-image-list {
   @include image-list.standard-columns(3);
-}
-
-.kmdc-image-list-masonry {
   @include image-list.masonry-columns(3);
 }

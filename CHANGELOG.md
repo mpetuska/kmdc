@@ -23,12 +23,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [x] mdc-fab
 - [x] mdc-image-list
 - [x] mdc-touch-target
+- [x] mdc-elevation
+- [x] mdc-line-ripple
+- Proper `@DslMarker` usage to prevent leaking scopes
 
 ### Changed
 
 - Standardised event handlers
+- Reworked `MDCSelect` to be more lightweight and customisable
+- Introduced new `CompositionLocal` based MDC component management making it accessible from anywhere down the component
+  hierarchy
+- Reworked sandbox with new `katalog` tooling for more streamlined experience and reduced boilerplate
+- Rewritten all existing samples to be fully interactive
+- Optimised MDC component state management for most of the components
+- `opts` based property builder was replaced with top-level properties
 
 ### Removed
+
+- `initialiseMDC` and `MDCInitEffect` which were relying on storing the MDC component on the native HTML element
 
 ---
 

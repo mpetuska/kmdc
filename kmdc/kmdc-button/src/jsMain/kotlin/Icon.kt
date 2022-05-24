@@ -1,16 +1,13 @@
 package dev.petuska.kmdc.button
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.*
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.I
-import org.jetbrains.compose.web.svg.Svg
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.svg.SVGElement
+import org.jetbrains.compose.web.svg.*
+import org.w3c.dom.*
+import org.w3c.dom.svg.*
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button#icon)

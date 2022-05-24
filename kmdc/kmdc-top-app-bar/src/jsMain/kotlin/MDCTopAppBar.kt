@@ -4,11 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.initialiseMDC
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -37,8 +33,7 @@ public val MDCTopAppBarType: ProvidableCompositionLocal<MDCTopAppBarContextOpts.
 
 public class MDCTopAppBarContextScope
 
-public class MDCTopAppBarScope(scope: ElementScope<HTMLElement>) :
-  ElementScope<HTMLElement> by scope
+public interface MDCTopAppBarScope : ElementScope<HTMLElement>
 
 /**
  * If using this [MDCTopAppBar] component, all the page content must be placed into [MDCTopAppBarMain] container.
@@ -48,8 +43,8 @@ public class MDCTopAppBarScope(scope: ElementScope<HTMLElement>) :
 @MDCDsl
 @Composable
 public fun MDCTopAppBarContext(
-  opts: Builder<MDCTopAppBarContextOpts>? = null,
-  content: ComposableBuilder<MDCTopAppBarContextScope>? = null
+  opts: MDCAttrs<MDCTopAppBarContextOpts>? = null,
+  content: MDCContent<MDCTopAppBarContextScope>? = null
 ) {
   MDCTopAppBarStyle
   val options = MDCTopAppBarContextOpts().apply { opts?.invoke(this) }
@@ -65,18 +60,18 @@ public fun MDCTopAppBarContext(
 @Composable
 public fun MDCTopAppBarContextScope.MDCTopAppBar(
   attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ComposableBuilder<MDCTopAppBarScope>? = null
+  content: MDCContent<MDCTopAppBarScope>? = null
 ) {
   val type = MDCTopAppBarType.current
   Header(
     attrs = {
       classes("mdc-top-app-bar")
       classes(type.classes)
-      initialiseMDC(MDCTopAppBarModule.MDCTopAppBar::attachTo)
       attrs?.invoke(this)
     },
   ) {
-    content?.let { MDCTopAppBarScope(this).it() }
+    MDCInitEffect(::MDCTopAppBar)
+    applyContent(content)
   }
 }
 

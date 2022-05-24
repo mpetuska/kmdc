@@ -1,14 +1,9 @@
 package dev.petuska.kmdc.layout.grid
 
-import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.classes
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.w3c.dom.HTMLDivElement
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 
 @JsModule("@material/layout-grid/dist/mdc.layout-grid.css")
 private external val MDCLayoutGridCSS: dynamic
@@ -38,9 +33,9 @@ public class MDCLayoutGridCellsScope(scope: ElementScope<HTMLDivElement>) : MDCL
 @MDCDsl
 @Composable
 public fun MDCLayoutGrid(
-  opts: Builder<MDCLayoutGridOpts>? = null,
+  opts: MDCAttrs<MDCLayoutGridOpts>? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCLayoutGridScope>? = null
+  content: MDCContent<MDCLayoutGridScope>? = null
 ) {
   MDCLayoutGridCSS
   val options = MDCLayoutGridOpts().apply { opts?.invoke(this) }
@@ -62,7 +57,7 @@ public fun MDCLayoutGrid(
 @Composable
 public fun MDCLayoutGridScope.MDCLayoutGridCells(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ComposableBuilder<MDCLayoutGridCellsScope>? = null
+  content: MDCContent<MDCLayoutGridCellsScope>? = null
 ) {
   Div(
     attrs = {

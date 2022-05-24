@@ -1,15 +1,7 @@
 package dev.petuska.kmdc.data.table
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.Builder
-import dev.petuska.kmdc.core.ComposableBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.MDCSideEffect
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.applyContent
-import dev.petuska.kmdc.core.initialiseMDC
-import dev.petuska.kmdc.core.reinterpret
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -29,8 +21,8 @@ public sealed interface MDCDataTableScope : ElementScope<HTMLDivElement>
 @MDCDsl
 @Composable
 public fun MDCDataTable(
-  attrs: Builder<MDCDataTableAttrsScope>? = null,
-  content: ComposableBuilder<MDCDataTableScope>? = null,
+  attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
+  content: MDCContent<MDCDataTableScope>? = null,
 ) {
   MDCDataTableCSS
   Div(
@@ -39,7 +31,7 @@ public fun MDCDataTable(
       applyAttrs(attrs)
     },
   ) {
-    MDCSideEffect(effect = MDCDataTableModule.MDCDataTable::layout)
+    MDCSideEffect(effect = MDCDataTable::layout)
     applyContent(content)
   }
 }
@@ -51,16 +43,14 @@ public fun MDCDataTable(
 @Composable
 public fun MDCDataTable(
   loading: Boolean,
-  attrs: Builder<MDCDataTableAttrsScope>? = null,
-  content: ComposableBuilder<MDCDataTableScope>? = null,
+  attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
+  content: MDCContent<MDCDataTableScope>? = null,
 ) {
   MDCDataTable(attrs = {
-    initialiseMDC(MDCDataTableModule::MDCDataTable) {
-      if (loading) showProgress() else hideProgress()
-    }
     applyAttrs(attrs)
   }) {
-    MDCSideEffect<MDCDataTableModule.MDCDataTable>(loading) {
+    MDCInitEffect(::MDCDataTable)
+    MDCSideEffect<MDCDataTable>(loading) {
       if (loading) showProgress() else hideProgress()
     }
     applyContent(content)
@@ -77,7 +67,7 @@ public sealed interface MDCDataTableContainerScope : ElementScope<HTMLTableEleme
 @Composable
 public fun MDCDataTableScope.MDCDataTableContainer(
   attrs: AttrsBuilder<HTMLTableElement>? = null,
-  content: ComposableBuilder<MDCDataTableContainerScope>? = null,
+  content: MDCContent<MDCDataTableContainerScope>? = null,
 ) {
   Div(
     attrs = {

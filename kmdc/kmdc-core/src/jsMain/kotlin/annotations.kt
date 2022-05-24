@@ -1,9 +1,11 @@
 package dev.petuska.kmdc.core
 
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @DslMarker
 @KMDCInternalAPI
 public annotation class MDCDsl
 
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @DslMarker
 @KMDCInternalAPI
 public annotation class MDCAttrsDsl
@@ -17,7 +19,6 @@ public annotation class MDCAttrsDsl
 public annotation class KMDCInternalAPI
 
 @DslMarker
-@KMDCInternalAPI
 @RequiresOptIn(
   message = "This API is linking to the external MDC APIs and does not provide any stability guarantees.",
   level = RequiresOptIn.Level.WARNING,

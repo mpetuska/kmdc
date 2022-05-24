@@ -1,26 +1,11 @@
 package dev.petuska.kmdc.image.list
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ComposableBuilder
+import androidx.compose.runtime.*
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.core.MDCDsl
-import dev.petuska.kmdc.core.applyAttrs
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
-import org.jetbrains.compose.web.dom.Img
-import org.jetbrains.compose.web.dom.Li
-import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.dom.Ul
-import org.w3c.dom.HTMLImageElement
-import org.w3c.dom.HTMLLIElement
-import org.w3c.dom.HTMLSpanElement
-import org.w3c.dom.HTMLUListElement
+import org.w3c.dom.*
 
 @JsModule("@material/image-list/mdc-image-list.scss")
 private external val MDCImageListStyles: dynamic
@@ -42,7 +27,7 @@ public fun MDCImageList(
   type: MDCImageListType = MDCImageListType.Standard,
   withTextProtection: Boolean = false,
   attrs: AttrsBuilder<HTMLUListElement>? = null,
-  content: ComposableBuilder<MDCImageListScope>? = null
+  content: MDCContent<MDCImageListScope>? = null
 ) {
   MDCImageListStyles
   CompositionLocalProvider(MDCImageListTypeLocal provides type) {
@@ -66,7 +51,7 @@ public interface MDCImageListItemScope : ElementScope<HTMLLIElement>
 @Composable
 public fun MDCImageListScope.Item(
   attrs: AttrsBuilder<HTMLLIElement>? = null,
-  content: ComposableBuilder<MDCImageListItemScope>? = null
+  content: MDCContent<MDCImageListItemScope>? = null
 ) {
   Li(
     attrs = {
@@ -96,8 +81,8 @@ public fun MDCImageListItemScope.Image(
     Div(attrs = {
       classes("mdc-image-list__image-aspect-container")
     }, content = {
-      innerContent()
-    })
+        innerContent()
+      })
   } else {
     innerContent()
   }

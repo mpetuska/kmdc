@@ -1,11 +1,14 @@
 plugins {
   id("de.fayard.refreshVersions") version "0.40.1"
-  id("com.gradle.enterprise") version "3.10"
+  id("com.gradle.enterprise") version "3.10.1"
 }
 
-refreshVersions { extraArtifactVersionKeyRules(file("versions.rules")) }
-
 rootProject.name = "KMDC"
+
+refreshVersions {
+  versionsPropertiesFile = rootDir.resolve("gradle/versions.properties")
+  extraArtifactVersionKeyRules(rootDir.resolve("gradle/versions.rules"))
+}
 
 fun includeModuleGroup(path: String) {
   rootDir.resolve(path).listFiles { file: File -> file.isDirectory && file.name.startsWith(path) }
@@ -14,3 +17,5 @@ fun includeModuleGroup(path: String) {
 
 includeModuleGroup("kmdc")
 includeModuleGroup("kmdcx")
+
+includeBuild("build-conventions")
