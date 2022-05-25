@@ -6,7 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.katalog.runtime.util.loremIpsum
+import dev.petuska.katalog.runtime.util.LoremIpsum
+import dev.petuska.katalog.runtime.util.RickRollUrl
 import dev.petuska.kmdc.button.MDCButton
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.tooltip.*
@@ -15,7 +16,6 @@ import org.jetbrains.compose.web.attributes.target
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.util.NamedBlock
-import sandbox.util.RickRollUrl
 
 private class MDCTooltipVM {
   var interactive by mutableStateOf(false)
@@ -38,7 +38,7 @@ fun MDCTooltip() = InteractiveShowcase(
     MDCTooltip(
       id = tid,
       persistent = persistent,
-      text = loremIpsum
+      text = LoremIpsum
     )
   }
   NamedBlock("Rich") {
@@ -53,7 +53,7 @@ fun MDCTooltip() = InteractiveShowcase(
     ) {
       MDCTooltipTitle("Lorem Ipsum")
       MDCTooltipContent {
-        Text(loremIpsum)
+        Text(LoremIpsum)
         MDCTooltipLink("link", RickRollUrl, attrs = {
           target(ATarget.Blank)
         })

@@ -1,11 +1,16 @@
 package dev.petuska.kmdc.dialog
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.button.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.button.Label
+import dev.petuska.kmdc.button.MDCButton
+import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
 
 public interface MDCDialogActionsScope : ElementScope<HTMLDivElement>
 
@@ -36,7 +41,7 @@ public fun MDCDialogActionsScope.Action(
   action: String,
   default: Boolean = false,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
-  content: MDCContent<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null
 ) {
   ActionImpl(
     action = action,
@@ -72,7 +77,7 @@ internal fun ActionImpl(
   action: String,
   default: Boolean,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
-  content: MDCContent<MDCButtonScope>? = null
+  content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null
 ) {
   MDCButton(
     attrs = {

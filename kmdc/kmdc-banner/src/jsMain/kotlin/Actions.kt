@@ -1,11 +1,14 @@
 package dev.petuska.kmdc.banner
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.*
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.ButtonType
+import org.jetbrains.compose.web.attributes.type
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLDivElement
 
 public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 
@@ -39,7 +42,7 @@ private fun MDCBannerActionsScope.Action(
   type: MDCButtonType,
   icon: MDCButtonIconType,
   attrs: MDCAttrsRaw<HTMLButtonElement>?,
-  content: MDCContent<MDCButtonScope>?,
+  content: MDCContent<MDCButtonScope<HTMLButtonElement>>?,
 ) {
   MDCButton(
     type = type,
@@ -62,7 +65,7 @@ public fun MDCBannerActionsScope.PrimaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
-  content: MDCContent<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null,
 ) {
   Action(true, type, icon, attrs, content)
 }
@@ -92,7 +95,7 @@ public fun MDCBannerActionsScope.SecondaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
-  content: MDCContent<MDCButtonScope>? = null,
+  content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null,
 ) {
   Action(false, type, icon, attrs, content)
 }

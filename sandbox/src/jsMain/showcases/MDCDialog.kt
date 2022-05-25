@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.katalog.runtime.util.loremIpsum
+import dev.petuska.katalog.runtime.util.LoremIpsum
 import dev.petuska.kmdc.dialog.*
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListSelection
@@ -68,7 +68,7 @@ fun MDCDialog() = InteractiveShowcase(
         if (fullscreen) CloseButton(MDCIconOpts.MDCIconType.Close.iconType, attrs = { classes("material-icons") })
       }
       Content {
-        Text(loremIpsum)
+        Text(LoremIpsum)
       }
       Actions {
         Action(action = "accept", text = "Accept")
