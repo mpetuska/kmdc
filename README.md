@@ -110,7 +110,7 @@ Here's a tracker list of currently completed [material-components-web] modules:
 - [x] mdc-elevation
 - [x] mdc-fab
 - [x] mdc-feature-targeting (won't wrap)
-- [ ] mdc-floating-label
+- [x] mdc-floating-label
 - [x] mdc-form-field
 - [x] mdc-icon-button
 - [x] mdc-image-list
