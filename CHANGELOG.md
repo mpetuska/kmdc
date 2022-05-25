@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [x] mdc-touch-target
 - [x] mdc-elevation
 - [x] mdc-line-ripple
+- [x] mdc-floating-label
 - Proper `@DslMarker` usage to prevent leaking scopes
 
 ### Changed
