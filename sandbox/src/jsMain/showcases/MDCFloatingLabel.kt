@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
-import dev.petuska.kmdc.button.MDCFloatingLabel
+import dev.petuska.kmdc.floating.label.MDCFloatingLabel
 import sandbox.control.BooleanControl
 import sandbox.control.TextControl
 

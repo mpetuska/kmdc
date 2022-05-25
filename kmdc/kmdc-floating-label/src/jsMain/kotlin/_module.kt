@@ -1,6 +1,6 @@
 @file:JsModule("@material/floating-label")
 
-package dev.petuska.kmdc.button
+package dev.petuska.kmdc.floating.label
 
 import dev.petuska.kmdc.core.MDCComponent
 import dev.petuska.kmdc.core.MDCExternalAPI

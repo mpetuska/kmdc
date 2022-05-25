@@ -1,4 +1,4 @@
-package dev.petuska.kmdc.button
+package dev.petuska.kmdc.floating.label
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
