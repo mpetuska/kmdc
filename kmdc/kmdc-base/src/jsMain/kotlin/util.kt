@@ -14,6 +14,9 @@ public typealias MDCContentRaw<T> = @MDCContentDsl ContentBuilder<T>
 public typealias Builder<T> = T.() -> Unit
 public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
 public typealias MDCContent<T> = @Composable @MDCContentDsl Builder<T>
+public typealias MDCComponentInit<T> = @Composable ElementScope<T>.(
+  content: @Composable ElementScope<T>.() -> Unit
+) -> Unit
 
 /**
  * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
@@ -129,4 +132,5 @@ public fun rememberUniqueDomElementId(suffix: String? = null): String =
 public fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
 
 @KMDCInternalAPI
-public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> = compositionLocalOf { error("undefined") }
+public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> =
+  compositionLocalOf { error("CompositionLocal undefined") }

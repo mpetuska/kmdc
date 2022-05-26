@@ -35,7 +35,6 @@ public enum class MDCListSelection(public val listRole: String?, public val item
   Multi(null, null),
 }
 
-@MDCContentDsl
 public interface MDCListScope<T : HTMLElement> : ElementScope<T>
 
 internal val MDCListSelectionLocal = compositionLocalOf<MDCListSelection> { error("undefined") }

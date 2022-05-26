@@ -23,6 +23,7 @@ fun Katalog.Builder.config() {
   requireModule("./sandbox.scss")
   document.body?.addClass("mdc-typography")
 
+  debug = true
   title = "KMDC Katalog"
   subtitle = "Play around with various KMDC components"
   contentRootUrl = "https://github.com/mpetuska/kmdc/blob/master"

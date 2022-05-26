@@ -2,8 +2,9 @@ package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContent
 import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.MDCContentRaw
+import dev.petuska.kmdc.core.applyContent
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLDivElement
@@ -15,7 +16,7 @@ import org.w3c.dom.HTMLDivElement
 @Composable
 public fun MDCCardScope.PrimaryAction(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
-  content: MDCContentRaw<HTMLDivElement>? = null
+  content: MDCContent<MDCCardScope>? = null
 ) {
   Div(
     attrs = {
@@ -24,7 +25,7 @@ public fun MDCCardScope.PrimaryAction(
       attrs?.invoke(this)
     },
   ) {
-    content?.invoke(this)
+    applyContent(content)
     Span(attrs = { classes("mdc-card__ripple") })
   }
 }

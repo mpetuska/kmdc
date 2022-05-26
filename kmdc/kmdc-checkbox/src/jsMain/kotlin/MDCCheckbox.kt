@@ -2,7 +2,7 @@ package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.form.field.MDCFormFieldScope
+import dev.petuska.kmdc.form.field.MDCFormField
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
@@ -32,10 +32,15 @@ public fun MDCCheckbox(
     if (touch) classes("mdc-checkbox--touch")
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(::MDCCheckbox)
-    MDCStateEffect(indeterminate, MDCCheckbox::indeterminate)
-    MDCStateEffect(disabled, MDCCheckbox::disabled)
-    applyContent(content)
+    val formField = localMDC<MDCFormField>()
+    MDCProvider(::MDCCheckbox) {
+      MDCSideEffectNew(formField, onDispose = { formField?.input = null }) {
+        formField?.input = this
+      }
+      MDCStateEffectNew(indeterminate, MDCCheckbox::indeterminate)
+      MDCStateEffectNew(disabled, MDCCheckbox::disabled)
+      applyContent(content)
+    }
   }
 }
 
@@ -61,44 +66,6 @@ public fun MDCCheckbox(
       checked = checked,
       disabled = disabled,
       attrs = {
-        id(checkboxId)
-        applyAttrs(attrs)
-      }
-    )
-    MDCCheckboxBackground()
-    MDCCheckboxRipple()
-  }
-  label?.let {
-    Label(forId = checkboxId, attrs = { id("$checkboxId-label") }) { Text(it) }
-  }
-}
-
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
- */
-@MDCContentDsl
-@Composable
-public fun MDCFormFieldScope.MDCCheckbox(
-  checked: Boolean?,
-  disabled: Boolean = false,
-  touch: Boolean = false,
-  label: String? = null,
-  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
-) {
-  val checkboxId = rememberUniqueDomElementId()
-  MDCCheckbox(
-    touch = touch,
-    disabled = disabled,
-    indeterminate = checked == null,
-  ) {
-    MDCCheckboxInput(
-      checked = checked,
-      disabled = disabled,
-      attrs = {
-        ref {
-          it.mdc<MDCCheckbox> { setInput(it, this) }
-          onDispose { }
-        }
         id(checkboxId)
         applyAttrs(attrs)
       }

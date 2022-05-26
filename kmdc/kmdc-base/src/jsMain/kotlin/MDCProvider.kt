@@ -5,7 +5,7 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.Element
 
 @KMDCInternalAPI
-private val MDCLocal: ProvidableCompositionLocal<MDCComponent<*>?> = strictCompositionLocalOf()
+private val MDCLocal: ProvidableCompositionLocal<MDCComponent<*>?> = compositionLocalOf { null }
 
 @KMDCInternalAPI
 public external interface MDCProviderScope<MDC : MDCComponent<*>>
