@@ -9,32 +9,11 @@ import org.jetbrains.compose.web.dom.Table
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLTableElement
 
-@JsModule("@material/data-table/dist/mdc.data-table.css")
-private external val MDCDataTableCSS: dynamic
+@JsModule("@material/data-table/mdc-data-table.scss")
+private external val Style: dynamic
 
-public sealed interface MDCDataTableAttrsScope : AttrsScope<HTMLDivElement>
-public sealed interface MDCDataTableScope : ElementScope<HTMLDivElement>
-
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
- */
-@MDCContentDsl
-@Composable
-public fun MDCDataTable(
-  attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
-  content: MDCContent<MDCDataTableScope>? = null,
-) {
-  MDCDataTableCSS
-  Div(
-    attrs = {
-      classes("mdc-data-table")
-      applyAttrs(attrs)
-    },
-  ) {
-    MDCSideEffect(effect = MDCDataTable::layout)
-    applyContent(content)
-  }
-}
+public interface MDCDataTableAttrsScope : AttrsScope<HTMLDivElement>
+public interface MDCDataTableScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
@@ -42,19 +21,23 @@ public fun MDCDataTable(
 @MDCContentDsl
 @Composable
 public fun MDCDataTable(
-  loading: Boolean,
+  loading: Boolean = false,
   attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
   content: MDCContent<MDCDataTableScope>? = null,
 ) {
-  MDCDataTable(attrs = {
+  Style
+  Div(attrs = {
+    classes("mdc-data-table")
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(::MDCDataTable)
-    MDCSideEffect<MDCDataTable>(loading) {
-      if (loading) showProgress() else hideProgress()
+    MDCProvider(::MDCDataTable) {
+      MDCSideEffectNew(effect = MDCDataTable::layout)
+      MDCSideEffectNew(loading) {
+        if (loading) showProgress() else hideProgress()
+      }
+      applyContent(content)
+      unsafeCast<MDCDataTableScope>().ProgressIndicator()
     }
-    applyContent(content)
-    MDCDataTableProgressIndicator()
   }
 }
 
@@ -65,8 +48,8 @@ public sealed interface MDCDataTableContainerScope : ElementScope<HTMLTableEleme
  */
 @MDCContentDsl
 @Composable
-public fun MDCDataTableScope.MDCDataTableContainer(
-  attrs: AttrsBuilder<HTMLTableElement>? = null,
+public fun MDCDataTableScope.Container(
+  attrs: MDCAttrsRaw<HTMLTableElement>? = null,
   content: MDCContent<MDCDataTableContainerScope>? = null,
 ) {
   Div(
@@ -79,7 +62,7 @@ public fun MDCDataTableScope.MDCDataTableContainer(
         classes("mdc-data-table__table")
         applyAttrs(attrs)
       },
-      content = content?.reinterpret()
+      content = content.reinterpret()
     )
   }
 }

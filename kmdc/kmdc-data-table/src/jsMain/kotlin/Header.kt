@@ -1,17 +1,21 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.checkbox.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.checkbox.MDCCheckbox
+import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
+import dev.petuska.kmdc.checkbox.MDCCheckboxInput
+import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.icon.button.*
-import org.jetbrains.compose.web.attributes.*
+import dev.petuska.kmdc.icon.button.MDCIconButton
+import dev.petuska.kmdc.icon.button.MDCIconButtonScope
+import org.jetbrains.compose.web.attributes.Scope
+import org.jetbrains.compose.web.attributes.scope
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLTableCellElement
+import org.w3c.dom.HTMLTableRowElement
 
-public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowElement>
+public interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
@@ -38,7 +42,7 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
  */
 @MDCContentDsl
 @Composable
-public fun MDCDataTableHeaderScope.MDCDataTableCell(
+public fun MDCDataTableHeaderScope.Cell(
   numeric: Boolean = false,
   attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
   content: MDCContentRaw<HTMLTableCellElement>? = null,
@@ -60,12 +64,12 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
  */
 @MDCContentDsl
 @Composable
-public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
+public fun MDCDataTableHeaderScope.Cell(
   text: String,
   numeric: Boolean = false,
-  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
-  MDCDataTableCell(numeric, attrs) { Text(text) }
+  Cell(numeric, attrs) { Text(text) }
 }
 
 /**
@@ -73,13 +77,13 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
  */
 @MDCContentDsl
 @Composable
-public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
+public fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
   selected: Boolean?,
   numeric: Boolean = false,
   label: String? = null,
-  noinline attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
-  MDCDataTableCell(
+  Cell(
     numeric = numeric,
     attrs = {
       classes("mdc-data-table__header-cell--checkbox")
@@ -115,7 +119,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableSortCell(
   buttonContent: MDCContent<MDCIconButtonScope<HTMLButtonElement>>? = null,
 ) {
   val id = rememberUniqueDomElementId()
-  MDCDataTableCell(
+  Cell(
     attrs = {
       classes("mdc-data-table__header-cell--with-sort")
       aria("sort", "none")
