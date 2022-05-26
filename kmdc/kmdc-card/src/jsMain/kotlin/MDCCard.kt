@@ -1,11 +1,7 @@
 package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
@@ -27,7 +23,7 @@ public interface MDCCardScope : ElementScope<HTMLDivElement>
 @Composable
 public fun MDCCard(
   type: MDCCardType = MDCCardType.Elevated,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCCardScope>? = null
 ) {
   Style

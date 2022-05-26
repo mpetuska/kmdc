@@ -12,7 +12,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLAnchorElement
 import org.w3c.dom.HTMLButtonElement
 
-@JsModule("@material/button/styles.scss")
+@JsModule("@material/button/mdc-button.scss")
 private external val Style: dynamic
 
 public enum class MDCButtonType(public vararg val classes: String) {

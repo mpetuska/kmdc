@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
 import dev.petuska.kmdc.core.MDCContentDsl
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
+import dev.petuska.kmdc.core.MDCContentRaw
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLDivElement
@@ -14,8 +14,8 @@ import org.w3c.dom.HTMLDivElement
 @MDCContentDsl
 @Composable
 public fun MDCCardScope.PrimaryAction(
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ContentBuilder<HTMLDivElement>? = null
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null
 ) {
   Div(
     attrs = {

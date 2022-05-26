@@ -1,12 +1,7 @@
 package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.classes
-import dev.petuska.kmdc.core.reinterpret
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
@@ -26,7 +21,7 @@ public interface MDCCardMediaScope : ElementScope<HTMLDivElement>
 @Composable
 public fun MDCCardScope.Media(
   type: MDCCardMediaType = MDCCardMediaType.Free,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCCardMediaScope>? = null
 ) {
   Div(
@@ -45,8 +40,8 @@ public fun MDCCardScope.Media(
 @MDCContentDsl
 @Composable
 public fun MDCCardMediaScope.MediaContent(
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ContentBuilder<HTMLDivElement>? = null
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null
 ) {
   Div(
     attrs = {
