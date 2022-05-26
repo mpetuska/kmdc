@@ -4,7 +4,6 @@ package dev.petuska.kmdcx.icons
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
 public enum class MDCIcon(public val type: String) {
-  None("None"),
   TenMp("10mp"),
   ElevenMp("11mp"),
   TwelveMp("12mp"),
