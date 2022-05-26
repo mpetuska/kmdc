@@ -17,7 +17,7 @@ public interface MDCMenuSurfaceAttrsScope : AttrsScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu-surface)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCMenuSurface(
   open: Boolean = false,

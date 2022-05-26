@@ -20,7 +20,7 @@ public interface MDCFabScope : ElementScope<HTMLButtonElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-fab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFab(
   type: MDCFabType = MDCFabType.Regular,
@@ -49,7 +49,7 @@ public fun MDCFab(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-fab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFabScope.Icon(
   attrs: AttrBuilderContext<HTMLSpanElement>? = null,
@@ -67,7 +67,7 @@ public fun MDCFabScope.Icon(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-fab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFabScope.Label(
   attrs: AttrBuilderContext<HTMLSpanElement>? = null,
@@ -85,7 +85,7 @@ public fun MDCFabScope.Label(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-fab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFabScope.Label(
   text: String,

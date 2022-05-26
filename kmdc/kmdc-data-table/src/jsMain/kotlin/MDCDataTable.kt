@@ -18,7 +18,7 @@ public sealed interface MDCDataTableScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTable(
   attrs: MDCAttrs<MDCDataTableAttrsScope>? = null,
@@ -39,7 +39,7 @@ public fun MDCDataTable(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTable(
   loading: Boolean,
@@ -63,7 +63,7 @@ public sealed interface MDCDataTableContainerScope : ElementScope<HTMLTableEleme
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTableScope.MDCDataTableContainer(
   attrs: AttrsBuilder<HTMLTableElement>? = null,

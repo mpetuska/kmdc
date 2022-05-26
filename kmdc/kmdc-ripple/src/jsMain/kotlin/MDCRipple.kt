@@ -7,7 +7,7 @@ import org.jetbrains.compose.web.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-ripple)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun ElementScope<*>.MDCRipple(
   unbounded: Boolean = false

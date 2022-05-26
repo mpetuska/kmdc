@@ -12,7 +12,7 @@ public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseS
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabScope.Content(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -30,7 +30,7 @@ public fun MDCTabScope.Content(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabContentScope.Icon(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -49,7 +49,7 @@ public fun MDCTabContentScope.Icon(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabContentScope.Label(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -67,7 +67,7 @@ public fun MDCTabContentScope.Label(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabContentScope.Label(
   text: String,

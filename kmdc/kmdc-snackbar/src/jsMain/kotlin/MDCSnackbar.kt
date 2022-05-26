@@ -23,7 +23,7 @@ public interface MDCSnackbarScope : ElementScope<HTMLElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbar(
   type: MDCSnackbarType = MDCSnackbarType.Default,

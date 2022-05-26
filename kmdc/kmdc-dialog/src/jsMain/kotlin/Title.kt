@@ -11,7 +11,7 @@ public interface MDCDialogTitleScope<T : Element> : ElementScope<T>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogTitleScope<*>.Title(
   attrs: MDCAttrsRaw<HTMLHeadingElement>? = null,
@@ -31,7 +31,7 @@ public fun MDCDialogTitleScope<*>.Title(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogTitleScope<*>.Title(
   title: String,

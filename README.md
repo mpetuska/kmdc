@@ -93,59 +93,59 @@ fun Showcase() {
 
 Here's a tracker list of currently completed [material-components-web] modules:
 
-- [ ] mdc-animation (SASS)
-- [x] mdc-auto-init (won't wrap)
-- [x] mdc-banner
-- [x] mdc-base (won't wrap)
-- [x] mdc-button
-- [x] mdc-card
-- [x] mdc-checkbox
-- [x] mdc-chips
-- [x] mdc-circular-progress
-- [x] mdc-data-table
-- [x] mdc-density (won't wrap)
-- [x] mdc-dialog
-- [x] mdc-dom (won't wrap)
-- [x] mdc-drawer
-- [x] mdc-elevation
-- [x] mdc-fab
-- [x] mdc-feature-targeting (won't wrap)
-- [x] mdc-floating-label
-- [x] mdc-form-field
-- [x] mdc-icon-button
-- [x] mdc-image-list
-- [x] mdc-layout-grid
-- [x] mdc-line-ripple
-- [x] mdc-linear-progress
-- [x] mdc-list
-- [x] mdc-menu-surface
-- [x] mdc-menu
-- [ ] mdc-notched-outline
-- [x] mdc-progress-indicator (won't wrap)
-- [x] mdc-radio
-- [x] mdc-ripple
-- [ ] mdc-rtl (SASS)
-- [x] mdc-segmented-button
-- [x] mdc-select
-- [ ] mdc-shape (SASS)
-- [x] mdc-slider
-- [x] mdc-snackbar
-- [x] mdc-switch
-- [x] mdc-tab-bar
-- [x] mdc-tab-indicator
-- [x] mdc-tab-scroller
-- [x] mdc-tab
-- [x] mdc-textfield
-- [ ] mdc-theme (SASS)
-- [x] mdc-tokens (won't wrap)
-- [x] mdc-tooltip
-- [x] mdc-top-app-bar
-- [x] mdc-touch-target
-- [x] mdc-typography
+- [ ] kmdc-animation (SASS)
+- [ ] kmdc-auto-init (won't wrap)
+- [ ] kmdc-banner
+- [ ] kmdc-base (won't wrap)
+- [ ] kmdc-button
+- [ ] kmdc-card
+- [ ] kmdc-checkbox
+- [ ] kmdc-chips
+- [ ] kmdc-circular-progress
+- [ ] kmdc-data-table
+- [ ] kmdc-density (won't wrap)
+- [ ] kmdc-dialog
+- [ ] kmdc-dom (won't wrap)
+- [ ] kmdc-drawer
+- [ ] kmdc-elevation
+- [ ] kmdc-fab
+- [ ] kmdc-feature-targeting (won't wrap)
+- [ ] kmdc-floating-label
+- [ ] kmdc-form-field
+- [ ] kmdc-icon-button
+- [ ] kmdc-image-list
+- [ ] kmdc-layout-grid
+- [ ] kmdc-line-ripple
+- [ ] kmdc-linear-progress
+- [ ] kmdc-list
+- [ ] kmdc-menu-surface
+- [ ] kmdc-menu
+- [ ] kmdc-notched-outline
+- [ ] kmdc-progress-indicator (won't wrap)
+- [ ] kmdc-radio
+- [ ] kmdc-ripple
+- [ ] kmdc-rtl (SASS)
+- [ ] kmdc-segmented-button
+- [ ] kmdc-select
+- [ ] kmdc-shape (SASS)
+- [ ] kmdc-slider
+- [ ] kmdc-snackbar
+- [ ] kmdc-switch
+- [ ] kmdc-tab-bar
+- [ ] kmdc-tab-indicator
+- [ ] kmdc-tab-scroller
+- [ ] kmdc-tab
+- [ ] kmdc-textfield
+- [ ] kmdc-theme (SASS)
+- [ ] kmdc-tokens (won't wrap)
+- [ ] kmdc-tooltip
+- [ ] kmdc-top-app-bar
+- [ ] kmdc-touch-target
+- [ ] kmdc-typography
 
 Other libraries and extensions:
 
-- [x] material-icons
+- [ ] kmdc-icons
 
 ### Module Structure
 

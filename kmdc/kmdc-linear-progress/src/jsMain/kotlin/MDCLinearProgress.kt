@@ -23,7 +23,7 @@ public class MDCLinearProgressScope(scope: ElementScope<HTMLDivElement>) : Eleme
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-linear-progress)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCLinearProgress(
   opts: MDCAttrs<MDCLinearProgressOpts>? = null,

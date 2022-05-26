@@ -15,7 +15,7 @@ public external val MDCRadioStyle: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRadio(
   checked: Boolean,
@@ -30,7 +30,7 @@ public fun MDCRadio(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFormFieldScope.MDCRadio(
   checked: Boolean,
@@ -48,7 +48,7 @@ public fun MDCFormFieldScope.MDCRadio(
   })
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCRadioBody(
   checked: Boolean,

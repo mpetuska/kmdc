@@ -13,7 +13,7 @@ private val NavigableTrailLocal = compositionLocalOf { true }
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipsGridScope.InputChip(
   id: String,
@@ -48,7 +48,7 @@ public fun MDCChipsGridScope.InputChip(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCInputChipScope.PrimaryAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,
@@ -71,7 +71,7 @@ public fun MDCInputChipScope.PrimaryAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCInputChipScope.TrailingAction(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,

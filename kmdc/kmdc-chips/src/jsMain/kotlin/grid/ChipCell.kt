@@ -10,7 +10,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCChipScope.ChipCell(
   attrs: AttrsBuilder<HTMLButtonElement>? = null,

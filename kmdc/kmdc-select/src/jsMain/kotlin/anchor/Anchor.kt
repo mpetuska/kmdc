@@ -13,7 +13,7 @@ public interface MDCSelectAnchorScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectScope.Anchor(
   label: String,
@@ -71,7 +71,7 @@ public fun MDCSelectScope.Anchor(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectAnchorScope.LeadingIcon(
   clickable: Boolean = true,

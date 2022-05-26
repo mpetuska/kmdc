@@ -29,7 +29,7 @@ public class MDCTabBarScope internal constructor(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabBar(
   attrs: MDCAttrs<MDCTabBarAttrsScope>? = null,

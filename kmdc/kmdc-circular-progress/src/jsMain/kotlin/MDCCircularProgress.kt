@@ -18,7 +18,7 @@ private external val MDCCircularProgressCSS: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-circular-progress)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCircularProgress(
   progress: Double = 0.0,
@@ -54,7 +54,7 @@ public fun MDCCircularProgress(
 }
 
 @OptIn(ExperimentalComposeWebSvgApi::class)
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCCircularProgressDeterminateContainer(size: Int) {
   val cSize = size / 2
@@ -80,7 +80,7 @@ private fun MDCCircularProgressDeterminateContainer(size: Int) {
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCCircularProgressIndeterminateContainer(size: Int, fourColor: Boolean) {
   Div({ classes("mdc-circular-progress__indeterminate-container") }) {
@@ -94,7 +94,7 @@ private fun MDCCircularProgressIndeterminateContainer(size: Int, fourColor: Bool
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCCircularProgressSpinnerLayer(size: Int, color: Int?) {
   val sSize1 = size / 12.0
@@ -115,7 +115,7 @@ private fun MDCCircularProgressSpinnerLayer(size: Int, color: Int?) {
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 @OptIn(ExperimentalComposeWebSvgApi::class)
 private fun MDCCircularProgressIndeterminateGraphic(size: Int, sSize: Number) {

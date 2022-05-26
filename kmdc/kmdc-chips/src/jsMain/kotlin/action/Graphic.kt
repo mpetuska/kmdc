@@ -12,7 +12,7 @@ public interface MDCFilterChipGraphicScope : MDCChipActionIconScope<HTMLSpanElem
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipActionScope<*>.Graphic(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -31,7 +31,7 @@ public fun MDCChipActionScope<*>.Graphic(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
 @OptIn(ExperimentalComposeWebSvgApi::class)
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFilterChipGraphicScope.Checkmark(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,

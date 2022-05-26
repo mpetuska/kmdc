@@ -10,7 +10,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarScope.MDCSnackbarLabel(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
@@ -29,7 +29,7 @@ public fun MDCSnackbarScope.MDCSnackbarLabel(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarScope.MDCSnackbarLabel(
   text: String,

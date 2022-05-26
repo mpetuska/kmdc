@@ -6,7 +6,7 @@ import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.w3c.dom.*
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCMenuSurfaceAnchor(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,

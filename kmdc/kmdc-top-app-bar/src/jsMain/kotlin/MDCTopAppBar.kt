@@ -40,7 +40,7 @@ public interface MDCTopAppBarScope : ElementScope<HTMLElement>
  *
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarContext(
   opts: MDCAttrs<MDCTopAppBarContextOpts>? = null,
@@ -56,7 +56,7 @@ public fun MDCTopAppBarContext(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarContextScope.MDCTopAppBar(
   attrs: AttrBuilderContext<HTMLElement>? = null,
@@ -78,7 +78,7 @@ public fun MDCTopAppBarContextScope.MDCTopAppBar(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarContextScope.MDCTopAppBarMain(
   attrs: AttrBuilderContext<HTMLElement>? = null,

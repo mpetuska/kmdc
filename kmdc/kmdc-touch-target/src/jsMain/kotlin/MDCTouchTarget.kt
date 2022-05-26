@@ -12,7 +12,7 @@ private external val MDCTouchTargetStyles: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-touch-target)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTouchTarget(
   attrs: AttrsBuilder<HTMLDivElement>? = null,

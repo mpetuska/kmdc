@@ -21,7 +21,7 @@ private val MDCImageListTypeLocal = compositionLocalOf<MDCImageListType> { error
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCImageList(
   type: MDCImageListType = MDCImageListType.Standard,
@@ -47,7 +47,7 @@ public interface MDCImageListItemScope : ElementScope<HTMLLIElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCImageListScope.Item(
   attrs: AttrsBuilder<HTMLLIElement>? = null,
@@ -64,7 +64,7 @@ public fun MDCImageListScope.Item(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCImageListItemScope.Image(
   src: String,
@@ -91,7 +91,7 @@ public fun MDCImageListItemScope.Image(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCImageListItemScope.Label(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -116,7 +116,7 @@ public fun MDCImageListItemScope.Label(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCImageListItemScope.Label(
   text: String,

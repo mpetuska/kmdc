@@ -9,7 +9,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerContent(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,

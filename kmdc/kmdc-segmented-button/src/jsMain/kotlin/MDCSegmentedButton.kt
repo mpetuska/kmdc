@@ -20,7 +20,7 @@ public class MDCSegmentedButtonScope(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButton(
   singleSelect: Boolean = false,

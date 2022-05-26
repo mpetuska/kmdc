@@ -10,7 +10,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipTitle(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
@@ -28,7 +28,7 @@ public fun MDCRichTooltipScope.MDCTooltipTitle(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipTitle(
   text: String,

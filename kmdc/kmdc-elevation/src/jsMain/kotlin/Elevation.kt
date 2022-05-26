@@ -12,7 +12,7 @@ private external val Styles: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-elevation)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCElevation(
   z: Int,
@@ -32,7 +32,7 @@ public fun MDCElevation(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-elevation)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCElevationOverlay(
   attrs: AttrsBuilder<HTMLDivElement>? = null,

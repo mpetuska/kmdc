@@ -37,7 +37,7 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
   )
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTextFieldScope.MDCTextFieldLeadingIcon(
   clickable: Boolean = false,
@@ -52,7 +52,7 @@ public fun MDCTextFieldScope.MDCTextFieldLeadingIcon(
   )
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTextFieldScope.MDCTextFieldTrailingIcon(
   clickable: Boolean = false,

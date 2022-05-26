@@ -20,7 +20,7 @@ internal val OpenLocal = strictCompositionLocalOf<Boolean>()
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialog(
   open: Boolean,

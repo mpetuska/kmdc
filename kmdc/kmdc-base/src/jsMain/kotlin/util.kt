@@ -10,10 +10,10 @@ import org.w3c.dom.Element
 public typealias AttrsBuilder<T> = AttrBuilderContext<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
 public typealias MDCAttrsRaw<T> = @MDCAttrsDsl AttrsBuilder<T>
-public typealias MDCContentRaw<T> = @MDCDsl ContentBuilder<T>
+public typealias MDCContentRaw<T> = @MDCContentDsl ContentBuilder<T>
 public typealias Builder<T> = T.() -> Unit
 public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
-public typealias MDCContent<T> = @Composable @MDCDsl Builder<T>
+public typealias MDCContent<T> = @Composable @MDCContentDsl Builder<T>
 
 /**
  * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
@@ -128,4 +128,5 @@ public fun rememberUniqueDomElementId(suffix: String? = null): String =
 @KMDCInternalAPI
 public fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
 
+@KMDCInternalAPI
 public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> = compositionLocalOf { error("undefined") }

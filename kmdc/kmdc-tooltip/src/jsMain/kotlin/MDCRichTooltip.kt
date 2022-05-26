@@ -3,7 +3,7 @@ package dev.petuska.kmdc.tooltip
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCAttrsDsl
 import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCContentDsl
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
@@ -40,7 +40,7 @@ public class MDCRichTooltipAnchorScope(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRichTooltip(
   id: String,

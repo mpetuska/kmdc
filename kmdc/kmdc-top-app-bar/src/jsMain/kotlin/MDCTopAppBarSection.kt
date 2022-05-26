@@ -20,7 +20,7 @@ public data class MDCTopAppBarSectionOpts(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarRowScope.MDCTopAppBarSection(
   opts: MDCAttrs<MDCTopAppBarSectionOpts>? = null,

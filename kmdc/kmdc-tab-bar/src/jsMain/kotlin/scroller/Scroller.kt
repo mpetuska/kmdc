@@ -20,7 +20,7 @@ public class MDCTabScrollerScope internal constructor(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-scroller)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabBarScope.Scroller(
   attrs: AttrsBuilder<HTMLDivElement>? = null,

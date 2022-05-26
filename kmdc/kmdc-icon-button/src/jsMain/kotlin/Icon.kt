@@ -11,7 +11,7 @@ import org.w3c.dom.svg.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconButtonScope<*>.Icon(
   on: Boolean? = null,
@@ -25,7 +25,7 @@ public fun MDCIconButtonScope<*>.Icon(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
 @OptIn(ExperimentalComposeWebSvgApi::class)
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconButtonScope<*>.SvgIcon(
   viewBox: String,
@@ -39,7 +39,7 @@ public fun MDCIconButtonScope<*>.SvgIcon(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconButtonScope<*>.ImgIcon(
   src: String,

@@ -12,7 +12,7 @@ public class MDCDrawerHeaderScope(scope: ElementScope<HTMLDivElement>) : Element
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerHeader(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
@@ -30,7 +30,7 @@ public fun MDCDrawerScope.MDCDrawerHeader(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerHeader(
   text: String,
@@ -40,7 +40,7 @@ public fun MDCDrawerScope.MDCDrawerHeader(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerTitle(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
@@ -58,7 +58,7 @@ public fun MDCDrawerScope.MDCDrawerTitle(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerTitle(
   text: String,
@@ -68,7 +68,7 @@ public fun MDCDrawerScope.MDCDrawerTitle(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerSubtitle(
   attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
@@ -86,7 +86,7 @@ public fun MDCDrawerScope.MDCDrawerSubtitle(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScope.MDCDrawerSubtitle(
   text: String,

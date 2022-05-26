@@ -37,7 +37,7 @@ public class MDCDrawerScope(scope: ElementScope<HTMLElement>) : ElementScope<HTM
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawer(
   opts: MDCAttrs<MDCDrawerOpts>? = null,
@@ -63,7 +63,7 @@ public fun MDCDrawer(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDrawerScrim(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,

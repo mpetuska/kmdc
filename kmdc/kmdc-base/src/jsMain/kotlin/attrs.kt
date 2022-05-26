@@ -2,8 +2,9 @@
 
 package dev.petuska.kmdc.core
 
-import org.jetbrains.compose.web.attributes.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 
 @KMDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
@@ -14,8 +15,6 @@ public inline fun <T : Element> AttrsScope<T>.aria(key: String, value: Any) {
 public inline fun <T : Element> AttrsScope<T>.data(key: String, value: Any) {
   attr("data-$key", "$value")
 }
-
-public typealias Classes = Array<String>
 
 @KMDCInternalAPI
 public inline fun <T : Element> AttrsScope<T>.classes(classes: Array<out String>) {

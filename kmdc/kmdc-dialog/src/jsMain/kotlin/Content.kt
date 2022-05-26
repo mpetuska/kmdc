@@ -11,7 +11,7 @@ public interface MDCDialogContentScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogScope.Content(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,

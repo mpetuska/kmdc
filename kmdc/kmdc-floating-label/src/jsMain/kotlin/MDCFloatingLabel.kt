@@ -24,7 +24,7 @@ public interface MDCButtonScope : ElementScope<HTMLButtonElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-floating-label)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFloatingLabel(
   id: String,
@@ -50,7 +50,7 @@ public fun MDCFloatingLabel(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-floating-label)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFloatingLabel(
   text: String,

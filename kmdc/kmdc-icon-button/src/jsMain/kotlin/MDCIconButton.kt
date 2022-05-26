@@ -15,7 +15,7 @@ public interface MDCIconButtonScope<T : HTMLElement> : ElementScope<T>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconButton(
   on: Boolean = false,
@@ -30,7 +30,7 @@ public fun MDCIconButton(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconLink(
   on: Boolean? = null,

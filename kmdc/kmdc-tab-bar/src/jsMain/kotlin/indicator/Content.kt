@@ -13,7 +13,7 @@ public enum class MDCTabIndicatorType(public vararg val classes: String) {
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Content(
   indicator: MDCTabIndicatorType,
@@ -34,7 +34,7 @@ public fun MDCTabIndicatorScope.Content(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Icon(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -46,7 +46,7 @@ public fun MDCTabIndicatorScope.Icon(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Underline(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,

@@ -35,7 +35,7 @@ public enum class MDCListSelection(public val listRole: String?, public val item
   Multi(null, null),
 }
 
-@MDCDsl
+@MDCContentDsl
 public interface MDCListScope<T : HTMLElement> : ElementScope<T>
 
 internal val MDCListSelectionLocal = compositionLocalOf<MDCListSelection> { error("undefined") }
@@ -43,7 +43,7 @@ internal val MDCListSelectionLocal = compositionLocalOf<MDCListSelection> { erro
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCList(
   type: MDCListType = MDCListType.Generic,
@@ -99,7 +99,7 @@ public fun MDCListLayout(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNavList(
   type: MDCListType = MDCListType.Generic,

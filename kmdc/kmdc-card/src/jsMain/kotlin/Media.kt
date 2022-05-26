@@ -2,7 +2,7 @@ package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCContentDsl
 import dev.petuska.kmdc.core.classes
 import dev.petuska.kmdc.core.reinterpret
 import org.jetbrains.compose.web.dom.AttrBuilderContext
@@ -22,7 +22,7 @@ public interface MDCCardMediaScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardScope.Media(
   type: MDCCardMediaType = MDCCardMediaType.Free,
@@ -42,7 +42,7 @@ public fun MDCCardScope.Media(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardMediaScope.MediaContent(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,

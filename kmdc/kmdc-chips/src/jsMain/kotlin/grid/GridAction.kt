@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.*
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun GridAction(
   attrs: AttrsBuilder<HTMLButtonElement>?,

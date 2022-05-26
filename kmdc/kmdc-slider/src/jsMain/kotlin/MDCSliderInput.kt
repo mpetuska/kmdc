@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCSliderInput(
   value: Number,

@@ -11,7 +11,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTooltipRichContentScope.MDCTooltipLink(
   attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
@@ -29,7 +29,7 @@ public fun MDCTooltipRichContentScope.MDCTooltipLink(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTooltipRichContentScope.MDCTooltipLink(
   text: String,

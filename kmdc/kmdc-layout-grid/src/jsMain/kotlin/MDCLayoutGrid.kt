@@ -30,7 +30,7 @@ public class MDCLayoutGridCellsScope(scope: ElementScope<HTMLDivElement>) : MDCL
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-layout-grid)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCLayoutGrid(
   opts: MDCAttrs<MDCLayoutGridOpts>? = null,
@@ -53,7 +53,7 @@ public fun MDCLayoutGrid(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-layout-grid)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCLayoutGridScope.MDCLayoutGridCells(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,

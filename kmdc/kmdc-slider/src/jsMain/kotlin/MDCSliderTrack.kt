@@ -8,7 +8,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCSliderTrack(
   tickMarks: Boolean,
@@ -35,7 +35,7 @@ internal fun MDCSliderTrack(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCSliderTickMarks(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,

@@ -17,7 +17,7 @@ public external val Style: dynamic
 
 public interface MDCCheckboxScope : ElementScope<HTMLDivElement>
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckbox(
   disabled: Boolean = false,
@@ -42,7 +42,7 @@ public fun MDCCheckbox(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckbox(
   checked: Boolean?,
@@ -76,7 +76,7 @@ public fun MDCCheckbox(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCFormFieldScope.MDCCheckbox(
   checked: Boolean?,
@@ -111,7 +111,7 @@ public fun MDCFormFieldScope.MDCCheckbox(
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxInput(
   checked: Boolean?,
@@ -130,7 +130,7 @@ public fun MDCCheckboxScope.MDCCheckboxInput(
 }
 
 @OptIn(ExperimentalComposeWebSvgApi::class)
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxBackground(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -155,7 +155,7 @@ public fun MDCCheckboxScope.MDCCheckboxBackground(
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxRipple(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null

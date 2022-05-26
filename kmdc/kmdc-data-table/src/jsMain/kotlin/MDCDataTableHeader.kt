@@ -16,7 +16,7 @@ public sealed interface MDCDataTableHeaderScope : ElementScope<HTMLTableRowEleme
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTableContainerScope.MDCDataTableHeader(
   attrs: MDCAttrsRaw<HTMLTableRowElement>? = null,
@@ -36,7 +36,7 @@ public fun MDCDataTableContainerScope.MDCDataTableHeader(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTableHeaderScope.MDCDataTableCell(
   numeric: Boolean = false,
@@ -58,7 +58,7 @@ public fun MDCDataTableHeaderScope.MDCDataTableCell(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
   text: String,
@@ -71,7 +71,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCell(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
   selected: Boolean?,
@@ -104,7 +104,7 @@ public inline fun MDCDataTableHeaderScope.MDCDataTableCheckCell(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTableHeaderScope.MDCDataTableSortCell(
   columnId: String,

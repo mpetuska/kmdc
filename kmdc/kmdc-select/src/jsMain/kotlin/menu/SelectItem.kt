@@ -12,7 +12,7 @@ import org.w3c.dom.HTMLLIElement
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectMenuScope.SelectItem(
   value: String,
@@ -37,7 +37,7 @@ public fun MDCSelectMenuScope.SelectItem(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectMenuScope.SelectItem(
   text: String,

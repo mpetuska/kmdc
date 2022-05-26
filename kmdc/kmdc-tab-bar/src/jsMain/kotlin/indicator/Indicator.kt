@@ -19,7 +19,7 @@ public interface MDCTabIndicatorScope : ElementScope<HTMLSpanElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-indicator)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTabBaseScope.Indicator(
   active: Boolean = false,

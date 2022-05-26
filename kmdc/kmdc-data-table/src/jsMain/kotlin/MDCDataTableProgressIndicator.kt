@@ -11,7 +11,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDataTableScope.MDCDataTableProgressIndicator(
   attrs: AttrsBuilder<HTMLDivElement>? = null,

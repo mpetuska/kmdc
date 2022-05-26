@@ -28,7 +28,7 @@ public class MDCTextFieldScope(scope: ElementScope<HTMLLabelElement>) : ElementS
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 @Suppress("LongMethod")
 public fun MDCTextField(
@@ -166,7 +166,7 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   trailingIcon?.invoke(MDCTextFieldScope(this))
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCTextFieldHelperLine(
   helperText: String?,
@@ -190,7 +190,7 @@ internal fun MDCTextFieldHelperLine(
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCTextFieldInput(
   value: String,

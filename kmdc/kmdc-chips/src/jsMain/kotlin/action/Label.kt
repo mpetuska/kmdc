@@ -10,7 +10,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipActionScope<*>.Label(
   attrs: AttrsBuilder<HTMLSpanElement>? = null,
@@ -28,7 +28,7 @@ public fun MDCChipActionScope<*>.Label(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipActionScope<*>.Label(
   text: String,

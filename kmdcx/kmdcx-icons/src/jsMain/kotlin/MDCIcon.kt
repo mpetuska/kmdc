@@ -12,7 +12,7 @@ private external val MDCIconStyle: dynamic
 /**
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconSpan(
   opts: MDCAttrs<MDCIconOpts>? = null,
@@ -32,7 +32,7 @@ public fun MDCIconSpan(
 /**
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIconI(
   opts: MDCAttrs<MDCIconOpts>? = null,
@@ -52,7 +52,7 @@ public fun MDCIconI(
 /**
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCIcon(opts: MDCAttrs<MDCIconOpts>? = null, attrs: AttrBuilderContext<out HTMLElement>? = null) {
   val options = MDCIconOpts().apply { opts?.invoke(this) }

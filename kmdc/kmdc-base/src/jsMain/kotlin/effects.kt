@@ -21,6 +21,7 @@ import kotlin.reflect.KMutableProperty1
  */
 @Composable
 @KMDCInternalAPI
+@Deprecated(message = "To be removed")
 public fun <E : Element, MDC : MDCComponent<*>> ElementScope<E>.MDCInitEffect(
   mdcInit: (E) -> MDC,
   vararg keys: Any?,
@@ -40,6 +41,7 @@ public fun <E : Element, MDC : MDCComponent<*>> ElementScope<E>.MDCInitEffect(
 
 @Composable
 @KMDCInternalAPI
+@Deprecated(message = "To be removed")
 public fun <MDC : MDCComponent<*>> ElementScope<*>.MDCSideEffect(
   vararg keys: Any?,
   onDispose: Builder<MDC>? = null,
@@ -57,6 +59,7 @@ public fun <MDC : MDCComponent<*>> ElementScope<*>.MDCSideEffect(
 
 @Composable
 @KMDCInternalAPI
+@Deprecated(message = "To be removed")
 public fun <V, MDC : MDCComponent<*>> ElementScope<*>.MDCStateEffect(
   value: V,
   setter: MDC.(V) -> Unit
@@ -64,6 +67,7 @@ public fun <V, MDC : MDCComponent<*>> ElementScope<*>.MDCStateEffect(
 
 @Composable
 @KMDCInternalAPI
+@Deprecated(message = "To be removed")
 public fun <V, MDC : MDCComponent<*>> ElementScope<*>.MDCStateEffect(
   value: V,
   property: KMutableProperty1<MDC, V>

@@ -18,7 +18,7 @@ public interface MDCSnackbarActionsScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarScope.MDCSnackbarActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
@@ -37,7 +37,7 @@ public fun MDCSnackbarScope.MDCSnackbarActions(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarAction(
   type: MDCButtonType = MDCButtonType.Text,
@@ -60,7 +60,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarAction(
   text: String,
@@ -74,7 +74,7 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbarActionsScope.MDCSnackbarDismiss(
   on: Boolean = false,

@@ -8,13 +8,13 @@ import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.*
 
-@MDCDsl
+@MDCContentDsl
 public interface MDCListGroupScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 @Deprecated(
   "Based on already deprecated MDC List. New implementation is still in the works.",
@@ -35,7 +35,7 @@ public fun MDCListGroup(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListGroupScope.Subheader(
   attrs: MDCAttrs<AttrsScope<HTMLHeadingElement>>? = null,
@@ -50,7 +50,7 @@ public fun MDCListGroupScope.Subheader(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListGroupScope.Subheader(
   text: String,

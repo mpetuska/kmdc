@@ -14,7 +14,7 @@ private external val Style: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-switch)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSwitch(
   selected: Boolean = false,

@@ -1,10 +1,11 @@
 package dev.petuska.kmdc.banner
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/banner/styles.scss")
 private external val Style: dynamic
@@ -15,7 +16,7 @@ public interface MDCBannerScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBanner(
   open: Boolean,
@@ -34,7 +35,7 @@ public fun MDCBanner(
     applyAttrs(attrs)
   }) {
     MDCProvider(::MDCBanner) {
-      MDCSideEffectNew<MDCBanner>(open, centered, mobileStacked) {
+      MDCSideEffectNew(open, centered, mobileStacked) {
         if (open) open() else close(CloseReason.UNSPECIFIED)
       }
       if (fixed) {

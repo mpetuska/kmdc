@@ -11,7 +11,7 @@ public interface MDCChipActionIconScope<T : HTMLElement> : MDCChipActionScope<T>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipActionIconScope<*>.Icon(
   attrs: AttrsBuilder<HTMLElement>? = null,

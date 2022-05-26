@@ -10,7 +10,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButtonSegmentScope.Label(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
@@ -28,7 +28,7 @@ public fun MDCSegmentedButtonSegmentScope.Label(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButtonSegmentScope.Label(
   text: String,

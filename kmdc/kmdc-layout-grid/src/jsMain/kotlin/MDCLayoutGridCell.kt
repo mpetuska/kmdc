@@ -23,7 +23,7 @@ public data class MDCLayoutGridCellOpts(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-layout-grid)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCLayoutGridCellsScope.MDCLayoutGridCell(
   opts: MDCAttrs<MDCLayoutGridCellOpts>? = null,

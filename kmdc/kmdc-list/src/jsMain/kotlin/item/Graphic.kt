@@ -12,7 +12,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.Graphic(
   attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
@@ -27,7 +27,7 @@ public fun MDCListItemScope<*>.Graphic(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.RadioGraphic(
   checked: Boolean,
@@ -54,7 +54,7 @@ public fun MDCListItemScope<*>.RadioGraphic(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.CheckboxGraphic(
   checked: Boolean,

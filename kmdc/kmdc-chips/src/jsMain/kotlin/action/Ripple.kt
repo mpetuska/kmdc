@@ -4,7 +4,7 @@ import androidx.compose.runtime.*
 import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.*
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCChipActionScope<*>.Ripple() {
   val type = MDCChipActionTypeLocal.current

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.*
 import dev.petuska.kmdc.core.MDCAttrsRaw
 import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCContentDsl
 import dev.petuska.kmdc.core.reinterpret
 import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.icon.button.MDCIconButtonScope
@@ -20,7 +20,7 @@ public interface MDCCardActionsScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardScope.Actions(
   fullBleed: Boolean = false,
@@ -40,7 +40,7 @@ public fun MDCCardScope.Actions(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionButtons(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -58,7 +58,7 @@ public fun MDCCardActionsScope.ActionButtons(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionButton(
   type: MDCButtonType = MDCButtonType.Text,
@@ -82,7 +82,7 @@ public fun MDCCardActionsScope.ActionButton(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionButtonLink(
   href: String? = null,
@@ -108,7 +108,7 @@ public fun MDCCardActionsScope.ActionButtonLink(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionIcons(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -126,7 +126,7 @@ public fun MDCCardActionsScope.ActionIcons(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionIconButton(
   on: Boolean = false,
@@ -146,7 +146,7 @@ public fun MDCCardActionsScope.ActionIconButton(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-card)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCardActionsScope.ActionIconLink(
   on: Boolean? = null,

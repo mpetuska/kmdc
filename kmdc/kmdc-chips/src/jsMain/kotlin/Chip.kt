@@ -12,7 +12,7 @@ internal val MDCChipDisabledLocal = compositionLocalOf { false }
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun MDCChipsScope.Chip(
   id: String,

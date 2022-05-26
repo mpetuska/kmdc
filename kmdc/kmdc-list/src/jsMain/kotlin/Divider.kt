@@ -16,7 +16,7 @@ public enum class MDCListDividerInset(public vararg var classes: String) {
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListScope<*>.Divider(
   inset: MDCListDividerInset = MDCListDividerInset.None,
@@ -37,7 +37,7 @@ public fun MDCListScope<*>.Divider(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListGroupScope.Divider(
   inset: MDCListDividerInset = MDCListDividerInset.None,

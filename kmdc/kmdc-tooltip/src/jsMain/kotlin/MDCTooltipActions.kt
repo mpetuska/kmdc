@@ -6,7 +6,7 @@ import dev.petuska.kmdc.button.MDCButtonIconType
 import dev.petuska.kmdc.button.MDCButtonScope
 import dev.petuska.kmdc.button.MDCButtonType
 import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCDsl
+import dev.petuska.kmdc.core.MDCContentDsl
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
@@ -20,7 +20,7 @@ public class MDCTooltipRichActionsScope(scope: ElementScope<HTMLDivElement>) :
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRichTooltipScope.MDCTooltipActions(
   attrs: AttrBuilderContext<HTMLDivElement>? = null,
@@ -38,7 +38,7 @@ public fun MDCRichTooltipScope.MDCTooltipActions(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTooltipRichActionsScope.MDCTooltipAction(
   type: MDCButtonType = MDCButtonType.Text,
@@ -52,7 +52,7 @@ public fun MDCTooltipRichActionsScope.MDCTooltipAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTooltipRichActionsScope.MDCTooltipAction(
   text: String,

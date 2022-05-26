@@ -8,7 +8,7 @@ import org.w3c.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
   on: Boolean = false,
@@ -28,7 +28,7 @@ public fun MDCTopAppBarSectionScope.MDCTopAppBarActionButton(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTopAppBarSectionScope.MDCTopAppBarActionLink(
   on: Boolean = false,
