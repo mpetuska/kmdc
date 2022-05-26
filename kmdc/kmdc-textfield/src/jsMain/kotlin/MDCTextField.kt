@@ -2,7 +2,12 @@ package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.floating.label.MDCFloatingLabelLayout
 import dev.petuska.kmdc.line.ripple.MDCLineRipple
+import dev.petuska.kmdc.notched.outline.Leading
+import dev.petuska.kmdc.notched.outline.MDCNotchedOutlineLayout
+import dev.petuska.kmdc.notched.outline.Notch
+import dev.petuska.kmdc.notched.outline.Trailing
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
@@ -52,52 +57,61 @@ public fun MDCTextField(
       trailingIcon?.let { classes("mdc-text-field--with-trailing-icon") }
     }
   ) {
-    MDCInitEffect(::MDCTextField, label, prefix, suffix, leadingIcon == null, trailingIcon == null)
-    when (type) {
-      MDCTextFieldType.Filled -> {
-        Span(attrs = { classes("mdc-text-field__ripple") })
-        label?.let {
-          Span(attrs = {
-            classes("mdc-floating-label")
-            if (value.isNotEmpty())
-              classes("mdc-floating-label--float-above")
-            id(labelId)
-          }) { Text(it) }
+    MDCProvider(::MDCTextField, type, label, prefix, suffix, leadingIcon == null, trailingIcon == null) {
+      MDCStateEffectNew(value, MDCTextField::value)
+      when (type) {
+        MDCTextFieldType.Filled -> {
+          Span(attrs = { classes("mdc-text-field__ripple") })
+          MDCFloatingLabelLayout(
+            id = labelId,
+            float = false,
+            required = false,
+            shake = false,
+            attrs = null,
+          ) { label?.let { Text(it) } }
+          MDCTextFieldCore(
+            value = value,
+            prefix = prefix,
+            suffix = suffix,
+            attrs = attrs,
+            labelId = labelId,
+            helperId = helperId,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            maxLength = maxLength,
+            helperText = helperText,
+            disabled = disabled,
+          )
+          MDCLineRipple(false)
         }
-        MDCTextFieldCore(
-          value = value,
-          prefix = prefix,
-          suffix = suffix,
-          attrs = attrs,
-          labelId = labelId,
-          helperId = helperId,
-          leadingIcon = leadingIcon,
-          trailingIcon = trailingIcon,
-          maxLength = maxLength,
-          helperText = helperText,
-          disabled = disabled,
-        )
-        MDCLineRipple(false)
-      }
-      MDCTextFieldType.Outlined -> {
-        MDCTextFieldNotch(
-          label = label,
-          labelId = labelId,
-          inputIsNotEmpty = value.isNotEmpty()
-        )
-        MDCTextFieldCore(
-          value = value,
-          prefix = prefix,
-          suffix = suffix,
-          attrs = attrs,
-          labelId = labelId,
-          helperId = helperId,
-          leadingIcon = leadingIcon,
-          trailingIcon = trailingIcon,
-          maxLength = maxLength,
-          helperText = helperText,
-          disabled = disabled,
-        )
+        MDCTextFieldType.Outlined -> {
+          MDCNotchedOutlineLayout {
+            Leading()
+            Notch {
+              MDCFloatingLabelLayout(
+                id = labelId,
+                float = false,
+                required = false,
+                shake = false,
+                attrs = null,
+              ) { label?.let { Text(it) } }
+            }
+            Trailing()
+          }
+          MDCTextFieldCore(
+            value = value,
+            prefix = prefix,
+            suffix = suffix,
+            attrs = attrs,
+            labelId = labelId,
+            helperId = helperId,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            maxLength = maxLength,
+            helperText = helperText,
+            disabled = disabled,
+          )
+        }
       }
     }
   }
@@ -150,34 +164,6 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
     }
   }
   trailingIcon?.invoke(MDCTextFieldScope(this))
-}
-
-@MDCDsl
-@Composable
-internal fun MDCTextFieldNotch(
-  label: String?,
-  labelId: String,
-  inputIsNotEmpty: Boolean
-) {
-  Span(
-    attrs = {
-      classes("mdc-notched-outline")
-      if (inputIsNotEmpty)
-        classes("mdc-notched-outline--notched")
-    }
-  ) {
-    Span(attrs = { classes("mdc-notched-outline__leading") })
-    Span(attrs = { classes("mdc-notched-outline__notch") }) {
-      label?.let {
-        Span(attrs = {
-          classes("mdc-floating-label")
-          if (inputIsNotEmpty) classes("mdc-floating-label--float-above")
-          id(labelId)
-        }) { Text(it) }
-      }
-    }
-    Span(attrs = { classes("mdc-notched-outline__trailing") })
-  }
 }
 
 @MDCDsl

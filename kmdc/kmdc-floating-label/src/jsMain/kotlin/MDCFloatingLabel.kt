@@ -60,7 +60,7 @@ public fun MDCFloatingLabel(
   shake: Boolean = false,
   attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
 ) {
-  MDCFloatingLabelLayout(
+  MDCFloatingLabel(
     id = id,
     float = float,
     required = required,

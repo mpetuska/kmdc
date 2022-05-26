@@ -2,6 +2,11 @@ package dev.petuska.kmdc.textfield
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.floating.label.MDCFloatingLabelLayout
+import dev.petuska.kmdc.notched.outline.Leading
+import dev.petuska.kmdc.notched.outline.MDCNotchedOutlineLayout
+import dev.petuska.kmdc.notched.outline.Notch
+import dev.petuska.kmdc.notched.outline.Trailing
 import org.jetbrains.compose.web.attributes.builders.TextAreaAttrsScope
 import org.jetbrains.compose.web.attributes.cols
 import org.jetbrains.compose.web.attributes.maxLength
@@ -36,50 +41,63 @@ public fun MDCTextArea(
       if (disabled) classes("mdc-text-field--disabled")
     }
   ) {
-    MDCInitEffect(::MDCTextField, label)
-    maxLength?.let {
-      Div(attrs = {
-        classes("mdc-text-field-character-counter")
-      })
-    }
-    when (type) {
-      MDCTextFieldType.Filled -> {
-        Span(attrs = { classes("mdc-text-field__ripple") })
-        Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(
-            value = value,
-            rows = rows,
-            columns = columns,
-            helperText = helperText,
-            maxLength = maxLength,
-            attrs = attrs,
-            labelId = labelId,
-            helperId = helperId
-          )
-        }
-        label?.let {
-          Span(attrs = {
-            classes("mdc-floating-label")
-            if (value.isNotEmpty())
-              classes("mdc-floating-label--float-above")
-            id(labelId)
-          }) { Text(it) }
-        }
-        Span(attrs = { classes("mdc-line-ripple") })
+    MDCProvider(::MDCTextField, type, label) {
+      MDCStateEffectNew(value, MDCTextField::value)
+      maxLength?.let {
+        Div(attrs = {
+          classes("mdc-text-field-character-counter")
+        })
       }
-      MDCTextFieldType.Outlined -> {
-        MDCTextFieldNotch(label = label, labelId = labelId, inputIsNotEmpty = value.isNotEmpty())
-        Span(attrs = { classes("mdc-text-field__resizer") }) {
-          MDCTextAreaInput(
-            value = value,
-            rows = rows,
-            columns = columns,
-            helperText = helperText,
-            maxLength = maxLength,
-            attrs = attrs,
-            labelId = labelId,
-            helperId = helperId
-          )
+      when (type) {
+        MDCTextFieldType.Filled -> {
+          Span(attrs = { classes("mdc-text-field__ripple") })
+          Span(attrs = { classes("mdc-text-field__resizer") }) {
+            MDCTextAreaInput(
+              value = value,
+              rows = rows,
+              columns = columns,
+              helperText = helperText,
+              maxLength = maxLength,
+              attrs = attrs,
+              labelId = labelId,
+              helperId = helperId
+            )
+          }
+          MDCFloatingLabelLayout(
+            id = labelId,
+            float = false,
+            required = false,
+            shake = false,
+            attrs = null,
+          ) { label?.let { Text(it) } }
+          Span(attrs = { classes("mdc-line-ripple") })
+        }
+        MDCTextFieldType.Outlined -> {
+          MDCNotchedOutlineLayout {
+            Leading()
+            Notch {
+              MDCFloatingLabelLayout(
+                id = labelId,
+                float = false,
+                required = false,
+                shake = false,
+                attrs = null,
+              ) { label?.let { Text(it) } }
+            }
+            Trailing()
+          }
+          Span(attrs = { classes("mdc-text-field__resizer") }) {
+            MDCTextAreaInput(
+              value = value,
+              rows = rows,
+              columns = columns,
+              helperText = helperText,
+              maxLength = maxLength,
+              attrs = attrs,
+              labelId = labelId,
+              helperId = helperId
+            )
+          }
         }
       }
     }
