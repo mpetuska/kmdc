@@ -13,7 +13,7 @@ import dev.petuska.kmdc.list.MDCListSelection
 import dev.petuska.kmdc.list.MDCListType
 import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.list.item.RadioGraphic
-import dev.petuska.kmdcx.icons.MDCIconOpts
+import dev.petuska.kmdcx.icons.MDCIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.TextControl
@@ -65,7 +65,7 @@ fun MDCDialog() = InteractiveShowcase(
     ) {
       Header {
         Title("Dialog Title")
-        if (fullscreen) CloseButton(MDCIconOpts.MDCIconType.Close.iconType, attrs = { classes("material-icons") })
+        if (fullscreen) CloseButton(MDCIcon.Close.type, attrs = { classes("material-icons") })
       }
       Content {
         Text(LoremIpsum)

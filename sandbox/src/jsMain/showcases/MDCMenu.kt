@@ -13,7 +13,7 @@ import dev.petuska.kmdc.menu.surface.*
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldType
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
-import dev.petuska.kmdcx.icons.MDCIconOpts
+import dev.petuska.kmdcx.icons.MDCIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -149,9 +149,9 @@ fun MDCMenu() = InteractiveShowcase(
           }) {
             Text(
               if (open) {
-                MDCIconOpts.MDCIconType.ArrowDropUp.iconType
+                MDCIcon.ArrowDropUp.type
               } else {
-                MDCIconOpts.MDCIconType.ArrowDropDown.iconType
+                MDCIcon.ArrowDropDown.type
               }
             )
           }
