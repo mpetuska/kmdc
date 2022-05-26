@@ -1,10 +1,12 @@
 package dev.petuska.kmdc.chips.action
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.ContentBuilder
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContentDsl
+import dev.petuska.kmdc.core.MDCContentRaw
+import dev.petuska.kmdc.core.applyAttrs
+import org.jetbrains.compose.web.dom.I
+import org.w3c.dom.HTMLElement
 
 public interface MDCChipActionIconScope<T : HTMLElement> : MDCChipActionScope<T>
 
@@ -14,8 +16,8 @@ public interface MDCChipActionIconScope<T : HTMLElement> : MDCChipActionScope<T>
 @MDCContentDsl
 @Composable
 public fun MDCChipActionIconScope<*>.Icon(
-  attrs: AttrsBuilder<HTMLElement>? = null,
-  content: ContentBuilder<HTMLElement>? = null
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
+  content: MDCContentRaw<HTMLElement>? = null
 ) {
   val type = MDCChipActionTypeLocal.current
   I(

@@ -1,9 +1,12 @@
 package dev.petuska.kmdc.chips
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLSpanElement
 
 public interface MDCChipScope : ElementScope<HTMLSpanElement>
 
@@ -20,20 +23,22 @@ internal fun MDCChipsScope.Chip(
   withPrimaryGraphic: Boolean,
   withPrimaryIcon: Boolean,
   touch: Boolean,
-  attrs: AttrsBuilder<HTMLSpanElement>?,
+  attrs: MDCAttrsRaw<HTMLSpanElement>?,
   content: MDCContent<MDCChipScope>?
 ) {
-  Span(attrs = {
-    classes("mdc-evolution-chip")
-    if (disabled) classes("mdc-evolution-chip--disabled")
-    if (withPrimaryGraphic || withPrimaryIcon) classes("mdc-evolution-chip--with-primary-graphic")
-    if (withPrimaryIcon) classes("mdc-evolution-chip--with-primary-icon")
-    if (touch) classes("mdc-evolution-chip--touch")
-    id(id)
-    applyAttrs(attrs)
-  }, content = {
-      CompositionLocalProvider(MDCChipDisabledLocal provides disabled) {
-        applyContent(content)
-      }
-    })
+  Span(
+    attrs = {
+      classes("mdc-evolution-chip")
+      if (disabled) classes("mdc-evolution-chip--disabled")
+      if (withPrimaryGraphic || withPrimaryIcon) classes("mdc-evolution-chip--with-primary-graphic")
+      if (withPrimaryIcon) classes("mdc-evolution-chip--with-primary-icon")
+      if (touch) classes("mdc-evolution-chip--touch")
+      id(id)
+      applyAttrs(attrs)
+    },
+  ) {
+    CompositionLocalProvider(MDCChipDisabledLocal provides disabled) {
+      applyContent(content)
+    }
+  }
 }

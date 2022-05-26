@@ -9,7 +9,6 @@ import dev.petuska.kmdc.list.MDCListSelection
 import dev.petuska.kmdc.menu.surface.Corner
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceAttrsScope
 import dev.petuska.kmdc.menu.surface.MDCMenuSurfaceLayout
-import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLUListElement
 
@@ -77,7 +76,7 @@ public fun MDCMenuLayout(
   singleSelect: Boolean,
   fullWidth: Boolean,
   fixed: Boolean,
-  init: @Composable ElementScope<HTMLDivElement>.(MDCContentRaw<HTMLDivElement>) -> Unit = { it() },
+  init: MDCComponentInit<HTMLDivElement> = { it() },
   attrs: MDCAttrs<MDCMenuAttrsScope>?,
   content: MDCContent<MDCMenuScope>?,
 ) {

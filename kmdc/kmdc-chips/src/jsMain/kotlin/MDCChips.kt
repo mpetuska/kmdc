@@ -11,6 +11,7 @@ import org.w3c.dom.HTMLSpanElement
 private external val Style: dynamic
 
 public interface MDCChipsAttrsScope : AttrsScope<HTMLSpanElement>
+
 public interface MDCChipsScope : ElementScope<HTMLSpanElement>
 
 /**
@@ -24,17 +25,20 @@ internal fun MDCChips(
   content: MDCContent<MDCChipsScope>? = null
 ) {
   Style
-  Span(attrs = {
-    classes("mdc-evolution-chip-set")
-    if (overflow) classes("mdc-evolution-chip-set--overflow")
-    applyAttrs(attrs)
-  }, content = {
-      MDCInitEffect(::MDCChipSet)
+  Span(
+    attrs = {
+      classes("mdc-evolution-chip-set")
+      if (overflow) classes("mdc-evolution-chip-set--overflow")
+      applyAttrs(attrs)
+    },
+  ) {
+    MDCProvider(::MDCChipSet) {
       Span(
         attrs = {
           classes("mdc-evolution-chip-set__chips")
           role("presentation")
         }, content = content.reinterpret()
       )
-    })
+    }
+  }
 }
