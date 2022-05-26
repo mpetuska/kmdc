@@ -14,6 +14,7 @@ import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldType
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
 import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -145,7 +146,7 @@ fun MDCMenu() = InteractiveShowcase(
         trailingIcon = {
           MDCTextFieldTrailingIcon(clickable = true, attrs = {
             onClick { open = !open }
-            classes("material-icons")
+            mdcIcon()
           }) {
             Text(
               if (open) {

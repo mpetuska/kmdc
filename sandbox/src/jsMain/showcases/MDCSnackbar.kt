@@ -7,6 +7,8 @@ import androidx.compose.runtime.setValue
 import dev.petuska.katalog.runtime.Showcase
 import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.snackbar.*
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -49,9 +51,9 @@ fun MDCSnackbar() = InteractiveShowcase(
         onClick { console.log("MDCSnackbar#Retried") }
       })
       MDCSnackbarDismiss(attrs = {
-        classes("material-icons")
+        mdcIcon()
         title("Dismiss")
-      }) { Text("close") }
+      }) { Text(MDCIcon.Close.type) }
     }
   }
 }

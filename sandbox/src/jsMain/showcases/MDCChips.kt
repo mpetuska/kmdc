@@ -14,6 +14,8 @@ import dev.petuska.kmdc.chips.listbox.MDCChipsListbox
 import dev.petuska.kmdc.chips.onInteraction
 import dev.petuska.kmdc.chips.onRemoval
 import dev.petuska.kmdc.chips.onSelection
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.util.NamedBlock
@@ -51,7 +53,7 @@ fun MDCChips() = InteractiveShowcase(
         "0", disabled = disabled, withPrimaryIcon = true, touch = touch,
       ) {
         Graphic {
-          Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+          Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
           Checkmark()
         }
         Label("ActionChip")
@@ -62,13 +64,13 @@ fun MDCChips() = InteractiveShowcase(
         ) {
           PrimaryAction {
             Graphic {
-              Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+              Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
               Checkmark()
             }
             Label("InputChip with leading icon and trailing action")
           }
           TrailingAction {
-            Icon(attrs = { classes("material-icons") }) { Text("close") }
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Close.type) }
           }
         }
       }
@@ -80,7 +82,7 @@ fun MDCChips() = InteractiveShowcase(
             Label("InputChip with non-navigable trailing action")
           }
           TrailingAction {
-            Icon(attrs = { classes("material-icons") }) { Text("close") }
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Close.type) }
           }
         }
       }
@@ -113,7 +115,7 @@ fun MDCChips() = InteractiveShowcase(
           touch = touch,
         ) {
           Graphic {
-            Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
             Checkmark()
           }
           Label("FilterChip - $id")

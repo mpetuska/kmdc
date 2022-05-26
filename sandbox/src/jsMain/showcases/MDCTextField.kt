@@ -8,6 +8,8 @@ import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldType
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldLeadingIcon
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -72,12 +74,12 @@ fun MDCTextField() = InteractiveShowcase(
       },
       leadingIcon = if (leadingIcon) {
         {
-          MDCTextFieldLeadingIcon(attrs = { classes("material-icons") }) { Text("phone") }
+          MDCTextFieldLeadingIcon(attrs = { mdcIcon() }) { Text(MDCIcon.Phone.type) }
         }
       } else null,
       trailingIcon = if (trailingIcon) {
         {
-          MDCTextFieldTrailingIcon(attrs = { classes("material-icons") }) { Text("event") }
+          MDCTextFieldTrailingIcon(attrs = { mdcIcon() }) { Text(MDCIcon.Event.type) }
         }
       } else null
     )

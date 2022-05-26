@@ -20,7 +20,7 @@ private external val Style: dynamic
  * [JS API](https://github.com/marella/material-icons/tree/v1.10.4)
  */
 @MDCAttrsDsl
-public fun AttrsScope<*>.mdcIcons(type: MDCIconType = MDCIconType.Filled) {
+public fun AttrsScope<*>.mdcIcon(type: MDCIconType = MDCIconType.Filled) {
   classes(type.classes)
 }
 
@@ -53,7 +53,7 @@ public fun MDCIconSpan(
 ) {
   Style
   Span(attrs = {
-    mdcIcons(type)
+    mdcIcon(type)
     attrs?.invoke(this)
   }) {
     Text(icon.type)
@@ -72,7 +72,7 @@ public fun MDCIconI(
 ) {
   Style
   I(attrs = {
-    mdcIcons(type)
+    mdcIcon(type)
     attrs?.invoke(this)
   }) {
     Text(icon.type)

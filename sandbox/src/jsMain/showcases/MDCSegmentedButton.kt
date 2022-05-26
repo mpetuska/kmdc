@@ -1,13 +1,15 @@
 package showcases
 
 import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.segmented.button.*
-import dev.petuska.kmdc.touch.target.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
+import dev.petuska.kmdc.touch.target.MDCTouchTarget
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
 
 private class MDCSegmentedButtonVM {
   var disabled by mutableStateOf(false)
@@ -52,8 +54,8 @@ fun MDCSegmentedButton() = InteractiveShowcase(
         }
       ) {
         Icon(attrs = {
-          classes("material-icons")
-        }) { Text("favorite") }
+          mdcIcon()
+        }) { Text(MDCIcon.Favorite.type) }
       }
       Segment(
         text = "One",
@@ -75,8 +77,8 @@ fun MDCSegmentedButton() = InteractiveShowcase(
         }
       ) {
         Icon(attrs = {
-          classes("material-icons")
-        }) { Text("favorite") }
+          mdcIcon()
+        }) { Text(MDCIcon.Favorite.type) }
         Label("Two")
       }
     }

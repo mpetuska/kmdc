@@ -7,6 +7,8 @@ import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.data.table.*
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.util.NamedBlock
@@ -117,17 +119,17 @@ fun MDCDataTable() = InteractiveShowcase(
         MDCDataTableHeader {
           MDCDataTableCheckCell(selected = items.all(MDCDataTableVM.Item::selected), label = "Toggle All")
           MDCDataTableSortCell(columnId = "$id-0", label = "Dessert", buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-1", label = "Carbs (g)", numeric = true, buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-2", label = "Protein (g)", numeric = true, buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-3", label = "Comments", buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
         }
         Body {
           items.forEach {

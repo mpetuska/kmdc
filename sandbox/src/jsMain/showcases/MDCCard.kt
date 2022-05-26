@@ -15,6 +15,7 @@ import dev.petuska.kmdc.typography.MDCBody1
 import dev.petuska.kmdc.typography.MDCH4
 import dev.petuska.kmdc.typography.MDCSubtitle1
 import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.css.backgroundImage
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
@@ -70,11 +71,11 @@ fun MDCCard() = InteractiveShowcase(
         }
         ActionIcons {
           ActionIconButton(attrs = {
-            classes("material-icons")
+            mdcIcon()
             title("Share")
           }) { Text(MDCIcon.Share.type) }
           ActionIconButton(attrs = {
-            classes("material-icons")
+            mdcIcon()
             title("More options")
           }) { Text(MDCIcon.MoreVert.type) }
         }
