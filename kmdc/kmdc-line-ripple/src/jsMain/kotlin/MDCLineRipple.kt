@@ -15,8 +15,8 @@ private external val Style: dynamic
 @Composable
 public fun MDCLineRipple(
   active: Boolean,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   MDCLineRippleLayout(
     attrs = attrs,
@@ -33,8 +33,8 @@ public fun MDCLineRipple(
 @Composable
 @KMDCInternalAPI
 public fun MDCLineRippleLayout(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Style
   Span(
