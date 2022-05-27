@@ -12,7 +12,6 @@ import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.ContentBuilder
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLLabelElement
 
@@ -23,7 +22,7 @@ public enum class MDCTextFieldType(public vararg val classes: String) {
   Filled("mdc-text-field--filled"), Outlined("mdc-text-field--outlined")
 }
 
-public class MDCTextFieldScope(scope: ElementScope<HTMLLabelElement>) : ElementScope<HTMLLabelElement> by scope
+public interface MDCTextFieldScope : ElementScope<HTMLLabelElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
@@ -139,7 +138,7 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   leadingIcon: MDCContent<MDCTextFieldScope>?,
   trailingIcon: MDCContent<MDCTextFieldScope>?
 ) {
-  leadingIcon?.invoke(MDCTextFieldScope(this))
+  applyContent(leadingIcon)
   prefix?.let {
     Span(attrs = {
       classes("mdc-text-field__affix", "mdc-text-field__affix--prefix")
@@ -163,7 +162,7 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
       Text(it)
     }
   }
-  trailingIcon?.invoke(MDCTextFieldScope(this))
+  applyContent(trailingIcon)
 }
 
 @MDCContentDsl
@@ -172,7 +171,7 @@ internal fun MDCTextFieldHelperLine(
   helperText: String?,
   maxLength: UInt?,
   helperId: String,
-  content: ContentBuilder<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null,
 ) {
   if (helperText != null || maxLength != null) {
     Div(attrs = { classes("mdc-text-field-helper-line") }) {
