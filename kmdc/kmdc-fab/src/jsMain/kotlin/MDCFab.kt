@@ -39,7 +39,7 @@ public fun MDCFab(
     }
   ) {
     Div(attrs = { classes("mdc-fab__ripple") })
-    MDCRippleLayout(keys = arrayOf(type))
+    MDCRippleLayout(keys = arrayOf(type, touch))
     applyContent(content)
     if (touch) Div(attrs = { classes("mdc-fab__touch") })
   }
