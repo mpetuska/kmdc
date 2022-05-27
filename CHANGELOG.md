@@ -18,6 +18,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Removed
+
+---
+
+## [0.0.4]
+
+### Verified Versions
+
+- [JDK]\: 11+
+- [Kotlin]\: 1.6.21
+- [Compose]\: 1.2.0-alpha01-dev679
+- [MDC]\: ^14.0.0
+
+### Added
+
 - [x] mdc-chips
 - [x] mdc-banner
 - [x] mdc-fab
@@ -143,7 +160,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/mpetuska/npm-publish/compare/0.0.3...HEAD
+[Unreleased]: https://github.com/mpetuska/npm-publish/compare/0.0.4...HEAD
+
+[0.0.4]: https://github.com/mpetuska/npm-publish/compare/0.0.3...0.0.4
 
 [0.0.3]: https://github.com/mpetuska/npm-publish/compare/0.0.2...0.0.3
 
