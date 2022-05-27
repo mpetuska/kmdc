@@ -1,14 +1,16 @@
 package dev.petuska.kmdc.image.list
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.ContentBuilder
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLImageElement
+import org.w3c.dom.HTMLLIElement
+import org.w3c.dom.HTMLSpanElement
+import org.w3c.dom.HTMLUListElement
 
 @JsModule("@material/image-list/mdc-image-list.scss")
-private external val MDCImageListStyles: dynamic
+private external val Style: dynamic
 
 public enum class MDCImageListType(public vararg val classes: String) {
   Standard, Masonry("mdc-image-list--masonry")
@@ -16,7 +18,7 @@ public enum class MDCImageListType(public vararg val classes: String) {
 
 public interface MDCImageListScope : ElementScope<HTMLUListElement>
 
-private val MDCImageListTypeLocal = compositionLocalOf<MDCImageListType> { error("undefined") }
+private val MDCImageListTypeLocal = strictCompositionLocalOf<MDCImageListType>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-image-list)
@@ -26,10 +28,10 @@ private val MDCImageListTypeLocal = compositionLocalOf<MDCImageListType> { error
 public fun MDCImageList(
   type: MDCImageListType = MDCImageListType.Standard,
   withTextProtection: Boolean = false,
-  attrs: AttrsBuilder<HTMLUListElement>? = null,
+  attrs: MDCAttrsRaw<HTMLUListElement>? = null,
   content: MDCContent<MDCImageListScope>? = null
 ) {
-  MDCImageListStyles
+  Style
   CompositionLocalProvider(MDCImageListTypeLocal provides type) {
     Ul(
       attrs = {
@@ -50,7 +52,7 @@ public interface MDCImageListItemScope : ElementScope<HTMLLIElement>
 @MDCContentDsl
 @Composable
 public fun MDCImageListScope.Item(
-  attrs: AttrsBuilder<HTMLLIElement>? = null,
+  attrs: MDCAttrsRaw<HTMLLIElement>? = null,
   content: MDCContent<MDCImageListItemScope>? = null
 ) {
   Li(
@@ -69,7 +71,7 @@ public fun MDCImageListScope.Item(
 public fun MDCImageListItemScope.Image(
   src: String,
   alt: String = "",
-  attrs: AttrsBuilder<HTMLImageElement>? = null,
+  attrs: MDCAttrsRaw<HTMLImageElement>? = null,
 ) {
   val innerContent = @Composable {
     Img(src = src, alt = alt, attrs = {
@@ -94,8 +96,8 @@ public fun MDCImageListItemScope.Image(
 @MDCContentDsl
 @Composable
 public fun MDCImageListItemScope.Label(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null,
 ) {
   Div(
     attrs = {
@@ -120,7 +122,7 @@ public fun MDCImageListItemScope.Label(
 @Composable
 public fun MDCImageListItemScope.Label(
   text: String,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
 ) {
   Label(attrs) { Text(text) }
 }
