@@ -16,15 +16,15 @@ public enum class MDCTabIndicatorType(public vararg val classes: String) {
 @MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Content(
-  indicator: MDCTabIndicatorType,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  indicatorType: MDCTabIndicatorType,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Span(
     attrs = {
       classes("mdc-tab-indicator__content")
-      classes(indicator.classes)
-      if (indicator == MDCTabIndicatorType.Icon) aria("hidden", true)
+      classes(indicatorType.classes)
+      if (indicatorType == MDCTabIndicatorType.Icon) aria("hidden", true)
       attrs?.invoke(this)
     },
     content = content
@@ -37,8 +37,8 @@ public fun MDCTabIndicatorScope.Content(
 @MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Icon(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Content(MDCTabIndicatorType.Icon, attrs, content)
 }
@@ -49,8 +49,8 @@ public fun MDCTabIndicatorScope.Icon(
 @MDCContentDsl
 @Composable
 public fun MDCTabIndicatorScope.Underline(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Content(MDCTabIndicatorType.Underline, attrs, content)
 }

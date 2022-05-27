@@ -1,11 +1,11 @@
 package dev.petuska.kmdc.tab
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.ContentBuilder
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLSpanElement
 
 public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseScope
 
@@ -15,7 +15,7 @@ public interface MDCTabContentScope : ElementScope<HTMLSpanElement>, MDCTabBaseS
 @MDCContentDsl
 @Composable
 public fun MDCTabScope.Content(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
   content: MDCContent<MDCTabContentScope>? = null
 ) {
   Span(
@@ -33,8 +33,8 @@ public fun MDCTabScope.Content(
 @MDCContentDsl
 @Composable
 public fun MDCTabContentScope.Icon(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Span(
     attrs = {
@@ -52,8 +52,8 @@ public fun MDCTabContentScope.Icon(
 @MDCContentDsl
 @Composable
 public fun MDCTabContentScope.Label(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Span(
     attrs = {
@@ -71,7 +71,7 @@ public fun MDCTabContentScope.Label(
 @Composable
 public fun MDCTabContentScope.Label(
   text: String,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
 ) {
   Label(attrs = attrs, content = { Text(text) })
 }

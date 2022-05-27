@@ -7,8 +7,8 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLSpanElement
 
-@JsModule("@material/tab-indicator/dist/mdc.tab-indicator.css")
-private external val MDCTabIndicatorCSS: dynamic
+@JsModule("@material/tab-indicator/mdc-tab-indicator.scss")
+private external val Style: dynamic
 
 public enum class MDCTabIndicatorTransition(public vararg val classes: String) {
   Slide, Fade("mdc-tab-indicator--fade")
@@ -24,10 +24,10 @@ public interface MDCTabIndicatorScope : ElementScope<HTMLSpanElement>
 public fun MDCTabBaseScope.Indicator(
   active: Boolean = false,
   transition: MDCTabIndicatorTransition = MDCTabIndicatorTransition.Slide,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
   content: MDCContent<MDCTabIndicatorScope>? = null
 ) {
-  MDCTabIndicatorCSS
+  Style
   Span(
     attrs = {
       classes("mdc-tab-indicator")
@@ -36,8 +36,9 @@ public fun MDCTabBaseScope.Indicator(
       attrs?.invoke(this)
     },
     content = {
-      MDCInitEffect(::MDCTabIndicator)
-      applyContent(content)
+      MDCProvider(::MDCTabIndicator) {
+        applyContent(content)
+      }
     }
   )
 }

@@ -7,24 +7,18 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/tab-bar/dist/mdc.tab-bar.css")
-private external val MDCTabBarCSS: dynamic
+@JsModule("@material/tab-bar/mdc-tab-bar.scss")
+private external val Style: dynamic
 
 public interface MDCTabBarAttrsScope : AttrsScope<HTMLDivElement>
 
 internal class MDCTabBarContext {
   internal var tabs: Int by mutableStateOf(0)
-
-  fun applyFrom(other: MDCTabBarContext) {
-    tabs = other.tabs
-  }
 }
 
-public class MDCTabBarScope internal constructor(
-  scope: ElementScope<HTMLDivElement>,
-  internal val context: MDCTabBarContext
-) :
-  ElementScope<HTMLDivElement> by scope
+internal val MDCTabBarContextLocal = strictCompositionLocalOf<MDCTabBarContext>()
+
+public interface MDCTabBarScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-bar)
@@ -35,7 +29,7 @@ public fun MDCTabBar(
   attrs: MDCAttrs<MDCTabBarAttrsScope>? = null,
   content: MDCContent<MDCTabBarScope>? = null
 ) {
-  MDCTabBarCSS
+  Style
   val context = remember { MDCTabBarContext() }
   Div(
     attrs = {
@@ -44,8 +38,12 @@ public fun MDCTabBar(
       applyAttrs(attrs)
     },
     content = {
-      applyContent(content) { MDCTabBarScope(it, context) }
-      MDCInitEffect(::MDCTabBar, context.tabs)
+      CompositionLocalProvider(MDCTabBarContextLocal provides context) {
+        MDCProvider(::MDCTabBar, context.tabs) {
+          context.tabs = 0
+          applyContent(content)
+        }
+      }
     },
   )
 }

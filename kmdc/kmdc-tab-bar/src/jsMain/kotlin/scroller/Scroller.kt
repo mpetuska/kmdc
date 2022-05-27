@@ -9,13 +9,10 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/tab-scroller/dist/mdc.tab-scroller.css")
-private external val MDCTabScrollerCSS: dynamic
+@JsModule("@material/tab-scroller/mdc-tab-scroller.scss")
+private external val Style: dynamic
 
-public class MDCTabScrollerScope internal constructor(
-  scope: ElementScope<HTMLDivElement>,
-  internal val context: MDCTabBarContext
-) : ElementScope<HTMLDivElement> by scope
+public interface MDCTabScrollerScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-scroller)
@@ -23,10 +20,10 @@ public class MDCTabScrollerScope internal constructor(
 @MDCContentDsl
 @Composable
 public fun MDCTabBarScope.Scroller(
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCTabScrollerScope>? = null
 ) {
-  MDCTabScrollerCSS
+  Style
   val context = remember { MDCTabBarContext() }
   Div(
     attrs = {
@@ -34,15 +31,15 @@ public fun MDCTabBarScope.Scroller(
       applyAttrs(attrs)
     }
   ) {
-    Div(
-      attrs = { classes("mdc-tab-scroller__scroll-area") }
-    ) {
+    MDCProvider(::MDCTabScroller, context.tabs) {
       Div(
-        attrs = { classes("mdc-tab-scroller__scroll-content") },
-        content = content.reinterpret { MDCTabScrollerScope(it, context) }
-      )
+        attrs = { classes("mdc-tab-scroller__scroll-area") }
+      ) {
+        Div(
+          attrs = { classes("mdc-tab-scroller__scroll-content") },
+          content = content.reinterpret()
+        )
+      }
     }
-    this@Scroller.context.applyFrom(context)
-    MDCInitEffect(::MDCTabScroller, context.tabs)
   }
 }

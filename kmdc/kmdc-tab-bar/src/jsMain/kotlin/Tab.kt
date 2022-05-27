@@ -2,6 +2,7 @@ package dev.petuska.kmdc.tab
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.tab.bar.MDCTabBarContextLocal
 import dev.petuska.kmdc.tab.scroller.MDCTabScrollerScope
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Button
@@ -9,8 +10,8 @@ import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLButtonElement
 
-@JsModule("@material/tab/dist/mdc.tab.css")
-private external val MDCTabCSS: dynamic
+@JsModule("@material/tab/mdc-tab.scss")
+private external val Style: dynamic
 
 public interface MDCTabAttrsScope : AttrsScope<HTMLButtonElement>
 public interface MDCTabBaseScope
@@ -28,8 +29,8 @@ public fun MDCTabScrollerScope.Tab(
   attrs: MDCAttrs<MDCTabAttrsScope>? = null,
   content: MDCContent<MDCTabScope>? = null
 ) {
-  MDCTabCSS
-  context.tabs++
+  Style
+  MDCTabBarContextLocal.current.tabs++
   Button(
     attrs = {
       classes("mdc-tab")
@@ -42,9 +43,10 @@ public fun MDCTabScrollerScope.Tab(
       applyAttrs(attrs)
     },
     content = {
-      MDCInitEffect(::MDCTab, stacked, minWidth)
-      applyContent(content)
-      Span(attrs = { classes("mdc-tab__ripple") })
+      MDCProvider(::MDCTab, stacked, minWidth) {
+        applyContent(content)
+        Span(attrs = { classes("mdc-tab__ripple") })
+      }
     }
   )
 }
