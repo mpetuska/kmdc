@@ -28,14 +28,13 @@ fun MDCSnackbar() = InteractiveShowcase(
   viewModel = { MDCSnackbarVM() },
   controls = {
     ChoiceControl("Type", MDCSnackbarType.values().associateBy(MDCSnackbarType::name), ::type)
-//    BooleanControl("Dismissible", ::dismissible)
+    BooleanControl("Dismissible", ::dismissible)
     BooleanControl("Close on Escape", ::closeOnEscape)
     RangeControl("Timeout MS", ::timeoutMs, min = 3999, max = 10000, converter = Number::toInt)
     BooleanControl("Open", ::open)
   },
 ) {
   MDCSnackbar(
-//    dismissible = dismissible,
     closeOnEscape = closeOnEscape,
     timeoutMs = timeoutMs.takeIf { it >= 4000 },
     open = open,
@@ -45,15 +44,17 @@ fun MDCSnackbar() = InteractiveShowcase(
       onClosed { open = false }
     }
   ) {
-    MDCSnackbarLabel("Can't send photo.${if (timeoutMs >= 4000) " Closing in ${timeoutMs / 1000} seconds." else ""}")
-    MDCSnackbarActions {
-      MDCSnackbarAction("Retry", attrs = {
+    Label("Can't send photo.${if (timeoutMs >= 4000) " Closing in ${timeoutMs / 1000} seconds." else ""}")
+    Actions {
+      Action("Retry", attrs = {
         onClick { console.log("MDCSnackbar#Retried") }
       })
-      MDCSnackbarDismiss(attrs = {
-        mdcIcon()
-        title("Dismiss")
-      }) { Text(MDCIcon.Close.type) }
+      if (dismissible) {
+        Dismiss(attrs = {
+          mdcIcon()
+          title("Dismiss")
+        }) { Text(MDCIcon.Close.type) }
+      }
     }
   }
 }

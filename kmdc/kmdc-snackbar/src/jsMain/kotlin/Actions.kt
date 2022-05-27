@@ -7,7 +7,6 @@ import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.icon.button.MDCIconButtonScope
 import org.jetbrains.compose.web.attributes.ButtonType
 import org.jetbrains.compose.web.attributes.type
-import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLButtonElement
@@ -20,8 +19,8 @@ public interface MDCSnackbarActionsScope : ElementScope<HTMLDivElement>
  */
 @MDCContentDsl
 @Composable
-public fun MDCSnackbarScope.MDCSnackbarActions(
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+public fun MDCSnackbarScope.Actions(
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCSnackbarActionsScope>? = null,
 ) {
   Div(
@@ -39,10 +38,10 @@ public fun MDCSnackbarScope.MDCSnackbarActions(
  */
 @MDCContentDsl
 @Composable
-public fun MDCSnackbarActionsScope.MDCSnackbarAction(
+public fun MDCSnackbarActionsScope.Action(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null,
 ) {
   MDCButton(
@@ -62,13 +61,13 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
  */
 @MDCContentDsl
 @Composable
-public fun MDCSnackbarActionsScope.MDCSnackbarAction(
+public fun MDCSnackbarActionsScope.Action(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
-  attrs: AttrBuilderContext<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
-  MDCSnackbarAction(type, icon, attrs) { Label(text) }
+  Action(type, icon, attrs) { Label(text) }
 }
 
 /**
@@ -76,13 +75,11 @@ public fun MDCSnackbarActionsScope.MDCSnackbarAction(
  */
 @MDCContentDsl
 @Composable
-public fun MDCSnackbarActionsScope.MDCSnackbarDismiss(
-  on: Boolean = false,
+public fun MDCSnackbarActionsScope.Dismiss(
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCIconButtonScope<HTMLButtonElement>>? = null,
 ) {
   MDCIconButton(
-    on = on,
     attrs = {
       classes("mdc-snackbar__dismiss")
       attrs?.invoke(this)

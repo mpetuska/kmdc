@@ -34,9 +34,7 @@ fun MDCSwitch() = InteractiveShowcase(
       label = label.takeIf(String::isNotBlank),
       attrs = {
         if (disabled) disabled()
-        onClick {
-          selected = !selected
-        }
+        onClick { selected = !selected }
       }
     )
   }

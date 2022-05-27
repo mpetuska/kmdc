@@ -28,7 +28,6 @@ public interface MDCSnackbarScope : ElementScope<HTMLElement>
 public fun MDCSnackbar(
   type: MDCSnackbarType = MDCSnackbarType.Default,
   open: Boolean = false,
-// TODO dismissible: Boolean = false,
   timeoutMs: Int? = 5000,
   closeOnEscape: Boolean = true,
   attrs: MDCAttrs<MDCSnackbarAttrsScope>? = null,
@@ -40,11 +39,12 @@ public fun MDCSnackbar(
     classes(type.classes)
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(::MDCSnackbar, type)
-    MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
-    MDCStateEffect(closeOnEscape, MDCSnackbar::closeOnEscape)
-    MDCSideEffect<MDCSnackbar>(open) {
-      if (open) open() else close()
+    MDCProvider(::MDCSnackbar, type) {
+      MDCStateEffectNew(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
+      MDCStateEffectNew(closeOnEscape, MDCSnackbar::closeOnEscape)
+      MDCSideEffectNew(open) {
+        if (open) open() else close()
+      }
     }
     Div(
       attrs = {
