@@ -11,7 +11,7 @@ public interface MDCBannerContentScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerScope.Content(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -29,7 +29,7 @@ public fun MDCBannerScope.Content(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerContentScope.Text(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -47,7 +47,7 @@ public fun MDCBannerContentScope.Text(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerContentScope.Text(
   text: String,
@@ -61,7 +61,7 @@ public interface MDCBannerGraphicScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerContentScope.Graphic(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -81,7 +81,7 @@ public fun MDCBannerContentScope.Graphic(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerGraphicScope.Icon(
   attrs: MDCAttrsRaw<HTMLElement>? = null,

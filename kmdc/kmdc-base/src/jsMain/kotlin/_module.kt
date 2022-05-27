@@ -10,3 +10,7 @@ public abstract external class MDCComponent<F> {
   public fun getDefaultFoundation(): F
   public val foundation: F
 }
+
+public external interface MDCLayoutComponent {
+  public fun layout()
+}

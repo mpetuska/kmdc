@@ -11,12 +11,12 @@ private external val Style: dynamic
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-line-ripple)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCLineRipple(
   active: Boolean,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   MDCLineRippleLayout(
     attrs = attrs,
@@ -33,8 +33,8 @@ public fun MDCLineRipple(
 @Composable
 @KMDCInternalAPI
 public fun MDCLineRippleLayout(
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Style
   Span(

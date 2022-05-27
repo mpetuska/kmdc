@@ -1,12 +1,21 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
-import dev.petuska.kmdc.fab.*
-import dev.petuska.kmdc.touch.target.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import dev.petuska.kmdc.fab.Icon
+import dev.petuska.kmdc.fab.Label
+import dev.petuska.kmdc.fab.MDCFab
+import dev.petuska.kmdc.fab.MDCFabType
+import dev.petuska.kmdc.touch.target.MDCTouchTarget
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
 
 private class MDCFabVM {
   var exited by mutableStateOf(false)
@@ -29,7 +38,7 @@ fun MDCFab() = InteractiveShowcase(
       attr("aria-label", "Favorite")
     }) {
       if (type == MDCFabType.Extended) Label("Favorite")
-      Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+      Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
     }
   }
   if (touch) {

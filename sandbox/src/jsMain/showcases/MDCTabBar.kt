@@ -12,6 +12,8 @@ import dev.petuska.kmdc.tab.bar.MDCTabBarAttrsScope
 import dev.petuska.kmdc.tab.bar.onActivated
 import dev.petuska.kmdc.tab.indicator.*
 import dev.petuska.kmdc.tab.scroller.Scroller
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
@@ -58,13 +60,13 @@ fun MDCTabBar() = InteractiveShowcase(
           if (disabled) disabled()
         }) {
           Content {
-            Icon(attrs = { classes("material-icons") }) { Text("dark_mode") }
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.DarkMode.type) }
             Label("Tab $id")
           }
           Indicator(active = active == "mdc-tab-$id", transition = transition) {
             when (indicator) {
               MDCTabIndicatorType.Underline -> Underline()
-              MDCTabIndicatorType.Icon -> Icon(attrs = { classes("material-icons") }) { Text("star") }
+              MDCTabIndicatorType.Icon -> Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Star.type) }
             }
           }
         }

@@ -1,18 +1,21 @@
 package dev.petuska.kmdc.chips.grid
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.chips.*
-import dev.petuska.kmdc.chips.action.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.chips.MDCChipDisabledLocal
+import dev.petuska.kmdc.chips.action.MDCChipActionScope
+import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
+import dev.petuska.kmdc.chips.action.Ripple
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.AttrsBuilder
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.ButtonType
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.attributes.type
+import org.jetbrains.compose.web.dom.Button
+import org.w3c.dom.HTMLButtonElement
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun GridAction(
-  attrs: AttrsBuilder<HTMLButtonElement>?,
+  attrs: MDCAttrsRaw<HTMLButtonElement>?,
   content: MDCContent<MDCChipActionScope<HTMLButtonElement>>?
 ) {
   val type = MDCChipActionTypeLocal.current
@@ -24,8 +27,8 @@ internal fun GridAction(
       disabled()
     }
     applyAttrs(attrs)
-  }, content = {
-      unsafeCast<MDCChipActionScope<HTMLButtonElement>>().Ripple()
-      applyContent(content)
-    })
+  }) {
+    unsafeCast<MDCChipActionScope<HTMLButtonElement>>().Ripple()
+    applyContent(content)
+  }
 }

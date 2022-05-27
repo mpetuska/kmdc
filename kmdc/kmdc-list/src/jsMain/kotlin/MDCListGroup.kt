@@ -1,25 +1,22 @@
 package dev.petuska.kmdc.list
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.ContentBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.H3
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLHeadingElement
 
-@MDCDsl
 public interface MDCListGroupScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-@Deprecated(
-  "Based on already deprecated MDC List. New implementation is still in the works.",
-  level = DeprecationLevel.WARNING
-)
 public fun MDCListGroup(
   attrs: MDCAttrs<AttrsScope<HTMLDivElement>>? = null,
   content: MDCContent<MDCListGroupScope>? = null,
@@ -35,11 +32,11 @@ public fun MDCListGroup(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListGroupScope.Subheader(
   attrs: MDCAttrs<AttrsScope<HTMLHeadingElement>>? = null,
-  content: ContentBuilder<HTMLHeadingElement>? = null,
+  content: MDCContentRaw<HTMLHeadingElement>? = null,
 ) {
   H3(attrs = {
     classes("mdc-deprecated-list-group__subheader")
@@ -50,7 +47,7 @@ public fun MDCListGroupScope.Subheader(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListGroupScope.Subheader(
   text: String,

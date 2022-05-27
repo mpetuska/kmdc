@@ -12,7 +12,7 @@ public interface MDCDialogHeaderScope : ElementScope<HTMLDivElement>, MDCDialogT
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogScope.Header(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -31,7 +31,7 @@ public fun MDCDialogScope.Header(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @Suppress("unused")
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogHeaderScope.CloseButton(
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
@@ -51,7 +51,7 @@ public fun MDCDialogHeaderScope.CloseButton(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @Suppress("unused")
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogHeaderScope.CloseButton(
   text: String,

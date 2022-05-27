@@ -1,33 +1,32 @@
 package dev.petuska.kmdc.segmented.button
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/segmented-button/dist/mdc.segmented-button.css")
-private external val MDCSegmentedButtonStyle: dynamic
+@JsModule("@material/segmented-button/styles.scss")
+private external val Style: dynamic
 
-public class MDCSegmentedButtonAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
-public class MDCSegmentedButtonScope(
-  scope: ElementScope<HTMLDivElement>,
-  internal val singleSelect: Boolean,
-) :
-  ElementScope<HTMLDivElement> by scope
+public interface MDCSegmentedButtonAttrsScope : AttrsScope<HTMLDivElement>
+public interface MDCSegmentedButtonScope : ElementScope<HTMLDivElement>
+
+internal val MDCSegmentedButtonSingleSelectLocal = strictCompositionLocalOf<Boolean>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButton(
   singleSelect: Boolean = false,
   attrs: MDCAttrs<MDCSegmentedButtonAttrsScope>? = null,
   content: MDCContent<MDCSegmentedButtonScope>? = null
 ) {
-  MDCSegmentedButtonStyle
+  Style
   Div(
     attrs = {
       classes("mdc-segmented-button")
@@ -37,11 +36,13 @@ public fun MDCSegmentedButton(
       } else {
         attr("role", "group")
       }
-      attrs?.invoke(MDCSegmentedButtonAttrsScope(this))
+      applyAttrs(attrs)
     },
-    content = {
-      MDCInitEffect(::MDCSegmentedButton)
-      applyContent(content) { MDCSegmentedButtonScope(this, singleSelect) }
+  ) {
+    CompositionLocalProvider(MDCSegmentedButtonSingleSelectLocal provides singleSelect) {
+      MDCProvider(::MDCSegmentedButton) {
+        applyContent(content)
+      }
     }
-  )
+  }
 }

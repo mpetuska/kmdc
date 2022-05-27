@@ -1,12 +1,19 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.button.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.control.ChoiceControl
+import sandbox.control.TextControl
 
 private class MDCButtonVM {
   var type by mutableStateOf(MDCButtonType.Text)
@@ -32,7 +39,7 @@ fun MDCButton() = InteractiveShowcase(
     if (disabled) disabled()
   }) {
     val renderIcon = @Composable {
-      Icon(attrs = { classes("material-icons") }) { Text("star") }
+      Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Star.type) }
     }
     if (icon == MDCButtonIconType.Leading) renderIcon()
     Label(label)

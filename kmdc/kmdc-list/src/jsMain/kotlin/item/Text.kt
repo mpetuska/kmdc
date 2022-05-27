@@ -13,7 +13,7 @@ public interface MDCListItemTextScope : ElementScope<HTMLSpanElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.Text(
   attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
@@ -31,7 +31,7 @@ public fun MDCListItemScope<*>.Text(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.Text(
   text: String,
@@ -43,7 +43,7 @@ public fun MDCListItemScope<*>.Text(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemTextScope.Primary(
   attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
@@ -58,7 +58,7 @@ public fun MDCListItemTextScope.Primary(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemTextScope.Primary(
   text: String,
@@ -70,7 +70,7 @@ public fun MDCListItemTextScope.Primary(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemTextScope.Secondary(
   attrs: MDCAttrs<AttrsScope<HTMLSpanElement>>? = null,
@@ -85,7 +85,7 @@ public fun MDCListItemTextScope.Secondary(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCListItemTextScope.Secondary(
   text: String,

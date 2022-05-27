@@ -9,7 +9,7 @@ public interface MDCChipsGridScope : MDCChipsScope
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipsGrid(
   overflow: Boolean = false,

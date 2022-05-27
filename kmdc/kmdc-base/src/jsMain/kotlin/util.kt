@@ -10,10 +10,16 @@ import org.w3c.dom.Element
 public typealias AttrsBuilder<T> = AttrBuilderContext<T>
 public typealias ContentBuilder<T> = org.jetbrains.compose.web.dom.ContentBuilder<T>
 public typealias MDCAttrsRaw<T> = @MDCAttrsDsl AttrsBuilder<T>
-public typealias MDCContentRaw<T> = @MDCDsl ContentBuilder<T>
+public typealias MDCContentRaw<T> = @MDCContentDsl ContentBuilder<T>
 public typealias Builder<T> = T.() -> Unit
 public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
-public typealias MDCContent<T> = @Composable @MDCDsl Builder<T>
+public typealias MDCContent<T> = @Composable @MDCContentDsl Builder<T>
+public typealias MDCComponentInit<S> = @Composable S.(
+  content: @Composable S.() -> Unit
+) -> Unit
+
+private external val process: dynamic
+internal val debug = process.env.NODE_ENV == "development"
 
 /**
  * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
@@ -90,7 +96,7 @@ public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyConten
 }
 
 @KMDCInternalAPI
-public inline fun <T : Any> jsObject(builder: MDCAttrs<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
+public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
 
 internal const val KmdcCounterKey = "_kmdcCounter" // NEVER EVER CHANGE THIS
 
@@ -128,4 +134,6 @@ public fun rememberUniqueDomElementId(suffix: String? = null): String =
 @KMDCInternalAPI
 public fun <T> rememberMutableStateOf(initial: T): MutableState<T> = remember { mutableStateOf(initial) }
 
-public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> = compositionLocalOf { error("undefined") }
+@KMDCInternalAPI
+public fun <T> strictCompositionLocalOf(): ProvidableCompositionLocal<T> =
+  compositionLocalOf { error("CompositionLocal undefined") }

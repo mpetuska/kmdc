@@ -1,6 +1,13 @@
 package dev.petuska.kmdc.banner
 
-import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.MDCAttrsDsl
+import dev.petuska.kmdc.core.MDCEventListener
+import dev.petuska.kmdc.core.addMdcEventListener
+import kotlin.js.Json
+
+public external interface MDCBannerCloseEventDetail {
+  public val reason: CloseReason
+}
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
@@ -22,7 +29,7 @@ public fun MDCBannerAttrsScope.onClosed(listener: MDCEventListener<MDCBannerClos
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
 @MDCAttrsDsl
-public fun MDCBannerAttrsScope.onOpening(listener: MDCEventListener<MDCBannerCloseEventDetail>) {
+public fun MDCBannerAttrsScope.onOpening(listener: MDCEventListener<Json>) {
   addMdcEventListener("MDCBanner:opening", listener)
 }
 
@@ -30,6 +37,6 @@ public fun MDCBannerAttrsScope.onOpening(listener: MDCEventListener<MDCBannerClo
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
 @MDCAttrsDsl
-public fun MDCBannerAttrsScope.onOpened(listener: MDCEventListener<MDCBannerCloseEventDetail>) {
+public fun MDCBannerAttrsScope.onOpened(listener: MDCEventListener<Json>) {
   addMdcEventListener("MDCBanner:opened", listener)
 }

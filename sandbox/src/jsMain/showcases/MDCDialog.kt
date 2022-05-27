@@ -11,9 +11,11 @@ import dev.petuska.kmdc.dialog.*
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListSelection
 import dev.petuska.kmdc.list.MDCListType
+import dev.petuska.kmdc.list.item.Label
 import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.list.item.RadioGraphic
-import dev.petuska.kmdcx.icons.MDCIconOpts
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.TextControl
@@ -65,7 +67,7 @@ fun MDCDialog() = InteractiveShowcase(
     ) {
       Header {
         Title("Dialog Title")
-        if (fullscreen) CloseButton(MDCIconOpts.MDCIconType.Close.iconType, attrs = { classes("material-icons") })
+        if (fullscreen) CloseButton(MDCIcon.Close.type, attrs = { mdcIcon() })
       }
       Content {
         Text(LoremIpsum)
@@ -109,7 +111,9 @@ fun MDCDialog() = InteractiveShowcase(
                 }
               }
             ) {
-              RadioGraphic(checked = selected == item, label = item)
+              val id = "mdc-dialog-item-$index"
+              RadioGraphic(checked = selected == item, id = id)
+              Label(text = item, forId = id)
             }
           }
         }

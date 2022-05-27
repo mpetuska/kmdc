@@ -7,6 +7,8 @@ import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCExternalAPI
 import dev.petuska.kmdc.core.rememberUniqueDomElementId
 import dev.petuska.kmdc.data.table.*
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.util.NamedBlock
@@ -44,31 +46,31 @@ fun MDCDataTable() = InteractiveShowcase(
         registerEvents()
       }
     ) {
-      MDCDataTableContainer {
+      Container {
         MDCDataTableHeader {
-          MDCDataTableCell(text = "Dessert")
-          MDCDataTableCell(text = "Carbs (g)", numeric = true)
-          MDCDataTableCell(text = "Protein (g)", numeric = true)
-          MDCDataTableCell(text = "Comments")
+          Cell(text = "Dessert")
+          Cell(text = "Carbs (g)", numeric = true)
+          Cell(text = "Protein (g)", numeric = true)
+          Cell(text = "Comments")
         }
-        MDCDataTableBody {
-          MDCDataTableRow {
-            MDCDataTableHeaderCell(text = "Frozen yogurt")
-            MDCDataTableCell(text = "24", numeric = true)
-            MDCDataTableCell(text = "4.0", numeric = true)
-            MDCDataTableCell(text = "Super tasty")
+        Body {
+          Row {
+            HeaderCell(text = "Frozen yogurt")
+            Cell(text = "24", numeric = true)
+            Cell(text = "4.0", numeric = true)
+            Cell(text = "Super tasty")
           }
-          MDCDataTableRow {
-            MDCDataTableHeaderCell(text = "Ice cream sandwich")
-            MDCDataTableCell(text = "37", numeric = true)
-            MDCDataTableCell(text = "4.33333333333", numeric = true)
-            MDCDataTableCell(text = "I like ice cream more")
+          Row {
+            HeaderCell(text = "Ice cream sandwich")
+            Cell(text = "37", numeric = true)
+            Cell(text = "4.33333333333", numeric = true)
+            Cell(text = "I like ice cream more")
           }
-          MDCDataTableRow {
-            MDCDataTableHeaderCell(text = "Eclair")
-            MDCDataTableCell(text = "24", numeric = true)
-            MDCDataTableCell(text = "6.0", numeric = true)
-            MDCDataTableCell(text = "New filing flavor")
+          Row {
+            HeaderCell(text = "Eclair")
+            Cell(text = "24", numeric = true)
+            Cell(text = "6.0", numeric = true)
+            Cell(text = "New filing flavor")
           }
         }
       }
@@ -111,31 +113,31 @@ fun MDCDataTable() = InteractiveShowcase(
         }
       }
     ) {
-      MDCDataTableContainer {
+      Container {
         @OptIn(KMDCInternalAPI::class)
         val id = rememberUniqueDomElementId()
         MDCDataTableHeader {
           MDCDataTableCheckCell(selected = items.all(MDCDataTableVM.Item::selected), label = "Toggle All")
           MDCDataTableSortCell(columnId = "$id-0", label = "Dessert", buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-1", label = "Carbs (g)", numeric = true, buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-2", label = "Protein (g)", numeric = true, buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
           MDCDataTableSortCell(columnId = "$id-3", label = "Comments", buttonAttrs = {
-            classes("material-icons")
-          }) { Text("arrow_upward") }
+            mdcIcon()
+          }) { Text(MDCIcon.ArrowUpward.type) }
         }
-        MDCDataTableBody {
+        Body {
           items.forEach {
-            MDCDataTableRow(selected = it.selected) {
-              MDCDataTableHeaderCell(text = it.dessert, selected = it.selected)
-              MDCDataTableCell(text = it.carbs, numeric = true)
-              MDCDataTableCell(text = it.proteins, numeric = true)
-              MDCDataTableCell(text = it.comments)
+            Row(selected = it.selected) {
+              HeaderCell(text = it.dessert, selected = it.selected)
+              Cell(text = it.carbs, numeric = true)
+              Cell(text = it.proteins, numeric = true)
+              Cell(text = it.comments)
             }
           }
         }

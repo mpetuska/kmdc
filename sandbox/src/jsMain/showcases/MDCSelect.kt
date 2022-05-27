@@ -11,7 +11,8 @@ import dev.petuska.kmdc.select.anchor.Anchor
 import dev.petuska.kmdc.select.anchor.LeadingIcon
 import dev.petuska.kmdc.select.menu.Menu
 import dev.petuska.kmdc.select.menu.SelectItem
-import dev.petuska.kmdcx.icons.MDCIconOpts
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -79,12 +80,12 @@ fun MDCSelect() = InteractiveShowcase(
           LeadingIcon(
             clickable = leadingIconClickable,
             attrs = {
-              classes("material-icons")
+              mdcIcon()
               onClick {
                 console.log("MDCSelectLeadingIcon#onClick")
               }
             }
-          ) { Text(MDCIconOpts.MDCIconType.Event.iconType) }
+          ) { Text(MDCIcon.Event.type) }
         }
       } else null
     )

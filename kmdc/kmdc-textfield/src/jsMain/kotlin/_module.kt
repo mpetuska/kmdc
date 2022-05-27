@@ -4,11 +4,12 @@ package dev.petuska.kmdc.textfield
 
 import dev.petuska.kmdc.core.MDCComponent
 import dev.petuska.kmdc.core.MDCExternalAPI
+import dev.petuska.kmdc.core.MDCLayoutComponent
 import dev.petuska.kmdc.ripple.MDCRipple
 import org.w3c.dom.Element
 
 @MDCExternalAPI
-public external class MDCTextField(element: Element) : MDCComponent<dynamic> {
+public external class MDCTextField(element: Element) : MDCComponent<dynamic>, MDCLayoutComponent {
   public var value: String
   public var disabled: Boolean
   public var valid: Boolean
@@ -34,5 +35,5 @@ public external class MDCTextField(element: Element) : MDCComponent<dynamic> {
   public var trailingIconContent: String
 
   public fun focus()
-  public fun layout()
+  public override fun layout()
 }

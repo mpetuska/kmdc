@@ -4,6 +4,7 @@ package dev.petuska.kmdc.slider
 
 import dev.petuska.kmdc.core.MDCComponent
 import dev.petuska.kmdc.core.MDCExternalAPI
+import dev.petuska.kmdc.core.MDCLayoutComponent
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
@@ -11,10 +12,10 @@ import org.w3c.dom.HTMLElement
 public external class MDCSlider(
   element: Element,
   options: MDCSliderOptions = definedExternally
-) : MDCComponent<dynamic> {
+) : MDCComponent<dynamic>, MDCLayoutComponent {
   public var root: HTMLElement
   public fun initialize(options: MDCSliderOptions = definedExternally): dynamic
-  public fun layout()
+  public override fun layout()
   public fun getValueStart(): Number
   public fun setValueStart(valueStart: Number)
   public fun getValue(): Number

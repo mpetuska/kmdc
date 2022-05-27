@@ -1,21 +1,33 @@
 package showcases
 
 import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
-import dev.petuska.kmdc.chips.*
-import dev.petuska.kmdc.chips.action.*
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
+import dev.petuska.kmdc.chips.MDCChipsAttrsScope
+import dev.petuska.kmdc.chips.action.Checkmark
+import dev.petuska.kmdc.chips.action.Graphic
+import dev.petuska.kmdc.chips.action.Icon
+import dev.petuska.kmdc.chips.action.Label
 import dev.petuska.kmdc.chips.grid.*
-import dev.petuska.kmdc.chips.listbox.*
-import org.jetbrains.compose.web.dom.*
-import sandbox.control.*
-import sandbox.util.*
+import dev.petuska.kmdc.chips.listbox.FilterChip
+import dev.petuska.kmdc.chips.listbox.MDCChipsListbox
+import dev.petuska.kmdc.chips.onInteraction
+import dev.petuska.kmdc.chips.onRemoval
+import dev.petuska.kmdc.chips.onSelection
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
+import org.jetbrains.compose.web.dom.Text
+import sandbox.control.BooleanControl
+import sandbox.util.NamedBlock
 
 private class MDCChipsVM {
   var disabled by mutableStateOf(false)
   var multiselectable by mutableStateOf(false)
   var overflow by mutableStateOf(false)
   var touch by mutableStateOf(false)
+
+  var removed1 by mutableStateOf(false)
+  var removed2 by mutableStateOf(false)
 }
 
 @Composable
@@ -32,41 +44,49 @@ fun MDCChips() = InteractiveShowcase(
   NamedBlock("Grid") {
     MDCChipsGrid(overflow = overflow, attrs = {
       registerEvents()
+      onRemoval {
+        if (it.detail.chipID == "1") removed1 = true
+        if (it.detail.chipID == "2") removed2 = true
+      }
     }) {
       ActionChip(
-        "1", disabled = disabled, withPrimaryIcon = true, touch = touch,
+        "0", disabled = disabled, withPrimaryIcon = true, touch = touch,
       ) {
         Graphic {
-          Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+          Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
           Checkmark()
         }
         Label("ActionChip")
       }
-      InputChip(
-        "2", withPrimaryIcon = true, withTrailingAction = true, disabled = disabled, touch = touch,
-      ) {
-        PrimaryAction {
-          Graphic {
-            Icon(attrs = { classes("material-icons") }) { Text("favorite") }
-            Checkmark()
+      if (!removed1) {
+        InputChip(
+          "1", withPrimaryIcon = true, withTrailingAction = true, disabled = disabled, touch = touch,
+        ) {
+          PrimaryAction {
+            Graphic {
+              Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
+              Checkmark()
+            }
+            Label("InputChip with leading icon and trailing action")
           }
-          Label("InputChip with leading icon and trailing action")
-        }
-        TrailingAction {
-          Icon(attrs = { classes("material-icons") }) { Text("close") }
-        }
-      }
-      InputChip(
-        "3", disabled = disabled, withTrailingAction = true, navigableTrailingAction = false, touch = touch,
-      ) {
-        PrimaryAction {
-          Label("InputChip with non-navigable trailing action")
-        }
-        TrailingAction {
-          Icon(attrs = { classes("material-icons") }) { Text("close") }
+          TrailingAction {
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Close.type) }
+          }
         }
       }
-      InputChip("4", disabled = disabled, touch = touch) {
+      if (!removed2) {
+        InputChip(
+          "2", disabled = disabled, withTrailingAction = true, navigableTrailingAction = false, touch = touch,
+        ) {
+          PrimaryAction {
+            Label("InputChip with non-navigable trailing action")
+          }
+          TrailingAction {
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Close.type) }
+          }
+        }
+      }
+      InputChip("3", disabled = disabled, touch = touch) {
         PrimaryAction {
           Label("InputChip without trailing action")
         }
@@ -74,7 +94,7 @@ fun MDCChips() = InteractiveShowcase(
     }
   }
   NamedBlock("Listbox") {
-    val selected = remember { mutableStateListOf<String>("1") }
+    val selected = remember { mutableStateListOf("1") }
     MDCChipsListbox(overflow = overflow, multiselectable = multiselectable, attrs = {
       registerEvents()
       onSelection {
@@ -95,7 +115,7 @@ fun MDCChips() = InteractiveShowcase(
           touch = touch,
         ) {
           Graphic {
-            Icon(attrs = { classes("material-icons") }) { Text("favorite") }
+            Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
             Checkmark()
           }
           Label("FilterChip - $id")

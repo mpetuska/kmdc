@@ -1,10 +1,16 @@
 package dev.petuska.kmdc.chips.grid
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.chips.*
-import dev.petuska.kmdc.chips.action.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import dev.petuska.kmdc.chips.Chip
+import dev.petuska.kmdc.chips.MDCChipScope
+import dev.petuska.kmdc.chips.action.MDCChipActionIconScope
+import dev.petuska.kmdc.chips.action.MDCChipActionScope
+import dev.petuska.kmdc.chips.action.MDCChipActionTypeLocal
 import dev.petuska.kmdc.core.*
-import org.w3c.dom.*
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLSpanElement
 
 public interface MDCInputChipScope : MDCChipScope
 
@@ -13,7 +19,7 @@ private val NavigableTrailLocal = compositionLocalOf { true }
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCChipsGridScope.InputChip(
   id: String,
@@ -23,7 +29,7 @@ public fun MDCChipsGridScope.InputChip(
   touch: Boolean = false,
   withTrailingAction: Boolean = false,
   navigableTrailingAction: Boolean = true,
-  attrs: AttrsBuilder<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
   content: MDCContent<MDCInputChipScope>? = null
 ) {
   Chip(
@@ -37,21 +43,20 @@ public fun MDCChipsGridScope.InputChip(
       if (withTrailingAction) classes("mdc-evolution-chip--with-trailing-action")
       applyAttrs(attrs)
     },
-    content = {
-      CompositionLocalProvider(NavigableTrailLocal provides navigableTrailingAction) {
-        applyContent(content)
-      }
+  ) {
+    CompositionLocalProvider(NavigableTrailLocal provides navigableTrailingAction) {
+      applyContent(content)
     }
-  )
+  }
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCInputChipScope.PrimaryAction(
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCChipActionScope<HTMLButtonElement>>? = null
 ) {
   val navigableTrail = NavigableTrailLocal.current
@@ -71,10 +76,10 @@ public fun MDCInputChipScope.PrimaryAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCInputChipScope.TrailingAction(
-  attrs: AttrsBuilder<HTMLButtonElement>? = null,
+  attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCChipActionIconScope<HTMLButtonElement>>? = null
 ) {
   val navigableTrail = NavigableTrailLocal.current

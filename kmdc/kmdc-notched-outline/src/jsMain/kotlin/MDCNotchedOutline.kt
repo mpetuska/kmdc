@@ -14,7 +14,7 @@ public interface MDCNotchedOutlineScope : ElementScope<HTMLSpanElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-notched-outline)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNotchedOutline(
   notched: Boolean = false,
@@ -59,7 +59,7 @@ public fun MDCNotchedOutlineLayout(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-notched-outline)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNotchedOutlineScope.Leading(
   attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
@@ -74,7 +74,7 @@ public fun MDCNotchedOutlineScope.Leading(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-notched-outline)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNotchedOutlineScope.Notch(
   attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
@@ -89,7 +89,7 @@ public fun MDCNotchedOutlineScope.Notch(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-notched-outline)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNotchedOutlineScope.Trailing(
   attrs: MDCAttrsRaw<HTMLSpanElement>? = null,

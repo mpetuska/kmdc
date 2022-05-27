@@ -17,7 +17,7 @@ public interface MDCDialogActionsScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogScope.Actions(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -35,7 +35,7 @@ public fun MDCDialogScope.Actions(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogActionsScope.Action(
   action: String,
@@ -54,7 +54,7 @@ public fun MDCDialogActionsScope.Action(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCDialogActionsScope.Action(
   action: String,
@@ -71,7 +71,7 @@ public fun MDCDialogActionsScope.Action(
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 internal fun ActionImpl(
   action: String,

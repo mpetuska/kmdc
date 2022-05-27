@@ -4,8 +4,4 @@ plugins {
 
 kmdc {
   mdc by "floating-label"
-  dependencies {
-    main {
-    }
-  }
 }

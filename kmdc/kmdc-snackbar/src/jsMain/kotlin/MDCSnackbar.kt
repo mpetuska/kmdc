@@ -23,12 +23,11 @@ public interface MDCSnackbarScope : ElementScope<HTMLElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSnackbar(
   type: MDCSnackbarType = MDCSnackbarType.Default,
   open: Boolean = false,
-// TODO dismissible: Boolean = false,
   timeoutMs: Int? = 5000,
   closeOnEscape: Boolean = true,
   attrs: MDCAttrs<MDCSnackbarAttrsScope>? = null,
@@ -40,11 +39,12 @@ public fun MDCSnackbar(
     classes(type.classes)
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(::MDCSnackbar, type)
-    MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
-    MDCStateEffect(closeOnEscape, MDCSnackbar::closeOnEscape)
-    MDCSideEffect<MDCSnackbar>(open) {
-      if (open) open() else close()
+    MDCProvider(::MDCSnackbar, type) {
+      MDCStateEffectNew(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
+      MDCStateEffectNew(closeOnEscape, MDCSnackbar::closeOnEscape)
+      MDCSideEffectNew(open) {
+        if (open) open() else close()
+      }
     }
     Div(
       attrs = {

@@ -18,11 +18,14 @@ import org.jetbrains.compose.web.css.marginBottom
 import org.jetbrains.compose.web.dom.A
 import sandbox.util.requireModule
 
+private external val process: dynamic
+
 @KatalogConfig
 fun Katalog.Builder.config() {
   requireModule("./sandbox.scss")
   document.body?.addClass("mdc-typography")
 
+  debug = process.env.NODE_ENV == "development"
   title = "KMDC Katalog"
   subtitle = "Play around with various KMDC components"
   contentRootUrl = "https://github.com/mpetuska/kmdc/blob/master"

@@ -15,7 +15,7 @@ public interface MDCBannerActionsScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerScope.Actions(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -35,18 +35,20 @@ public interface MDCBannerActionScope : ElementScope<HTMLButtonElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 private fun MDCBannerActionsScope.Action(
   primary: Boolean,
   type: MDCButtonType,
   icon: MDCButtonIconType,
+  touch: Boolean,
   attrs: MDCAttrsRaw<HTMLButtonElement>?,
   content: MDCContent<MDCButtonScope<HTMLButtonElement>>?,
 ) {
   MDCButton(
     type = type,
     icon = icon,
+    touch = touch,
     attrs = {
       classes("mdc-banner__${if (primary) "primary" else "secondary"}-action")
       type(ButtonType.Button)
@@ -59,29 +61,31 @@ private fun MDCBannerActionsScope.Action(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerActionsScope.PrimaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
+  touch: Boolean = false,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null,
 ) {
-  Action(true, type, icon, attrs, content)
+  Action(primary = true, type = type, icon = icon, touch = touch, attrs = attrs, content = content)
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerActionsScope.PrimaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
+  touch: Boolean = false,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
-  Action(true, type, icon, attrs) {
+  Action(primary = true, type = type, icon = icon, touch = touch, attrs = attrs) {
     Label(text)
   }
 }
@@ -89,29 +93,31 @@ public fun MDCBannerActionsScope.PrimaryAction(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerActionsScope.SecondaryAction(
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
+  touch: Boolean = false,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null,
 ) {
-  Action(false, type, icon, attrs, content)
+  Action(primary = false, type = type, icon = icon, touch = touch, attrs = attrs, content = content)
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCBannerActionsScope.SecondaryAction(
   text: String,
   type: MDCButtonType = MDCButtonType.Text,
   icon: MDCButtonIconType = MDCButtonIconType.None,
+  touch: Boolean = false,
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
 ) {
-  Action(false, type, icon, attrs) {
+  Action(primary = false, type = type, icon = icon, touch = touch, attrs = attrs) {
     Label(text)
   }
 }

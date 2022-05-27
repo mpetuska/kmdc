@@ -4,8 +4,4 @@ plugins {
 
 kmdc {
   mdc by "notched-outline"
-  dependencies {
-    main {
-    }
-  }
 }

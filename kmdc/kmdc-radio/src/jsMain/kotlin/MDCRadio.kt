@@ -1,58 +1,25 @@
 package dev.petuska.kmdc.radio
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.form.field.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.attributes.builders.*
+import dev.petuska.kmdc.form.field.MDCFormField
+import org.jetbrains.compose.web.attributes.InputType
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
+import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/radio/mdc-radio.scss")
-public external val MDCRadioStyle: dynamic
+public external val Style: dynamic
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCRadio(
   checked: Boolean,
   touch: Boolean = false,
-  disabled: Boolean = false,
-  label: String? = null,
-  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
-) {
-  MDCRadioBody(checked = checked, touch = touch, label = label, disabled = disabled, attrs = attrs)
-}
-
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-radio)
- */
-@MDCDsl
-@Composable
-public fun MDCFormFieldScope.MDCRadio(
-  checked: Boolean,
-  touch: Boolean = false,
-  disabled: Boolean = false,
-  label: String? = null,
-  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
-) {
-  MDCRadioBody(checked = checked, touch = touch, disabled = disabled, label = label, attrs = {
-    ref {
-      it.mdc<MDCRadio> { setInput(it, this) }
-      onDispose { }
-    }
-    attrs?.invoke(this)
-  })
-}
-
-@MDCDsl
-@Composable
-private fun MDCRadioBody(
-  checked: Boolean,
-  touch: Boolean,
   disabled: Boolean = false,
   label: String? = null,
   attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
@@ -65,8 +32,12 @@ private fun MDCRadioBody(
     disabled = disabled,
     attrs = attrs,
   ) {
+    val formField = localMDC<MDCFormField>()
     MDCProvider(::MDCRadio) {
-      it()
+      MDCSideEffectNew(formField, onDispose = { formField?.input = null }) {
+        formField?.input = this
+      }
+      applyContent(it)
     }
   }
   label?.let {
@@ -82,9 +53,9 @@ public fun MDCRadioLayout(
   touch: Boolean,
   disabled: Boolean,
   attrs: MDCAttrs<InputAttrsScope<Boolean>>?,
-  init: @Composable ElementScope<HTMLDivElement>.(content: @Composable () -> Unit) -> Unit = { it() },
+  init: MDCComponentInit<ElementScope<HTMLDivElement>> = { it() },
 ) {
-  MDCRadioStyle
+  Style
   Div(attrs = {
     classes("mdc-radio")
     if (disabled) classes("mdc-radio--disabled")

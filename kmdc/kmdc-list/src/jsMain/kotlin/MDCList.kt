@@ -2,7 +2,6 @@ package dev.petuska.kmdc.list
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
 import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.ElementScope
@@ -19,7 +18,7 @@ public enum class MDCListSize(public vararg val classes: String) {
 }
 
 public enum class MDCListType(public vararg val classes: String) {
-  Generic,
+  Default,
   Textual("mdc-deprecated-list--textual-list"),
   Avatar("mdc-deprecated-list--avatar-list"),
   Icon("mdc-deprecated-list--icon-list"),
@@ -35,22 +34,23 @@ public enum class MDCListSelection(public val listRole: String?, public val item
   Multi(null, null),
 }
 
-@MDCDsl
+public interface MDCListAttrsScope<T : HTMLElement> : AttrsScope<T>
 public interface MDCListScope<T : HTMLElement> : ElementScope<T>
 
-internal val MDCListSelectionLocal = compositionLocalOf<MDCListSelection> { error("undefined") }
+internal val MDCListSelectionLocal = strictCompositionLocalOf<MDCListSelection>()
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCList(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
-  dense: Boolean = false,
   selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLUListElement>>? = null,
+  dense: Boolean = false,
+  wrapFocus: Boolean = false,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLUListElement>>? = null,
   content: MDCContent<MDCListScope<HTMLUListElement>>? = null,
 ) {
   MDCListLayout(
@@ -60,25 +60,24 @@ public fun MDCList(
     selection = selection,
     attrs = attrs
   ) {
-    MDCInitEffect(::MDCList)
-    MDCSideEffect<MDCList>(selection) {
-      singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+    MDCProvider(::MDCList, selection) {
+      MDCSideEffectNew(selection) {
+        singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+      }
+      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      applyContent(content)
     }
-    applyContent(content)
   }
 }
 
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
- */
 @KMDCInternalAPI
 @Composable
 public fun MDCListLayout(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
   dense: Boolean = false,
   selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLUListElement>>? = null,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLUListElement>>? = null,
   content: MDCContent<MDCListScope<HTMLUListElement>>? = null,
 ) {
   Style
@@ -99,28 +98,55 @@ public fun MDCListLayout(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCNavList(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
+  size: MDCListSize = MDCListSize.SingleLine,
+  selection: MDCListSelection = MDCListSelection.Single,
+  dense: Boolean = false,
+  wrapFocus: Boolean = false,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLElement>>? = null,
+  content: MDCContent<MDCListScope<HTMLElement>>? = null,
+) {
+  MDCNavListLayout(
+    type = type,
+    size = size,
+    dense = dense,
+    selection = selection,
+    attrs = attrs
+  ) {
+    MDCProvider(::MDCList, selection) {
+      MDCSideEffectNew(selection) {
+        singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+      }
+      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      applyContent(content)
+    }
+  }
+}
+
+@KMDCInternalAPI
+@Composable
+public fun MDCNavListLayout(
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
   dense: Boolean = false,
-  singleSelection: Boolean = false,
-  attrs: MDCAttrs<AttrsScope<HTMLElement>>? = null,
+  selection: MDCListSelection = MDCListSelection.Single,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLElement>>? = null,
   content: MDCContent<MDCListScope<HTMLElement>>? = null,
 ) {
   Style
-
   Nav(attrs = {
     classes("mdc-deprecated-list")
     classes(size.classes)
     classes(type.classes)
-    if (singleSelection) attr("role", "listbox")
+    if (dense) classes("mdc-deprecated-list--dense")
     if (dense) classes("mdc-deprecated-list--dense")
     applyAttrs(attrs)
   }) {
-    MDCInitEffect(::MDCList)
-    MDCStateEffect(singleSelection, MDCList::singleSelection)
-    applyContent(content)
+    CompositionLocalProvider(MDCListSelectionLocal provides selection) {
+      applyContent(content)
+    }
   }
 }

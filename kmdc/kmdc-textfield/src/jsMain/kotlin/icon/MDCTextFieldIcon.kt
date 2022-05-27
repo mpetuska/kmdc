@@ -3,8 +3,6 @@ package dev.petuska.kmdc.textfield.icon
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.textfield.MDCTextFieldScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.I
 import org.w3c.dom.HTMLElement
 
@@ -13,8 +11,8 @@ import org.w3c.dom.HTMLElement
 internal fun MDCTextFieldScope.MDCTextFieldIcon(
   leading: Boolean,
   clickable: Boolean = false,
-  attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ContentBuilder<HTMLElement>? = null,
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
+  content: MDCContentRaw<HTMLElement>? = null,
 ) {
   I(
     attrs = {
@@ -37,12 +35,12 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
   )
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTextFieldScope.MDCTextFieldLeadingIcon(
   clickable: Boolean = false,
-  attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ContentBuilder<HTMLElement>? = null,
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
+  content: MDCContentRaw<HTMLElement>? = null,
 ) {
   MDCTextFieldIcon(
     leading = true,
@@ -52,12 +50,12 @@ public fun MDCTextFieldScope.MDCTextFieldLeadingIcon(
   )
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCTextFieldScope.MDCTextFieldTrailingIcon(
   clickable: Boolean = false,
-  attrs: AttrBuilderContext<HTMLElement>? = null,
-  content: ContentBuilder<HTMLElement>? = null,
+  attrs: MDCAttrsRaw<HTMLElement>? = null,
+  content: MDCContentRaw<HTMLElement>? = null,
 ) {
   MDCTextFieldIcon(
     leading = false,

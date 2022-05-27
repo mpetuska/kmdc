@@ -1,10 +1,15 @@
 package showcases
 
-import androidx.compose.runtime.*
-import dev.petuska.katalog.runtime.*
-import dev.petuska.katalog.runtime.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.petuska.katalog.runtime.Showcase
+import dev.petuska.katalog.runtime.layout.InteractiveShowcase
 import dev.petuska.kmdc.banner.*
-import sandbox.control.*
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
+import sandbox.control.BooleanControl
 import org.jetbrains.compose.web.dom.Text as ComposeText
 
 private class MDCBannerVM {
@@ -30,7 +35,7 @@ fun MDCBanner() = InteractiveShowcase(
   }) {
     Content {
       Graphic {
-        Icon(attrs = { classes("material-icons") }) { ComposeText("error_outline") }
+        Icon(attrs = { mdcIcon() }) { ComposeText(MDCIcon.ErrorOutline.type) }
       }
       Text("There was a problem processing a transaction on your credit card.")
     }

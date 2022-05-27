@@ -1,21 +1,21 @@
 package dev.petuska.kmdc.segmented.button
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Button
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLButtonElement
 
-public class MDCSegmentedButtonSegmentAttrsScope(scope: AttrsScope<HTMLButtonElement>) :
-  AttrsScope<HTMLButtonElement> by scope
+public interface MDCSegmentedButtonSegmentAttrsScope : AttrsScope<HTMLButtonElement>
 
-public class MDCSegmentedButtonSegmentScope(scope: ElementScope<HTMLButtonElement>) :
-  ElementScope<HTMLButtonElement> by scope
+public interface MDCSegmentedButtonSegmentScope : ElementScope<HTMLButtonElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButtonScope.Segment(
   selected: Boolean = false,
@@ -24,6 +24,7 @@ public fun MDCSegmentedButtonScope.Segment(
   attrs: MDCAttrs<MDCSegmentedButtonSegmentAttrsScope>? = null,
   content: MDCContent<MDCSegmentedButtonSegmentScope>? = null,
 ) {
+  val singleSelect = MDCSegmentedButtonSingleSelectLocal.current
   Button(
     attrs = {
       classes("mdc-segmented-button__segment")
@@ -34,13 +35,13 @@ public fun MDCSegmentedButtonScope.Segment(
         classes("mdc-segmented-button__segment--selected")
       }
       segmentId?.let { data("segment-id", it) }
-      if (this@Segment.singleSelect) {
+      if (singleSelect) {
         aria("checked", "$selected")
         role("radio")
       } else {
         aria("pressed", "$selected")
       }
-      attrs?.invoke(MDCSegmentedButtonSegmentAttrsScope(this))
+      applyAttrs(attrs)
     }
   ) {
     if (touch) {
@@ -49,14 +50,14 @@ public fun MDCSegmentedButtonScope.Segment(
       })
     }
     Div(attrs = { classes("mdc-segmented-button__ripple") })
-    content?.invoke(MDCSegmentedButtonSegmentScope(this))
+    applyContent(content)
   }
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-segmented-button)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSegmentedButtonScope.Segment(
   text: String,

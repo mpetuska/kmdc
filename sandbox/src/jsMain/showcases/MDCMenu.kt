@@ -7,13 +7,15 @@ import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.domain.Point
 import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.list.item.CheckboxGraphic
+import dev.petuska.kmdc.list.item.Label
 import dev.petuska.kmdc.list.item.Text
 import dev.petuska.kmdc.menu.*
 import dev.petuska.kmdc.menu.surface.*
 import dev.petuska.kmdc.textfield.MDCTextField
 import dev.petuska.kmdc.textfield.MDCTextFieldType
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
-import dev.petuska.kmdcx.icons.MDCIconOpts
+import dev.petuska.kmdcx.icons.MDCIcon
+import dev.petuska.kmdcx.icons.mdcIcon
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -105,8 +107,9 @@ fun MDCMenu() = InteractiveShowcase(
             MenuItem(
               disabled = disabled,
             ) {
-              CheckboxGraphic(i1 * 2 + i2 in selectedIds)
-              Text(it)
+              val id = "mdc-menu-item-${i1 * 2 + i2}"
+              CheckboxGraphic(checked = i1 * 2 + i2 in selectedIds, id = id)
+              Label(text = it, forId = id)
             }
           }
         }
@@ -145,13 +148,13 @@ fun MDCMenu() = InteractiveShowcase(
         trailingIcon = {
           MDCTextFieldTrailingIcon(clickable = true, attrs = {
             onClick { open = !open }
-            classes("material-icons")
+            mdcIcon()
           }) {
             Text(
               if (open) {
-                MDCIconOpts.MDCIconType.ArrowDropUp.iconType
+                MDCIcon.ArrowDropUp.type
               } else {
-                MDCIconOpts.MDCIconType.ArrowDropDown.iconType
+                MDCIcon.ArrowDropDown.type
               }
             )
           }

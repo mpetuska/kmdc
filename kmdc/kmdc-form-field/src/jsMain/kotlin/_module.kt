@@ -9,9 +9,10 @@ import org.w3c.dom.Element
 
 @MDCExternalAPI
 public external class MDCFormField(element: Element) : MDCComponent<dynamic> {
-  public var input: MDCFormFieldInput
+  public var input: MDCFormFieldInput?
 }
 
+@MDCExternalAPI
 public external interface MDCFormFieldInput {
   public val ripple: MDCRipple?
 }

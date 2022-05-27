@@ -23,8 +23,9 @@ private object ShowcaseBoxStyle : StyleSheet() {
 
 @Composable
 internal fun ShowcaseBox(showcase: Showcase) = with(showcase) {
+  val debug = katalog.debug
   LaunchedEffect(showcase) {
-    console.asDynamic().clear(); Unit
+    if (!debug) console.asDynamic().clear()
   }
   val contentRootUrl = katalog.contentRootUrl
   val location = contentRootUrl?.let {

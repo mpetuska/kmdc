@@ -2,7 +2,7 @@ package dev.petuska.kmdc.checkbox
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.form.field.MDCFormFieldScope
+import dev.petuska.kmdc.form.field.MDCFormField
 import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
@@ -17,101 +17,86 @@ public external val Style: dynamic
 
 public interface MDCCheckboxScope : ElementScope<HTMLDivElement>
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckbox(
+  checked: Boolean?,
   disabled: Boolean = false,
   indeterminate: Boolean = false,
+  touch: Boolean = false,
+  label: String? = null,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
+) {
+  val checkboxId = rememberUniqueDomElementId()
+  MDCCheckboxLayoutFull(
+    id = checkboxId,
+    checked = checked == true,
+    disabled = disabled,
+    touch = touch,
+    attrs = attrs,
+  ) {
+    val formField = localMDC<MDCFormField>()
+    MDCProvider(::MDCCheckbox) {
+      MDCSideEffectNew(formField, onDispose = { formField?.input = null }) {
+        formField?.input = this
+      }
+      MDCStateEffectNew(indeterminate, MDCCheckbox::indeterminate)
+      MDCStateEffectNew(disabled, MDCCheckbox::disabled)
+      it()
+    }
+  }
+  label?.let {
+    Label(forId = checkboxId, attrs = { id("$checkboxId-label") }) { Text(it) }
+  }
+}
+
+@Composable
+@KMDCInternalAPI
+public fun MDCCheckboxLayoutFull(
+  id: String,
+  checked: Boolean = false,
+  touch: Boolean = false,
+  disabled: Boolean = false,
+  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
+  init: MDCComponentInit<MDCCheckboxScope> = { it() },
+) {
+  MDCCheckboxLayout(
+    touch = touch,
+  ) {
+    unsafeCast<MDCCheckboxScope>().init {
+      MDCCheckboxInput(
+        checked = checked,
+        disabled = disabled,
+        attrs = {
+          id(id)
+          applyAttrs(attrs)
+        }
+      )
+      MDCCheckboxBackground()
+      MDCCheckboxRipple()
+    }
+  }
+}
+
+@Composable
+@KMDCInternalAPI
+public fun MDCCheckboxLayout(
   touch: Boolean = false,
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContent<MDCCheckboxScope>? = null,
 ) {
   Style
-  Div(attrs = {
-    classes("mdc-checkbox")
-    if (touch) classes("mdc-checkbox--touch")
-    applyAttrs(attrs)
-  }) {
-    MDCInitEffect(::MDCCheckbox)
-    MDCStateEffect(indeterminate, MDCCheckbox::indeterminate)
-    MDCStateEffect(disabled, MDCCheckbox::disabled)
-    applyContent(content)
-  }
+  Div(
+    attrs = {
+      classes("mdc-checkbox")
+      if (touch) classes("mdc-checkbox--touch")
+      applyAttrs(attrs)
+    },
+    content = content.reinterpret()
+  )
 }
 
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
- */
-@MDCDsl
-@Composable
-public fun MDCCheckbox(
-  checked: Boolean?,
-  disabled: Boolean = false,
-  touch: Boolean = false,
-  label: String? = null,
-  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
-) {
-  val checkboxId = rememberUniqueDomElementId()
-  MDCCheckbox(
-    touch = touch,
-    disabled = disabled,
-    indeterminate = checked == null,
-  ) {
-    MDCCheckboxInput(
-      checked = checked,
-      disabled = disabled,
-      attrs = {
-        id(checkboxId)
-        applyAttrs(attrs)
-      }
-    )
-    MDCCheckboxBackground()
-    MDCCheckboxRipple()
-  }
-  label?.let {
-    Label(forId = checkboxId, attrs = { id("$checkboxId-label") }) { Text(it) }
-  }
-}
-
-/**
- * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox)
- */
-@MDCDsl
-@Composable
-public fun MDCFormFieldScope.MDCCheckbox(
-  checked: Boolean?,
-  disabled: Boolean = false,
-  touch: Boolean = false,
-  label: String? = null,
-  attrs: MDCAttrs<InputAttrsScope<Boolean>>? = null,
-) {
-  val checkboxId = rememberUniqueDomElementId()
-  MDCCheckbox(
-    touch = touch,
-    disabled = disabled,
-    indeterminate = checked == null,
-  ) {
-    MDCCheckboxInput(
-      checked = checked,
-      disabled = disabled,
-      attrs = {
-        ref {
-          it.mdc<MDCCheckbox> { setInput(it, this) }
-          onDispose { }
-        }
-        id(checkboxId)
-        applyAttrs(attrs)
-      }
-    )
-    MDCCheckboxBackground()
-    MDCCheckboxRipple()
-  }
-  label?.let {
-    Label(forId = checkboxId, attrs = { id("$checkboxId-label") }) { Text(it) }
-  }
-}
-
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxInput(
   checked: Boolean?,
@@ -130,7 +115,7 @@ public fun MDCCheckboxScope.MDCCheckboxInput(
 }
 
 @OptIn(ExperimentalComposeWebSvgApi::class)
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxBackground(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
@@ -155,7 +140,7 @@ public fun MDCCheckboxScope.MDCCheckboxBackground(
   }
 }
 
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCCheckboxScope.MDCCheckboxRipple(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null

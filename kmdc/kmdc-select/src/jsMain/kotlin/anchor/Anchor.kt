@@ -2,7 +2,12 @@ package dev.petuska.kmdc.select.anchor
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.floating.label.MDCFloatingLabelLayout
 import dev.petuska.kmdc.line.ripple.MDCLineRippleLayout
+import dev.petuska.kmdc.notched.outline.Leading
+import dev.petuska.kmdc.notched.outline.MDCNotchedOutlineLayout
+import dev.petuska.kmdc.notched.outline.Notch
+import dev.petuska.kmdc.notched.outline.Trailing
 import dev.petuska.kmdc.select.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
@@ -13,7 +18,7 @@ public interface MDCSelectAnchorScope : ElementScope<HTMLDivElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectScope.Anchor(
   label: String,
@@ -39,10 +44,7 @@ public fun MDCSelectScope.Anchor(
     }
   ) {
     val floatingLabel = @Composable {
-      Span(attrs = {
-        id(labelId)
-        classes("mdc-floating-label")
-      }) { Text(label) }
+      MDCFloatingLabelLayout(id = labelId) { Text(label) }
     }
 
     when (type) {
@@ -50,10 +52,10 @@ public fun MDCSelectScope.Anchor(
         Span(attrs = { classes("mdc-select__ripple") })
         floatingLabel()
       }
-      MDCSelectType.Outlined -> Span(attrs = { classes("mdc-notched-outline") }) {
-        Span(attrs = { classes("mdc-notched-outline__leading") })
-        Span(attrs = { classes("mdc-notched-outline__notch") }) { floatingLabel() }
-        Span(attrs = { classes("mdc-notched-outline__trailing") })
+      MDCSelectType.Outlined -> MDCNotchedOutlineLayout {
+        Leading()
+        Notch { floatingLabel() }
+        Trailing()
       }
     }
     applyContent(leadingIcon)
@@ -71,7 +73,7 @@ public fun MDCSelectScope.Anchor(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 public fun MDCSelectAnchorScope.LeadingIcon(
   clickable: Boolean = true,

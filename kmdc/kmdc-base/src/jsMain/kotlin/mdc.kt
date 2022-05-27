@@ -10,5 +10,6 @@ internal var Element.mdc: dynamic
   }
 
 @KMDCInternalAPI
+@Deprecated(message = "To be removed")
 public fun <MDC : MDCComponent<*>> Element.mdc(action: MDCAttrs<MDC>? = null): MDC? =
   mdc.unsafeCast<MDC?>()?.also { action?.invoke(it) }

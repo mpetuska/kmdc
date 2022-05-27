@@ -16,7 +16,7 @@ import org.jetbrains.compose.web.dom.*
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
 @Suppress("LongMethod")
 public fun MDCTextArea(
@@ -112,9 +112,9 @@ private fun MDCTextAreaInput(
   helperText: String?,
   rows: UInt,
   columns: UInt,
-  attrs: MDCAttrs<TextAreaAttrsScope>?,
   labelId: String,
   helperId: String,
+  attrs: MDCAttrs<TextAreaAttrsScope>?,
 ) {
   TextArea(value, attrs = {
     classes("mdc-text-field__input")

@@ -1,26 +1,27 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package dev.petuska.kmdc.data.table
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.checkbox.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
+import dev.petuska.kmdc.checkbox.MDCCheckboxInput
+import dev.petuska.kmdc.checkbox.MDCCheckboxLayout
+import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.core.AttrsBuilder
-import dev.petuska.kmdc.core.ContentBuilder
-import org.jetbrains.compose.web.attributes.*
+import org.jetbrains.compose.web.attributes.Scope
+import org.jetbrains.compose.web.attributes.scope
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLTableCellElement
+import org.w3c.dom.HTMLTableRowElement
+import org.w3c.dom.HTMLTableSectionElement
 
-public sealed interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionElement>
+public interface MDCDataTableBodyScope : ElementScope<HTMLTableSectionElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public fun MDCDataTableContainerScope.MDCDataTableBody(
-  attrs: AttrsBuilder<HTMLTableSectionElement>? = null,
+public fun MDCDataTableContainerScope.Body(
+  attrs: MDCAttrsRaw<HTMLTableSectionElement>? = null,
   content: MDCContent<MDCDataTableBodyScope>? = null,
 ) {
   Tbody(
@@ -28,7 +29,7 @@ public fun MDCDataTableContainerScope.MDCDataTableBody(
       classes("mdc-data-table__content")
       applyAttrs(attrs)
     },
-    content = content?.reinterpret()
+    content = content.reinterpret()
   )
 }
 
@@ -37,11 +38,11 @@ public sealed interface MDCDataTableRowScope : ElementScope<HTMLTableRowElement>
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public fun MDCDataTableBodyScope.MDCDataTableRow(
-  attrs: AttrsBuilder<HTMLTableRowElement>? = null,
+public fun MDCDataTableBodyScope.Row(
   selected: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLTableRowElement>? = null,
   content: MDCContent<MDCDataTableRowScope>? = null,
 ) {
   Tr(
@@ -58,12 +59,12 @@ public fun MDCDataTableBodyScope.MDCDataTableRow(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public fun MDCDataTableRowScope.MDCDataTableCell(
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+public fun MDCDataTableRowScope.Cell(
   numeric: Boolean = false,
-  content: ContentBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  content: MDCContentRaw<HTMLTableCellElement>? = null,
 ) {
   Td(
     attrs = {
@@ -78,35 +79,37 @@ public fun MDCDataTableRowScope.MDCDataTableCell(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public inline fun MDCDataTableRowScope.MDCDataTableCell(
+public fun MDCDataTableRowScope.Cell(
   text: String,
   numeric: Boolean = false,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
-  MDCDataTableCell(attrs, numeric) { Text(text) }
+  Cell(numeric = numeric, attrs = attrs) { Text(text) }
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public fun MDCDataTableRowScope.MDCDataTableHeaderCell(
-  attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+public fun MDCDataTableRowScope.HeaderCell(
   numeric: Boolean = false,
   selected: Boolean? = null,
-  content: ContentBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
+  content: MDCContentRaw<HTMLTableCellElement>? = null,
 ) {
   val id = rememberUniqueDomElementId()
   if (selected != null) {
-    MDCDataTableCell(attrs = {
+    Cell(attrs = {
       classes("mdc-data-table__cell--checkbox")
     }) {
-      MDCCheckbox(attrs = {
-        classes("mdc-data-table__row-checkbox")
-      }) {
+      MDCCheckboxLayout(
+        attrs = {
+          classes("mdc-data-table__row-checkbox")
+        }
+      ) {
         MDCCheckboxInput(selected, attrs = {
           aria("labeledby", id)
         })
@@ -123,22 +126,22 @@ public fun MDCDataTableRowScope.MDCDataTableHeaderCell(
       if (selected != null) id(id)
       applyAttrs(attrs)
     },
-    content = content?.reinterpret()
+    content = content.reinterpret()
   )
 }
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-data-table)
  */
-@MDCDsl
+@MDCContentDsl
 @Composable
-public inline fun MDCDataTableRowScope.MDCDataTableHeaderCell(
+public fun MDCDataTableRowScope.HeaderCell(
   text: String,
   numeric: Boolean = false,
   selected: Boolean? = null,
-  noinline attrs: AttrsBuilder<HTMLTableCellElement>? = null,
+  attrs: MDCAttrsRaw<HTMLTableCellElement>? = null,
 ) {
-  MDCDataTableHeaderCell(
+  HeaderCell(
     attrs = attrs,
     numeric = numeric,
     selected = selected

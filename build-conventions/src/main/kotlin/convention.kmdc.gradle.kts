@@ -28,7 +28,7 @@ afterEvaluate {
   extensions.configure(KotlinMultiplatformExtension::class.java) {
     sourceSets.jsMain.configure {
       dependencies {
-        api(kmdc("base"))
+        if (project.name != "kmdc-base") api(kmdc("base"))
         api(npm(kmdc.module.get(), kmdc.version.get()))
       }
     }
