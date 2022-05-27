@@ -1,20 +1,21 @@
 package dev.petuska.kmdc.top.app.bar
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.ContentBuilder
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContentDsl
+import dev.petuska.kmdc.core.MDCContentRaw
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLSpanElement
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-top-app-bar)
  */
 @MDCContentDsl
 @Composable
-public fun MDCTopAppBarSectionScope.MDCTopAppBarTitle(
-  attrs: AttrBuilderContext<HTMLSpanElement>? = null,
-  content: ContentBuilder<HTMLSpanElement>? = null
+public fun MDCTopAppBarSectionScope.Title(
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null
 ) {
   Span(
     attrs = {
@@ -30,11 +31,11 @@ public fun MDCTopAppBarSectionScope.MDCTopAppBarTitle(
  */
 @MDCContentDsl
 @Composable
-public fun MDCTopAppBarSectionScope.MDCTopAppBarTitle(
+public fun MDCTopAppBarSectionScope.Title(
   text: String,
-  attrs: AttrBuilderContext<HTMLSpanElement>? = null,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
 ) {
-  MDCTopAppBarTitle(attrs = attrs) {
+  Title(attrs = attrs) {
     Text(text)
   }
 }
