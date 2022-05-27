@@ -18,6 +18,9 @@ public typealias MDCComponentInit<T> = @Composable ElementScope<T>.(
   content: @Composable ElementScope<T>.() -> Unit
 ) -> Unit
 
+private external val process: dynamic
+internal val debug = process.env.NODE_ENV == "development"
+
 /**
  * Reinterprets [MDCContent] lambda as a parent [ContentBuilder] lambda,
  * converting implicit [ElementScope]<[E]> to [S] via [unsafeCast].
@@ -93,7 +96,7 @@ public inline fun <E : Element, T : ElementScope<E>> ElementScope<E>.applyConten
 }
 
 @KMDCInternalAPI
-public inline fun <T : Any> jsObject(builder: MDCAttrs<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
+public inline fun <T : Any> jsObject(builder: Builder<T> = { }): T = js("({})").unsafeCast<T>().apply(builder)
 
 internal const val KmdcCounterKey = "_kmdcCounter" // NEVER EVER CHANGE THIS
 

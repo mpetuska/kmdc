@@ -1,11 +1,16 @@
 package dev.petuska.kmdc.icon.button
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.ripple.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import dev.petuska.kmdc.ripple.MDCRipple
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.A
+import org.jetbrains.compose.web.dom.Button
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
+import org.w3c.dom.HTMLAnchorElement
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLElement
 
 @JsModule("@material/icon-button/mdc-icon-button.scss")
 private external val Style: dynamic
@@ -66,7 +71,7 @@ private fun <T : HTMLElement> ElementScope<HTMLElement>.Content(
     render()
   } else {
     MDCProvider(::MDCIconButtonToggle) {
-      MDCStateEffect(on, MDCIconButtonToggle::on)
+      MDCStateEffectNew(on, MDCIconButtonToggle::on)
       render()
     }
   }

@@ -110,6 +110,15 @@ public inline fun <V, reified MDC : MDCComponent<*>> MDCStateEffectNew(
 
 @Composable
 @KMDCInternalAPI
+public inline fun <V, reified MDC : MDCComponent<*>> MDCProviderScope<MDC>.MDCStateEffectNew(
+  value: V,
+  crossinline setter: MDC.(V) -> Unit
+) {
+  dev.petuska.kmdc.core.MDCStateEffectNew(value = value, setter = setter)
+}
+
+@Composable
+@KMDCInternalAPI
 public inline fun <V, reified MDC : MDCComponent<*>> MDCStateEffectNew(
   value: V,
   property: KMutableProperty1<MDC, V>

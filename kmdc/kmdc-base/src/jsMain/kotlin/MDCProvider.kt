@@ -22,7 +22,7 @@ public fun <MDC : MDCComponent<*>, E : Element> ElementScope<E>.MDCProvider(
   DisposableEffect(keys = keys) {
     mdc?.run { destroy() }
     mdc = init(scopeElement)
-    scopeElement.mdc = mdc
+    if (debug) scopeElement.mdc = mdc
     onDispose {
       mdc?.run {
         onDispose?.invoke(this, scopeElement)
