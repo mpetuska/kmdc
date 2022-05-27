@@ -6,10 +6,7 @@ import dev.petuska.kmdc.form.field.MDCFormField
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.Label
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/radio/mdc-radio.scss")
@@ -56,7 +53,7 @@ public fun MDCRadioLayout(
   touch: Boolean,
   disabled: Boolean,
   attrs: MDCAttrs<InputAttrsScope<Boolean>>?,
-  init: MDCComponentInit<HTMLDivElement> = { it() },
+  init: MDCComponentInit<ElementScope<HTMLDivElement>> = { it() },
 ) {
   Style
   Div(attrs = {

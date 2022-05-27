@@ -39,9 +39,8 @@ public fun MDCListScope<HTMLUListElement>.ListItem(
     selection.itemRole?.let(::role)
     attrs?.invoke(this)
   }) {
-    Span(attrs = { classes("mdc-deprecated-list-item__ripple") }) {
-      MDCRippleLayout()
-    }
+    Span(attrs = { classes("mdc-deprecated-list-item__ripple") })
+    MDCRippleLayout()
     applyContent(content)
   }
 }

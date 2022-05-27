@@ -11,6 +11,7 @@ import dev.petuska.kmdc.dialog.*
 import dev.petuska.kmdc.list.MDCList
 import dev.petuska.kmdc.list.MDCListSelection
 import dev.petuska.kmdc.list.MDCListType
+import dev.petuska.kmdc.list.item.Label
 import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.list.item.RadioGraphic
 import dev.petuska.kmdcx.icons.MDCIcon
@@ -110,7 +111,9 @@ fun MDCDialog() = InteractiveShowcase(
                 }
               }
             ) {
-              RadioGraphic(checked = selected == item, label = item)
+              val id = "mdc-dialog-item-$index"
+              RadioGraphic(checked = selected == item, id = id)
+              Label(text = item, forId = id)
             }
           }
         }

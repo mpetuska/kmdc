@@ -1,12 +1,12 @@
 package dev.petuska.kmdc.list
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrs
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.reinterpret
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.H3
+import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLHeadingElement
 
@@ -17,10 +17,6 @@ public interface MDCListGroupScope : ElementScope<HTMLDivElement>
  */
 @MDCContentDsl
 @Composable
-@Deprecated(
-  "Based on already deprecated MDC List. New implementation is still in the works.",
-  level = DeprecationLevel.WARNING
-)
 public fun MDCListGroup(
   attrs: MDCAttrs<AttrsScope<HTMLDivElement>>? = null,
   content: MDCContent<MDCListGroupScope>? = null,
@@ -40,7 +36,7 @@ public fun MDCListGroup(
 @Composable
 public fun MDCListGroupScope.Subheader(
   attrs: MDCAttrs<AttrsScope<HTMLHeadingElement>>? = null,
-  content: ContentBuilder<HTMLHeadingElement>? = null,
+  content: MDCContentRaw<HTMLHeadingElement>? = null,
 ) {
   H3(attrs = {
     classes("mdc-deprecated-list-group__subheader")

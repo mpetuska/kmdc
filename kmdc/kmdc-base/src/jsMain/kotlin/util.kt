@@ -14,8 +14,8 @@ public typealias MDCContentRaw<T> = @MDCContentDsl ContentBuilder<T>
 public typealias Builder<T> = T.() -> Unit
 public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
 public typealias MDCContent<T> = @Composable @MDCContentDsl Builder<T>
-public typealias MDCComponentInit<T> = @Composable ElementScope<T>.(
-  content: @Composable ElementScope<T>.() -> Unit
+public typealias MDCComponentInit<S> = @Composable S.(
+  content: @Composable S.() -> Unit
 ) -> Unit
 
 private external val process: dynamic

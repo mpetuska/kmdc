@@ -18,7 +18,7 @@ public enum class MDCListSize(public vararg val classes: String) {
 }
 
 public enum class MDCListType(public vararg val classes: String) {
-  Generic,
+  Default,
   Textual("mdc-deprecated-list--textual-list"),
   Avatar("mdc-deprecated-list--avatar-list"),
   Icon("mdc-deprecated-list--icon-list"),
@@ -34,6 +34,7 @@ public enum class MDCListSelection(public val listRole: String?, public val item
   Multi(null, null),
 }
 
+public interface MDCListAttrsScope<T : HTMLElement> : AttrsScope<T>
 public interface MDCListScope<T : HTMLElement> : ElementScope<T>
 
 internal val MDCListSelectionLocal = strictCompositionLocalOf<MDCListSelection>()
@@ -44,12 +45,12 @@ internal val MDCListSelectionLocal = strictCompositionLocalOf<MDCListSelection>(
 @MDCContentDsl
 @Composable
 public fun MDCList(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
+  selection: MDCListSelection = MDCListSelection.Single,
   dense: Boolean = false,
   wrapFocus: Boolean = false,
-  selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLUListElement>>? = null,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLUListElement>>? = null,
   content: MDCContent<MDCListScope<HTMLUListElement>>? = null,
 ) {
   MDCListLayout(
@@ -59,23 +60,24 @@ public fun MDCList(
     selection = selection,
     attrs = attrs
   ) {
-    MDCInitEffect(::MDCList)
-    MDCSideEffect<MDCList>(selection) {
-      singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+    MDCProvider(::MDCList, selection) {
+      MDCSideEffectNew(selection) {
+        singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+      }
+      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      applyContent(content)
     }
-    MDCStateEffect(wrapFocus, MDCList::wrapFocus)
-    applyContent(content)
   }
 }
 
 @KMDCInternalAPI
 @Composable
 public fun MDCListLayout(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
   dense: Boolean = false,
   selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLUListElement>>? = null,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLUListElement>>? = null,
   content: MDCContent<MDCListScope<HTMLUListElement>>? = null,
 ) {
   Style
@@ -99,12 +101,12 @@ public fun MDCListLayout(
 @MDCContentDsl
 @Composable
 public fun MDCNavList(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
+  selection: MDCListSelection = MDCListSelection.Single,
   dense: Boolean = false,
   wrapFocus: Boolean = false,
-  selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLElement>>? = null,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLElement>>? = null,
   content: MDCContent<MDCListScope<HTMLElement>>? = null,
 ) {
   MDCNavListLayout(
@@ -114,23 +116,24 @@ public fun MDCNavList(
     selection = selection,
     attrs = attrs
   ) {
-    MDCInitEffect(::MDCList)
-    MDCSideEffect<MDCList>(selection) {
-      singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+    MDCProvider(::MDCList, selection) {
+      MDCSideEffectNew(selection) {
+        singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
+      }
+      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      applyContent(content)
     }
-    MDCStateEffect(wrapFocus, MDCList::wrapFocus)
-    applyContent(content)
   }
 }
 
 @KMDCInternalAPI
 @Composable
 public fun MDCNavListLayout(
-  type: MDCListType = MDCListType.Generic,
+  type: MDCListType = MDCListType.Default,
   size: MDCListSize = MDCListSize.SingleLine,
   dense: Boolean = false,
   selection: MDCListSelection = MDCListSelection.Single,
-  attrs: MDCAttrs<AttrsScope<HTMLElement>>? = null,
+  attrs: MDCAttrs<MDCListAttrsScope<HTMLElement>>? = null,
   content: MDCContent<MDCListScope<HTMLElement>>? = null,
 ) {
   Style

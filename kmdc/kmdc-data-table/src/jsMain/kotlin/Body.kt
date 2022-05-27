@@ -1,9 +1,9 @@
 package dev.petuska.kmdc.data.table
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.checkbox.MDCCheckbox
 import dev.petuska.kmdc.checkbox.MDCCheckboxBackground
 import dev.petuska.kmdc.checkbox.MDCCheckboxInput
+import dev.petuska.kmdc.checkbox.MDCCheckboxLayout
 import dev.petuska.kmdc.checkbox.MDCCheckboxRipple
 import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.attributes.Scope
@@ -105,9 +105,11 @@ public fun MDCDataTableRowScope.HeaderCell(
     Cell(attrs = {
       classes("mdc-data-table__cell--checkbox")
     }) {
-      MDCCheckbox(attrs = {
-        classes("mdc-data-table__row-checkbox")
-      }) {
+      MDCCheckboxLayout(
+        attrs = {
+          classes("mdc-data-table__row-checkbox")
+        }
+      ) {
         MDCCheckboxInput(selected, attrs = {
           aria("labeledby", id)
         })

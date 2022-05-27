@@ -7,6 +7,7 @@ import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.domain.Point
 import dev.petuska.kmdc.core.rememberMutableStateOf
 import dev.petuska.kmdc.list.item.CheckboxGraphic
+import dev.petuska.kmdc.list.item.Label
 import dev.petuska.kmdc.list.item.Text
 import dev.petuska.kmdc.menu.*
 import dev.petuska.kmdc.menu.surface.*
@@ -106,8 +107,9 @@ fun MDCMenu() = InteractiveShowcase(
             MenuItem(
               disabled = disabled,
             ) {
-              CheckboxGraphic(i1 * 2 + i2 in selectedIds)
-              Text(it)
+              val id = "mdc-menu-item-${i1 * 2 + i2}"
+              CheckboxGraphic(checked = i1 * 2 + i2 in selectedIds, id = id)
+              Label(text = it, forId = id)
             }
           }
         }

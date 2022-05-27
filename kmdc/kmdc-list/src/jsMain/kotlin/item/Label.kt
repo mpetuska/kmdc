@@ -1,14 +1,17 @@
 package dev.petuska.kmdc.list.item
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.attributes.forId
 import org.jetbrains.compose.web.dom.ContentBuilder
+import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLLabelElement
+import org.w3c.dom.HTMLSpanElement
 
-public class MDCListItemLabelScope(scope: ElementScope<HTMLLabelElement>) : ElementScope<HTMLLabelElement> by scope
+public interface MDCListItemLabelScope : ElementScope<HTMLLabelElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-deprecated-list)
@@ -16,13 +19,18 @@ public class MDCListItemLabelScope(scope: ElementScope<HTMLLabelElement>) : Elem
 @MDCContentDsl
 @Composable
 public fun MDCListItemScope<*>.Label(
+  forId: String? = null,
   attrs: MDCAttrs<AttrsScope<HTMLLabelElement>>? = null,
   content: MDCContent<MDCListItemLabelScope>? = null,
 ) {
-  org.jetbrains.compose.web.dom.Label(attrs = {
-    classes("mdc-deprecated-list-item__text")
-    attrs?.invoke(this)
-  }, content = content?.let { { MDCListItemLabelScope(this).it() } })
+  org.jetbrains.compose.web.dom.Label(
+    attrs = {
+      classes("mdc-deprecated-list-item__text")
+      forId?.let(::forId)
+      attrs?.invoke(this)
+    },
+    content = content.reinterpret()
+  )
 }
 
 /**
@@ -32,12 +40,12 @@ public fun MDCListItemScope<*>.Label(
 @Composable
 public fun MDCListItemScope<*>.Label(
   text: String,
-  forId: String,
+  forId: String? = null,
   attrs: MDCAttrs<AttrsScope<HTMLLabelElement>>? = null,
 ) {
-  this@Label.Label(
+  Label(
+    forId = forId,
     attrs = {
-      forId(forId)
       applyAttrs(attrs)
     },
     content = { Text(text) }
