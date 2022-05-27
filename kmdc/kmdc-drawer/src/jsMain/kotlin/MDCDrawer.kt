@@ -17,13 +17,6 @@ public enum class MDCDrawerType(public vararg val classes: String) {
   Modal("mdc-drawer--modal"),
 }
 
-public enum class MDCDrawerState(public vararg val classes: String) {
-  Closed,
-  Open("mdc-drawer--open"),
-  Opening("mdc-drawer--opening"),
-  Closing("mdc-drawer--closing"),
-}
-
 public interface MDCDrawerAttrsScope : AttrsScope<HTMLElement>
 public interface MDCDrawerScope : ElementScope<HTMLElement>
 
@@ -43,7 +36,6 @@ public fun MDCDrawer(
     attrs = {
       classes("mdc-drawer")
       classes(type.classes)
-//      classes(state.classes)
       applyAttrs(attrs)
     },
   ) {
@@ -60,8 +52,8 @@ public fun MDCDrawer(
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-drawer)
  */
-@MDCContentDsl
 @Composable
+@MDCContentDsl
 private fun MDCDrawerScrim(
   attrs: MDCAttrsRaw<HTMLDivElement>? = null,
   content: MDCContentRaw<HTMLDivElement>? = null
