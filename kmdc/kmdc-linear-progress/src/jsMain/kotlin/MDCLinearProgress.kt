@@ -3,14 +3,11 @@ package dev.petuska.kmdc.linear.progress
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/linear-progress/mdc-linear-progress.scss")
 private external val Style: dynamic
-
-public interface MDCLinearProgressScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-linear-progress)
@@ -23,8 +20,8 @@ public fun MDCLinearProgress(
   determinate: Boolean = false,
   closed: Boolean = false,
   label: String? = null,
-  attrs: AttrsBuilder<HTMLDivElement>? = null,
-  content: MDCContent<MDCLinearProgressScope>? = null
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null
 ) {
   Style
   Div(attrs = {
