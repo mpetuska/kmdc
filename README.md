@@ -21,8 +21,7 @@ is also available, which brings in all KMDC modules as transitive dependencies u
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
 
 Additionally, you need to enable SCSS support. This is done by adding required npm dev dependencies to your sourceSet
-and then
-enabling them via [`webpack.config.d/scss.js`](gradle/webpack.config.d/scss.js) file.
+and then enabling them via [`webpack.config.d/scss.js`](gradle/webpack.config.d/scss.js) file.
 
 ```kotlin
 plugins {
@@ -58,8 +57,8 @@ kotlin {
 Most of the API maps closely to MDC JS API, making all examples there semi-valid. KMDC components follow a specific
 naming convention to make its components more discoverable as well. The convention
 is `MDC[UpperCamelCaseMDCComponentName]` (e.g. `MDCTopAppBar`) for the top-level component
-and `UpperCamelCaseLogicalName` for all subcomponents.
-Most of the components also follow the same argument order schema:
+and `UpperCamelCaseLogicalName` for all subcomponents. Most of the components also follow the same argument order
+schema:
 
 1. `...requiredMdcOptions` - MDC-specific options with no default values
 2. `...optionalMdcOptions` - MDC-specific options with default values
@@ -95,57 +94,57 @@ Here's a tracker list of currently completed [material-components-web] modules:
 
 - [ ] kmdc-animation (SASS)
 - [ ] kmdc-auto-init (won't wrap)
-- [ ] kmdc-banner
+- [x] kmdc-banner
 - [ ] kmdc-base (won't wrap)
-- [ ] kmdc-button
-- [ ] kmdc-card
-- [ ] kmdc-checkbox
-- [ ] kmdc-chips
-- [ ] kmdc-circular-progress
-- [ ] kmdc-data-table
+- [x] kmdc-button
+- [x] kmdc-card
+- [x] kmdc-checkbox
+- [x] kmdc-chips
+- [x] kmdc-circular-progress
+- [x] kmdc-data-table
 - [ ] kmdc-density (won't wrap)
-- [ ] kmdc-dialog
+- [x] kmdc-dialog
 - [ ] kmdc-dom (won't wrap)
-- [ ] kmdc-drawer
-- [ ] kmdc-elevation
-- [ ] kmdc-fab
+- [x] kmdc-drawer
+- [x] kmdc-elevation
+- [x] kmdc-fab
 - [ ] kmdc-feature-targeting (won't wrap)
-- [ ] kmdc-floating-label
-- [ ] kmdc-form-field
-- [ ] kmdc-icon-button
-- [ ] kmdc-image-list
-- [ ] kmdc-layout-grid
-- [ ] kmdc-line-ripple
-- [ ] kmdc-linear-progress
-- [ ] kmdc-list
-- [ ] kmdc-menu-surface
-- [ ] kmdc-menu
-- [ ] kmdc-notched-outline
+- [x] kmdc-floating-label
+- [x] kmdc-form-field
+- [x] kmdc-icon-button
+- [x] kmdc-image-list
+- [x] kmdc-layout-grid
+- [x] kmdc-line-ripple
+- [x] kmdc-linear-progress
+- [x] kmdc-list
+- [x] kmdc-menu-surface
+- [x] kmdc-menu
+- [x] kmdc-notched-outline
 - [ ] kmdc-progress-indicator (won't wrap)
-- [ ] kmdc-radio
-- [ ] kmdc-ripple
+- [x] kmdc-radio
+- [x] kmdc-ripple
 - [ ] kmdc-rtl (SASS)
-- [ ] kmdc-segmented-button
-- [ ] kmdc-select
+- [x] kmdc-segmented-button
+- [x] kmdc-select
 - [ ] kmdc-shape (SASS)
-- [ ] kmdc-slider
-- [ ] kmdc-snackbar
-- [ ] kmdc-switch
-- [ ] kmdc-tab-bar
-- [ ] kmdc-tab-indicator
-- [ ] kmdc-tab-scroller
-- [ ] kmdc-tab
-- [ ] kmdc-textfield
+- [x] kmdc-slider
+- [x] kmdc-snackbar
+- [x] kmdc-switch
+- [x] kmdc-tab-bar
+- [x] kmdc-tab-indicator
+- [x] kmdc-tab-scroller
+- [x] kmdc-tab
+- [x] kmdc-textfield
 - [ ] kmdc-theme (SASS)
 - [ ] kmdc-tokens (won't wrap)
-- [ ] kmdc-tooltip
-- [ ] kmdc-top-app-bar
-- [ ] kmdc-touch-target
-- [ ] kmdc-typography
+- [x] kmdc-tooltip
+- [x] kmdc-top-app-bar
+- [x] kmdc-touch-target
+- [x] kmdc-typography
 
 Other libraries and extensions:
 
-- [ ] kmdc-icons
+- [x] kmdc-icons
 
 ### Module Structure
 
