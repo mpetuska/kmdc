@@ -28,7 +28,7 @@ public fun MDCDataTableScope.ProgressIndicator(
       }
     )
     MDCLinearProgress(
-      opts = { determinate = false },
+      determinate = false,
       attrs = {
         classes("mdc-data-table__linear-progress")
       },
