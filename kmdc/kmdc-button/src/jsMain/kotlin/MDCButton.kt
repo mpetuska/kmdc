@@ -1,9 +1,10 @@
 package dev.petuska.kmdc.button
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.elevation.MDCElevationOverlay
-import dev.petuska.kmdc.ripple.MDCRipple
+import dev.petuska.kmdc.ripple.MDCRippleLayout
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.ElementScope
@@ -25,6 +26,8 @@ public enum class MDCButtonIconType(public vararg val classes: String) {
 
 public interface MDCButtonScope<T : Element> : ElementScope<T>
 
+private val MDCButtonTypeLocal = strictCompositionLocalOf<MDCButtonType>()
+
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button)
  */
@@ -37,7 +40,6 @@ public fun MDCButton(
   attrs: MDCAttrsRaw<HTMLButtonElement>? = null,
   content: MDCContent<MDCButtonScope<HTMLButtonElement>>? = null
 ) {
-  Style
   Button(
     attrs = {
       classes("mdc-button")
@@ -47,7 +49,9 @@ public fun MDCButton(
       attrs?.invoke(this)
     }
   ) {
-    MDCButtonContent(content)
+    CompositionLocalProvider(MDCButtonTypeLocal provides type) {
+      MDCButtonContent(content)
+    }
   }
 }
 
@@ -74,10 +78,11 @@ internal fun <E : Element, S : ElementScope<E>> ElementScope<E>.MDCButtonContent
   content: MDCContent<S>? = null
 ) {
   Style
+  val type = MDCButtonTypeLocal.current
   MDCElevationOverlay()
   Span(attrs = { classes("mdc-button__ripple") })
   Span(attrs = { classes("mdc-button__focus-ring") })
-  MDCRipple()
+  MDCRippleLayout(keys = arrayOf(type))
   applyContent(content)
 }
 

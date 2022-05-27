@@ -1,12 +1,14 @@
 package dev.petuska.kmdc.ripple
 
 import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCContentDsl
 import dev.petuska.kmdc.core.MDCProvider
 import dev.petuska.kmdc.core.MDCStateEffectNew
 import kotlinx.dom.addClass
 import kotlinx.dom.removeClass
 import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.Element
 
 @JsModule("@material/ripple/mdc-ripple.scss")
 private external val Style: dynamic
@@ -20,14 +22,33 @@ public fun ElementScope<*>.MDCRipple(
   unbounded: Boolean = false,
   disabled: Boolean = false,
 ) {
+  MDCRippleLayout(
+    unbounded = unbounded,
+    disabled = disabled,
+    init = {
+      it.addClass("mdc-ripple-surface")
+    },
+    onDispose = { it.removeClass("mdc-ripple-surface") }
+  )
+}
+
+@Composable
+@KMDCInternalAPI
+public fun ElementScope<*>.MDCRippleLayout(
+  unbounded: Boolean = false,
+  disabled: Boolean = false,
+  vararg keys: Any?,
+  init: (Element) -> Unit = {},
+  onDispose: (Element) -> Unit = {},
+) {
   Style
   MDCProvider(
     init = {
-      it.addClass("mdc-ripple-surface")
+      init(it)
       MDCRipple(it)
     },
-    keys = arrayOf(unbounded),
-    onDispose = { it.removeClass("mdc-ripple-surface") }
+    keys = keys + unbounded,
+    onDispose = { onDispose(it) }
   ) {
     MDCStateEffectNew(unbounded, MDCRipple::unbounded)
     MDCStateEffectNew(disabled, MDCRipple::disabled)

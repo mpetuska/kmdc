@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.list.MDCListScope
 import dev.petuska.kmdc.list.MDCListSelectionLocal
-import dev.petuska.kmdc.ripple.MDCRipple
+import dev.petuska.kmdc.ripple.MDCRippleLayout
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.ElementScope
@@ -40,7 +40,7 @@ public fun MDCListScope<HTMLUListElement>.ListItem(
     attrs?.invoke(this)
   }) {
     Span(attrs = { classes("mdc-deprecated-list-item__ripple") }) {
-      MDCRipple()
+      MDCRippleLayout()
     }
     applyContent(content)
   }
@@ -97,7 +97,7 @@ public fun MDCListScope<HTMLElement>.ListItem(
     attrs?.invoke(this)
   }) {
     Span(attrs = { classes("mdc-deprecated-list-item__ripple") }) {
-      MDCRipple()
+      MDCRippleLayout()
     }
     applyContent(content)
   }

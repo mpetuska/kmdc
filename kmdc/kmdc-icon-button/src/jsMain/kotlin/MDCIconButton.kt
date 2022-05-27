@@ -2,7 +2,7 @@ package dev.petuska.kmdc.icon.button
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import dev.petuska.kmdc.ripple.MDCRipple
+import dev.petuska.kmdc.ripple.MDCRippleLayout
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Button
@@ -67,7 +67,7 @@ private fun <T : HTMLElement> ElementScope<HTMLElement>.Content(
     applyContent(content)
   }
   if (on == null) {
-    MDCRipple(unbounded = true)
+    MDCRippleLayout(unbounded = true)
     render()
   } else {
     MDCProvider(::MDCIconButtonToggle) {

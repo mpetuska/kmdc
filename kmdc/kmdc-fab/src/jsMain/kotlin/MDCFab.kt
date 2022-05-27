@@ -1,12 +1,12 @@
 package dev.petuska.kmdc.fab
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.core.ContentBuilder
-import dev.petuska.kmdc.ripple.*
+import dev.petuska.kmdc.ripple.MDCRippleLayout
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLSpanElement
 
 @JsModule("@material/fab/mdc-fab.scss")
 private external val MDCFabStyles: dynamic
@@ -40,7 +40,7 @@ public fun MDCFab(
     }
   ) {
     Div(attrs = { classes("mdc-fab__ripple") })
-    MDCRipple()
+    MDCRippleLayout()
     applyContent(content)
     if (touch) Div(attrs = { classes("mdc-fab__touch") })
   }
