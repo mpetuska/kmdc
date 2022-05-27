@@ -15,6 +15,7 @@ private class MDCSegmentedButtonVM {
   var disabled by mutableStateOf(false)
   var singleSelect by mutableStateOf(false)
   var touch by mutableStateOf(false)
+
   var selected = mutableStateListOf<String?>()
 }
 
