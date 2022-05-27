@@ -55,6 +55,8 @@ jobs:
           find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
           # echo "/${REPO_NAME} /${REPO_NAME}/${REPO_NAME}/index.html 301" > public/_redirects;
           # echo "/${REPO_NAME}/index.html /${REPO_NAME}/${REPO_NAME}/index.html 301" >> public/_redirects;
+          
+          echo "kmdc.petuska.dev" > public/CNAME
       - uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
           target_branch: gh-pages
