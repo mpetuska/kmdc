@@ -1,33 +1,18 @@
 package dev.petuska.kmdc.slider
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.ElementScope
+import org.w3c.dom.HTMLDivElement
 
 @JsModule("@material/slider/styles.scss")
 private external val Style: dynamic
 
-public class MDCSliderAttrsScope(scope: AttrsScope<HTMLDivElement>) : AttrsScope<HTMLDivElement> by scope
+public interface MDCSliderAttrsScope : AttrsScope<HTMLDivElement>
 
-public class MDCSliderScope(scope: ElementScope<HTMLDivElement>, public val options: MDCSliderOpts) :
-  ElementScope<HTMLDivElement> by scope
-
-public data class MDCSliderOpts(
-  var disabled: Boolean = false,
-  var discrete: Boolean = false,
-  var tickMarks: Boolean = false,
-  var value: Number = 0,
-  var label: String? = null,
-  var value2: Number? = null,
-  var label2: String? = null,
-  var min: Number = 0,
-  var max: Number = 100,
-  var step: Number = 1,
-) {
-  val range: Boolean get() = value2 != null
-}
+public interface MDCSliderScope : ElementScope<HTMLDivElement>
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
@@ -56,7 +41,7 @@ public fun MDCSlider(
       if (discrete) classes("mdc-slider--discrete")
       if (tickMarks) classes("mdc-slider--tick-marks")
       if (disabled) classes("mdc-slider--disabled")
-      attrs?.invoke(MDCSliderAttrsScope(this))
+      applyAttrs(attrs)
     }
   ) {
     MDCProvider(::MDCSlider, discrete, tickMarks, range, step, min, max) {

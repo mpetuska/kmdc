@@ -1,9 +1,10 @@
 package dev.petuska.kmdc.slider
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContentDsl
+import org.jetbrains.compose.web.dom.Div
+import org.w3c.dom.HTMLDivElement
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-slider)
@@ -12,7 +13,7 @@ import org.w3c.dom.*
 @Composable
 internal fun MDCSliderTrack(
   tickMarks: Boolean,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   Div(attrs = {
     classes("mdc-slider__track")
@@ -38,7 +39,7 @@ internal fun MDCSliderTrack(
 @MDCContentDsl
 @Composable
 private fun MDCSliderTickMarks(
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   Div(
     attrs = {
