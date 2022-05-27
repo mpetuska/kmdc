@@ -115,7 +115,7 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - name: Publish to GitHub Packages
+      - name: Publish to MavenCentral
         shell: bash
         run: |
           ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository \
