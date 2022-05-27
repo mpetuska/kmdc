@@ -61,11 +61,11 @@ public fun MDCFloatingLabel(
 @KMDCInternalAPI
 public fun MDCFloatingLabelLayout(
   id: String,
-  float: Boolean,
-  required: Boolean,
-  shake: Boolean,
-  attrs: MDCAttrsRaw<HTMLSpanElement>?,
-  content: MDCContentRaw<HTMLSpanElement>?,
+  float: Boolean = false,
+  required: Boolean = false,
+  shake: Boolean = false,
+  attrs: MDCAttrsRaw<HTMLSpanElement>? = null,
+  content: MDCContentRaw<HTMLSpanElement>? = null,
 ) {
   Style
   Span(
