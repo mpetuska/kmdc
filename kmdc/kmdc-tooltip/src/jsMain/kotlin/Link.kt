@@ -1,21 +1,22 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.attributes.*
-import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.ContentBuilder
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContentDsl
+import dev.petuska.kmdc.core.MDCContentRaw
+import org.jetbrains.compose.web.attributes.href
+import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLAnchorElement
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
 @MDCContentDsl
 @Composable
-public fun MDCTooltipRichContentScope.MDCTooltipLink(
-  attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
-  content: ContentBuilder<HTMLAnchorElement>? = null,
+public fun MDCTooltipRichContentScope.Link(
+  attrs: MDCAttrsRaw<HTMLAnchorElement>? = null,
+  content: MDCContentRaw<HTMLAnchorElement>? = null,
 ) {
   A(
     attrs = {
@@ -31,12 +32,12 @@ public fun MDCTooltipRichContentScope.MDCTooltipLink(
  */
 @MDCContentDsl
 @Composable
-public fun MDCTooltipRichContentScope.MDCTooltipLink(
+public fun MDCTooltipRichContentScope.Link(
   text: String,
   href: String,
-  attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
+  attrs: MDCAttrsRaw<HTMLAnchorElement>? = null,
 ) {
-  MDCTooltipLink(attrs = {
+  Link(attrs = {
     href(href)
     attrs?.invoke(this)
   }) {

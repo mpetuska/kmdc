@@ -28,8 +28,8 @@ private class MDCTooltipVM {
 fun MDCTooltip() = InteractiveShowcase(
   viewModel = { MDCTooltipVM() },
   controls = {
-    BooleanControl("Interactive", ::interactive)
     BooleanControl("Persistent", ::persistent)
+    BooleanControl("Interactive", ::interactive)
   },
 ) {
   NamedBlock("Simple") {
@@ -51,10 +51,10 @@ fun MDCTooltip() = InteractiveShowcase(
         AnchorButton(tid, if (persistent) "Click me" else "Hover over me")
       }
     ) {
-      MDCTooltipTitle("Lorem Ipsum")
-      MDCTooltipContent {
+      Title("Lorem Ipsum")
+      Content {
         Text(LoremIpsum)
-        MDCTooltipLink("link", RickRollUrl, attrs = {
+        Link("link", RickRollUrl, attrs = {
           target(ATarget.Blank)
         })
       }

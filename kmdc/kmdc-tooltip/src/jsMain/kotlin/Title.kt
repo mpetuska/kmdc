@@ -1,20 +1,21 @@
 package dev.petuska.kmdc.tooltip
 
-import androidx.compose.runtime.*
-import dev.petuska.kmdc.core.*
-import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.dom.ContentBuilder
+import androidx.compose.runtime.Composable
+import dev.petuska.kmdc.core.MDCAttrsRaw
+import dev.petuska.kmdc.core.MDCContentDsl
+import dev.petuska.kmdc.core.MDCContentRaw
+import org.jetbrains.compose.web.dom.H2
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.*
+import org.w3c.dom.HTMLHeadingElement
 
 /**
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tooltip)
  */
 @MDCContentDsl
 @Composable
-public fun MDCRichTooltipScope.MDCTooltipTitle(
-  attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
-  content: ContentBuilder<HTMLHeadingElement>? = null,
+public fun MDCRichTooltipScope.Title(
+  attrs: MDCAttrsRaw<HTMLHeadingElement>? = null,
+  content: MDCContentRaw<HTMLHeadingElement>? = null,
 ) {
   H2(
     attrs = {
@@ -30,11 +31,11 @@ public fun MDCRichTooltipScope.MDCTooltipTitle(
  */
 @MDCContentDsl
 @Composable
-public fun MDCRichTooltipScope.MDCTooltipTitle(
+public fun MDCRichTooltipScope.Title(
   text: String,
-  attrs: AttrBuilderContext<HTMLHeadingElement>? = null,
+  attrs: MDCAttrsRaw<HTMLHeadingElement>? = null,
 ) {
-  MDCTooltipTitle(attrs) {
+  Title(attrs) {
     Text(text)
   }
 }

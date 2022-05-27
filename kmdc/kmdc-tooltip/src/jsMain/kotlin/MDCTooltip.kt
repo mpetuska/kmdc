@@ -2,17 +2,16 @@ package dev.petuska.kmdc.tooltip
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.*
+import dev.petuska.kmdc.core.applyAttrs
 import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 
-@JsModule("@material/tooltip/dist/mdc.tooltip.css")
-private external val MDCTooltipStyle: dynamic
+@JsModule("@material/tooltip/styles.scss")
+private external val Style: dynamic
 
 public interface MDCTooltipScope : ElementScope<HTMLDivElement>
 
@@ -24,10 +23,10 @@ public interface MDCTooltipScope : ElementScope<HTMLDivElement>
 public fun MDCTooltip(
   id: String,
   persistent: Boolean = false,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
-  content: ContentBuilder<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null,
 ) {
-  MDCTooltipStyle
+  Style
   Div(
     attrs = {
       id(id)
@@ -41,11 +40,12 @@ public fun MDCTooltip(
       applyAttrs(attrs)
     }
   ) {
-    MDCInitEffect(::MDCTooltip, persistent)
-    Div(
-      attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
-      content = content.reinterpret()
-    )
+    MDCProvider(::MDCTooltip, persistent) {
+      Div(
+        attrs = { classes("mdc-tooltip__surface", "mdc-tooltip__surface-animation") },
+        content = content.reinterpret()
+      )
+    }
   }
 }
 
@@ -58,7 +58,7 @@ public fun MDCTooltip(
   id: String,
   text: String,
   persistent: Boolean = false,
-  attrs: AttrBuilderContext<HTMLDivElement>? = null,
+  attrs: MDCAttrsRaw<HTMLDivElement>? = null,
 ) {
   MDCTooltip(
     id = id,
