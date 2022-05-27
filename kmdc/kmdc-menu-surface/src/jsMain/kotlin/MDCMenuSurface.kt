@@ -28,21 +28,22 @@ public fun MDCMenuSurface(
   absolutePosition: Point? = null,
   restoreFocusOnClose: Boolean = true,
   attrs: MDCAttrs<MDCMenuSurfaceAttrsScope>? = null,
-  content: ContentBuilder<HTMLDivElement>? = null,
+  content: MDCContentRaw<HTMLDivElement>? = null,
 ) {
   MDCMenuSurfaceLayout(fixed = fixed, fullWidth = fullWidth, attrs = attrs) {
-    MDCInitEffect(::MDCMenuSurface)
-    MDCStateEffect(fixed, MDCMenuSurface::setFixedPosition)
-    MDCStateEffect(quickOpen, MDCMenuSurface::quickOpen)
-    MDCStateEffect(anchorCorner, MDCMenuSurface::setAnchorCorner)
-    MDCStateEffect(hoisted, MDCMenuSurface::setIsHoisted)
-    MDCSideEffect<MDCMenuSurface>(absolutePosition) {
-      absolutePosition?.let { (x, y) -> setAbsolutePosition(x, y) }
+    MDCProvider(::MDCMenuSurface) {
+      MDCStateEffectNew(fixed, MDCMenuSurface::setFixedPosition)
+      MDCStateEffectNew(quickOpen, MDCMenuSurface::quickOpen)
+      MDCStateEffectNew(anchorCorner, MDCMenuSurface::setAnchorCorner)
+      MDCStateEffectNew(hoisted, MDCMenuSurface::setIsHoisted)
+      MDCSideEffectNew(absolutePosition) {
+        absolutePosition?.let { (x, y) -> setAbsolutePosition(x, y) }
+      }
+      MDCSideEffectNew(open) {
+        if (open) open() else close(!restoreFocusOnClose)
+      }
+      applyContent(content)
     }
-    MDCSideEffect<MDCMenuSurface>(open) {
-      if (open) open() else close(!restoreFocusOnClose)
-    }
-    applyContent(content)
   }
 }
 
