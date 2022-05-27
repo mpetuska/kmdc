@@ -3,7 +3,6 @@ package dev.petuska.kmdc.core
 import org.w3c.dom.Element
 
 @KMDCInternalAPI
-@Deprecated(message = "To be removed")
 internal var Element.mdc: dynamic
   get() = asDynamic().mdc
   set(value) {
