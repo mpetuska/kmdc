@@ -1,0 +1,6 @@
+@use "@material/circular-progress";
+
+
+.kmdc-circular-progress {
+  @include circular-progress.indeterminate-colors([#4285F4, #EA4335, #FBBC05, #34A853]);
+}

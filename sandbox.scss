@@ -1,0 +1,19 @@
+.sample {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  > * {
+    width: 100%;
+    margin-top: .25em;
+    margin-bottom: .25em;
+  }
+}
+
+.sample-container {
+  width: 100%;
+  height: 100%;
+}
