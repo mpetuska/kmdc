@@ -1,2 +1,4 @@
 com.google.devtools.ksp:*
                     ^^^
+io.gitlab.arturbosch.detekt:*
+                     ^^^^^^
