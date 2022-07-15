@@ -70,7 +70,7 @@ private object ShowcasesStyle : StyleSheet() {
 @Composable
 internal fun Showcases() {
   Style(ShowcasesStyle)
-  HashRouter(initRoute = "") {
+  HashRouter(initPath = "") {
     Div(attrs = {
       classes(ShowcasesStyle.container)
     }) {
@@ -95,7 +95,7 @@ private fun SideBar(selected: Showcase?) {
     classes(ShowcasesStyle.sideBar, UtilStyle.roundedBoxShadow)
   }) {
     katalog.showcases.forEach { showcase ->
-      NavLink(showcase.id, attrs = {
+      NavLink("/${showcase.id}", attrs = {
         classes(ShowcasesStyle.navLink)
         showcase.description?.let {
           title(it)
