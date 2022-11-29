@@ -25,6 +25,7 @@ public fun MDCTouchTarget(
     attrs = {
       classes("mdc-touch-target-wrapper")
       applyAttrs(attrs)
-    }, content = content
+    },
+    content = content
   )
 }

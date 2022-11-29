@@ -28,7 +28,7 @@ public fun MDCCardScope.Media(
     attrs = {
       classes("mdc-card__media")
       classes(type.classes)
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )
@@ -46,7 +46,7 @@ public fun MDCCardMediaScope.MediaContent(
   Div(
     attrs = {
       classes("mdc-card__media-content")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )

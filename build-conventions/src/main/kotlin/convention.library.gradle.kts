@@ -1,7 +1,6 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.plugin.KotlinJsCompilerType
-import util.enableSCSS
 
 plugins {
   id("convention.common")
@@ -14,8 +13,11 @@ kotlin {
   explicitApi()
   js(KotlinJsCompilerType.IR) {
     useCommonJs()
-    enableSCSS(main = false, test = true)
     browser {
+      commonWebpackConfig {
+        cssSupport { enabled = true }
+        scssSupport { enabled = true }
+      }
       testTask {
         useKarma {
           when (project.properties["kotlin.js.test.browser"]) {

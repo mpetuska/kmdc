@@ -1,9 +1,7 @@
 package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
-import dev.petuska.kmdc.core.MDCAttrsRaw
-import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.MDCContentRaw
+import dev.petuska.kmdc.core.*
 import org.jetbrains.compose.web.dom.Div
 import org.w3c.dom.HTMLDivElement
 
@@ -19,9 +17,9 @@ public fun MDCCardScope.Content(
   Div(
     attrs = {
       classes("mdc-card__content")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
   ) {
-    content?.invoke(this)
+    applyContent(content)
   }
 }

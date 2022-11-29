@@ -61,10 +61,10 @@ public fun MDCList(
     attrs = attrs
   ) {
     MDCProvider(::MDCList, selection) {
-      MDCSideEffectNew(selection) {
+      MDCSideEffect(selection) {
         singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
       }
-      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      MDCStateEffect(wrapFocus, MDCList::wrapFocus)
       applyContent(content)
     }
   }
@@ -117,10 +117,10 @@ public fun MDCNavList(
     attrs = attrs
   ) {
     MDCProvider(::MDCList, selection) {
-      MDCSideEffectNew(selection) {
+      MDCSideEffect(selection) {
         singleSelection = selection != MDCListSelection.Multi && selection != MDCListSelection.MultiCheckbox
       }
-      MDCStateEffectNew(wrapFocus, MDCList::wrapFocus)
+      MDCStateEffect(wrapFocus, MDCList::wrapFocus)
       applyContent(content)
     }
   }

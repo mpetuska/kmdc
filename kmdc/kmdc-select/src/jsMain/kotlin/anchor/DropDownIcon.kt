@@ -30,7 +30,12 @@ internal fun DownDownIcon(
       }
     ) {
       Polygon(
-        7, 10, 12, 15, 17, 10,
+        7,
+        10,
+        12,
+        15,
+        17,
+        10,
         attrs = {
           classes("mdc-select__dropdown-icon-inactive")
           attr("stroke", "none")
@@ -38,7 +43,12 @@ internal fun DownDownIcon(
         }
       )
       Polygon(
-        7, 15, 12, 10, 17, 15,
+        7,
+        15,
+        12,
+        10,
+        17,
+        15,
         attrs = {
           classes("mdc-select__dropdown-icon-active")
           attr("stroke", "none")

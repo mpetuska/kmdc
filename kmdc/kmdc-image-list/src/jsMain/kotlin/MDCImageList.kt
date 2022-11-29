@@ -39,7 +39,8 @@ public fun MDCImageList(
         classes(type.classes)
         if (withTextProtection) classes("mdc-image-list--with-text-protection")
         applyAttrs(attrs)
-      }, content = content.reinterpret()
+      },
+      content = content.reinterpret()
     )
   }
 }
@@ -59,7 +60,8 @@ public fun MDCImageListScope.Item(
     attrs = {
       classes("mdc-image-list__item")
       applyAttrs(attrs)
-    }, content = content.reinterpret()
+    },
+    content = content.reinterpret()
   )
 }
 

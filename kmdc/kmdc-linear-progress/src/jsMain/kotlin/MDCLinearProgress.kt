@@ -36,10 +36,10 @@ public fun MDCLinearProgress(
     attrs?.invoke(this)
   }) {
     MDCProvider(::MDCLinearProgress) {
-      MDCStateEffectNew(determinate, MDCLinearProgress::determinate)
-      MDCStateEffectNew(progress, MDCLinearProgress::progress)
-      MDCStateEffectNew(buffer, MDCLinearProgress::buffer)
-      MDCSideEffectNew(closed) {
+      MDCStateEffect(determinate, MDCLinearProgress::determinate)
+      MDCStateEffect(progress, MDCLinearProgress::progress)
+      MDCStateEffect(buffer, MDCLinearProgress::buffer)
+      MDCSideEffect(closed) {
         if (closed) close() else open()
       }
       Div({ classes("mdc-linear-progress__buffer") }) {

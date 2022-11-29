@@ -97,6 +97,6 @@ internal fun ActionImpl(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsScope<out HTMLElement>.mdcDialogAction(action: String) {
+public fun AttrsScope<HTMLElement>.mdcDialogAction(action: String) {
   data("mdc-dialog-action", action)
 }

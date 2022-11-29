@@ -76,12 +76,16 @@ fun MDCTextField() = InteractiveShowcase(
         {
           MDCTextFieldLeadingIcon(attrs = { mdcIcon() }) { Text(MDCIcon.Phone.type) }
         }
-      } else null,
+      } else {
+        null
+      },
       trailingIcon = if (trailingIcon) {
         {
           MDCTextFieldTrailingIcon(attrs = { mdcIcon() }) { Text(MDCIcon.Event.type) }
         }
-      } else null
+      } else {
+        null
+      }
     )
   }
   NamedBlock("Area", attrs = { style { property("width", "fit-content") } }) {

@@ -32,6 +32,8 @@ comments:
 #    active: true
 
 naming:
+  InvalidPackageDeclaration:
+    active: false
   MatchingDeclarationName:
     active: false
   TopLevelPropertyNaming:
@@ -54,6 +56,8 @@ style:
       - MDCExternalAPI
 
 formatting:
+  AnnotationOnSeparateLine:
+    active: false
   Filename:
     active: false
   NoWildcardImports:

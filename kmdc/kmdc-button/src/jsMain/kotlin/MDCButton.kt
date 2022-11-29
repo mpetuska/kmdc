@@ -109,7 +109,9 @@ public fun MDCButtonLink(
       attrs?.invoke(this)
     }
   ) {
-    MDCButtonContent(content)
+    CompositionLocalProvider(MDCButtonTypeLocal provides type) {
+      MDCButtonContent(content)
+    }
   }
 }
 

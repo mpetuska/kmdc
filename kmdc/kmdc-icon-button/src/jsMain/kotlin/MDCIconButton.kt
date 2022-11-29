@@ -74,7 +74,7 @@ private fun <T : HTMLElement> ElementScope<HTMLElement>.Content(
     render()
   } else {
     MDCProvider(::MDCIconButtonToggle) {
-      MDCStateEffectNew(on, MDCIconButtonToggle::on)
+      MDCStateEffect(on, MDCIconButtonToggle::on)
       render()
     }
   }

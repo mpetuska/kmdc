@@ -34,7 +34,7 @@ public fun MDCDialogScope.Content(
  * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-dialog)
  */
 @MDCAttrsDsl
-public fun AttrsScope<out HTMLElement>.mdcDialogInitialFocus() {
+public fun AttrsScope<HTMLElement>.mdcDialogInitialFocus() {
   tabIndex(0)
   data("mdc-dialog-initial-focus", "true")
 }

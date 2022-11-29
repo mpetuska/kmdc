@@ -37,7 +37,8 @@ internal fun MDCChips(
         attrs = {
           classes("mdc-evolution-chip-set__chips")
           role("presentation")
-        }, content = content.reinterpret()
+        },
+        content = content.reinterpret()
       )
     }
   }

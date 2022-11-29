@@ -47,17 +47,17 @@ public fun MDCMenu(
     attrs = attrs,
     init = {
       MDCProvider(::MDCMenu) {
-        MDCStateEffectNew(open, MDCMenu::open)
-        MDCStateEffectNew(fixed, MDCMenu::setFixedPosition)
-        MDCStateEffectNew(wrapFocus, MDCMenu::wrapFocus)
-        MDCStateEffectNew(anchorCorner, MDCMenu::setAnchorCorner)
-        MDCStateEffectNew(quickOpen, MDCMenu::quickOpen)
-        MDCStateEffectNew(hoisted, MDCMenu::setIsHoisted)
-        MDCStateEffectNew(defaultFocusState, MDCMenu::setDefaultFocusState)
-        MDCSideEffectNew(absolutePosition) {
+        MDCStateEffect(open, MDCMenu::open)
+        MDCStateEffect(fixed, MDCMenu::setFixedPosition)
+        MDCStateEffect(wrapFocus, MDCMenu::wrapFocus)
+        MDCStateEffect(anchorCorner, MDCMenu::setAnchorCorner)
+        MDCStateEffect(quickOpen, MDCMenu::quickOpen)
+        MDCStateEffect(hoisted, MDCMenu::setIsHoisted)
+        MDCStateEffect(defaultFocusState, MDCMenu::setDefaultFocusState)
+        MDCSideEffect(absolutePosition) {
           absolutePosition?.let { setAbsolutePosition(it.x, it.y) }
         }
-        MDCSideEffectNew(selectedId, selectedIds) {
+        MDCSideEffect(selectedId, selectedIds) {
           singleSelection = selectedIds == null
           selectedIndex = selectedIds?.toTypedArray() ?: selectedId
         }

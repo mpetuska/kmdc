@@ -57,7 +57,7 @@ public fun MDCTextField(
     }
   ) {
     MDCProvider(::MDCTextField, type, label, prefix, suffix, leadingIcon == null, trailingIcon == null) {
-      MDCStateEffectNew(value, MDCTextField::value)
+      MDCStateEffect(value, MDCTextField::value)
       when (type) {
         MDCTextFieldType.Filled -> {
           Span(attrs = { classes("mdc-text-field__ripple") })

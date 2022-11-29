@@ -1,9 +1,6 @@
 plugins {
-  id("de.fayard.refreshVersions") version "0.40.2"
-// //                          # available:"0.40.2"
-  id("com.gradle.enterprise") version "3.10.3"
-// //                      # available:"3.10.2"
-// //                      # available:"3.10.3"
+  id("de.fayard.refreshVersions") version "0.51.0"
+  id("com.gradle.enterprise") version "3.11.4"
 }
 
 rootProject.name = "KMDC"

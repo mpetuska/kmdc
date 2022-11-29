@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.core.KMDCInternalAPI
 import dev.petuska.kmdc.core.MDCContentDsl
 import dev.petuska.kmdc.core.MDCProvider
-import dev.petuska.kmdc.core.MDCStateEffectNew
+import dev.petuska.kmdc.core.MDCStateEffect
 import kotlinx.dom.addClass
 import kotlinx.dom.removeClass
 import org.jetbrains.compose.web.dom.ElementScope
@@ -50,7 +50,7 @@ public fun ElementScope<*>.MDCRippleLayout(
     keys = keys + unbounded,
     onDispose = { onDispose(it) }
   ) {
-    MDCStateEffectNew(unbounded, MDCRipple::unbounded)
-    MDCStateEffectNew(disabled, MDCRipple::disabled)
+    MDCStateEffect(unbounded, MDCRipple::unbounded)
+    MDCStateEffect(disabled, MDCRipple::disabled)
   }
 }

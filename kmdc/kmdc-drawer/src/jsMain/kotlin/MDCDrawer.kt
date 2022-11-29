@@ -40,7 +40,7 @@ public fun MDCDrawer(
     },
   ) {
     MDCProvider(::MDCDrawer, type) {
-      MDCStateEffectNew(open, MDCDrawer::open)
+      MDCStateEffect(open, MDCDrawer::open)
       applyContent(content)
     }
   }

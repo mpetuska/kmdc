@@ -42,7 +42,7 @@ public fun MDCTextArea(
     }
   ) {
     MDCProvider(::MDCTextField, type, label) {
-      MDCStateEffectNew(value, MDCTextField::value)
+      MDCStateEffect(value, MDCTextField::value)
       maxLength?.let {
         Div(attrs = {
           classes("mdc-text-field-character-counter")

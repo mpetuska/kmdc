@@ -2,10 +2,7 @@ package dev.petuska.kmdc.card
 
 import androidx.compose.runtime.Composable
 import dev.petuska.kmdc.button.*
-import dev.petuska.kmdc.core.MDCAttrsRaw
-import dev.petuska.kmdc.core.MDCContent
-import dev.petuska.kmdc.core.MDCContentDsl
-import dev.petuska.kmdc.core.reinterpret
+import dev.petuska.kmdc.core.*
 import dev.petuska.kmdc.icon.button.MDCIconButton
 import dev.petuska.kmdc.icon.button.MDCIconButtonScope
 import dev.petuska.kmdc.icon.button.MDCIconLink
@@ -31,7 +28,7 @@ public fun MDCCardScope.Actions(
     attrs = {
       classes("mdc-card__actions")
       if (fullBleed) classes("mdc-card__actions--full-bleed")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )
@@ -49,7 +46,7 @@ public fun MDCCardActionsScope.ActionButtons(
   Div(
     attrs = {
       classes("mdc-card__action-buttons")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )
@@ -99,7 +96,7 @@ public fun MDCCardActionsScope.ActionButtonLink(
     touch = touch,
     attrs = {
       classes("mdc-card__action", "mdc-card__action--button")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content
   )
@@ -117,7 +114,7 @@ public fun MDCCardActionsScope.ActionIcons(
   Div(
     attrs = {
       classes("mdc-card__action-icons")
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )

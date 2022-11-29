@@ -34,7 +34,7 @@ public fun MDCRadio(
   ) {
     val formField = localMDC<MDCFormField>()
     MDCProvider(::MDCRadio) {
-      MDCSideEffectNew(formField, onDispose = { formField?.input = null }) {
+      MDCSideEffect(formField, onDispose = { formField?.input = null }) {
         formField?.input = this
       }
       applyContent(it)

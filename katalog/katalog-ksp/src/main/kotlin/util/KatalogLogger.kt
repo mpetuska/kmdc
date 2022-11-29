@@ -7,7 +7,7 @@ interface KatalogLogger {
   val logger: KSPLogger
   fun error(message: String, symbol: KSNode? = null): Nothing {
     logger.error(message.prefix(), symbol)
-    throw IllegalStateException("error log")
+    kotlin.error("error log")
   }
 
   fun warn(message: String, symbol: KSNode? = null) = logger.warn(message.prefix(), symbol)

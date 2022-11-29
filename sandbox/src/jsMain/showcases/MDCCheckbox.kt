@@ -29,7 +29,8 @@ fun MDCCheckbox() = InteractiveShowcase(
 ) {
   MDCFormField {
     MDCCheckbox(
-      checked = checked.takeIf { !indeterminate },
+      checked = checked,
+      indeterminate = indeterminate,
       disabled = disabled,
       touch = touch,
       label = label,

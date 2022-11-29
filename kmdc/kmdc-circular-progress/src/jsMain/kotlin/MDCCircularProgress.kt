@@ -45,8 +45,8 @@ public fun MDCCircularProgress(
     applyAttrs(attrs)
   }) {
     MDCProvider(::MDCCircularProgress, size, fourColor) {
-      MDCStateEffectNew(determinate, MDCCircularProgress::determinate)
-      MDCStateEffectNew(progress.coerceIn(0.0, 1.0), MDCCircularProgress::progress)
+      MDCStateEffect(determinate, MDCCircularProgress::determinate)
+      MDCStateEffect(progress.coerceIn(0.0, 1.0), MDCCircularProgress::progress)
 
       MDCCircularProgressDeterminateContainer(size)
       MDCCircularProgressIndeterminateContainer(size, fourColor)

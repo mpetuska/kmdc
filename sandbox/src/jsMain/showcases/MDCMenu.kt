@@ -103,13 +103,13 @@ fun MDCMenu() = InteractiveShowcase(
     ) {
       menuItems.chunked(2).forEachIndexed { i1, items ->
         SelectionGroup {
-          items.forEachIndexed { i2, it ->
+          items.forEachIndexed { i2, text ->
             MenuItem(
               disabled = disabled,
             ) {
               val id = "mdc-menu-item-${i1 * 2 + i2}"
               CheckboxGraphic(checked = i1 * 2 + i2 in selectedIds, id = id)
-              Label(text = it, forId = id)
+              Label(text = text, forId = id)
             }
           }
         }

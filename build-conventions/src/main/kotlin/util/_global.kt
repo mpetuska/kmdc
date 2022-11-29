@@ -12,7 +12,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.jsMain: NamedDomainObjectProvide
 val NamedDomainObjectContainer<KotlinSourceSet>.jsTest: NamedDomainObjectProvider<KotlinSourceSet>
   get() = named<KotlinSourceSet>("jsTest")
 
-val mdcVersion: String = versionFor("version.npm.material-components-web")
+val Project.mdcVersion: String get() = versionFor("version.npm.material-components-web")
 
 fun KotlinDependencyHandler.kmdc(module: String) = project(":kmdc:kmdc-$module")
 fun KotlinDependencyHandler.kmdcx(module: String) = project(":kmdcx:kmdcx-$module")
