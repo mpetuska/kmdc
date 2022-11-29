@@ -6,6 +6,7 @@ import dev.petuska.kmdc.list.item.Graphic
 import dev.petuska.kmdc.list.item.ListItem
 import dev.petuska.kmdc.list.item.MDCListItemScope
 import dev.petuska.kmdc.list.item.Text
+import dev.petuska.kmdc.select.MDCSelect
 import dev.petuska.kmdc.select.MDCSelectLeadingIconLocal
 import org.w3c.dom.HTMLLIElement
 
@@ -57,5 +58,8 @@ public fun MDCSelectMenuScope.SelectItem(
   ) {
     if (leadingIcon) Graphic()
     Text(text)
+    MDCSideEffect(onDispose = MDCSelect::layoutOptions) {
+      layoutOptions()
+    }
   }
 }
