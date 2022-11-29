@@ -35,7 +35,7 @@ public fun MDCBanner(
     applyAttrs(attrs)
   }) {
     MDCProvider(::MDCBanner) {
-      MDCSideEffectNew(open, centered, mobileStacked) {
+      MDCSideEffect(open, centered, mobileStacked) {
         if (open) open() else close(CloseReason.UNSPECIFIED)
       }
       if (fixed) {
@@ -58,6 +58,7 @@ private fun InnerContent(
       classes("mdc-banner__content")
       role("alertdialog")
       aria("live", "assertive")
-    }, content = content.reinterpret()
+    },
+    content = content.reinterpret()
   )
 }

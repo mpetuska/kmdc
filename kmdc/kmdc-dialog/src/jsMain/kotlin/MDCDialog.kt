@@ -48,12 +48,12 @@ public fun MDCDialog(
       }
     ) {
       MDCProvider(::MDCDialog) {
-        MDCSideEffectNew(open) {
+        MDCSideEffect(open) {
           if (open) open() else close()
         }
-        MDCStateEffectNew(scrimClickAction, MDCDialog::scrimClickAction)
-        MDCStateEffectNew(escapeKeyAction, MDCDialog::escapeKeyAction)
-        MDCStateEffectNew(!stacked, MDCDialog::autoStackButtons)
+        MDCStateEffect(scrimClickAction, MDCDialog::scrimClickAction)
+        MDCStateEffect(escapeKeyAction, MDCDialog::escapeKeyAction)
+        MDCStateEffect(!stacked, MDCDialog::autoStackButtons)
       }
 
       Div(attrs = { classes("mdc-dialog__container") }) {

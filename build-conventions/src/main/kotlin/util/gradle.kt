@@ -11,5 +11,7 @@ fun execAndCapture(cmd: String): String? {
   child.waitFor()
   return if (child.exitValue() == 0) {
     child.inputStream.readAllBytes().toString(Charset.defaultCharset()).trim()
-  } else null
+  } else {
+    null
+  }
 }

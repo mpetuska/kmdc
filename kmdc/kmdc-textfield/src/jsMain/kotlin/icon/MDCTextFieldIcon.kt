@@ -29,8 +29,9 @@ internal fun MDCTextFieldScope.MDCTextFieldIcon(
       attrs?.invoke(this)
     },
     content = {
-      MDCInitEffect(::MDCTextFieldIcon)
-      applyContent(content)
+      MDCProvider(::MDCTextFieldIcon) {
+        applyContent(content)
+      }
     }
   )
 }

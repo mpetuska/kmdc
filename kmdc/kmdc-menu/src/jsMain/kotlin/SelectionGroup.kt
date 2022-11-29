@@ -19,7 +19,8 @@ public fun MDCMenuScope.SelectionGroup(
       attrs = {
         classes("mdc-menu__selection-group")
         applyAttrs(attrs)
-      }, content = content.reinterpret()
+      },
+      content = content.reinterpret()
     )
   }
 }

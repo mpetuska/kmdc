@@ -45,8 +45,8 @@ public fun MDCSlider(
     }
   ) {
     MDCProvider(::MDCSlider, discrete, tickMarks, range, step, min, max) {
-      MDCStateEffectNew(disabled, MDCSlider::setDisabled)
-      MDCStateEffectNew(value, MDCSlider::setValue)
+      MDCStateEffect(disabled, MDCSlider::setDisabled)
+      MDCStateEffect(value, MDCSlider::setValue)
 
       if (range) {
         MDCSliderInput(

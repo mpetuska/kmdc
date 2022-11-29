@@ -37,11 +37,11 @@ public fun MDCCheckbox(
   ) {
     val formField = localMDC<MDCFormField>()
     MDCProvider(::MDCCheckbox) {
-      MDCSideEffectNew(formField, onDispose = { formField?.input = null }) {
+      MDCSideEffect(formField, onDispose = { formField?.input = null }) {
         formField?.input = this
       }
-      MDCStateEffectNew(indeterminate, MDCCheckbox::indeterminate)
-      MDCStateEffectNew(disabled, MDCCheckbox::disabled)
+      MDCStateEffect(indeterminate, MDCCheckbox::indeterminate)
+      MDCStateEffect(disabled, MDCCheckbox::disabled)
       it()
     }
   }

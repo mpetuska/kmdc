@@ -43,8 +43,8 @@ fun Katalog.Builder.config() {
       }
     },
     katalogSubtitleRender = { MDCSubtitle2(it) },
-    navTitleRender = { it, selected ->
-      MDCH6(it, attrs = {
+    navTitleRender = { text, selected ->
+      MDCH6(text, attrs = {
         style {
           if (selected) color(Color.white)
         }

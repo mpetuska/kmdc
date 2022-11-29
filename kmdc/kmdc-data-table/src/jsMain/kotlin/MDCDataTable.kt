@@ -31,8 +31,8 @@ public fun MDCDataTable(
     applyAttrs(attrs)
   }) {
     MDCProvider(::MDCDataTable) {
-      MDCSideEffectNew(effect = MDCDataTable::layout)
-      MDCSideEffectNew(loading) {
+      MDCSideEffect(effect = MDCDataTable::layout)
+      MDCSideEffect(loading) {
         if (loading) showProgress() else hideProgress()
       }
       applyContent(content)

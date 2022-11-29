@@ -50,7 +50,10 @@ fun MDCChips() = InteractiveShowcase(
       }
     }) {
       ActionChip(
-        "0", disabled = disabled, withPrimaryIcon = true, touch = touch,
+        "0",
+        disabled = disabled,
+        withPrimaryIcon = true,
+        touch = touch,
       ) {
         Graphic {
           Icon(attrs = { mdcIcon() }) { Text(MDCIcon.Favorite.type) }
@@ -60,7 +63,11 @@ fun MDCChips() = InteractiveShowcase(
       }
       if (!removed1) {
         InputChip(
-          "1", withPrimaryIcon = true, withTrailingAction = true, disabled = disabled, touch = touch,
+          "1",
+          withPrimaryIcon = true,
+          withTrailingAction = true,
+          disabled = disabled,
+          touch = touch,
         ) {
           PrimaryAction {
             Graphic {
@@ -76,7 +83,11 @@ fun MDCChips() = InteractiveShowcase(
       }
       if (!removed2) {
         InputChip(
-          "2", disabled = disabled, withTrailingAction = true, navigableTrailingAction = false, touch = touch,
+          "2",
+          disabled = disabled,
+          withTrailingAction = true,
+          navigableTrailingAction = false,
+          touch = touch,
         ) {
           PrimaryAction {
             Label("InputChip with non-navigable trailing action")

@@ -87,7 +87,9 @@ fun MDCSelect() = InteractiveShowcase(
             }
           ) { Text(MDCIcon.Event.type) }
         }
-      } else null
+      } else {
+        null
+      }
     )
     Menu {
       fruits.forEach {

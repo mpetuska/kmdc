@@ -17,7 +17,7 @@ abstract class NpmWrapperExtension(private val project: Project) {
   abstract val versionKey: Property<String>
 
   init {
-    version.convention(versionKey.map(::versionFor))
+    version.convention(versionKey.map(project::versionFor))
   }
 
   fun dependencies(action: Action<Dependencies>) {

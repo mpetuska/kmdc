@@ -22,7 +22,7 @@ public fun MDCLineRipple(
     attrs = attrs,
   ) {
     MDCProvider(::MDCLineRipple) {
-      MDCSideEffectNew(active) {
+      MDCSideEffect(active) {
         if (active) activate() else deactivate()
       }
       applyContent(content)

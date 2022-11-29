@@ -1,5 +1,3 @@
-import util.enableSCSS
-
 plugins {
   kotlin("multiplatform")
   id("convention.compose")
@@ -11,21 +9,23 @@ kotlin {
   js {
     binaries.executable()
     useCommonJs()
-    enableSCSS(main = true, test = true)
     browser {
       commonWebpackConfig {
-        sourceMaps = true
+        cssSupport { enabled = true }
+        scssSupport { enabled = true }
         devServer = devServer?.copy(
           open = false,
           port = 3000,
         )
+      }
+      runTask {
+        sourceMaps = true
       }
     }
   }
   sourceSets {
     jsMain {
       kotlin.srcDir("src/jsMain/showcases")
-      kotlin.srcDir(buildDir.resolve("generated/ksp/js/jsMain/kotlin"))
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")

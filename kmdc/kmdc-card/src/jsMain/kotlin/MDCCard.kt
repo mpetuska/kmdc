@@ -31,7 +31,7 @@ public fun MDCCard(
     attrs = {
       classes("mdc-card")
       classes(type.classes)
-      attrs?.invoke(this)
+      applyAttrs(attrs)
     },
     content = content.reinterpret()
   )

@@ -32,14 +32,14 @@ public fun MDCMenuSurface(
 ) {
   MDCMenuSurfaceLayout(fixed = fixed, fullWidth = fullWidth, attrs = attrs) {
     MDCProvider(::MDCMenuSurface) {
-      MDCStateEffectNew(fixed, MDCMenuSurface::setFixedPosition)
-      MDCStateEffectNew(quickOpen, MDCMenuSurface::quickOpen)
-      MDCStateEffectNew(anchorCorner, MDCMenuSurface::setAnchorCorner)
-      MDCStateEffectNew(hoisted, MDCMenuSurface::setIsHoisted)
-      MDCSideEffectNew(absolutePosition) {
+      MDCStateEffect(fixed, MDCMenuSurface::setFixedPosition)
+      MDCStateEffect(quickOpen, MDCMenuSurface::quickOpen)
+      MDCStateEffect(anchorCorner, MDCMenuSurface::setAnchorCorner)
+      MDCStateEffect(hoisted, MDCMenuSurface::setIsHoisted)
+      MDCSideEffect(absolutePosition) {
         absolutePosition?.let { (x, y) -> setAbsolutePosition(x, y) }
       }
-      MDCSideEffectNew(open) {
+      MDCSideEffect(open) {
         if (open) open() else close(!restoreFocusOnClose)
       }
       applyContent(content)

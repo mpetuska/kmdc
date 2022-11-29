@@ -64,8 +64,8 @@ public fun MDCSelect(
       MDCSelectLeadingIconLocal provides withLeadingIcon,
     ) {
       MDCProvider(::MDCSelect, type) {
-        MDCStateEffectNew(required, MDCSelect::required)
-        MDCStateEffectNew(disabled, MDCSelect::disabled)
+        MDCStateEffect(required, MDCSelect::required)
+        MDCStateEffect(disabled, MDCSelect::disabled)
         applyContent(content)
       }
     }

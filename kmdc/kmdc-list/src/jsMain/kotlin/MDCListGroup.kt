@@ -25,7 +25,8 @@ public fun MDCListGroup(
     attrs = {
       classes("mdc-deprecated-list-group")
       attrs?.invoke(this)
-    }, content = content.reinterpret()
+    },
+    content = content.reinterpret()
   )
 }
 

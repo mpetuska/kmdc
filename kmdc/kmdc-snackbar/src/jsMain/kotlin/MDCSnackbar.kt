@@ -40,9 +40,9 @@ public fun MDCSnackbar(
     applyAttrs(attrs)
   }) {
     MDCProvider(::MDCSnackbar, type) {
-      MDCStateEffectNew(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
-      MDCStateEffectNew(closeOnEscape, MDCSnackbar::closeOnEscape)
-      MDCSideEffectNew(open) {
+      MDCStateEffect(timeoutMs?.coerceIn(4000, 10000) ?: -1, MDCSnackbar::timeoutMs)
+      MDCStateEffect(closeOnEscape, MDCSnackbar::closeOnEscape)
+      MDCSideEffect(open) {
         if (open) open() else close()
       }
     }
