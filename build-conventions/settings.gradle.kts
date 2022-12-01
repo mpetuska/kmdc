@@ -8,7 +8,7 @@ pluginManagement {
 
 plugins {
   id("de.fayard.refreshVersions") version "0.40.2"
-  id("com.gradle.enterprise") version "3.10.3"
+  id("com.gradle.enterprise") version "3.11.4"
 }
 
 refreshVersions {
