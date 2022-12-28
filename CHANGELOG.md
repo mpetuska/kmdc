@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [JDK]\: 11+
 - [Kotlin]\: 1.7.20
-- [Compose]\: 1.2.1
+- [Compose]\: 1.2.2
 - [MDC]\: ^14.0.0
 
 ### Added
@@ -21,6 +21,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Removed
+
+---
+
+## [0.1.0]
+
+### Verified Versions
+
+- [JDK]\: 11+
+- [Kotlin]\: 1.7.20
+- [Compose]\: 1.2.2
+- [MDC]\: ^14.0.0
+
+### Added
+
+### Changed
+
+- Bumped kotlin/compose versions
+- Fixed adding/removing items dynamically in MDCSelect
+- Replaced old DOM-based external MDC component management with CompositionLocal and DisposableEffect based solutions
+
+### Removed
+
+- All old DOM-based MDC component management and effects
 
 ---
 
@@ -179,7 +202,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/mpetuska/npm-publish/compare/0.0.5...HEAD
+[Unreleased]: https://github.com/mpetuska/npm-publish/compare/0.1.0...HEAD
+
+[0.1.0]: https://github.com/mpetuska/npm-publish/compare/0.0.5...0.1.0
 
 [0.0.5]: https://github.com/mpetuska/npm-publish/compare/0.0.4...0.0.5
 

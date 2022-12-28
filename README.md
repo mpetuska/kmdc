@@ -20,35 +20,36 @@ is also available, which brings in all KMDC modules as transitive dependencies u
 
 Either approach can be installed by declaring relevant dependencies in your `jsMain` sourceSet.
 
-Additionally, you need to enable SCSS support. This is done by adding required npm dev dependencies to your sourceSet
-and then enabling them via [`webpack.config.d/scss.js`](gradle/webpack.config.d/scss.js) file.
+Additionally, you need to enable SCSS support.
 
 ```kotlin
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose")
+    kotlin("multiplatform")
+    id("org.jetbrains.compose")
 }
 kotlin {
-  sourceSets {
-    named("jsMain") {
-      dependencies {
-        // Be lazy and use the shortcut
-        implementation("dev.petuska:kmdc:_")
-        implementation("dev.petuska:kmdcx:_")
-
-        // Do some work and see dem gains
-        implementation("dev.petuska:kmdc-button:_")
-        implementation("dev.petuska:kmdc-radio:_")
-        implementation("dev.petuska:kmdcx-icons:_")
-
-        // SCSS dependencies
-        implementation(devNpm("style-loader", "^3.3.1"))
-        implementation(devNpm("css-loader", "^6.7.1"))
-        implementation(devNpm("sass-loader", "^13.0.0"))
-        implementation(devNpm("sass", "^1.52.1"))
-      }
+    js {
+        browser {
+            commonWebpackConfig {
+                cssSupport { enabled = true }
+                scssSupport { enabled = true }
+            }
+        }
     }
-  }
+    sourceSets {
+        named("jsMain") {
+            dependencies {
+                // Be lazy and use the shortcut
+                implementation("dev.petuska:kmdc:_")
+                implementation("dev.petuska:kmdcx:_")
+
+                // Do some work and see dem gains
+                implementation("dev.petuska:kmdc-button:_")
+                implementation("dev.petuska:kmdc-radio:_")
+                implementation("dev.petuska:kmdcx-icons:_")
+            }
+        }
+    }
 }
 ```
 
@@ -74,17 +75,17 @@ the [sandbox](./sandbox/src/jsMain/showcases))
 ```kotlin
 @Composable
 fun Showcase() {
-  var checked by remember { mutableStateOf(false) } // Declaring controlled state
+    var checked by remember { mutableStateOf(false) } // Declaring controlled state
 
-  MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField UI as recommended by the MDC docs
-    MDCCheckbox(
-      checked = checked,
-      label = "Yes/No",
-      attrs = { // Overriding underlying HTMLInput element attributes
-        onInput { checked = !checked }
-      }
-    ) // MDCCheckbox doesn't allow for additional inner content
-  }
+    MDCFormField { // Using implicit `content` argument to wrap MDCCheckbox inside MDCFormField UI as recommended by the MDC docs
+        MDCCheckbox(
+            checked = checked,
+            label = "Yes/No",
+            attrs = { // Overriding underlying HTMLInput element attributes
+                onInput { checked = !checked }
+            }
+        ) // MDCCheckbox doesn't allow for additional inner content
+    }
 }
 ```
 
