@@ -1,4 +1,4 @@
-import util.*
+import util.Git
 
 plugins {
   id("convention.common")
@@ -42,4 +42,7 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
   }
+}
+
+publishing {
 }
