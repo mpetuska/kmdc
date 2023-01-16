@@ -13,7 +13,7 @@ public typealias MDCAttrsRaw<T> = @MDCAttrsDsl AttrsBuilder<T>
 public typealias MDCContentRaw<T> = @MDCContentDsl ContentBuilder<T>
 public typealias Builder<T> = T.() -> Unit
 public typealias MDCAttrs<T> = @MDCAttrsDsl Builder<T>
-public typealias MDCContent<T> = @Composable @MDCContentDsl Builder<T>
+public typealias MDCContent<T> = @Composable Builder<@MDCContentDsl T>
 public typealias MDCComponentInit<S> = @Composable S.(
   content: @Composable S.() -> Unit
 ) -> Unit

@@ -40,7 +40,7 @@ public object InteractiveShowcaseStyle : StyleSheet() {
 
 @Composable
 public inline fun <VM : Any> InteractiveShowcase(
-  viewModel: () -> VM,
+  crossinline viewModel: () -> VM,
   prominent: Boolean = true,
   noinline controls: (@Composable VM.() -> Unit)? = null,
   noinline details: (@Composable () -> Unit)? = null,

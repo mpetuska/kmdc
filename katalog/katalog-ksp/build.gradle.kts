@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   id("convention.common")
   kotlin("jvm")
@@ -7,19 +10,16 @@ plugins {
 dependencies {
   compileOnly("com.google.devtools.ksp:symbol-processing-api:_")
   implementation("com.squareup:kotlinpoet-ksp:_")
-
-  testImplementation(kotlin("reflect"))
-  testImplementation(kotlin("test-junit5"))
-  testImplementation(kotlin("compiler-embeddable"))
-  testImplementation("com.github.tschuchortdev:kotlin-compile-testing:_")
 }
 
-kotlin {
-  sourceSets {
-    configureEach {
-      languageSettings {
-        optIn("com.squareup.kotlinpoet.ksp.KotlinPoetKspPreview")
-      }
+java {
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks {
+  withType<KotlinCompile> {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.fromTarget(java.targetCompatibility.toString()))
     }
   }
 }

@@ -11,6 +11,9 @@ plugins {
   id("com.gradle.enterprise") version "3.11.4"
 // //                      # available:"3.12"
 // //                      # available:"3.12.1"
+// //                      # available:"3.12.2"
+// //                      # available:"3.12"
+// //                      # available:"3.12.1"
 }
 
 refreshVersions {

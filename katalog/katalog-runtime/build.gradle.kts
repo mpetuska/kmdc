@@ -4,13 +4,10 @@ plugins {
 
 kotlin {
   sourceSets {
-    commonMain {
-      dependencies {
-        api(compose.runtime)
-      }
-    }
     jsMain {
       dependencies {
+        api(compose.runtime)
+        api(compose.web.core)
         implementation("app.softwork:routing-compose:_")
       }
     }
