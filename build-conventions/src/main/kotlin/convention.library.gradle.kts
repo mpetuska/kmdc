@@ -1,6 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import org.jetbrains.kotlin.gradle.plugin.KotlinJsCompilerType
 
 plugins {
   id("convention.common")
@@ -11,29 +10,15 @@ plugins {
 
 kotlin {
   explicitApi()
-  js(KotlinJsCompilerType.IR) {
+  js(IR) {
     useCommonJs()
     browser {
       commonWebpackConfig {
-        cssSupport { enabled = true }
-        scssSupport { enabled = true }
+        cssSupport { enabled.set(true) }
+        scssSupport { enabled.set(true) }
       }
       testTask {
-        useKarma {
-          when (project.properties["kotlin.js.test.browser"]) {
-            "firefox" -> useFirefox()
-            "firefox-headless" -> useFirefoxHeadless()
-            "firefox-developer" -> useFirefoxDeveloper()
-            "firefox-developer-headless" -> useFirefoxDeveloperHeadless()
-            "chrome" -> useChrome()
-            "chrome-headless" -> useChromeHeadless()
-            "chromium" -> useChromium()
-            "chromium-headless" -> useChromiumHeadless()
-            "safari" -> useSafari()
-            "opera" -> useOpera()
-            else -> usePhantomJS()
-          }
-        }
+        useKarma()
       }
     }
   }

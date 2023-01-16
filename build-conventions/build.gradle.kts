@@ -38,7 +38,7 @@ gradleEnterprise {
 tasks {
   withType<KotlinCompile> {
     kotlinOptions {
-      languageVersion = "1.4"
+      languageVersion = "1.9"
     }
   }
 }

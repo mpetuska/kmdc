@@ -11,8 +11,8 @@ kotlin {
     useCommonJs()
     browser {
       commonWebpackConfig {
-        cssSupport { enabled = true }
-        scssSupport { enabled = true }
+        cssSupport { enabled.set(true) }
+        scssSupport { enabled.set(true) }
         devServer = devServer?.copy(
           open = false,
           port = 3000,
