@@ -1,24 +1,22 @@
 name: Check
-defaults:
-  run:
-    shell: bash
 
 on:
-  push:
-    branches: 
-      - master
-  pull_request:
-    branches:
-      - 'master'
   workflow_dispatch:
   workflow_call:
 
+concurrency:
+  cancel-in-progress: true
+  group: check-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=true"
+
 jobs:
-  check:
-    name: Check on ubuntu-latest
+  lint:
+    name: Lint the code
     runs-on: ubuntu-latest
     env:
-      GRADLE_OPTS: "-Dorg.gradle.daemon=true"
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false"
     steps:
       - uses: actions/checkout@v3
 
@@ -28,8 +26,8 @@ jobs:
           java-version: 11
 
       - name: Restore Gradle cache
-        id: cache
-        uses: actions/cache@v3.0.11
+        id: cache-gradle
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -37,24 +35,23 @@ jobs:
             ~/.gradle/yarn
             ~/.gradle/nodejs
             ~/.konan
-            ~/.cache/yarn
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
 
-      - name: Gradle Check
-        run: ./gradlew detektAll check -x detekt --scan
+      - name: Run detekt
+        run: ./gradlew detektAll
 
       - name: Make artifact location URIs relative
         if: ${{ always() }}
         continue-on-error: true
         run: |
-          cp ${{ github.workspace }}/build/reports/detekt/detekt.sarif ${{ github.workspace }}/detekt.sarif.json
+          ls '${{ github.workspace }}/build/reports/detekt/'
+          cp '${{ github.workspace }}/build/reports/detekt/detekt.sarif' '${{ github.workspace }}/detekt.sarif.json'
           echo "$(
-            jq \
-              --arg github_workspace ${{ github.workspace }} \
+            jq --arg github_workspace ${{ github.workspace }} \
               '. | ( .runs[].results[].locations[].physicalLocation.artifactLocation.uri |= if test($github_workspace) then .[($github_workspace | length | . + 1):] else . end )' \
-              ${{ github.workspace }}/detekt.sarif.json
-          )" > ${{ github.workspace }}/detekt.sarif.json
+              '${{ github.workspace }}/detekt.sarif.json'
+          )" > '${{ github.workspace }}/detekt.sarif.json'
 
       - uses: github/codeql-action/upload-sarif@v2
         if: ${{ always() }}
@@ -62,21 +59,69 @@ jobs:
           sarif_file: ${{ github.workspace }}/detekt.sarif.json
           checkout_path: ${{ github.workspace }}
 
-      - name: Gradle Assemble
-        run: ./gradlew assemble --scan
+  check:
+    name: Check on ${{ matrix.os.runner }}
+    runs-on: ${{ matrix.os.runner }}
+    defaults:
+      run:
+        shell: ${{ matrix.os.shell }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - runner: ubuntu-latest
+            shell: bash
+            separator: '/'
+    #          - runner: macos-latest
+    #            shell: bash
+    #            separator: '/'
+    #          - runner: windows-latest
+    #            shell: msys2 {0}
+    #            separator: '\'
+    steps:
+      - uses: msys2/setup-msys2@v2
+        if: ${{ runner.os == 'Windows' }}
+        with:
+          release: false
+          msystem: MINGW64
+          path-type: inherit
+          update: true
+          install: >-
+            curl
+            mingw-w64-x86_64-curl
 
-      - name: Gradle Check Sandbox
-        working-directory: sandbox
-        run: ./gradlew check --scan
+      - uses: actions/checkout@v3
 
-      - name: Gradle Assemble Sandbox
-        working-directory: sandbox
-        run: ./gradlew assemble --scan
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: 11
+
+      - name: Restore Gradle cache
+        id: cache-gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/yarn
+            ~/.gradle/nodejs
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Gradle Compile
+        run: ./gradlew compile assemble --scan
+
+      - name: Gradle Check
+        run: ./gradlew check -x detekt -x detektAll --scan
+
+      - name: Gradle Test Local Publishing
+        run: ./gradlew publishToLocal --scan
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: reports-${{ runner.os }}
           path: |
-            **/build/reports
-            detekt.sarif.json
+            **${{ matrix.os.separator }}build${{ matrix.os.separator }}reports

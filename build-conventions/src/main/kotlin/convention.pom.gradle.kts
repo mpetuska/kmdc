@@ -10,16 +10,19 @@ val pomExt: PomExtension = extensions.create("pom", PomExtension::class, project
 val owner = pomExt.owner
 val repoPath = owner.id.zip(owner.repo) { id, repo -> "$id/$repo" }
 publishing {
-  publications {
-    repositories {
-      maven(repoPath.map { "https://maven.pkg.github.com/$it" }) {
-        name = "GitHub"
-        credentials {
-          username = System.getenv("GH_USERNAME")
-          password = System.getenv("GH_PASSWORD")
-        }
+  repositories {
+    maven(repoPath.map { "https://maven.pkg.github.com/$it" }) {
+      name = "GitHub"
+      credentials {
+        username = System.getenv("GH_USERNAME")
+        password = System.getenv("GH_PASSWORD")
       }
     }
+    maven("file://${rootProject.buildDir}/localMaven") {
+      name = "Local"
+    }
+  }
+  publications {
     withType<MavenPublication> {
       artifact(tasks["javadocJar"])
       pom {
@@ -49,5 +52,11 @@ publishing {
         }
       }
     }
+  }
+}
+
+tasks {
+  register("publishToLocal") {
+    dependsOn("publishAllPublicationsToLocalRepository")
   }
 }
