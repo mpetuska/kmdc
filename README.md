@@ -1,7 +1,7 @@
 [![Slack chat](https://img.shields.io/badge/kotlinlang-%23kmdc-green?logo=slack&style=flat-square)](https://kotlinlang.slack.com/archives/CNR7ARJGJ)
 [![Dokka docs](https://img.shields.io/badge/docs-dokka-orange?style=flat-square)](http://mpetuska.github.io/kmdc)
 [![Version maven-central](https://img.shields.io/maven-central/v/dev.petuska/kmdc?logo=apache-maven&style=flat-square)](https://mvnrepository.com/artifact/dev.petuska/kmdc/latest)
-[![Version maven-snapshot](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Foss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Fdev%2Fpetuska%2Fkmdc%2Fmaven-metadata.xml&logo=apache-maven&label=maven-snapshot&style=flat-square)](https://oss.sonatype.org/content/repositories/snapshots/dev/petuska/kmdc/)
+[![Version maven-snapshot](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Fdev%2Fpetuska%2Fkmdc%2Fmaven-metadata.xml&logo=apache-maven&label=maven-snapshot&style=flat-square)](https://s01.oss.sonatype.org/content/repositories/snapshots/dev/petuska/kmdc/)
 
 # Kompose Material Design Components (KMDC)
 
