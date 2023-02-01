@@ -3,7 +3,7 @@
 // usage: ./removeGhPackageVersion.main.kts template-kmp-library 1.1.3
 
 @file:DependsOn("io.ktor:ktor-client-cio-jvm:2.2.2")
-@file:DependsOn("io.ktor:ktor-client-gson:2.2.2")
+@file:DependsOn("io.ktor:ktor-client-gson:2.2.3")
 @file:DependsOn("io.ktor:ktor-client-auth-jvm:2.2.2")
 
 import io.ktor.client.HttpClient
