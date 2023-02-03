@@ -11,7 +11,7 @@ on:
       version:
         value: ${{ jobs.resolve.outputs.version }}
       snapshot:
-        value: ${{ jobs.resolve.outputs.version }}
+        value: ${{ jobs.resolve.outputs.snapshot }}
 
 concurrency:
   cancel-in-progress: true
@@ -58,10 +58,12 @@ jobs:
           SNAPSHOT_VERSION="${main_version}${patch_version}-SNAPSHOT"
           echo "SNAPSHOT_VERSION=$SNAPSHOT_VERSION" >> $GITHUB_ENV
           sed -Ei "s|^(version=).*\$|\\1$SNAPSHOT_VERSION|" gradle.properties
-      - name: Commit and push SNAPSHOT
+      - name: Create Pull Request for new SNAPSHOT
         if: env.DIFF_VERSION == '1' && env.PROJECT_VERSION != env.SNAPSHOT_VERSION
-        uses: devops-infra/action-commit-push@v0.9.2
+        uses: peter-evans/create-pull-request@v4
         with:
-          github_token: ${{ secrets.GH_TOKEN || github.token }}
-          commit_message: '[ci skip] New SNAPSHOT - ${{ env.SNAPSHOT_VERSION }}'
-          target_branch: master
+          title: 'New SNAPSHOT - ${{ env.SNAPSHOT_VERSION }}'
+          commit-message: '[ci skip] New SNAPSHOT - ${{ env.SNAPSHOT_VERSION }}'
+          branch: ci/version/${{ env.SNAPSHOT_VERSION }}
+          delete-branch: true
+          base: master

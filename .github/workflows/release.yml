@@ -2,9 +2,8 @@ name: Release
 
 on:
   push:
-    paths-ignore:
-      - 'website/**'
-      - '**/*.md'
+    paths:
+      - '**/src/**'
     branches:
       - master
   workflow_dispatch:

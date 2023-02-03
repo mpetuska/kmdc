@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [SNAPSHOT]
 
 ### Verified Versions
 
 - [JDK]\: 11+
-- [Kotlin]\: 1.7.20
-- [Compose]\: 1.2.2
+- [Kotlin]\: 1.8.0
+- [Compose]\: 1.3.0
 - [MDC]\: ^14.0.0
 
 ### Added
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [JDK]\: 11+
 - [Kotlin]\: 1.8.0
-- [Compose]\: 1.3.0-rc-02
+- [Compose]\: 1.3.0
 - [MDC]\: ^14.0.0
 
 ### Added
@@ -39,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bumped kotlin/compose versions
 - Fixed adding/removing items dynamically in MDCSelect
-- Replaced old DOM-based external MDC component management with CompositionLocal and DisposableEffect based solutions
+- Replaced old DOM-based external MDC component management with CompositionLocal and
+  DisposableEffect based solutions
 
 ### Removed
 
@@ -92,16 +93,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Standardised event handlers
 - Reworked `MDCSelect` to be more lightweight and customisable
-- Introduced new `CompositionLocal` based MDC component management making it accessible from anywhere down the component
+- Introduced new `CompositionLocal` based MDC component management making it accessible from
+  anywhere down the component
   hierarchy
-- Reworked sandbox with new `katalog` tooling for more streamlined experience and reduced boilerplate
+- Reworked sandbox with new `katalog` tooling for more streamlined experience and reduced
+  boilerplate
 - Rewritten all existing samples to be fully interactive
 - Optimised MDC component state management for most of the components
 - `opts` based property builder was replaced with top-level properties
 
 ### Removed
 
-- `initialiseMDC` and `MDCInitEffect` which were relying on storing the MDC component on the native HTML element
+- `initialiseMDC` and `MDCInitEffect` which were relying on storing the MDC component on the native
+  HTML element
 
 ---
 
@@ -202,7 +206,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/mpetuska/npm-publish/compare/0.1.0...HEAD
+[SNAPSHOT]: https://github.com/mpetuska/npm-publish/compare/0.1.0...HEAD
 
 [0.1.0]: https://github.com/mpetuska/npm-publish/compare/0.0.5...0.1.0
 
