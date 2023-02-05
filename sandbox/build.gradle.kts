@@ -1,7 +1,7 @@
 plugins {
   kotlin("multiplatform")
-  id("convention.compose")
   id("convention.common")
+  id("convention.compose")
   id("convention.ksp")
 }
 
@@ -42,12 +42,12 @@ kotlin {
   }
 }
 
-dependencies {
-  "kspJs"("dev.petuska:katalog-ksp")
-}
-
 ksp {
   arg("katalog.contentRoot", rootDir.parentFile.absolutePath)
+}
+
+dependencies {
+  "kspJs"("dev.petuska:katalog-ksp")
 }
 
 gradleEnterprise {
