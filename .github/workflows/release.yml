@@ -133,5 +133,6 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      - uses: actions/checkout@v3
       - name: Change pre-release status
         run: gh release edit ${{ needs.resolve-version.outputs.version }} --prerelease=false
