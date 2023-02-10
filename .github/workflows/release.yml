@@ -125,3 +125,13 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       version: ${{ needs.resolve-version.outputs.version }}
+
+  finalise:
+    runs-on: ubuntu-latest
+    needs: [ release-Pages, resolve-version ]
+    if: ${{ github.event.inputs.skipPages != 'y' && needs.resolve-version.outputs.snapshot == 'false' }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Change pre-release status
+        run: gh release edit ${{ needs.resolve-version.outputs.version }} --prerelease=false
