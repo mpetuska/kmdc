@@ -1,8 +1,8 @@
 plugins {
   kotlin("multiplatform")
   id("convention.common")
-  id("convention.compose")
   id("convention.ksp")
+  id("convention.compose")
 }
 
 kotlin {
@@ -21,6 +21,7 @@ kotlin {
       runTask {
         sourceMaps = true
       }
+      testTask { useKarma() }
     }
   }
   sourceSets {
@@ -55,4 +56,15 @@ gradleEnterprise {
     termsOfServiceUrl = "https://gradle.com/terms-of-service"
     termsOfServiceAgree = "yes"
   }
+}
+
+/*
+Horrifying workaround for https://github.com/google/ksp/issues/367
+See also https://kotlinlang.slack.com/archives/C013BA8EQSE/p1674737612683639
+ */
+afterEvaluate {
+  configurations.filter { it.name.startsWith("generatedByKspKotlinJs") && it.name.endsWith("DependenciesMetadata") }
+    .forEach {
+      configurations.remove(it)
+    }
 }

@@ -11,8 +11,11 @@ plugins {
 repositories {
   gradlePluginPortal()
   mavenCentral()
-  maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   google()
+  if (findProperty("project.enableSnapshots") == "true") {
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+  }
 }
 
 dependencies {
