@@ -5,7 +5,7 @@ plugins {
   `maven-publish`
 }
 
-val pomExt: PomExtension = extensions.create("pom", PomExtension::class, project)
+val pomExt: PomExtension = extensions.create<PomExtension>("pom", project)
 
 val owner = pomExt.owner
 val repoPath = owner.id.zip(owner.repo) { id, repo -> "$id/$repo" }
@@ -46,8 +46,9 @@ publishing {
         }
 
         scm {
-          connection by repoPath.map { "scm:git:git@github.com:$it.git" }
-          url by repoPath.map { "https://github.com/$it" }
+          connection by repoPath.map { "scm:git:git://github.com:$it.git" }
+          developerConnection by repoPath.map { "scm:git:git@github.com:$it.git" }
+          url by repoPath.map { "https://github.com/$it.git" }
           tag by Git.headCommitHash
         }
       }

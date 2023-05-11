@@ -4,15 +4,15 @@ start="$(pwd)"
 root="$(dirname "${BASH_SOURCE[0]}")/.."
 root="$(cd "$root" && pwd)"
 
-function refreshVersions() {
-  "$root/gradlew" refreshVersions
+function updateVersionsCatalog() {
+  "$root/gradlew" versionCatalogUpdate $@
 }
 
 targets=("build-conventions" "" "katalog" "sandbox")
 for t in "${targets[@]}"; do
   target="$root/$t"
-  echo ">>> Refreshing $target"
-  cd "$target" && refreshVersions
+  echo ">>> Updating $target"
+  cd "$target" && updateVersionsCatalog $@ || exit 1
 done
 
 cd "$start" && echo ">>> DONE!"

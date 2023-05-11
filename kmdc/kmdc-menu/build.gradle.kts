@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "menu"
-  dependencies {
-    main {
-      api(kmdc("list"))
-      api(kmdc("menu-surface"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("list"))
+        api(kmdc("menu-surface"))
+      }
     }
   }
 }

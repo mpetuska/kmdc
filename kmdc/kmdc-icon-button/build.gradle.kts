@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "icon-button"
-  dependencies {
-    main {
-      api(compose.web.svg)
-      api(kmdc("ripple"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.html.svg)
+        api(kmdc("ripple"))
+      }
     }
   }
 }

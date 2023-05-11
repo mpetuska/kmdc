@@ -1,4 +1,4 @@
-import util.Git
+
 
 plugins {
   id("convention.common")
@@ -9,17 +9,17 @@ plugins {
 }
 
 tasks {
-  withType<Jar> {
-    manifest {
-      attributes += sortedMapOf(
-        "Built-By" to "${GradleVersion.current()}",
-        "Build-JDK" to System.getProperty("java.version"),
-        "Implementation-Version" to project.version,
-        "Created-By" to System.getProperty("user.name"),
-        "Created-From" to "${Git.headCommitHash}"
-      )
-    }
-  }
+//  withType<Jar> {
+//    manifest {
+//      attributes += sortedMapOf(
+//        "Built-By" to GradleVersion.current(),
+//        "Build-JDK" to System.getProperty("java.version"),
+//        "Implementation-Version" to project.version,
+//        "Created-By" to System.getProperty("user.name"),
+//        "Created-From" to Git.headCommitHash,
+//      )
+//    }
+//  }
   val cleanMavenLocal by registering {
     group = "build"
     doLast {
@@ -42,7 +42,4 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
   }
-}
-
-publishing {
 }

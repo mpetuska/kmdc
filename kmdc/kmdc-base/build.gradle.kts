@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "base"
-  dependencies {
-    main {
-      api(compose.runtime)
-      api(compose.web.core)
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.runtime)
+        api(compose.html.core)
+      }
     }
   }
 }

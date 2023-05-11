@@ -7,18 +7,18 @@ import dev.petuska.katalog.plugin.util.Builder
 
 @Target(AnnotationTarget.TYPE)
 @DslMarker
-annotation class KotlinPoetBuilderDSL
+public annotation class KotlinPoetBuilderDSL
 
-inline fun codeBlockOf(
+public inline fun codeBlockOf(
   builder: Builder<@KotlinPoetBuilderDSL CodeBlock.Builder>
 ): CodeBlock = CodeBlock.builder().apply(builder).build()
 
-inline fun funOf(
+public inline fun funOf(
   name: String,
   builder: Builder<@KotlinPoetBuilderDSL FunSpec.Builder>
 ): FunSpec = FunSpec.builder(name).apply(builder).build()
 
-inline fun fileOf(
+public inline fun fileOf(
   packageName: String,
   fileName: String,
   builder: Builder<@KotlinPoetBuilderDSL FileSpec.Builder>

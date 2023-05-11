@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "tooltip"
-  dependencies {
-    main {
-      api(kmdc("ripple"))
-      api(kmdc("button"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("ripple"))
+        api(kmdc("button"))
+      }
     }
   }
 }

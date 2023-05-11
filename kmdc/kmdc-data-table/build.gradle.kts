@@ -4,11 +4,16 @@ plugins {
 
 kmdc {
   mdc by "data-table"
-  dependencies {
-    main {
-      api(kmdc("checkbox"))
-      api(kmdc("linear-progress"))
-      api(kmdc("icon-button"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("checkbox"))
+        api(kmdc("linear-progress"))
+        api(kmdc("icon-button"))
+      }
     }
   }
 }

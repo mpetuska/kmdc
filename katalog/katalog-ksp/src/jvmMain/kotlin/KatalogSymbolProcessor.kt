@@ -10,7 +10,7 @@ import dev.petuska.katalog.plugin.util.*
 import dev.petuska.katalog.plugin.visitor.*
 import java.io.*
 
-class KatalogSymbolProcessor(
+public class KatalogSymbolProcessor(
   private val codeGenerator: CodeGenerator,
   override val logger: KSPLogger,
   private val contentRoot: File?

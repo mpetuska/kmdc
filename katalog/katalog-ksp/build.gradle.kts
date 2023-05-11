@@ -2,14 +2,19 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("convention.common")
-  kotlin("jvm")
-  id("com.github.gmazzo.buildconfig")
+  id("convention.library-jvm")
+  alias(libs.plugins.build.config)
 }
 
-dependencies {
-  compileOnly("com.google.devtools.ksp:symbol-processing-api:_")
-  implementation("com.squareup:kotlinpoet-ksp:_")
+kotlin {
+  sourceSets {
+    jvmMain {
+      dependencies {
+        compileOnly(libs.ksp.api)
+        implementation(libs.kotlinpoet.ksp)
+      }
+    }
+  }
 }
 
 java {

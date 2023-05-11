@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "dialog"
-  dependencies {
-    main {
-      api(kmdc("button"))
-      api(kmdc("icon-button"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("button"))
+        api(kmdc("icon-button"))
+      }
     }
   }
 }

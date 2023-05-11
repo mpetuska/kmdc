@@ -110,9 +110,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
 
-      - name: Gradle Compile
-        run: ./gradlew compile assemble --scan
-
       - name: Gradle Check
         run: ./gradlew check -x detekt -x detektAll --scan
 

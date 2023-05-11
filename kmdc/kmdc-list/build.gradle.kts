@@ -4,11 +4,16 @@ plugins {
 
 kmdc {
   mdc by "list"
-  dependencies {
-    main {
-      api(kmdc("ripple"))
-      api(kmdc("radio"))
-      api(kmdc("checkbox"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("ripple"))
+        api(kmdc("radio"))
+        api(kmdc("checkbox"))
+      }
     }
   }
 }

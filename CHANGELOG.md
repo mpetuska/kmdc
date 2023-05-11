@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Verified Versions
 
 - [JDK]\: 11+
-- [Kotlin]\: 1.8.0
-- [Compose]\: 1.3.0
+- [Kotlin]\: 1.8.20
+- [Compose]\: 1.4.0
 - [MDC]\: ^14.0.0
 
 ### Added

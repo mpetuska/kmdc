@@ -4,11 +4,16 @@ plugins {
 
 kmdc {
   mdc by "checkbox"
-  dependencies {
-    main {
-      api(compose.web.svg)
-      api(kmdc("form-field"))
-      api(kmdc("touch-target"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.html.svg)
+        api(kmdc("form-field"))
+        api(kmdc("touch-target"))
+      }
     }
   }
 }

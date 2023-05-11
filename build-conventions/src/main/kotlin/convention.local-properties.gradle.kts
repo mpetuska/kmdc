@@ -1,10 +1,12 @@
+import java.util.*
 
-import java.util.Properties
-
-rootDir.resolve("local.properties").takeIf(File::exists)?.let {
-  Properties().apply {
-    it.inputStream().use(::load)
-  }.mapKeys { (k, _) -> k.toString() }
-}?.toList()?.forEach { (k, v) ->
-  project.extra[k] = v
+run {
+  fun loadProps(file: File) {
+    file.takeIf { it.exists() }
+      ?.reader()
+      ?.use { reader -> Properties().apply { load(reader) } }
+      ?.forEach { k, v -> extra["$k"] = v }
+  }
+  loadProps(rootProject.file("local.properties"))
+  loadProps(project.file("local.properties"))
 }

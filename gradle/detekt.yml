@@ -51,9 +51,12 @@ style:
     active: false
   MagicNumber:
     active: false
+  UnusedPrivateProperty:
+    ignoreAnnotated:
+      - dev.petuska.kmdc.core.MDCExternalAPI
   UnusedPrivateMember:
     ignoreAnnotated:
-      - MDCExternalAPI
+      - dev.petuska.kmdc.core.MDCExternalAPI
 
 formatting:
   AnnotationOnSeparateLine:

@@ -4,12 +4,17 @@ plugins {
 
 kmdc {
   mdc by "button"
-  dependencies {
-    main {
-      api(compose.web.svg)
-      api(kmdc("ripple"))
-      api(kmdc("touch-target"))
-      api(kmdc("elevation"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.html.svg)
+        api(kmdc("ripple"))
+        api(kmdc("touch-target"))
+        api(kmdc("elevation"))
+      }
     }
   }
 }
