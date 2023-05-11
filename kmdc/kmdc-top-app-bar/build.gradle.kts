@@ -4,9 +4,14 @@ plugins {
 
 kmdc {
   mdc by "top-app-bar"
-  dependencies {
-    main {
-      api(kmdc("icon-button"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("icon-button"))
+      }
     }
   }
 }

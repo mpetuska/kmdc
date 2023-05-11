@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "radio"
-  dependencies {
-    main {
-      api(kmdc("form-field"))
-      api(kmdc("touch-target"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("form-field"))
+        api(kmdc("touch-target"))
+      }
     }
   }
 }

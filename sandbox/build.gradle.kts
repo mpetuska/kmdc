@@ -1,8 +1,9 @@
 plugins {
-  kotlin("multiplatform")
+  alias(libs.plugins.kotlin.multiplatform)
   id("convention.common")
   id("convention.ksp")
   id("convention.compose")
+  id("convention.versions")
 }
 
 kotlin {
@@ -31,7 +32,7 @@ kotlin {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")
         implementation("dev.petuska:katalog-runtime")
-        implementation("app.softwork:routing-compose:_")
+        implementation(libs.compose.routing)
       }
     }
     configureEach {
@@ -64,7 +65,5 @@ See also https://kotlinlang.slack.com/archives/C013BA8EQSE/p1674737612683639
  */
 afterEvaluate {
   configurations.filter { it.name.startsWith("generatedByKspKotlinJs") && it.name.endsWith("DependenciesMetadata") }
-    .forEach {
-      configurations.remove(it)
-    }
+    .forEach { configurations.remove(it) }
 }

@@ -4,7 +4,7 @@ import com.google.devtools.ksp.symbol.*
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.*
 
-fun KSFunctionDeclaration.ref(logger: KatalogLogger): MemberName {
+public fun KSFunctionDeclaration.ref(logger: KatalogLogger): MemberName {
   val isExtension = extensionReceiver != null
   val parent = parentDeclaration
   val pkg = packageName.asString().takeIf(String::isNotBlank)

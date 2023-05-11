@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "switch"
-  dependencies {
-    main {
-      api(kmdc("ripple"))
-      api(compose.web.svg)
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("ripple"))
+        api(compose.html.svg)
+      }
     }
   }
 }

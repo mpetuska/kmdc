@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "fab"
-  dependencies {
-    main {
-      api(kmdc("ripple"))
-      api(kmdc("touch-target"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("ripple"))
+        api(kmdc("touch-target"))
+      }
     }
   }
 }

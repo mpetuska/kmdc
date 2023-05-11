@@ -1,5 +1,5 @@
 plugins {
-  id("convention.library")
+  id("convention.library-js")
 }
 
 kotlin {
@@ -7,8 +7,8 @@ kotlin {
     jsMain {
       dependencies {
         api(compose.runtime)
-        api(compose.web.core)
-        implementation("app.softwork:routing-compose:_")
+        api(compose.html.core)
+        implementation(libs.compose.routing)
       }
     }
   }

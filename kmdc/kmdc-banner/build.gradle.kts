@@ -4,9 +4,14 @@ plugins {
 
 kmdc {
   mdc by "banner"
-  dependencies {
-    main {
-      api(kmdc("button"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("button"))
+      }
     }
   }
 }

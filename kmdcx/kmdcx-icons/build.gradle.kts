@@ -4,10 +4,5 @@ plugins {
 
 kmdcx {
   module by "material-icons"
-  versionKey by "version.npm.material-icons"
-  dependencies {
-    main {
-      api(kmdc("base"))
-    }
-  }
+  version by libs.versions.npm.material.icons
 }

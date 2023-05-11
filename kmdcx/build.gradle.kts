@@ -1,5 +1,5 @@
 plugins {
-  id("convention.library")
+  id("convention.library-js")
   id("convention.publishing")
 }
 

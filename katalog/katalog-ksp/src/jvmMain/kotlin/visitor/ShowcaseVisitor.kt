@@ -21,7 +21,7 @@ import dev.petuska.katalog.plugin.util.get
 import dev.petuska.katalog.plugin.util.ref
 import java.io.File
 
-class ShowcaseVisitor(
+public class ShowcaseVisitor(
   private val builtIns: KSBuiltIns,
   private val codeGenerator: CodeGenerator,
   override val logger: KSPLogger,

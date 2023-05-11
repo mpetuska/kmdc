@@ -4,9 +4,14 @@ plugins {
 
 kmdc {
   mdc by "circular-progress"
-  dependencies {
-    main {
-      api(compose.web.svg)
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.html.svg)
+      }
     }
   }
 }

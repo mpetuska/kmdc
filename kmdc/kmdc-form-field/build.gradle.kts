@@ -4,9 +4,14 @@ plugins {
 
 kmdc {
   mdc by "form-field"
-  dependencies {
-    main {
-      api(kmdc("ripple"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(kmdc("ripple"))
+      }
     }
   }
 }

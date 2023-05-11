@@ -15,7 +15,7 @@ class MDCButtonTest {
     fun HTMLElement.assertHtml(count: Int, upgraded: Boolean) {
       assertEquals(
         expected = """<button class="mdc-button${
-        if (upgraded) " mdc-ripple-upgraded" else ""
+          if (upgraded) " mdc-ripple-upgraded" else ""
         }">""" +
           """<div class="mdc-elevation-overlay"></div>""" +
           """<span class="mdc-button__ripple"></span>""" +

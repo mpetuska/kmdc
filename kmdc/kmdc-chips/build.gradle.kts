@@ -4,10 +4,15 @@ plugins {
 
 kmdc {
   mdc by "chips"
-  dependencies {
-    main {
-      api(compose.web.svg)
-      api(kmdc("touch-target"))
+}
+
+kotlin {
+  sourceSets {
+    jsMain {
+      dependencies {
+        api(compose.html.svg)
+        api(kmdc("touch-target"))
+      }
     }
   }
 }
