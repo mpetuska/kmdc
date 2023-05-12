@@ -1,5 +1,4 @@
-
-
+import util.Git
 plugins {
   id("convention.common")
   id("convention.dokka")
@@ -9,17 +8,17 @@ plugins {
 }
 
 tasks {
-//  withType<Jar> {
-//    manifest {
-//      attributes += sortedMapOf(
-//        "Built-By" to GradleVersion.current(),
-//        "Build-JDK" to System.getProperty("java.version"),
-//        "Implementation-Version" to project.version,
-//        "Created-By" to System.getProperty("user.name"),
-//        "Created-From" to Git.headCommitHash,
-//      )
-//    }
-//  }
+  withType<Jar>().configureEach {
+    manifest {
+      attributes(
+        "Built-By" to GradleVersion.current(),
+        "Build-JDK" to System.getProperty("java.version"),
+        "Implementation-Version" to project.version,
+        "Created-By" to System.getProperty("user.name"),
+        "Created-From" to Git.headCommitHash,
+      )
+    }
+  }
   val cleanMavenLocal by registering {
     group = "build"
     doLast {
@@ -32,6 +31,9 @@ tasks {
   }
   named("clean") {
     dependsOn(cleanMavenLocal)
+  }
+  withType<AbstractPublishToMaven> {
+    mustRunAfter(withType<Sign>())
   }
 }
 

@@ -32,10 +32,6 @@ kotlin {
 }
 
 tasks {
-//  val jsMainClasses = named("jsMainClasses")
-//  withType<DokkaTask> { dependsOn(jsMainClasses) }
-//  withType<DokkaTaskPartial> { dependsOn(jsMainClasses) }
-
   register<Jar>("javadocJar") {
     dependsOn(dokkaHtml)
     from(dokkaHtml)
