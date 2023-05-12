@@ -3,9 +3,9 @@ plugins {
   idea
 }
 
-// idea {
-//  module {
-//    sourceDirs = sourceDirs + buildDir.resolve("generated/ksp/js/jsMain/kotlin")
-//    generatedSourceDirs = generatedSourceDirs + buildDir.resolve("generated/ksp/js/jsMain/kotlin")
-//  }
-// }
+idea {
+  module {
+    sourceDirs = sourceDirs + buildDir.resolve("generated/ksp/js/jsMain/kotlin")
+    generatedSourceDirs = generatedSourceDirs + buildDir.resolve("generated/ksp/js/jsMain/kotlin")
+  }
+}

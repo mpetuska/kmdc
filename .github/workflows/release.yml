@@ -46,6 +46,7 @@ jobs:
   release-Artefacts:
     name: Release to ${{ matrix.repository.name }} on ${{ matrix.os.runner }}
     runs-on: ${{ matrix.os.runner }}
+    continue-on-error: true
     needs:
       - check
       - resolve-version

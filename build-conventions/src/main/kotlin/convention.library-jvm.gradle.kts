@@ -9,7 +9,7 @@ kotlin {
   jvm {
     compilations["test"].defaultSourceSet {
       dependencies {
-        implementation(kotlin("test"))
+        implementation(libs.kotlin.test)
         implementation(libs.kotest.assertions.core)
       }
     }
@@ -17,10 +17,6 @@ kotlin {
 }
 
 tasks {
-//  val jsMainClasses = named("jsMainClasses")
-//  withType<DokkaTask> { dependsOn(jsMainClasses) }
-//  withType<DokkaTaskPartial> { dependsOn(jsMainClasses) }
-
   register<Jar>("javadocJar") {
     dependsOn(dokkaHtml)
     from(dokkaHtml)
