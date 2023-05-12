@@ -64,11 +64,8 @@ schema:
 
 1. `...requiredMdcOptions` - MDC-specific options with no default values
 2. `...optionalMdcOptions` - MDC-specific options with default values
-   3`attrs: (AttrsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML
-   element
-   4`content: (ComposableBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the
-   underlying
-   HTML element
+3.`attrs: (AttrsBuilder<out HTMLElement>.() -> Unit)? = null` - compose attributes builder for the underlying HTML element
+4.`content: (ComposableBuilder<out HTMLElement>.() -> Unit)? = null` - compose inner content builder for the underlying HTML element
 
 Here's a quick peek how these things come together (more showcases can be found in
 the [sandbox](./sandbox/src/jsMain/showcases))
