@@ -2,7 +2,7 @@
 build-config = "4.0.4"
 compose = "1.4.0"
 detekt = "1.23.0-RC3"
-dokka = "1.8.10"
+dokka = "1.8.20"
 kotest = "5.6.2"
 kotlin = "1.8.20"
 kotlinpoet = "1.13.2"
