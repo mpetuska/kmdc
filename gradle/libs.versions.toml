@@ -9,7 +9,7 @@ kotlinpoet = "1.13.2"
 ksp = "1.8.20-1.0.11"
 npm-material-icons = "^1.10.4"
 npm-mdc = "^14.0.0"
-versions = "0.46.0"
+versions = "0.47.0"
 versions-update = "0.8.0"
 
 [libraries]
