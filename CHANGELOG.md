@@ -24,6 +24,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1]
+
+### Verified Versions
+
+- [JDK]\: 11+
+- [Kotlin]\: 1.8.20
+- [Compose]\: 1.4.0
+- [MDC]\: ^14.0.0
+
+### Added
+
+### Changed
+
+- Migrated from `kotlin-multiplatform` to `kotlin-js` plugin to avoid publishing unnecessary metadata artefacts.
+- Bumped dependency versions
+
+### Removed
+
+---
+
 ## [0.1.0]
 
 ### Verified Versions
@@ -206,7 +226,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[SNAPSHOT]: https://github.com/mpetuska/npm-publish/compare/0.1.0...HEAD
+[SNAPSHOT]: https://github.com/mpetuska/npm-publish/compare/0.1.1...HEAD
+
+[0.1.1]: https://github.com/mpetuska/npm-publish/compare/0.1.0...0.1.1
 
 [0.1.0]: https://github.com/mpetuska/npm-publish/compare/0.0.5...0.1.0
 
