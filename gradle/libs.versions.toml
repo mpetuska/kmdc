@@ -1,15 +1,15 @@
 [versions]
-build-config = "4.0.4"
-compose = "1.4.0"
-detekt = "1.23.0-RC3"
-dokka = "1.8.10"
+build-config = "4.1.1"
+compose = "1.4.1"
+detekt = "1.23.0"
+dokka = "1.8.20"
 kotest = "5.6.2"
 kotlin = "1.8.20"
-kotlinpoet = "1.13.2"
+kotlinpoet = "1.14.2"
 ksp = "1.8.20-1.0.11"
 npm-material-icons = "^1.10.4"
 npm-mdc = "^14.0.0"
-versions = "0.46.0"
+versions = "0.47.0"
 versions-update = "0.8.0"
 
 [libraries]
