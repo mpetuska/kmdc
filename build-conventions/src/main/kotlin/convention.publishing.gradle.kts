@@ -1,4 +1,5 @@
 import util.Git
+
 plugins {
   id("convention.common")
   id("convention.dokka")
@@ -34,6 +35,17 @@ tasks {
   }
   withType<AbstractPublishToMaven> {
     mustRunAfter(withType<Sign>())
+  }
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("js") {
+      groupId = "${project.group}"
+      artifactId = project.name
+      version = "${project.version}"
+      from(components["kotlin"])
+    }
   }
 }
 
