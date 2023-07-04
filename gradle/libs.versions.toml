@@ -14,6 +14,9 @@ versions-update = "0.8.0"
 
 [libraries]
 compose-routing = "app.softwork:routing-compose:0.2.12"
+compose-html-core = { module = "org.jetbrains.compose.html:html-core", version.ref = "compose" }
+compose-html-svg = { module = "org.jetbrains.compose.html:html-svg", version.ref = "compose" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -33,5 +36,6 @@ plugin-versions-update = { module = "nl.littlerobots.vcu:plugin", version.ref = 
 [plugins]
 build-config = { id = "com.github.gmazzo.buildconfig", version.ref = "build-config" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-js = { id = "org.jetbrains.kotlin.js", version.ref = "kotlin" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 versions-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "versions-update" }

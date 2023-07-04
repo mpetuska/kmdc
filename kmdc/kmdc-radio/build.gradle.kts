@@ -8,7 +8,7 @@ kmdc {
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
         api(kmdc("form-field"))
         api(kmdc("touch-target"))

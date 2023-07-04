@@ -1,13 +1,13 @@
 plugins {
   id("convention.common")
-  kotlin("multiplatform")
+  kotlin("js")
   id("convention.dokka")
   id("convention.compose")
 }
 
 kotlin {
   explicitApi()
-  js(IR) {
+  js {
     useCommonJs()
     browser {
       commonWebpackConfig {
@@ -20,7 +20,7 @@ kotlin {
     }
     compilations["test"].defaultSourceSet {
       dependencies {
-        implementation(compose.html.testUtils)
+//        implementation(compose.html.testUtils)
         implementation(libs.kotlin.test)
         implementation(libs.kotest.assertions.core)
       }

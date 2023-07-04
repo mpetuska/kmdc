@@ -8,10 +8,10 @@ kmdc {
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
         api(kmdc("ripple"))
-        api(compose.html.svg)
+        api(libs.compose.html.svg)
       }
     }
   }

@@ -1,5 +1,5 @@
 plugins {
-  alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.kotlin.js)
   id("convention.common")
   id("convention.ksp")
   id("convention.compose")
@@ -26,8 +26,8 @@ kotlin {
     }
   }
   sourceSets {
-    jsMain {
-      kotlin.srcDir("src/jsMain/showcases")
+    main {
+      kotlin.srcDir("src/main/showcases")
       dependencies {
         implementation("dev.petuska:kmdc")
         implementation("dev.petuska:kmdcx")

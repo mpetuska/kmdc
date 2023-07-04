@@ -8,9 +8,9 @@ kmdc {
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
-        api(compose.html.svg)
+        api(libs.compose.html.svg)
         api(kmdc("form-field"))
         api(kmdc("touch-target"))
       }

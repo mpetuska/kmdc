@@ -7,7 +7,7 @@ description = "All KMDC extensions"
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
         subprojects.forEach(::api)
       }

@@ -8,9 +8,9 @@ kmdc {
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
-        api(compose.html.svg)
+        api(libs.compose.html.svg)
         api(kmdc("ripple"))
         api(kmdc("touch-target"))
         api(kmdc("elevation"))

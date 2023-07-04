@@ -8,10 +8,10 @@ kmdc {
 
 kotlin {
   sourceSets {
-    jsMain {
+    main {
       dependencies {
-        api(compose.runtime)
-        api(compose.html.core)
+        api(libs.compose.runtime)
+        api(libs.compose.html.core)
       }
     }
   }
