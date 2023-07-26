@@ -1,5 +1,5 @@
 [versions]
-build-config = "4.1.1"
+build-config = "4.1.2"
 compose = "1.4.3"
 detekt = "1.23.0"
 dokka = "1.8.20"
