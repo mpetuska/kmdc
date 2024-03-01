@@ -10,6 +10,7 @@ import dev.petuska.kmdc.textfield.icon.MDCTextFieldLeadingIcon
 import dev.petuska.kmdc.textfield.icon.MDCTextFieldTrailingIcon
 import dev.petuska.kmdcx.icons.MDCIcon
 import dev.petuska.kmdcx.icons.mdcIcon
+import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.dom.Text
 import sandbox.control.BooleanControl
 import sandbox.control.ChoiceControl
@@ -21,6 +22,7 @@ import sandbox.util.NamedGroup
 private class MDCTextFieldVM {
   var type by mutableStateOf(MDCTextFieldType.Filled)
   var disabled by mutableStateOf(false)
+  var password by mutableStateOf(false)
   var label by mutableStateOf("")
   var helperText by mutableStateOf("")
   var maxLength by mutableStateOf(50)
@@ -39,7 +41,8 @@ private class MDCTextFieldVM {
 fun MDCTextField() = InteractiveShowcase(
   viewModel = { MDCTextFieldVM() },
   controls = {
-    ChoiceControl("Type", MDCTextFieldType.values().associateBy(MDCTextFieldType::name), ::type)
+    ChoiceControl("Type", MDCTextFieldType.entries.associateBy(MDCTextFieldType::name), ::type)
+    BooleanControl("Password", ::password)
     BooleanControl("Disabled", ::disabled)
     TextControl("Label", ::label)
     TextControl("Helper Text", ::helperText)
@@ -63,6 +66,7 @@ fun MDCTextField() = InteractiveShowcase(
     MDCTextField(
       value = text,
       type = type,
+      inputType = if (password) InputType.Password else InputType.Text,
       disabled = disabled,
       label = label.takeIf(String::isNotBlank),
       helperText = helperText.takeIf(String::isNotBlank),

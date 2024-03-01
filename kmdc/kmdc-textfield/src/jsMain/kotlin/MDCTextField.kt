@@ -8,6 +8,7 @@ import dev.petuska.kmdc.notched.outline.Leading
 import dev.petuska.kmdc.notched.outline.MDCNotchedOutlineLayout
 import dev.petuska.kmdc.notched.outline.Notch
 import dev.petuska.kmdc.notched.outline.Trailing
+import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.attributes.maxLength
@@ -29,7 +30,6 @@ public interface MDCTextFieldScope : ElementScope<HTMLLabelElement>
  */
 @MDCContentDsl
 @Composable
-@Suppress("LongMethod")
 public fun MDCTextField(
   value: String,
   type: MDCTextFieldType = MDCTextFieldType.Filled,
@@ -42,6 +42,42 @@ public fun MDCTextField(
   leadingIcon: MDCContent<MDCTextFieldScope>? = null,
   trailingIcon: MDCContent<MDCTextFieldScope>? = null,
   attrs: MDCAttrs<InputAttrsScope<String>>? = null,
+) {
+  MDCTextField(
+    value = value,
+    inputType = InputType.Text,
+    type = type,
+    disabled = disabled,
+    label = label,
+    helperText = helperText,
+    maxLength = maxLength,
+    prefix = prefix,
+    suffix = suffix,
+    leadingIcon = leadingIcon,
+    trailingIcon = trailingIcon,
+    attrs = attrs
+  )
+}
+
+/**
+ * [JS API](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield)
+ */
+@MDCContentDsl
+@Composable
+@Suppress("LongMethod")
+public fun <R> MDCTextField(
+  value: String,
+  inputType: InputType<R>,
+  type: MDCTextFieldType = MDCTextFieldType.Filled,
+  disabled: Boolean = false,
+  label: String? = null,
+  helperText: String? = null,
+  maxLength: UInt? = null,
+  prefix: String? = null,
+  suffix: String? = null,
+  leadingIcon: MDCContent<MDCTextFieldScope>? = null,
+  trailingIcon: MDCContent<MDCTextFieldScope>? = null,
+  attrs: MDCAttrs<InputAttrsScope<R>>? = null,
 ) {
   Style
   val labelId = rememberUniqueDomElementId()
@@ -73,6 +109,7 @@ public fun MDCTextField(
             prefix = prefix,
             suffix = suffix,
             attrs = attrs,
+            inputType = inputType,
             labelId = labelId,
             helperId = helperId,
             leadingIcon = leadingIcon,
@@ -83,6 +120,7 @@ public fun MDCTextField(
           )
           MDCLineRipple(false)
         }
+
         MDCTextFieldType.Outlined -> {
           MDCNotchedOutlineLayout {
             Leading()
@@ -102,6 +140,7 @@ public fun MDCTextField(
             prefix = prefix,
             suffix = suffix,
             attrs = attrs,
+            inputType = inputType,
             labelId = labelId,
             helperId = helperId,
             leadingIcon = leadingIcon,
@@ -125,7 +164,7 @@ public fun MDCTextField(
 
 @Composable
 @KMDCInternalAPI
-private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
+private fun <R> ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   value: String,
   labelId: String,
   helperId: String,
@@ -134,7 +173,8 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
   disabled: Boolean,
   maxLength: UInt?,
   helperText: String?,
-  attrs: MDCAttrs<InputAttrsScope<String>>?,
+  attrs: MDCAttrs<InputAttrsScope<R>>?,
+  inputType: InputType<R>,
   leadingIcon: MDCContent<MDCTextFieldScope>?,
   trailingIcon: MDCContent<MDCTextFieldScope>?
 ) {
@@ -150,10 +190,11 @@ private fun ElementScope<HTMLLabelElement>.MDCTextFieldCore(
     value = value,
     helperText = helperText,
     disabled = disabled,
-    attrs = attrs,
     labelId = labelId,
     helperId = helperId,
     maxLength = maxLength,
+    attrs = attrs,
+    inputType = inputType,
   )
   suffix?.let {
     Span(attrs = {
@@ -191,16 +232,18 @@ internal fun MDCTextFieldHelperLine(
 
 @MDCContentDsl
 @Composable
-private fun MDCTextFieldInput(
+private fun <R> MDCTextFieldInput(
   value: String,
   maxLength: UInt?,
   disabled: Boolean,
   helperText: String?,
   helperId: String,
   labelId: String,
-  attrs: MDCAttrs<InputAttrsScope<String>>?,
+  attrs: MDCAttrs<InputAttrsScope<R>>?,
+  inputType: InputType<R>,
 ) {
-  TextInput(value, attrs = {
+  Input(type = inputType, attrs = {
+    value(value)
     classes("mdc-text-field__input")
     attr("aria-labelledby", labelId)
     helperText?.let {

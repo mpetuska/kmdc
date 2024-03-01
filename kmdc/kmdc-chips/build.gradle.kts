@@ -8,7 +8,7 @@ kmdc {
 
 kotlin {
   sourceSets {
-    main {
+    jsMain {
       dependencies {
         api(libs.compose.html.svg)
         api(kmdc("touch-target"))
