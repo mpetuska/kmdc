@@ -92,7 +92,7 @@ jobs:
             mingw-w64-x86_64-curl
             curl
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{ matrix.repository.enabled == true }}
 
       - uses: actions/setup-java@v4
@@ -134,6 +134,6 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Change pre-release status
         run: gh release edit ${{ needs.resolve-version.outputs.version }} --prerelease=false
