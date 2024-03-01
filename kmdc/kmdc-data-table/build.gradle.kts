@@ -8,7 +8,7 @@ kmdc {
 
 kotlin {
   sourceSets {
-    main {
+    jsMain {
       dependencies {
         api(kmdc("checkbox"))
         api(kmdc("linear-progress"))

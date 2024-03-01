@@ -1,6 +1,6 @@
 plugins {
   id("convention.common")
-  kotlin("js")
+  kotlin("multiplatform")
   id("convention.dokka")
   id("convention.compose")
 }
@@ -20,7 +20,7 @@ kotlin {
     }
     compilations["test"].defaultSourceSet {
       dependencies {
-//        implementation(compose.html.testUtils)
+        implementation(compose.html.testUtils)
         implementation(libs.kotlin.test)
         implementation(libs.kotest.assertions.core)
       }

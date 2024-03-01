@@ -40,12 +40,12 @@ tasks {
 
 publishing {
   publications {
-    create<MavenPublication>("js") {
-      groupId = "${project.group}"
-      artifactId = project.name
-      version = "${project.version}"
-      from(components["kotlin"])
-    }
+//    create<MavenPublication>("js") {
+//      groupId = "${project.group}"
+//      artifactId = project.name
+//      version = "${project.version}"
+//      from(components["kotlin"])
+//    }
   }
 }
 

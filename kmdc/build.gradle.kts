@@ -7,7 +7,7 @@ description = "Compose Multiplatform Kotlin/JS wrappers for @material/material-c
 
 kotlin {
   sourceSets {
-    main {
+    jsMain {
       dependencies {
         subprojects.forEach(::api)
       }

@@ -8,7 +8,7 @@ kmdc {
 
 kotlin {
   sourceSets {
-    main {
+    jsMain {
       dependencies {
         api(kmdc("ripple"))
         api(kmdc("button"))
